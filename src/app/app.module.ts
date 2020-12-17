@@ -36,6 +36,8 @@ import { IpServiceService } from './ip-service.service';
 import { ProfileComponent } from './component/profile/profile.component';
 import { MyBookingComponent } from './component/my-booking/my-booking.component';
 import { ChangePaswordComponent } from './component/change-pasword/change-pasword.component';
+import { SuccessComponent } from './component/success/success.component';
+import { ErrorComponent } from './component/error/error.component';
 
 
 const APP_Routing: Routes =[
@@ -60,6 +62,8 @@ const APP_Routing: Routes =[
   { path: 'profile', component: ProfileComponent },
   { path: 'my-booking', component: MyBookingComponent },
   { path: 'change-pasword', component: ChangePaswordComponent },
+  { path: 'success/:searchId', component: SuccessComponent },
+  { path: 'error', component: ErrorComponent },
  
   ]
 
@@ -86,6 +90,8 @@ const APP_Routing: Routes =[
     ProfileComponent,
     MyBookingComponent,
     ChangePaswordComponent,
+    SuccessComponent,
+    ErrorComponent,
     
    
 
