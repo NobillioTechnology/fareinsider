@@ -1,0 +1,763 @@
+<section class="wrap-sec">
+	<div class="slider-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-8 col-sm-8">
+				<div class="row">
+					<div class="booking-engine">
+						<div class="booking-tab">
+							<ul>
+								<li><a id="flight" [ngClass]="{active:isActive=='flight' } " (click)="searchAction('flight')"><img src="../assets/images/fa-flight1.png" alt=""/><span>Flight</span></a></li>
+								<li><a id="hotel" [ngClass]="{active:isActive=='hotel' } " (click)="searchAction('hotel')"><img src="../assets/images/fa-hotel1.png" alt=""/><span>Hotel</span></a></li>
+								<li><a id="bus" [ngClass]="{active:isActive=='bus' } " (click)="searchAction('bus')"><img src="../assets/images/fa-bus1.png" alt=""/><span>Bus</span></a></li>
+							</ul>
+						</div>
+						<div class="booking-content">
+						<div class="flight-sec" *ngIf="selectionType=='flight'">
+						<form [formGroup]="myForm" name="myForm">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										 <div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio" value="1" name="selectWay" formControlName="selectWay" checked>
+											<label class="custom-control-label" for="customRadio">One way</label>
+										  </div>
+										  <div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio2" value="2" name="selectWay" formControlName="selectWay">
+											<label class="custom-control-label" for="customRadio2">Round way</label>
+										  </div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="destination-box">
+											<label>Depart  from</label>
+											<input type="text" class="form-control" list="srcAirports"  name="goingfrom" formControlName="goingfrom"  (keyup)="searchSrcAirport()">
+											
+											<datalist id="srcAirports" *ngIf="airportSrcList.length!=0">
+												<option value="{{temp.Airport}}" *ngFor="let temp of airportSrcList">
+												
+											  </datalist>
+											  
+										</div>
+										<p style="color:#fd653c;" *ngIf="myForm.get('goingfrom').hasError('required') && myForm.get('goingfrom').dirty">*Please enter source</p>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="destination-box">
+											<label>Going to</label>
+											<input type="text" class="form-control" list="desAirports"  name="goingTo" formControlName="goingTo" (keyup)="searchDesAirport()">
+											
+											<datalist id="desAirports" *ngIf="airportDesList.length!=0">
+												<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList">
+												
+											  </datalist>
+										</div>
+										<p style="color:#fd653c;" *ngIf="myForm.get('goingTo').hasError('required') && myForm.get('goingTo').dirty">*Please enter destination</p>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="date-box">
+											<div class="date1">
+												<label>Departure Date</label>
+												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" name="depDate" formControlName="depDate" >
+												
+											</div>
+											<div class="date1" *ngIf="myForm.value.selectWay=='2'">
+												<label>Return Date</label>
+												<input type="date" class="form-control" placeholder="dd-mm-yyyy" name="returnDate" formControlName="returnDate">
+												
+											</div>
+										</div>
+										<p style="color:#fd653c;" *ngIf="myForm.get('depDate').hasError('required') && myForm.get('depDate').dirty">*Please enter journey date</p>
+										<p style="color:#fd653c;" *ngIf="msgFlag=='1'">*Please enter return date</p>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="rooms-adult-box">
+											<div class="item-1">
+												<label>Adult</label>
+												<select class="form-control" name="adult" formControlName="adult">
+													<!-- <option value="0" selected>0</option> -->
+													<option value="1" selected>1</option>
+													<option value="2">2</option>
+													<option value="2">3</option>
+													<option value="2">4</option>
+													<option value="2">5</option>
+													<option value="2">6</option>
+													<option value="2">7</option>
+													<option value="2">8</option>
+													<option value="2">9</option>
+													<option value="2">10</option>
+												</select>
+											</div>
+											<div class="item-1">
+												<label>Child</label>
+												<select class="form-control" name="child" formControlName="child">
+													<option value="0" selected>0</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="2">3</option>
+													<option value="2">4</option>
+													<option value="2">5</option>
+													<option value="2">6</option>
+													<option value="2">7</option>
+													<option value="2">8</option>
+													<option value="2">9</option>
+													<option value="2">10</option>
+												</select>
+												<span class="yrs">(2-12 yrs)</span>
+											</div>
+											<div class="item-1">
+												<label>Infant</label>
+												<select class="form-control" name="infant" formControlName="infant">
+													<option value="0" selected>0</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="2">3</option>
+													<option value="2">4</option>
+													<option value="2">5</option>
+													<option value="2">6</option>
+													<option value="2">7</option>
+													<option value="2">8</option>
+													<option value="2">9</option>
+													<option value="2">10</option>
+												</select>
+												<span class="yrs">(Below 2 yrs)</span>
+											</div>
+										</div>
+									</div>	
+								</div>
+								<div class="col-lg-12 class-type">
+									<div class="form-group">
+										 <div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="class1" name="class" formControlName="class" value="E" checked>
+											<label class="custom-control-label" for="class1">Economy</label>
+										  </div>
+										  <div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="class2" name="class" formControlName="class" value="PE">
+											<label class="custom-control-label" for="class2">Premium Economy</label>
+										  </div>
+										  <div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="class3" name="class" formControlName="class" value="B">
+											<label class="custom-control-label" for="class3">Business</label>
+										  </div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="btn-group">
+										<button class="btn-search" type="button"  [disabled]=myForm.invalid (click)="availableFlights()">Search offers</button>	
+										<a>more offers<span><img src="../assets/images/arrow.png" alt="" /></span></a>
+									</div>
+								</div>
+							</div>
+						</form>
+						</div>
+						<div class="hotel-sec" *ngIf="selectionType=='hotel'">
+						<form >
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="destination-box">
+											<label>Destination</label>
+											<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="date-box">
+											<div class="date1">
+												<label>Check in</label>
+												<input type="text" class="form-control" placeholder="16 Sep 2109">
+											</div>
+											<div class="date1">
+												<label>Check out</label>
+												<input type="text" class="form-control" placeholder="17 Sep 2109">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="rooms-adult-box">
+											<div class="item-1">
+												<label>Rooms</label>
+												<select class="form-control">
+													<option value="0" selected>1</option>
+													<option value="1">2</option>
+													<option value="2">3</option>
+												</select>
+											</div>
+											<div class="item-1">
+												<label>Adult</label>
+												<select class="form-control">
+													<option value="0" selected>1</option>
+													<option value="1">2</option>
+													<option value="2">3</option>
+												</select>
+											</div>
+											<div class="item-1">
+												<label>Children</label>
+												<select class="form-control">
+													<option value="0" selected>1</option>
+													<option value="1">2</option>
+													<option value="2">3</option>
+												</select>
+											</div>
+										</div>
+									</div>	
+								</div>
+								<div class="col-lg-12">
+									<div class="btn-group">
+										<button class="btn-search" type="button">Search offers</button>	
+										<a>more offers<span><img src="../assets/images/arrow.png" alt="" /></span></a>
+									</div>
+								</div>
+							</div>
+						</form>
+						</div>
+						<div class="bus-sec" *ngIf="selectionType=='bus'">
+						<form [formGroup]="busForm">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										 <div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio3" value="1" name="tripTyp" formControlName="tripTyp" checked>
+											<label class="custom-control-label" for="customRadio3">One way</label>
+										  </div>
+										  <div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio4" value="2" name="tripTyp" formControlName="tripTyp">
+											<label class="custom-control-label" for="customRadio4">Round way</label>
+										  </div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="destination-box">
+											<label>Depart from</label>
+											<!-- <input type="text">
+											<datalist id="srcBuses" *ngIf="busSrcList.length!=0">
+												<option value="{{temp.Name}}"  >
+												
+											  </datalist> -->
+											  <select class="form-control busSlct"  name="source" formControlName="source">
+												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">{{temp.Name}}</option>
+											   </select>  
+										</div>
+										
+										<p style="color:#fd653c;" *ngIf="busForm.get('source').hasError('required') && busForm.get('source').dirty">*Please enter source</p>
+
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="destination-box">
+											<label>Going to</label>
+											<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland" name="destination" formControlName="destination">
+											<datalist id="desAirports" *ngIf="airportDesList.length!=0">
+												<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList">
+												
+											  </datalist> -->
+											  <select class="form-control busSlct"  name="destination" formControlName="destination">
+												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">{{temp.Name}}</option>
+											   </select> 
+										</div>
+									</div>
+									<p style="color:#fd653c;" *ngIf="busForm.get('destination').hasError('required') && busForm.get('destination').dirty">*Please enter destination</p>
+
+								</div>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="date-box">
+											<div class="date1">
+												<label>Depart Date</label>
+												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate">
+											</div>
+											<p style="color:#fd653c;" *ngIf="busForm.get('fromDate').hasError('required') && busForm.get('fromDate').dirty">*Please enter journey date</p>
+											<div class="date1" *ngIf="busForm.value.tripTyp=='2'">
+												<label>Return Date</label>
+												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" placeholder="dd-mm-yyyy" name="toDate" formControlName="toDate">
+											</div>
+											<p style="color:#fd653c;" *ngIf="errMsg=='1'">*Please enter return date</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="btn-group">
+										<button class="btn-search" type="button" [disabled]=busForm.invalid (click)="searchBuses()">Search offers</button>	
+										<a>more offers<span><img src="../assets/images/arrow.png" alt="" /></span></a>
+									</div>
+								</div>
+							</div>
+						</form>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-box">
+				<div class="slider">
+					<ul>
+						<li>
+							<img src="../assets/images/03.jpg" class="img-fluid" alt="" />
+							<div class="offer-destination">
+								<span>Popular destination</span>
+								<h3>Roma</h3>
+								<p>Average price - 4505</p>
+								<a>See offers</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="container">
+		<div class="popular-destination">
+			<h2>Popular destination</h2>
+			<div class="row">
+				<div class="col-lg-3 col-md-12">
+					<div class="popular-desti-list">
+						<ul class="nav nav-tabs">
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#newyork">New York<span>5258 offers</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#london">London<span>5258 offers</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#paris">Paris<span>5258 offers</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#madrid">Madrid<span>5258 offers</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#porto">Porto<span>5258 offers</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#warsaw">Warsaw<span>5258 offers</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-12">
+					<div class="tab-content">
+						<div class="tab-pane active" id="newyork">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/banner.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-07.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-02.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-03.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="london">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-02.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-03.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/banner.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-07.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="paris">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/banner.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-07.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-02.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-03.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="madrid">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-02.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-03.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/banner.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-07.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="porto">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/banner.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-07.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-02.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-03.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="warsaw">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-02.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-03.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/banner.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6">
+									<div class="destination-1">
+										<a><img src="../assets/images/destination-07.jpg" class="img-fluid" alt="" /></a>
+										<div class="destination-content">
+											<h3>Madrid<span>5258 offers</span></h3>
+											<p>Average price - 4505</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<div class="discover-new-location">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 offset-lg-7 col-md-6 offset-md-6">
+					<div class="discover-content">
+						<span>Discover new location</span>
+						<h2>Beautiful Sardinia</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and <strong>typesetting industry</strong>. Lorem Ipsum has been the industry's standard dummy text ever <strong>since the 1500s.</strong></p>
+					</div>
+				</div>
+				<div class="loaction-list">
+					<div class="row">
+					<div class="col-lg-10 col-md-9">
+						<div class="flight-slider row">
+							<div class="item-1">
+								<img src="../assets/images/flight-01.jpg" class="img-fluid item-img" alt="" />
+								<div class="item-content">
+									<h3>London - Paris</h3>	
+								</div>
+							</div>
+							<div class="item-1">
+								<img src="../assets/images/flight-02.jpg" class="img-fluid item-img" alt="" />
+								<div class="item-content">
+									<h3>Paris - New York</h3>	
+								</div>
+							</div>
+							<div class="item-1">
+								<img src="../assets/images/flight-03.jpg" class="img-fluid item-img" alt="" />
+								<div class="item-content">
+									<h3>Madrid - London</h3>	
+								</div>
+							</div>
+							<div class="item-1">
+								<img src="../assets/images/flight-04.jpg" class="img-fluid item-img" alt="" />
+								<div class="item-content">
+									<h3>Porto - Paris</h3>	
+								</div>
+							</div>
+							<div class="item-1">
+								<img src="../assets/images/flight-05.jpg" class="img-fluid item-img" alt="" />
+								<div class="item-content">
+									<h3>New York - Madrid</h3>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3">
+						<div class="see-more-box">
+							<h4>Average price - 4505</h4>
+							<p>2971 offers</p>
+							<a class="btn-seemore">See more</a>
+						</div>	
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="just-booked">
+		<div class="container">
+			<h2>Just booked</h2>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<div class="booked-1">
+						<a><img src="../assets/images/hotel-01.jpg" class="img-fluid" alt="" /></a>
+						<div class="booked-content">
+							<h3>The Quin<span><img src="../assets/images/starrating.png" alt="" />4.2 - very good</span></h3>
+							<p>A traveller from company</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<div class="booked-1">
+						<a><img src="../assets/images/hotel-02.jpg" class="img-fluid" alt="" /></a>
+						<div class="booked-content">
+							<h3>The Quin<span><img src="../assets/images/starrating.png" alt="" />4.2 - very good</span></h3>
+							<p>A traveller from company</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<div class="booked-1">
+						<a><img src="../assets/images/hotel-03.jpg" class="img-fluid" alt="" /></a>
+						<div class="booked-content">
+							<h3>The Quin<span><img src="../assets/images/starrating.png" alt="" />4.2 - very good</span></h3>
+							<p>A traveller from company</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="more-infomation">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="traveller-think">
+						<h2>What travellers think?</h2>
+						<div class="one-think">
+							<span>A guest from the united Arab Emirates left a review</span>
+							<h3>"Great location with beautiful beaches and landsxapes!"</h3>
+							<p>for:<span class="hotel-name">The Z Hotel City</span><span class="star-img"><img src="../assets/images/starrating.png" alt="" /></span></p>
+						</div>
+						<div class="one-think">
+							<span>A guest from the united Arab Emirates left a review</span>
+							<h3>"Great location with beautiful beaches and landsxapes!"</h3>
+							<p>for:<span class="hotel-name">The Z Hotel City</span><span class="star-img"><img src="../assets/images/starrating.png" alt="" /></span></p>
+						</div>
+						<div class="one-think">
+							<span>A guest from the united Arab Emirates left a review</span>
+							<h3>"Great location with beautiful beaches and landsxapes!"</h3>
+							<p>for:<span class="hotel-name">The Z Hotel City</span><span class="star-img"><img src="../assets/images/starrating.png" alt="" /></span></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="more-hotel">
+						<h2>It's more then just hotels</h2>
+						<div class="list-1">
+							<span class="icon-1"><i class="fab fa-airbnb"></i></span>
+							<h3>New deals listed daily-for every budget!</h3>
+							<p>No booking fees. Save your money!</p>
+							<a>Never Pay more</a>
+						</div>
+						<div class="list-1">
+							<span class="icon-1"><i class="fab fa-500px"></i></span>
+							<h3>New deals listed daily-for every budget!</h3>
+							<p>No booking fees. Save your money!</p>
+							<a>Never Pay more</a>
+						</div>
+						<div class="list-1">
+							<span class="icon-1"><i class="fab fa-hornbill"></i></span>
+							<h3>New deals listed daily-for every budget!</h3>
+							<p>No booking fees. Save your money!</p>
+							<a>Never Pay more</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="newslettar-sec">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-8 col-sm-8">
+					<div class="signup-box">
+						<span>newsletter</span>
+						<h2>Sign up our newsletter</h2>
+						<p>Sign up <strong>for free</strong> and get discount for next book <strong>Save even 20%</strong> and enjoy new trip. Don't miss any promotions in booking.com</p>
+						<div class="signup-form">
+							<div class="input-group">
+								<label>Your E-mail</label>
+								<input type="text" class="form-control" placeholder="Warsaw,Poland">
+							  <div class="input-group-append">
+								<button class="btn-Signup" type="submit">Sign up</button>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</section>

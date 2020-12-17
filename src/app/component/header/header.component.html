@@ -1,0 +1,60 @@
+<header class="inner-header">
+	<div class="top-bar">
+		<div class="container-fluid">
+			<div class="link-box">
+				<ul>
+					<li><a id="flight">Flight</a></li>
+					<li><a id="hotel">Hotel</a></li>
+					<li><a id="bus">Bus</a></li>
+				</ul>
+			</div>
+			<div class="link-box">
+				<ul>
+					<li><a>About Us</a></li>
+					<li><a>Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar navbar-expand-md">
+		<div class="container">
+			<a class="navbar-brand" (click)="home()"><img src="../assets/images/logo.png" alt="" /></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar" *ngIf="isLogin!=2">
+				<ul class="navbar-nav">
+				  <li class="nav-item">
+					<a class="nav-link button" (click)="customerLogin()">Customer</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link button" (click)="agentLogin()">Agent</a>
+				  </li>
+				</ul>
+				
+			</div>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar" *ngIf="isLogin==2">
+				<ul class="navbar-nav displaywithlogin">
+					<!-- Dropdown -->
+					 <li class="nav-item dropdown">
+					   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						 Hey {{username}}
+					   </a>
+					   <div class="dropdown-menu">
+						 <a class="dropdown-item" (click)="myTrip()">My Trips</a>
+						 <a class="dropdown-item" (click)="myProfile()">My Profile</a>
+						 <a class="dropdown-item" (click)="chngePswrd()">Change Pasword</a>
+						 <a class="dropdown-item" (click)="logout()">Log Out</a>
+					   </div>
+					 </li>
+		
+				 </ul>
+				<!-- <ul class="navbar-nav">
+				  <li class="nav-item">
+					<a class="nav-link" (click)="logout()">Logout</a>
+				  </li>
+				</ul> -->
+			</div>
+		</div>
+	</nav> 
+</header>

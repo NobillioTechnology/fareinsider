@@ -1,0 +1,25 @@
+.planeLine{
+    /* border: 2px solid #ccc;
+    width: 10px; */
+    height: 10px;
+    border-radius: 50%;
+    margin: 0px 5px;
+    background: #fff;
+    z-index: 99;
+    position: relative;
+    display: inline-block;
+    top: -14px;
+}
+/* .stops-filter li a .active {
+    background: #00ACEE;
+    border-color: #00ACEE;
+    color: #fff;
+}
+.depart-time li a .active {
+    background: #00ACEE;
+    border-color: #00ACEE;
+    color: #fff;
+} */
+.custom-control-input{
+    z-index:1!important;
+}

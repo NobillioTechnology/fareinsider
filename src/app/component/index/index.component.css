@@ -1,0 +1,18 @@
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    right:20px;
+}
+/* input[type="date"]::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+} */
+/* background: grey;
+    border-color: grey; */
+.btn-search[disabled],.btn-search[disabled]:hover{
+    background: grey;
+    border-color: grey;
+      }
+.busSlct{border: none;
+width: 100%!important;}

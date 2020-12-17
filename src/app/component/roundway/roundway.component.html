@@ -1,0 +1,2144 @@
+<section>
+	<div class="modify-search" id="modifySearch">
+		<div class="container">
+				<div class="m-modify">Modify Search<span><i class="fas fa-chevron-down"></i></span></div>
+				<div class="modify-box">
+				<form>
+					<div class="row">
+						<div class="col-lg-12 auto-hide">
+						 <div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx" checked>
+							<label class="custom-control-label" for="customRadio">One way</label>
+						  </div>
+						  <div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+							<label class="custom-control-label" for="customRadio2">Round way</label>
+						  </div>
+						  <span class="close-box"><i class="fas fa-times"></i></span>
+						</div>
+						<div class="col-lg-5">
+							<div class="form-group">
+								<div class="modify-city">
+									<div class="m-from">
+										<label>from</label>
+										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+									</div>
+									<div class="m-to">
+										<label>To</label>
+										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-5">
+							<div class="form-group">
+								<div class="m-dateclass">
+									<div class="m-date">
+										<label>Date</label>
+										<input type="text" class="form-control" placeholder="19 Apr 2019">
+										<input type="text" class="form-control date-icon" placeholder="Return">
+									</div>
+									<div class="m-traveller">
+										<label>Traveller(s),Class</label>
+										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-group">
+ 								<button class="btn-search" type="button">Search Again</button>
+							</div>
+ 						</div>
+						<div class="col-lg-12 auto-hide">
+						 <div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+							<label class="custom-control-label" for="customCheck">Non Stop Flights Only</label>
+						  </div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    <!-- <div class="filter-sec" id="navSticky">
+		<div class="filter-face">
+			<div class="container">
+				<div class="filter-box">
+					<ul>
+						<li><span class="filter-icon"><i class="fas fa-filter"></i></span>Filter</li>
+						<li>Stop:
+							<a class="stop">0</a>
+							<a class="stop">1</a>
+							<a class="stop">2</a>
+						</li>
+						<li><a class="item-01">Price<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+						<li><a class="item-01">Depart Time<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+						<li><a class="item-01">Airlines<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+						<li><a class="item-01">Aircraft<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+					</ul>
+					<a class="mdSearch" href="#modifySearch">Modify Search<i class="fas fa-arrow-up"></i></a>
+				</div>
+				<div class="filter-top" style="display: none;">
+					<div class="total-flight"><p>101 of 101 Flights</p></div>
+					<div class="filter-action">
+						<a id="cancelfilter">Cancel</a>
+						<button type="submit" class="btn-apply">Apply Filter</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="more-opt" style="display: none;">
+			<div class="full-flexbox">
+				<div class="container">
+					<div class="filter-type">
+						<div class="stops-filter">
+							<h2>Stops</h2>
+							<ul>
+								<li><a>0</a><li>
+								<li><a>1</a><li>
+								<li><a>2</a><li>
+							</ul>
+						</div>
+						<div class="price-filter">
+							<h2>Price</h2>
+							<p>Upto:<i class="small-inr"></i><span id="demo"></span></p>
+							 <div class="slidecontainer">
+								 <input type="range" min="1" max="9830" value="9830" class="slider" id="myRange">
+								 <span class="start-point"><i class="small-inr"></i>2,497</span>
+								 <span class="end-point"><i class="small-inr"></i>9,830</span>
+							</div>
+						</div>
+					</div>
+					<div class="depart-filter">
+						<h2>Depart Time</h2>
+						<div class="depart-time">
+							<p>From Bangalore</p>
+							<ul>
+								<li><a><span></span>00-06</a></li>
+								<li><a><span></span>06-12</a></li>
+								<li><a><span></span>12-18</a></li>
+								<li><a><span></span>18-00</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="search-filter airlines">
+						<h2>Airlines</h2>
+						<div class="input-search">
+							<span><i class="fas fa-search"></i></span>
+							<input type="text" class="form-control" placeholder="Search Airline">
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck11" name="example1" >
+							<label class="custom-control-label" for="customCheck11">Air Asia</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
+							<label class="custom-control-label" for="customCheck1">Go Air</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck2" name="example1">
+							<label class="custom-control-label" for="customCheck2">spicejet</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck3" name="example1">
+							<label class="custom-control-label" for="customCheck3">SpiceJet</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck4" name="example1">
+							<label class="custom-control-label" for="customCheck4">Vistara</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck5" name="example1">
+							<label class="custom-control-label" for="customCheck5">Vistara Premium Economy</label>
+						</div>
+					</div>
+					<div class="search-filter aircraft">
+						<h2>Aircraft</h2>
+						<div class="input-search">
+							<span><i class="fas fa-search"></i></span>
+							<input type="text" class="form-control" placeholder="Search Aircraft">
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck6" name="example1">
+							<label class="custom-control-label" for="customCheck6">Airbus A320</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck7" name="example1">
+							<label class="custom-control-label" for="customCheck7">Airbus A320-100</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck8" name="example1">
+							<label class="custom-control-label" for="customCheck8">Airbus A321</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck9" name="example1">
+							<label class="custom-control-label" for="customCheck9">Boeing 737</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck10" name="example1">
+							<label class="custom-control-label" for="customCheck10">Boeing 737-800</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div class="filter-sec" id="navSticky">
+		<div class="filter-face" >
+			<div class="container">
+				<div class="filter-box" (click)="closeFilter('2')" *ngIf="filtersection=='1'">
+					<ul>
+						<li ><span class="filter-icon"><i class="fas fa-filter"></i></span>Filter</li>
+						<!-- <li>Stop:
+							<a class="stop">0</a>
+							<a class="stop">1</a>
+							<a class="stop">2</a>
+						</li> -->
+						<li><a class="item-01">Price<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+						<li><a class="item-01">Depart Time<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+						<li><a class="item-01">Airlines<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+						<li><a class="item-01">Aircraft<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+						<li><a class="item-01">More Filter<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
+					</ul>
+					<a class="mdSearch" href="#modifySearch">Modify Search<i class="fas fa-arrow-up"></i></a>
+				</div>
+				<div class="filter-top"  *ngIf="filtersection=='2'">
+					<!-- <div class="total-flight"><p>101 of 101 Flights</p></div> -->
+					<div class="filter-action">
+						<a id="cancelfilter" (click)="closeFilter('1')">Cancel</a>
+						<button type="submit" class="btn-apply" (click)="filter()">Apply Filter</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="more-opt"   *ngIf="filtersection=='2'">
+			<div class="full-flexbox">
+				<div class="container">
+					<div class="filter-type">
+						<div class="stops-filter">
+							<h2>Stops</h2>
+							<ul>
+								<li  (click)="selectStop('0')"><a [ngClass]="{checked:isActive=='0'}">0</a><li>
+								<li  (click)="selectStop('1')"><a [ngClass]="{checked:isActive=='1'}">1</a><li>
+								<li  (click)="selectStop('2')"><a [ngClass]="{checked:isActive=='2'}">2</a><li>
+							</ul>
+						</div>
+						<div class="price-filter">
+							<h2>Price</h2>
+							<p>Upto:<i class="small-inr"></i><span id="demo">{{data.price}}</span></p>
+							 <div class="slidecontainer">
+								 <input type="range" min="1" max="9830" value="9830" class="slider" id="myRange" name="price" [(ngModel)]="data.price" (change)="getValue(data.price)">
+								 <span class="start-point"><i class="small-inr"></i>2,497</span>
+								 <span class="end-point"><i class="small-inr"></i>9,830</span>
+							</div>
+						</div>
+					</div>
+					<div class="depart-filter">
+						<h2>Depart Time</h2>
+						<div class="depart-time">
+							<p>From Bangalore</p>
+							<ul>
+								<li (click)="selectTime('00:00','06:00')"><a [ngClass]="{active:isAct=='00:00' } "><span></span>00-06</a></li>
+								<li (click)="selectTime('06:00','12:00')"><a [ngClass]="{active:isAct=='06:00' } "><span></span>06-12</a></li>
+								<li (click)="selectTime('12:00','18:00')"><a [ngClass]="{active:isAct=='12:00' } "><span></span>12-18</a></li>
+								<li (click)="selectTime('18:00','00:00')"><a [ngClass]="{active:isAct=='18:00' } "><span></span>18-00</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="search-filter airlines">
+						<h2>Airlines</h2>
+						<div class="input-search">
+							<span><i class="fas fa-search"></i></span>
+							<input type="text" class="form-control" placeholder="Search Airline">
+						</div>
+						<div class="custom-control custom-checkbox" *ngFor="let temp of airlineArr.airlynJson">
+							<input type="checkbox" class="custom-control-input" id="{{temp.airlineName}}" name="airlineName" [(ngModel)]="temp.isChkd" (change)="checkAirline(temp)">
+							<label class="custom-control-label" for="customCheck11">{{temp.airlineName}}</label>
+						</div>
+						<!-- <div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
+							<label class="custom-control-label" for="customCheck1">Go Air</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck2" name="example1">
+							<label class="custom-control-label" for="customCheck2">IndiGo</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck3" name="example1">
+							<label class="custom-control-label" for="customCheck3">SpiceJet</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck4" name="example1">
+							<label class="custom-control-label" for="customCheck4">Vistara</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck5" name="example1">
+							<label class="custom-control-label" for="customCheck5">Vistara Premium Economy</label>
+						</div> -->
+					</div>
+					<div class="search-filter aircraft">
+						<h2>Fare Type</h2>
+						<div class="input-search">
+							<span><i class="fas fa-search"></i></span>
+							<input type="text" class="form-control" placeholder="Search Aircraft">
+						</div>
+						<div class="custom-control custom-radio">
+							<input type="radio" class="custom-control-input newCss" id="customradio1" value="Refundable" name="refund" (click)="fareType('Refundable')">
+							<label class="custom-control-label" for="customRadio1">Refundable</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<input type="radio" class="custom-control-input newCss" id="customradio2"  value="Non-Refundable" name="refund" (click)="fareType('Non Refundable')">
+							<label class="custom-control-label" for="customRadio2">Non-Refundable</label>
+						</div>
+						<!-- <div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck8" name="example1">
+							<label class="custom-control-label" for="customCheck8">Airbus A321</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck9" name="example1">
+							<label class="custom-control-label" for="customCheck9">Boeing 737</label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="customCheck10" name="example1">
+							<label class="custom-control-label" for="customCheck10">Boeing 737-800</label>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="search-result round-way-sec">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-6 result-left pdr-0">
+				<div class="leg-header">
+					<div class="leg-content">
+						<h2>{{onwardFlightList[0].FlightSegments[0].IntDepartureAirportName}}<span><i class="fas fa-arrow-right"></i></span>{{onwardFlightList[0].FlightSegments[onwardFlightList[0].FlightSegments.length-1].IntArrivalAirportName}}</h2>
+						<p>{{onwardFlightList[0].FlightSegments[0].DepartureDateTime| date}}</p>
+					</div>
+					<div class="day-button">
+						<div class="pre-left">
+							<span><i class="fas fa-chevron-left"></i></span>Prev day
+						</div>
+						<div class="next-left">
+							Next day<span><i class="fas fa-chevron-right"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="sort-by">
+					<ul>
+						<li><a>Depart</a></li>
+						<li><a>Arrive</a></li>
+						<li><a>Duration</a></li>
+						<li><a>Price per Adult</a></li>
+					</ul>
+				</div>
+				<div class="flight-sec">
+					<div class="row">
+						<div class="col-lg-12" *ngFor="let temp of onwardFlightList let i = index">
+							<div class="flight-item round-way">
+								<div class="flight-list" >
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="{{url+temp.FlightSegments[0].ImagePath}}" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">{{temp.FlightSegments[0].DepartureDateTime | date:"HH:mm"}}<span>{{temp.FlightSegments[0].AirLineName}}</span></div>
+											<div class="duration-stop">
+												<div class="planeLine">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">{{temp.FlightSegments[temp.FlightSegments.length-1].ArrivalDateTime | date:"HH:mm"}}</div>
+										</div>
+										<div class="fgt-duration" *ngIf="temp.FlightSegments.length==1">
+											{{temp.FlightSegments[0].Duration}}
+											<div class="more-stops">
+												<span>Non Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="fgt-duration" *ngIf="temp.FlightSegments.length>1">
+											{{temp.FlightSegments[temp.FlightSegments.length-1].AccumulatedDuration}}
+											<div class="more-stops">
+												<span>{{temp.FlightSegments.length-1}} Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<!-- <input type="radio" class="custom-control-input" name="FlightUId" value="temp.FlightUId" [(ngModel)]="temp.FlightUId"> -->
+											<input type="radio" name="FlightUId1" value="{{temp.FlightUId}}" [(ngModel)]="data.FlightUId"  (change)="changeRadio($event.target.value,temp)" checked="checked">
+											<!-- <label class="custom-control-label" for="customRadio12"></label> -->
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link" (click)="showDetail(i)">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" [ngStyle]="{'display': actionType==i ? 'block':'none'}">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close" (click)="showDetail('-1')"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary">Fare Summary</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#fareRules">Fare Rules</a>
+												  </li>
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts" >
+													  <div class="flight-contents" style="min-height:auto;" *ngFor="let item of temp.FlightSegments let j = index">
+														<div class="yellow-msg" style="margin-top: 0;" *ngIf="temp.FlightSegments.length>1 && j!=0">
+															<p>Change plane at <strong>{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
+														</div>
+													<div class="flight-one">
+													<div class="airline-name">
+														<div class="airline-logo">
+															<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
+															<div class="airline-code">
+																<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
+																<span>Airbus A320-100</span>
+															</div>
+														</div>
+														<div class="amenties">
+															<ul>
+																<li class="select"><i class="fas fa-utensils"></i></li>
+																<li><i class="fas fa-wifi"></i></li>
+																<li><i class="fas fa-plug"></i></li>
+																<li><i class="fab fa-youtube"></i></li>
+															</ul>
+														</div>
+													</div>
+													<div class="schedule-dts">
+														<div class="depart-dts">
+															<span class="city-head">{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</span>
+															<h3>{{item.DepartureDateTime | date:"HH:mm"}}</h3>
+															<p>{{item.DepartureDateTime | date }}</p>
+															<span class="city-name">Bengaluru</span>
+														</div>
+														<div class="full-duration">
+															<span class="no-wrap"><i class="far fa-clock"></i>{{item.Duration}}</span>
+															<span class="dur-line"></span>
+															<span class="no-wrap">Non Stop</span>
+														</div>
+														<div class="depart-dts">
+															<span class="city-head">{{item.IntArrivalAirportName}} ({{item.ArrivalAirportCode}})</span>
+															<h3>{{item.ArrivalDateTime | date:"HH:mm"}}</h3>
+															<p>{{item.ArrivalDateTime | date }}</p>
+															<span class="city-name">Shamshabad Rajiv</span>
+														</div>
+													</div>
+													<div class="amen-details">
+														<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>{{item.BaggageAllowed.CheckInBaggage}}</span></div>
+														<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+													</div>
+												</div>
+													<!-- <div class="yellow-msg" *ngIf="temp.FlightSegments.length>1">
+														<p>Change plane at <strong>{{item.IntArrivalAirportName}} ({{item.ArrivalAirportCode}}</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
+													</div> -->
+													<!-- <div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div> -->
+													
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<!-- <tbody>
+															<tr>
+																<td>Adult x {{temp.RequestDetails.Adults}}</td>
+																<td><i class="fas fa-rupee-sign"></i>1,916</td>
+																<td><i class="fas fa-rupee-sign"></i>563</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>2,479</td>
+															</tr>
+														</tbody> -->
+														<tbody>
+															<tr>
+																<td><p style="margin-bottom: 0rem;">Adult x {{temp.RequestDetails.Adults}}</p>
+																	<p style="margin-bottom: 0rem;" *ngIf="temp.RequestDetails.Children!=0">Child x {{temp.RequestDetails.Children}}</p>
+																	<p style="margin-bottom: 0rem;" *ngIf="temp.RequestDetails.Infants!=0">Infant x {{temp.RequestDetails.Infants}}</p></td>
+																<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.ActualBaseFare}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.Tax}}</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												  <div class="tab-pane" id="fareRules">
+													<div class="custom-farerule" style="display:none;">
+														<p>No Fare rules are found for this flight </p>
+													</div>
+													<div class="custom-farerule">
+													<!-- <h4>BLR-HYD</h4>
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Time</th>
+																<th>Airline date</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Duration</td>
+																<td>0 hour to 1 dyas</td>
+															</tr>
+															<tr>
+																<td>Per Passenger</td>
+																<td><i class="fas fa-rupee-sign"></i>5,581</td>
+															</tr>		
+															<tr>
+																<td> 1 days</td>
+																<td><i class="fas fa-rupee-sign"></i>5,581</td>
+															</tr>
+														</tbody>
+													</table> -->
+													{{fareRule_1}}
+													</div>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<!-- <div class="col-lg-12">
+							<div class="flight-item round-way">
+								<div class="flight-list">
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="../assets/images/spicejet.png" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">15:00<span>SpiceJet</span></div>
+											<div class="duration-stop">
+												<div class="stop-circle">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">19:55</div>
+										</div>
+										<div class="fgt-duration">
+											4h 55m
+											<div class="more-stops">
+												<span>1 Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>9,830</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio12" name="example1" value="customEx" checked="">
+											<label class="custom-control-label" for="customRadio12"></label>
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" style="display: none;">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts11">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary11">Fare Summary</a>
+												  </li>
+													
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts11">
+													  <div class="flight-contents">
+													<div class="flight-one">
+													<div class="airline-name">
+														<div class="airline-logo">
+															<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+															<div class="airline-code">
+																<p>spicejet,6E-452<small>(Economy)</small></p>
+																<span>Airbus A320-100</span>
+															</div>
+														</div>
+														<div class="amenties">
+															<ul>
+																<li class="select"><i class="fas fa-utensils"></i></li>
+																<li><i class="fas fa-wifi"></i></li>
+																<li><i class="fas fa-plug"></i></li>
+																<li><i class="fab fa-youtube"></i></li>
+															</ul>
+														</div>
+													</div>
+													<div class="schedule-dts">
+														<div class="depart-dts">
+															<span class="city-head">Bangalore (BLR)</span>
+															<h3>05:15</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Bengaluru</span>
+														</div>
+														<div class="full-duration">
+															<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+															<span class="dur-line"></span>
+															<span class="no-wrap">Non Stop</span>
+														</div>
+														<div class="depart-dts">
+															<span class="city-head">Hyderabad (HYD)</span>
+															<h3>06:35</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Shamshabad Rajiv</span>
+														</div>
+													</div>
+													<div class="amen-details">
+														<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+														<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+													</div>
+												</div>
+													<div class="yellow-msg">
+														<p>Change plane at <strong>Hyderabad (HYD)</strong>, Connecting Time: <strong>4h 35m</strong> </p>
+													</div>
+													<div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div>
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary11">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Adult x 1</td>
+																<td><i class="fas fa-rupee-sign"></i>1,916</td>
+																<td><i class="fas fa-rupee-sign"></i>563</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>2,479</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+						<!-- <div class="col-lg-12">
+							<div class="flight-item round-way">
+								<div class="flight-list">
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="../assets/images/spicejet.png" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">15:00<span>SpiceJet</span></div>
+											<div class="duration-stop">
+												<div class="stop-circle">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">19:55</div>
+										</div>
+										<div class="fgt-duration">
+											4h 55m
+											<div class="more-stops">
+												<span>1 Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>9,830</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio12" name="example1" value="customEx" checked="">
+											<label class="custom-control-label" for="customRadio12"></label>
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" style="display: none;">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary">Fare Summary</a>
+												  </li>
+													
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts">
+													  <div class="flight-contents">
+													<div class="flight-one">
+													<div class="airline-name">
+														<div class="airline-logo">
+															<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+															<div class="airline-code">
+																<p>spicejet,6E-452<small>(Economy)</small></p>
+																<span>Airbus A320-100</span>
+															</div>
+														</div>
+														<div class="amenties">
+															<ul>
+																<li class="select"><i class="fas fa-utensils"></i></li>
+																<li><i class="fas fa-wifi"></i></li>
+																<li><i class="fas fa-plug"></i></li>
+																<li><i class="fab fa-youtube"></i></li>
+															</ul>
+														</div>
+													</div>
+													<div class="schedule-dts">
+														<div class="depart-dts">
+															<span class="city-head">Bangalore (BLR)</span>
+															<h3>05:15</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Bengaluru</span>
+														</div>
+														<div class="full-duration">
+															<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+															<span class="dur-line"></span>
+															<span class="no-wrap">Non Stop</span>
+														</div>
+														<div class="depart-dts">
+															<span class="city-head">Hyderabad (HYD)</span>
+															<h3>06:35</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Shamshabad Rajiv</span>
+														</div>
+													</div>
+													<div class="amen-details">
+														<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+														<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+													</div>
+												</div>
+													<div class="yellow-msg">
+														<p>Change plane at <strong>Hyderabad (HYD)</strong>, Connecting Time: <strong>4h 35m</strong> </p>
+													</div>
+													<div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div>
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Adult x 1</td>
+																<td><i class="fas fa-rupee-sign"></i>1,916</td>
+																<td><i class="fas fa-rupee-sign"></i>563</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>2,479</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+						<!-- <div class="col-lg-12">
+							<div class="flight-item round-way">
+								<div class="flight-list">
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="../assets/images/spicejet.png" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">15:00<span>SpiceJet</span></div>
+											<div class="duration-stop">
+												<div class="stop-circle">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">19:55</div>
+										</div>
+										<div class="fgt-duration">
+											4h 55m
+											<div class="more-stops">
+												<span>1 Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>9,830</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio12" name="example1" value="customEx" checked="">
+											<label class="custom-control-label" for="customRadio12"></label>
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" style="display: none;">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary">Fare Summary</a>
+												  </li>
+													
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts">
+													  <div class="flight-contents">
+													<div class="flight-one">
+													<div class="airline-name">
+														<div class="airline-logo">
+															<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+															<div class="airline-code">
+																<p>spicejet,6E-452<small>(Economy)</small></p>
+																<span>Airbus A320-100</span>
+															</div>
+														</div>
+														<div class="amenties">
+															<ul>
+																<li class="select"><i class="fas fa-utensils"></i></li>
+																<li><i class="fas fa-wifi"></i></li>
+																<li><i class="fas fa-plug"></i></li>
+																<li><i class="fab fa-youtube"></i></li>
+															</ul>
+														</div>
+													</div>
+													<div class="schedule-dts">
+														<div class="depart-dts">
+															<span class="city-head">Bangalore (BLR)</span>
+															<h3>05:15</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Bengaluru</span>
+														</div>
+														<div class="full-duration">
+															<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+															<span class="dur-line"></span>
+															<span class="no-wrap">Non Stop</span>
+														</div>
+														<div class="depart-dts">
+															<span class="city-head">Hyderabad (HYD)</span>
+															<h3>06:35</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Shamshabad Rajiv</span>
+														</div>
+													</div>
+													<div class="amen-details">
+														<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+														<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+													</div>
+												</div>
+													<div class="yellow-msg">
+														<p>Change plane at <strong>Hyderabad (HYD)</strong>, Connecting Time: <strong>4h 35m</strong> </p>
+													</div>
+													<div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div>
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Adult x 1</td>
+																<td><i class="fas fa-rupee-sign"></i>1,916</td>
+																<td><i class="fas fa-rupee-sign"></i>563</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>2,479</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5 col-6 result-left pdl-0">
+				<div class="leg-header">
+					<div class="leg-content">
+						<h2>{{returnFlightList[0].FlightSegments[0].IntDepartureAirportName}}<span><i class="fas fa-arrow-right"></i></span>{{returnFlightList[0].FlightSegments[returnFlightList[0].FlightSegments.length-1].IntArrivalAirportName}}</h2>
+						<p>{{returnFlightList[0].FlightSegments[0].DepartureDateTime | date}}</p>
+					</div>
+					<div class="day-button">
+						<div class="pre-left">
+							<span><i class="fas fa-chevron-left"></i></span>Prev day
+						</div>
+						<div class="next-left">
+							Next day<span><i class="fas fa-chevron-right"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="sort-by">
+					<ul>
+						<li><a>Depart</a></li>
+						<li><a>Arrive</a></li>
+						<li><a>Duration</a></li>
+						<li><a>Price per Adult</a></li>
+					</ul>
+				</div>
+				<div class="flight-sec">
+					<div class="row">
+						<div class="col-lg-12" *ngFor="let obj of returnFlightList let i = index">
+							<div class="flight-item round-way">
+								<div class="flight-list">
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="{{url+obj.FlightSegments[0].ImagePath}}" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">{{obj.FlightSegments[0].DepartureDateTime | date:"HH:mm"}}<span>{{obj.FlightSegments[0].AirLineName}}</span></div>
+											<div class="duration-stop">
+												<div class="planeLine">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">{{obj.FlightSegments[obj.FlightSegments.length-1].ArrivalDateTime | date:"HH:mm"}}</div>
+										</div>
+										<div class="fgt-duration" *ngIf="obj.FlightSegments.length==1">
+											{{obj.FlightSegments[0].Duration}}
+											<div class="more-stops">
+												<span>Non Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="fgt-duration" *ngIf="obj.FlightSegments.length>1">
+											{{obj.FlightSegments[obj.FlightSegments.length-1].AccumulatedDuration}}
+											<div class="more-stops">
+												<span>{{obj.FlightSegments.length-1}} Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(obj.FareDetails.ChargeableFares.NetFare)}}</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<!-- <input type="radio" class="custom-control-input" id="customRadio11" name="example" value="customEx" checked="checked">
+											<label class="custom-control-label" for="customRadio11"></label> -->
+											<input type="radio" name="FlightUId2" value="{{obj.FlightUId}}" [ngModel]="retData.FlightUId"  (change)="selectRadio($event.target.value,obj)" checked="checked">
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link" (click)="showDetail_ret(i)">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" [ngStyle]="{'display': action==i ? 'block':'none'}">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close" (click)="showDetail_ret('-1')"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts1">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary1">Fare Summary</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#farerule1">Fare Rules</a>
+												  </li>
+													
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts1" >
+													  <div class="flight-contents" style="min-height:auto;" *ngFor="let item of obj.FlightSegments let j = index">
+														<div class="yellow-msg" style="margin-top: 0;" *ngIf="obj.FlightSegments.length>1 && j!=0">
+															<p>Change plane at <strong>{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
+														</div>
+														<div class="flight-one">
+															<div class="airline-name">
+																<div class="airline-logo">
+																	<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
+																	<div class="airline-code">
+																		<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
+																		<span>Airbus A320-100</span>
+																	</div>
+																</div>
+																<div class="amenties">
+																	<ul>
+																		<li class="select"><i class="fas fa-utensils"></i></li>
+																		<li><i class="fas fa-wifi"></i></li>
+																		<li><i class="fas fa-plug"></i></li>
+																		<li><i class="fab fa-youtube"></i></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="schedule-dts">
+																<div class="depart-dts">
+																	<span class="city-head">{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</span>
+																	<h3>{{item.DepartureDateTime | date:"HH:mm"}}</h3>
+																	<p>{{item.DepartureDateTime | date }}</p>
+																	<span class="city-name">Bengaluru</span>
+																</div>
+																<div class="full-duration">
+																	<span class="no-wrap"><i class="far fa-clock"></i>{{item.Duration}}</span>
+																	<span class="dur-line"></span>
+																	<span class="no-wrap">Non Stop</span>
+																</div>
+																<div class="depart-dts">
+																	<span class="city-head">{{item.IntArrivalAirportName}} ({{item.ArrivalAirportCode}})</span>
+																	<h3>{{item.ArrivalDateTime | date:"HH:mm"}}</h3>
+																	<p>{{item.ArrivalDateTime | date }}</p>
+																	<span class="city-name">Shamshabad Rajiv</span>
+																</div>
+															</div>
+															<div class="amen-details">
+																<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>{{item.BaggageAllowed.CheckInBaggage}}</span></div>
+																<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+															</div>
+														</div>
+													<!-- <div class="yellow-msg">
+														<p>Change plane at <strong>Hyderabad (HYD)</strong>, Connecting Time: <strong>4h 35m</strong> </p>
+													</div> -->
+													<!-- <div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div> -->
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary1">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td><p style="margin-bottom: 0rem;">Adult x {{obj.RequestDetails.Adults}}</p>
+																	<p style="margin-bottom: 0rem;" *ngIf="obj.RequestDetails.Children!=0">Child x {{obj.RequestDetails.Children}}</p>
+																	<p style="margin-bottom: 0rem;" *ngIf="obj.RequestDetails.Infants!=0">Infant x {{obj.RequestDetails.Infants}}</p></td>
+																<td><i class="fas fa-rupee-sign"></i>{{obj.FareDetails.ChargeableFares.ActualBaseFare}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{netAmount(obj.FareDetails.ChargeableFares.Tax)}}</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>{{netAmount(obj.FareDetails.ChargeableFares.NetFare)}}</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												  <div class="tab-pane" id="farerule1">
+													<div class="custom-farerule" style="display:none;">
+														<p>No Fare rules are found for this flight </p>
+													</div>
+													<div class="custom-farerule">
+													<!-- <h4>BLR-HYD</h4>
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Time</th>
+																<th>Airline date</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Duration</td>
+																<td>0 hour to 1 dyas</td>
+															</tr>
+															<tr>
+																<td>Per Passenger</td>
+																<td><i class="fas fa-rupee-sign"></i>5,581</td>
+															</tr>		
+															<tr>
+																<td> 1 days</td>
+																<td><i class="fas fa-rupee-sign"></i>5,581</td>
+															</tr>
+														</tbody>
+													</table> -->
+													{{fareRule_2}}
+													</div>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<!-- <div class="col-lg-12">
+							<div class="flight-item round-way">
+								<div class="flight-list">
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="../assets/images/spicejet.png" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">15:00<span>SpiceJet</span></div>
+											<div class="duration-stop">
+												<div class="stop-circle">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">19:55</div>
+										</div>
+										<div class="fgt-duration">
+											4h 55m
+											<div class="more-stops">
+												<span>1 Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>9,830</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio11" name="example" value="customEx" checked="">
+											<label class="custom-control-label" for="customRadio11"></label>
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" style="display: none;">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts1">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary1">Fare Summary</a>
+												  </li>
+													
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts1">
+													  <div class="flight-contents">
+													<div class="flight-one">
+													<div class="airline-name">
+														<div class="airline-logo">
+															<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+															<div class="airline-code">
+																<p>spicejet,6E-452<small>(Economy)</small></p>
+																<span>Airbus A320-100</span>
+															</div>
+														</div>
+														<div class="amenties">
+															<ul>
+																<li class="select"><i class="fas fa-utensils"></i></li>
+																<li><i class="fas fa-wifi"></i></li>
+																<li><i class="fas fa-plug"></i></li>
+																<li><i class="fab fa-youtube"></i></li>
+															</ul>
+														</div>
+													</div>
+													<div class="schedule-dts">
+														<div class="depart-dts">
+															<span class="city-head">Bangalore (BLR)</span>
+															<h3>05:15</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Bengaluru</span>
+														</div>
+														<div class="full-duration">
+															<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+															<span class="dur-line"></span>
+															<span class="no-wrap">Non Stop</span>
+														</div>
+														<div class="depart-dts">
+															<span class="city-head">Hyderabad (HYD)</span>
+															<h3>06:35</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Shamshabad Rajiv</span>
+														</div>
+													</div>
+													<div class="amen-details">
+														<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+														<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+													</div>
+												</div>
+													<div class="yellow-msg">
+														<p>Change plane at <strong>Hyderabad (HYD)</strong>, Connecting Time: <strong>4h 35m</strong> </p>
+													</div>
+													<div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div>
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary1">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Adult x 1</td>
+																<td><i class="fas fa-rupee-sign"></i>1,916</td>
+																<td><i class="fas fa-rupee-sign"></i>563</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>2,479</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="flight-item round-way">
+								<div class="flight-list">
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="../assets/images/spicejet.png" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">15:00<span>SpiceJet</span></div>
+											<div class="duration-stop">
+												<div class="stop-circle">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">19:55</div>
+										</div>
+										<div class="fgt-duration">
+											4h 55m
+											<div class="more-stops">
+												<span>1 Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>9,830</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio11" name="example" value="customEx" checked="">
+											<label class="custom-control-label" for="customRadio11"></label>
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" style="display: none;">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts1">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary1">Fare Summary</a>
+												  </li>
+													
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts1">
+													  <div class="flight-contents">
+													<div class="flight-one">
+													<div class="airline-name">
+														<div class="airline-logo">
+															<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+															<div class="airline-code">
+																<p>spicejet,6E-452<small>(Economy)</small></p>
+																<span>Airbus A320-100</span>
+															</div>
+														</div>
+														<div class="amenties">
+															<ul>
+																<li class="select"><i class="fas fa-utensils"></i></li>
+																<li><i class="fas fa-wifi"></i></li>
+																<li><i class="fas fa-plug"></i></li>
+																<li><i class="fab fa-youtube"></i></li>
+															</ul>
+														</div>
+													</div>
+													<div class="schedule-dts">
+														<div class="depart-dts">
+															<span class="city-head">Bangalore (BLR)</span>
+															<h3>05:15</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Bengaluru</span>
+														</div>
+														<div class="full-duration">
+															<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+															<span class="dur-line"></span>
+															<span class="no-wrap">Non Stop</span>
+														</div>
+														<div class="depart-dts">
+															<span class="city-head">Hyderabad (HYD)</span>
+															<h3>06:35</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Shamshabad Rajiv</span>
+														</div>
+													</div>
+													<div class="amen-details">
+														<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+														<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+													</div>
+												</div>
+													<div class="yellow-msg">
+														<p>Change plane at <strong>Hyderabad (HYD)</strong>, Connecting Time: <strong>4h 35m</strong> </p>
+													</div>
+													<div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div>
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary1">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Adult x 1</td>
+																<td><i class="fas fa-rupee-sign"></i>1,916</td>
+																<td><i class="fas fa-rupee-sign"></i>563</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>2,479</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="flight-item round-way">
+								<div class="flight-list">
+									<div class="fgt-box">
+										<div class="fgt-logo">
+											<img src="../assets/images/spicejet.png" class="fgt-img" alt="" />
+										</div>
+										<div class="fgt-drt-box">
+											<div class="fgt-from">15:00<span>SpiceJet</span></div>
+											<div class="duration-stop">
+												<div class="stop-circle">
+													<div class="content-wrap" style="display: none;">
+														<table>
+															<tr class="table-head">
+																<td align="left">Stop</td>
+																<td align="right">Layover Time</td>
+															</tr>
+															<tr>
+																<td align="left">Mubai</td>
+																<td align="right">0h 55m</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="fgt-to">19:55</div>
+										</div>
+										<div class="fgt-duration">
+											4h 55m
+											<div class="more-stops">
+												<span>1 Stop<i class="info"></i></span>
+												<div class="content-wrap" style="display: none;">
+													<table>
+														<tr class="table-head">
+															<td align="left">Stop</td>
+															<td align="right">Layover Time</td>
+														</tr>
+														<tr>
+															<td align="left">Mubai</td>
+															<td align="right">0h 55m</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="price-box">
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>9,830</div>	
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input" id="customRadio11" name="example" value="customEx" checked="">
+											<label class="custom-control-label" for="customRadio11"></label>
+										  </div>
+									</div>
+								</div>
+								<div class="flight-det">
+									<div class="fgt-link">
+										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
+									</div>
+									<div class="row" id="flightdetails" style="display: none;">
+										<div class="col-lg-12">
+											<div class="fare-summary">
+												<div class="fare-wrap">
+												<span class="flightdetails-close"><i class="fas fa-times"></i></span>
+												<ul class="nav nav-tabs">
+												 <li class="nav-item">
+													<a class="nav-link active" data-toggle="tab" href="#flightdts1">Fare Flight Details</a>
+												  </li>
+												  <li class="nav-item">
+													<a class="nav-link" data-toggle="tab" href="#faresummary1">Fare Summary</a>
+												  </li>
+													
+												</ul>
+												<div class="tab-content">
+												  <div class="tab-pane active container" id="flightdts1">
+													  <div class="flight-contents">
+													<div class="flight-one">
+													<div class="airline-name">
+														<div class="airline-logo">
+															<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+															<div class="airline-code">
+																<p>spicejet,6E-452<small>(Economy)</small></p>
+																<span>Airbus A320-100</span>
+															</div>
+														</div>
+														<div class="amenties">
+															<ul>
+																<li class="select"><i class="fas fa-utensils"></i></li>
+																<li><i class="fas fa-wifi"></i></li>
+																<li><i class="fas fa-plug"></i></li>
+																<li><i class="fab fa-youtube"></i></li>
+															</ul>
+														</div>
+													</div>
+													<div class="schedule-dts">
+														<div class="depart-dts">
+															<span class="city-head">Bangalore (BLR)</span>
+															<h3>05:15</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Bengaluru</span>
+														</div>
+														<div class="full-duration">
+															<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+															<span class="dur-line"></span>
+															<span class="no-wrap">Non Stop</span>
+														</div>
+														<div class="depart-dts">
+															<span class="city-head">Hyderabad (HYD)</span>
+															<h3>06:35</h3>
+															<p>Thu, 23 Apr 2020</p>
+															<span class="city-name">Shamshabad Rajiv</span>
+														</div>
+													</div>
+													<div class="amen-details">
+														<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+														<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+													</div>
+												</div>
+													<div class="yellow-msg">
+														<p>Change plane at <strong>Hyderabad (HYD)</strong>, Connecting Time: <strong>4h 35m</strong> </p>
+													</div>
+													<div class="flight-one">
+														<div class="airline-name">
+															<div class="airline-logo">
+																<img src="../assets/images/spicejet.png" class="fgt-img" alt="">
+																<div class="airline-code">
+																	<p>spicejet,6E-452<small>(Economy)</small></p>
+																	<span>Airbus A320-100</span>
+																</div>
+															</div>
+															<div class="amenties"></div>
+														</div>
+														<div class="schedule-dts">
+															<div class="depart-dts">
+																<span class="city-head">Bangalore (BLR)</span>
+																<h3>05:15</h3>
+																<p>Thu, 23 Apr 2020</p>
+																<span class="city-name">Bengaluru</span>
+															</div>
+															<div class="full-duration">
+																<span class="no-wrap"><i class="far fa-clock"></i>1h 20m</span>
+																<span class="dur-line"></span>
+																<span class="no-wrap">Non Stop</span>
+															</div>
+															<div class="depart-dts">
+																<span class="city-head">Hyderabad (HYD)</span>
+																<h3>06:35</h3>
+																<p>Thu, 23 Apr 2020</p>
+
+																<span class="city-name">Shamshabad Rajiv</span>
+															</div>
+														</div>
+														<div class="amen-details">
+															<div class="baggage">Checkin Baggage :<span><i class="fas fa-suitcase"></i>15 kgs</span></div>
+															<div class="paid-meal"><span><i class="fas fa-utensils"></i>Paid Meal</span></div>
+														</div>
+													</div>
+												</div>
+												  </div>
+												  <div class="tab-pane container faresummary" id="faresummary1">
+													<table class="table fare-table">
+														<thead>
+															<tr>
+																<th>Fare Summary</th>
+																<th>Base Fare</th>
+																<th>Fees & Taxes</th>
+															</tr>
+														</thead> 
+														<tbody>
+															<tr>
+																<td>Adult x 1</td>
+																<td><i class="fas fa-rupee-sign"></i>1,916</td>
+																<td><i class="fas fa-rupee-sign"></i>563</td>
+															</tr>		
+															<tr class="total">
+																<td colspan="2">You Pay :</td>
+																<td><i class="fas fa-rupee-sign"></i>2,479</td>
+															</tr>
+														</tbody>
+													</table>
+													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+												  </div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div> 
+			<div class="col-lg-2">
+				<div class="offers-box">
+					<img src="../assets/images/offers.png" class="img-fluid" alt="" />
+				</div>
+				<div class="offers-box">
+					<img src="../assets/images/offers2.png" class="img-fluid" alt="" />
+				</div>
+			</div>
+		</div>
+	</div>	
+</section>
+<div class="selection-summary">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-8 trip-detail round-way">
+				<div class="fgt-box">
+					<div class="fgt-logo">
+						<img src="{{url+selFlight.FlightSegments[0].ImagePath}}" class="fgt-img" alt="">
+					</div>
+					<div class="fgt-drt-box">
+						<div class="fgt-from">{{selFlight.FlightSegments[0].DepartureDateTime | date:"HH:mm"}}<span>{{selFlight.FlightSegments[0].AirLineName}}</span></div>
+						<div class="duration-stop">
+							<div class="planeLine">
+								<div class="content-wrap" style="display: none;">
+									<table>
+										<tbody><tr class="table-head">
+											<td align="left">Stop</td>
+											<td align="right">Layover Time</td>
+										</tr>
+										<tr>
+											<td align="left">Mubai</td>
+											<td align="right">0h 55m</td>
+										</tr>
+									</tbody></table>
+								</div>
+							</div>
+						</div>
+						<div class="fgt-to">{{selFlight.FlightSegments[selFlight.FlightSegments.length-1].ArrivalDateTime | date:"HH:mm"}}</div>
+					</div>
+					<div class="fgt-duration" *ngIf="selFlight.FlightSegments.length==1">
+						{{selFlight.FlightSegments[0].Duration}}
+						<div class="more-stops">
+							<span>Non Stop</span>
+						</div>
+					</div>
+					<div class="fgt-duration" *ngIf="selFlight.FlightSegments.length>1">
+						{{selFlight.FlightSegments[selFlight.FlightSegments.length-1].AccumulatedDuration}}
+						<div class="more-stops">
+							<span>{{selFlight.FlightSegments.length-1}} Stop</span>
+						</div>
+					</div>
+				</div>
+				<div class="fgt-box">
+					<div class="fgt-logo">
+						<img src="{{url+selReturnFlight.FlightSegments[0].ImagePath}}" class="fgt-img" alt="">
+					</div>
+					<div class="fgt-drt-box">
+						<div class="fgt-from">{{selReturnFlight.FlightSegments[0].DepartureDateTime | date:"HH:mm"}}<span>{{selReturnFlight.FlightSegments[0].AirLineName}}</span></div>
+						<div class="duration-stop">
+							<div class="planeLine">
+								<div class="content-wrap" style="display: none;">
+									<table>
+										<tbody><tr class="table-head">
+											<td align="left">Stop</td>
+											<td align="right">Layover Time</td>
+										</tr>
+										<tr>
+											<td align="left">Mubai</td>
+											<td align="right">0h 55m</td>
+										</tr>
+									</tbody></table>
+								</div>
+							</div>
+						</div>
+						<div class="fgt-to">{{selReturnFlight.FlightSegments[selReturnFlight.FlightSegments.length-1].ArrivalDateTime | date:"HH:mm"}}</div>
+					</div>
+					<div class="fgt-duration" *ngIf="selReturnFlight.FlightSegments.length==1">
+						{{selReturnFlight.FlightSegments[0].Duration}}
+						<div class="more-stops">
+							<span>Non Stop</span>
+						</div>
+					</div>
+					<div class="fgt-duration" *ngIf="selReturnFlight.FlightSegments.length>1">
+						{{selReturnFlight.FlightSegments[selReturnFlight.FlightSegments.length-1].AccumulatedDuration}}
+						<div class="more-stops">
+							<span>{{selReturnFlight.FlightSegments.length-1}} Stop</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-4 pricing-det">
+				<div class="price-tipsy">
+					<span class="total-fare">Total Fare :</span>
+					<h3><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.NetFare) + netAmount(selReturnFlight.FareDetails.ChargeableFares.NetFare)).toFixed(2)}}</h3>
+					<p >Earn eCash:<span>500</span></p>
+				</div>
+				<div class="pricing-fare-summary" style="display: none;">
+					<h3>Fare Summary</h3>
+					<table class="table fare-table">
+						<thead>
+							<tr>
+								<th>Fare Summary</th>
+								<th>Base Fare</th>
+								<th>Fees &amp; Taxes</th>
+							</tr>
+						</thead> 
+						<tbody>
+							<tr>
+								<td><p style="margin-bottom: 0rem;">Adult x {{selFlight.RequestDetails.Adults}}</p>
+									<p style="margin-bottom: 0rem;" *ngIf="selFlight.RequestDetails.Children!='0'">Child x {{selFlight.RequestDetails.Children}}</p>
+									<p style="margin-bottom: 0rem;"  *ngIf="selFlight.RequestDetails.Infants!='0'">Infant x {{selFlight.RequestDetails.Infants}}</p></td>
+								<td><i class="fas fa-rupee-sign"></i>{{(selFlight.FareDetails.ChargeableFares.ActualBaseFare + selReturnFlight.FareDetails.ChargeableFares.ActualBaseFare).toFixed(2)}}</td>
+								<td><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.Tax) + netAmount(selReturnFlight.FareDetails.ChargeableFares.Tax)).toFixed(2)}}</td>
+							</tr>		
+							<tr class="total">
+								<td colspan="2">You Pay :</td>
+								<td><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.NetFare) + netAmount(selReturnFlight.FareDetails.ChargeableFares.NetFare)).toFixed(2)}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
+				</div>
+				<div class="btn-book" (click)="bookNow(selFlight.FlightUId,selReturnFlight.FlightUId)">
+					<a>Book Now</a>	
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+<script>
+	var slider = document.getElementById("myRange");
+	var output = document.getElementById("demo");
+	output.innerHTML = slider.value;
+
+	slider.oninput = function() {
+	  output.innerHTML = this.value;
+}
+</script>

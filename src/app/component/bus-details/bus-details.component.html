@@ -1,0 +1,192 @@
+<section class="main-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-md-12 order-1">
+				<h2>Review Your Booking<a>Change flight</a></h2>
+				<div class="box-content">
+					<div class="busLayout">
+						<div class="busLayoutLeft">
+							<span class="busIcon"><i class="ico-sprite ico-bus"></i></span>
+							<h2>{{reqObj.DisplayName}}</h2>
+							<p>{{reqObj.BusType}}</p>
+						</div>
+						<div class="busLayoutRight">
+							<div class="busTop">
+								<div class="busDetails">
+									<span>{{reqObj.source}}</span>
+									<h3>{{reqObj.DepartureTime}}</h3>
+									<p>{{reqObj.Journeydate| date}}</p>
+								</div>
+								<div class="busTotalTimes">
+									<ul>
+										<li>{{reqObj.Duration}}</li>
+										<!-- <li>281km</li> -->
+									</ul>
+								</div>
+								<div class="busDetails">
+									<span>{{reqObj.destination}}</span>
+									<h3>{{reqObj.ArrivalTime}}</h3>
+									<!-- <p>{{reqObj.BusType}}</p> -->
+								</div>
+							</div>
+							<div class="busBottom">
+								<div class="busBoardingDts">
+									<ul>
+										<li>Boarding Point & Time<strong>{{reqObj.boardingPoint}} : {{reqObj.boardingTime}}</strong></li>
+										<li>Dropping Point & Time<strong>{{reqObj.dropingPoint}} : {{reqObj.dropingTime}}</strong></li>
+									</ul>
+								</div>
+								<div class="busSeatsDts">
+									Seat Number(s)
+									<strong>{{reqObj.seatNo}}</strong>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Enter Traveller Details <span class="sign-opt">Sign in</span><small>to book faster </small></h2>
+				<div class="box-content login-box" style="display: none;">
+					<div class="contact-details">
+						<div class="row">
+							<div class="col-lg-3 col-md-12">
+								<label class="label-head">Sign In Now</label>
+							</div>
+							<div class="col-lg-3 col-md-4">
+								<input type="text" class="form-control" placeholder="Email Address">
+							</div>
+							<div class="col-lg-3 col-md-4">
+								<input type="password" class="form-control" placeholder="Password">
+							</div>
+							<div class="col-lg-3 col-md-4 flex-box">
+								<button class="btn-defult" type="button">Login</button>
+								<a class="forgot">Forgot?</a>
+								<span class="close-sign-box"><i class="far fa-times-circle"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-content">
+					<div class="contact-details">
+						<div class="row">
+							<div class="col-lg-3">
+								<label class="label-head">Contact Details</label>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<input type="text" class="form-control" placeholder="Email ID">
+							</div>
+							<div class="col-lg-4 col-md-6 contact-input1">
+								<span>+91</span>
+								<input type="text" class="form-control" placeholder="Mobile Number">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-9 offset-lg-3">
+								<div class="contact-content">
+									<p>Your booking details will be sent to this email address and mobile number. </p>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="customcontact" name="example1">
+										<label class="custom-control-label" for="customcontact">Also send my booking details on WhatsApp</label>
+									</div>
+								</div>	
+							</div>	
+						</div>
+					</div>
+					<div class="contact-details">
+						<div class="row">
+							<div class="col-lg-9 offset-lg-3">
+								<div class="contact-content bt">
+									<h3>Traveller Information</h3>
+									<p><span>Important Note:</span>Please ensure that the names of the passengers on the travel documents is the same as on their government issued identity proof. </p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-3">
+								<label class="label-head">Adult 1</label>
+							</div>
+							<div class="col-lg-3 col-md-5 contact-input1">
+								<span>Title</span>
+								<input type="text" class="form-control" placeholder="First Name">
+							</div>
+							<div class="col-lg-3 col-md-3">
+								<input type="text" class="form-control" placeholder="Last Name">
+							</div>
+							<div class="col-lg-3 col-md-4">
+								<input type="text" class="form-control" placeholder="DD/MM/YYYY">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="proceed-payment text-center">
+					<button type="button" class="btn-payment">Proceed To Payment</button>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-12 order-md-2">
+				<div class="fare-right-box">
+				<div class="fareItem">
+					<h2>Fare Details<a>View Fare Rules</a></h2>
+					<div class="box-content fare-details">
+						<ul>
+							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>3,893</span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>1,008</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>4,901 </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>4,901 </span></li>
+							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
+						</ul>
+					</div>
+					</div>
+					<div class="fareItem">
+						<h2>Promo Code </h2>
+						<div class="box-content promo-code-box">
+							<h3>Select a Promo Code</h3>
+							<div class="promo-code input-group">
+							  <input type="text" class="form-control" placeholder="Your promo code">
+							  <div class="input-group-append">
+								<button class="btn-apply" type="submit">Apply</button>
+							  </div>
+							</div>
+							<ul class="promo-code-list">
+								<li>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="promocode1" name="example1" value="customEx"  >
+										<label class="custom-control-label" for="promocode1"></label>
+									</div>
+									<div class="promo-content">
+										<span class="promo-key">YTUPI</span>
+										<p>Up to Rs.3,000 instant off, applicable on UPI payment modes only.</p>
+										<a>Terms & Condition</a> 
+									</div>
+								</li>
+								<li>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="promocode2" name="example1" value="customEx"  >
+										<label class="custom-control-label" for="promocode2"></label>
+									</div>
+									<div class="promo-content">
+										<span class="promo-key">YTUPI</span>
+										<p>Up to Rs.3,000 instant off, applicable on UPI payment modes only.</p>
+										<a>Terms & Condition</a> 
+									</div>
+								</li>
+								<li><a class="more-code">View All</a></li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>		
+</section>	
+
+
+<script>
+	var slider = document.getElementById("myRange");
+	var output = document.getElementById("demo");
+	output.innerHTML = slider.value;
+
+	slider.oninput = function() {
+	  output.innerHTML = this.value;
+}
+</script>

@@ -1,0 +1,14 @@
+.custom-control{
+    padding-left: 0!important;
+}
+input[type=radio]{
+    margin-left: 10px;
+}
+.custom-control-input{
+    z-index:10!important;
+}
+.newCss{
+    z-index:1!important;
+        left: -35px;
+        width: 6rem;
+}

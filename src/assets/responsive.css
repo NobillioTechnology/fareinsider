@@ -1,0 +1,1023 @@
+ 
+/* Responsive CSS */
+ 
+ 
+@media screen and (min-width:1500px){
+ 
+}
+
+@media screen and (max-width:1024px){
+	
+.filter-box li + li { margin-left: 50px;}
+
+.bookindDate li {margin: 5px 0px;padding-right: 20px;width: 48%;}
+	
+}
+
+@media screen and (max-width:992px){
+ 
+ /* Flight result */	
+.modify-search {background: rgb(0, 52, 128);}
+.modify-box .m-from, .modify-box .m-to, .modify-box .m-date, .modify-box .m-traveller {width: 48%;}
+.modify-box .btn-search { width: auto;}
+.filter-box li + li {margin-left: 40px;}
+.fgt-box {width: 70%;}
+.price-box {width: 30%;}
+.fgt-drt-box {width: 50%;}
+.full-flexbox .container { padding: 15px 15px;}
+.full-flexbox .container > div {width: 22%;}
+.depart-time {padding: 5px;}
+.search-result { margin: 20px 0px;}
+.offers-box { margin-bottom: 0px;display: none;}
+.pdr-0 {padding-right: 5px;}
+.pdl-0 { padding-left: 5px;}
+.stop-circle {display: none;}
+.round-way .duration-stop {width: 20px;}
+.round-way .fgt-duration {padding-left: 10px;}
+.round-way .fgt-drt-box {padding: 0px 5px;}
+.round-way .flight-list {padding: 10px 10px;align-items: flex-start;}
+.round-way .fgt-link {margin: 0px 10px 5px; padding-top: 0px;}
+.round-way .fgt-price {line-height: 20px;}
+.round-way-sec .sort-by ul li:nth-child(1) { width: auto;}
+.day-button {display: none;}
+.trip-detail {padding: 15px; justify-content:space-between;}
+.pricing-det::before { height: 56px;}
+.trip-detail .fgt-box {width: 48%;}
+.trip-detail .fgt-box + .fgt-box::before { left:-20px;}
+.pricing-det .btn-book a { padding: 10px 12px;}
+.trip-detail .fgt-drt-box {padding: 0px 5px; width: 50%;justify-content: space-between;}
+.trip-detail .duration-stop { width: 10px;}
+.trip-detail .fgt-logo {width: 12%;}
+.international-trip .fgt-box {padding-right: 50px;}
+.sticky .mdSearch{ display:none;}
+#navSticky{ position:inherit;}
+
+.main-box {padding: 25px 0px;}
+.main-box h2 {font-size: 18px; margin-bottom: 6px;}
+.sign-opt {font-size: 18px;}
+.main-box h2 small {font-size: 13px;}
+.review-flight-details .dur-line { width: 170px;}
+.review-flight-details .more-dts li + li, .review-flight-details .baggage li + li {padding-left: 5px; margin-left: 5px;}
+.layover-seprator {left: 17%;}
+.contact-details {padding: 0px 10px 15px;}
+.contact-details .label-head {text-align: left;}
+.fareItem {position: relative; margin-top: 30px;}
+.fare-right-box {display: flex;justify-content: space-between; flex-wrap:wrap;}
+.fare-right-box > div {width: 48%;}
+.ins-benefits ul li p {font-size: 12px;}
+.ins-benefits ul li h3 { font-size: 13px;line-height: 18px;}
+
+.fare-right-box { margin-top: 0px;}
+.payment-sec {display: block;}
+.payment-sec > div {width: 100%;}
+.payment-sec .fareItem { margin-top: 0px;}
+.pay-creditcard {padding: 20px 20px;}
+.pay-creditcard h3 {font-size: 16px;margin-bottom: 15px;}
+.pay-creditcard label {font-size: 13px;margin-bottom: 3px;}
+.final-pay .fgt-price i { font-size: 18px;}
+.final-pay .fgt-price {font-size: 25px; margin-right: 45px;}
+.final-pay .price-box {margin-top: 0px;}
+
+
+/* Bus result */
+.bus-modofy .m-from, .bus-modofy .m-to, .bus-modofy .m-date {width: 100% !important;}
+.bus-filter li a {font-size: 13px;}
+.bus-filter li a span.chevron-down {margin-left: 4px;font-size: 9px;}
+.bus-filter li + li {margin-left: 20px;}
+.busHeading {font-size: 20px;padding-bottom: 15px;}
+.busSortBy ul li:nth-child(1) {width: 16%;}
+.busSortBy ul li:nth-child(6) {width: 13%;}
+.opName {width: 30%;}
+.opName h2 {font-size: 14px;margin-bottom: 5px;}
+.layout .dp { font-size: 11px;}
+.opName span {font-size: 12px;}
+.layout {width: 40%; padding: 0px 15px;}
+.durationTime::before, .durationTime::after { width: 20px; top:10px;}
+.layoutCenter .durationTime {font-size: 14px;}
+.priceBox {width: 30%;}
+.priceBox .fgtPrice {margin-right: 15px; line-height: 20px;}
+.fgtPrice span {font-size: 12px;margin-top: 2px;}
+.priceBox .btn-select { padding: 6px 10px;font-size: 14px;text-align: center;}
+.btnBox span.cancelP { margin-top: 5px;}
+.width40 { width: 60%;}
+.width80 {width: 100%;}
+.width80 .seatClose {left: auto;right: 0px;}
+.mainBody {padding: 15px;}
+.seat-selection h2 { font-size: 20px;padding-bottom: 10px;}
+.colLeft {padding: 15px;}
+.colRight .nav-tabs .nav-link {font-size: 13px; padding: 12px 8px;}
+.seatDetails li { font-size: 10px;padding: 0px 2px;}
+.travelDetail h2 {font-size: 16px !important;}
+.main-box h2 {font-size: 14px;margin-bottom: 5px;}
+.busLayoutLeft p {font-size: 12px;}
+.busDetails h3 {font-size: 20px;line-height: 25px;}
+.busBoardingDts ul li { font-size: 12px;}
+
+
+/* Hotel Result */
+.bookindDate {margin-top: 10px;margin-bottom: 0px;}
+
+
+header .navbar {padding: 20px 0px;}
+.slider-wrapper {background:url('../images/03.jpg') no-repeat top center; padding: 0px 15px 15px;}
+.right-box, .wrap-sec::after { display: none;}
+.booking-tab ul { background: transparent;}
+.booking-tab ul li a {background: #fff;}
+.right-box {width: 100%;}
+.booking-engine {margin-top: 100px;margin-right: 0px;z-index: 99;min-height: 390px;}
+.popular-destination, .just-booked, .discover-new-location, .newslettar-sec, .top-footer, .footer-link, .footer-content {padding: 30px 0px;}
+.popular-destination h2, .just-booked h2, .traveller-think h2, .more-hotel h2 {font-size: 22px;padding-bottom: 25px; padding-top:0px;}
+.popular-desti-list ul.nav-tabs li {margin-bottom: 0px; width: auto;}
+.popular-desti-list ul.nav-tabs {margin-bottom: 30px;justify-content: space-between;}
+.popular-desti-list ul.nav-tabs li a span { display: block;}
+.destination-1 img {height: 200px;}
+.destination-1 .destination-content h3 span {position: relative;display: block;}
+.discover-content { padding: 35px 35px;min-height: 430px;}
+.discover-content span {margin-bottom: 0px;}
+.loaction-list {bottom: 35px;}
+.booked-1 {padding: 0px;}
+.booked-1 .img-fluid {height: 150px;}
+.booked-1 .booked-content h3 span {position: relative;display: block;}
+.more-hotel {margin-left: 0px;}
+.one-think {padding: 15px 15px;}
+.traveller-think{ padding-bottom:30px;}
+.more-infomation { padding-bottom: 0px;}
+.signup-box { padding: 30px;}
+.more-links ul {justify-content: space-between; flex-wrap: wrap;}
+.more-links li {width: 30%; padding: 15px; border: 1px solid #ccc; margin: 10px 0px; border-radius: 4px;display: flex;justify-content: center; align-items: center; min-height: 80px;}
+.downlode-app h2, .footer-about h2 {font-size: 20px;}
+.services-logo li img { width: 55px;}
+.copyright {padding: 20px 0px;}
+
+}
+ 
+
+@media screen and (max-width:767px){
+
+header {position: inherit;}	
+header .navbar {padding: 0px;}
+header #collapsibleNavbar { background: #003480;}
+header .navbar-brand {padding: 15px 15px;}
+.navbar-toggler .navbar-toggler-icon {position: relative;display: flex;justify-content: center;align-items: center;width: 100%;}
+.navbar-toggler .navbar-toggler-icon::before {content: "\f0c9"; font-family: "Font Awesome 5 Free";font-weight: 900; color: #fff;font-size: 24px; position: absolute;left: 0px;width: 100%;}
+.slider-wrapper { padding: 15px;}
+.popular-destination {padding-bottom: 0px;}
+.popular-destination h2, .just-booked h2, .traveller-think h2, .more-hotel h2 {font-size: 20px;padding-bottom: 20px; padding-top:0px;}
+.booking-content {padding: 15px;}
+.booking-engine { margin-top: 0px;min-height: 390px; width: 100%;}
+.booking-engine .rooms-adult-box {flex-wrap: wrap;}
+.booking-engine .rooms-adult-box .item-1 { width:48%; margin-bottom: 10px;}
+.booking-engine form .form-group select {width: 100%;}
+.popular-desti-list ul.nav-tabs li {width: 30%;}
+.popular-desti-list ul.nav-tabs {margin-bottom: 20px;}
+.destination-1 img {height: 200px;width: 100%;object-fit: cover;}
+.destination-1 {margin-bottom: 30px;}
+.slick-next, .slick-prev {right: 15px;z-index: 9999;border: 1px solid #ccc;top: auto;bottom: -55px; left: auto;}
+.slick-prev { left: auto;  right:65px}
+.see-more-box { padding-top: 15px;}
+.discover-content { padding: 20px 15px; min-height: 540px; padding-bottom:340px;}
+.loaction-list {  bottom: 20px;padding: 0px 31px;}
+.see-more-box { position: relative; bottom: 0px; width: 100%; padding-top: 20px; padding-right:100px;}
+.booked-1 { padding: 0px;margin-bottom: 35px;}
+.just-booked, .more-hotel {padding-bottom: 0px;}
+.top-footer {display: none;}
+.footer-link ul li a {padding: 6px 0px;}
+.services-logo {justify-content: space-between !important;}
+.footer-about {margin-top: 20px;}
+.downlode-app h2, .footer-about h2 { font-size: 18px;}
+.downlode-app .downlode-box .btn-search {padding: 10px 15px;}
+.footer-link {padding: 20px 0px;}
+.footer-link ul { margin: 10px 0px;}
+.signup-box {padding: 15px;}
+.signup-box h2 {font-size: 20px;}
+	
+.inner-header .navbar {padding: 0px;}
+.navbar-toggler {
+    border: 1px solid #003480;
+    background: #003480;
+    padding: 0px;
+    width: 45px;
+    height: 38px;
+    margin-right: 15px;
+}
+.top-footer { padding: 15px 0px;}
+.more-links ul {flex-direction: column;}
+.more-links li a {margin: 6px 0px;}
+.services-logo {justify-content: center;flex-wrap: wrap;}
+
+/* Flight result */	
+.m-modify{display:block;padding: 12px 0px; cursor:pointer;}
+.m-modify {display: block;color: #fff;font-weight: 600;font-size: 15px;}
+.m-modify span {float: right;}
+.modify-box {display: none;border-top: 1px solid  #fff; padding-top: 12px;}
+.modify-search {background: rgb(0, 52, 128);padding:0px 0px;}
+.modify-city, .m-dateclass {flex-direction: column;}
+.modify-box .m-from{margin-bottom: 16px;}
+.modify-box .m-date {width: 100%;margin-bottom: 15px;}
+.m-traveller { width: 100%;margin-left: 0px;}
+.modify-box .custom-checkbox { margin-top: 0px;}
+.modify-box .m-from, .modify-box .m-to, .modify-box .m-date, .modify-box .m-traveller {width: 100%;}
+.full-flexbox .container {padding: 0px 25px; flex-direction: column;}
+.full-flexbox .container > div {width: 100%; padding: 10px 0px;}
+.more-opt{padding-bottom: 10px; top:168px;}
+.full-flexbox {height: 100%;overflow: scroll;}
+.depart-time ul li {width: 25%;}
+.filter-box li, .filter-box li a{ margin:0px !important; font-size: 14px;}
+.filter-box li:first-child{padding:5px 12px;}
+.filter-box li + li {margin-left: 30px !important;}
+.filter-box li:nth-child(4), .filter-box li:nth-child(5), .filter-box li:nth-child(6){ display:none}
+.filter-top { padding: 0px 0px;height: 50px;}
+.total-flight p {font-size: 14px;}
+#cancelfilter {padding: 8px 8px;font-size: 14px;}
+.btn-apply {padding: 8px 15px; font-size: 14px;}
+.search-result {margin: 20px 0px;}
+.sort-by {padding: 5px 5px;}
+.sort-by ul li {font-size: 12px; width: auto !important;}
+.sort-by ul li + li{ margin-left:5px;}
+.sort-by ul li a {font-size: 11px;}
+.sort-by ul li:nth-child(1) { display: none;}
+.flight-list {display: flex;justify-content: space-between; align-items: center;padding: 10px;}
+.fgt-logo {width: 18% !important;flex-direction: column; align-items:flex-start;}
+.fgt-logo p {font-size: 11px;padding-left: 0px;margin-top: 3px;}
+.fgt-logo p span {display: none;}
+.fgt-box {width: 75%;}
+.fgt-from span, .fgt-to span, .stop-circle, .fgt-duration span .info  {display: none;}
+.fgt-drt-box { width: 50%;}
+.fgt-from, .fgt-to {font-size: 15px;}
+.duration-stop { width: 12px;}
+.fgt-duration {border-left: none;padding-left: 5px;font-size: 12px;font-weight: 500;}
+.fgt-duration span {font-size: 10px;}
+.price-box { width: 25%;flex-direction: column;align-items: flex-end;}
+.fgt-price i {font-size: 11px;margin-right: 3px;position: relative;top: -1px;}
+.fgt-price {font-size: 15px;margin-right: 0px;line-height: 22px;margin-bottom:0px;}
+.btn-book a {padding: 0px 2px;font-size: 13px;text-align: right;text-decoration: underline;background: transparent;border: none;color:#00ACEE;}
+.flight-det {display: none;}
+.offers-box {display: none;}
+.pdr-0{ padding-right:0px;}
+.pdl-0{ padding-left:0px;}
+.round-way-sec .sort-by {display: none;}
+.leg-header {padding:8px 5px;border-radius: 0px;flex-direction: column;align-items: center; margin-bottom:10px;}
+.leg-content h2 span { margin: 0px 5px;font-size: 8px; position: relative;top: -1px;}
+.leg-content h2 {font-size: 12px;margin-bottom: 3px;}
+.leg-content p {font-size: 11px;}
+.day-button {display: none;}
+.round-way-sec .flight-list {align-items: flex-start;flex-direction: column;}
+.round-way {border: 1px solid #cccccca8;box-shadow: none;border-radius: 0px;margin: 0px 0px; margin-right:-1px;margin-bottom:-1px;} 
+.round-way .fgt-box { width: 100%;}
+.round-way .fgt-logo {width: 20% !important;    margin-top: 3px;}
+.round-way .fgt-box {width: 100%;position: relative;margin-bottom:5px;}
+.round-way .fgt-box .fgt-drt-box {width: 80%; padding-left: 10px;padding-bottom: 15px;}
+.round-way .fgt-from, .round-way .fgt-to {font-size: 15px;font-weight: 500;}
+.round-way .duration-stop {width: 10px !important;}
+.round-way .fgt-duration {position: absolute;left: 40px; bottom: -1px;display: flex;padding: 0px;}
+.round-way .fgt-duration {font-size: 11px;line-height: 16px;}
+.round-way .fgt-duration span {font-size: 10px;line-height: 16px;margin-left: 10px;}
+.round-way .price-box {width: 100%;flex-direction: row;justify-content: space-between;}
+.round-way .fgt-price { margin-right: 0px;margin-left:40px;color:#00ACEE;font-size: 15px;}
+.round-way .fgt-price i { font-size: 11px;}
+.trip-detail {border: none;display: flex;flex-direction: column;padding: 0px 10px;}
+.pricing-det {display: flex;flex-direction: column;padding: 0px;justify-content: center;border-radius: 0px;}
+.price-tipsy h3 {font-size: 18px;line-height: 20px;margin-bottom: 0px;}
+.price-tipsy h3 i {font-size: 15px;}
+.price-tipsy p {display: none;}
+.pricing-det .btn-book a { padding: 0px 20px;display: block;}
+.trip-detail .fgt-logo {width: 15% !important;}
+.trip-detail .fgt-duration { width: 30%; border: none;position: relative;left: 0px;padding-left: 18px;}
+.trip-detail .fgt-box .fgt-drt-box {padding-bottom: 0px; width: 55%;}
+.trip-detail .fgt-duration .more-stops {display: none;}
+.trip-detail .fgt-box {align-items: center;margin-bottom: 0px;}
+.pricing-det::before {left: 0px;border-left: 1px dashed #cccccc75;top: 8px;height: 55px;}
+.price-tipsy span.total-fare {font-size: 10px;}
+.international-trip .fgt-box {width: 80%; padding-right: 20px;}
+.international-trip .fgt-one + .fgt-one {margin-top: 10px;}
+.international-trip .price-box {width: 20%;align-items: flex-end;}
+.international-trip .fgt-price {margin-bottom: 0px;}
+
+.fare-details ul li.total-pay {font-size: 15px;padding: 8px 15px;}
+.fare-details ul li {font-size: 12px;}
+.fare-details ul li.total-cost {font-size: 15px;}
+.fare-details ul li span i.fa-rupee-sign {font-size: 12px;}
+.box-content {margin-bottom: 20px;}
+.sector-details {padding: 0px;padding-top: 25px;}
+.review-airlines {flex-direction: row;justify-content: flex-start; background: #cccccc57;padding: 5px;border: 1px solid #cccccc70; border-radius: 4px;margin:10px 0px; }
+.review-airlines p {margin-top: 0pc; margin-left: 15px;}
+.review-airlines p span {display: inline-block; margin-right: 5px;}
+.review-flight-details .dur-line::before {display: none;}
+.review-flight-details .dur-line {width: 25px;margin: 4px auto;}
+.review-flight-details .more-dts li + li, .review-flight-details .baggage li + li {display: none;}
+.total-time, .layover-seprator, .layover-seprator::before, .layover-seprator::after {display: none;}
+.review-title { background-color: #666;left: 50%;top: 0px;transform: none;margin-left: -40px;color: #fff; border-radius: 2px;padding: 4px 5px;min-width: 80px;font-size: 12px; }
+.review-flight-details {margin-top: 0px;justify-content: space-between;}
+.box-content .md-20 {margin: 0px 0px;padding: 2px 5px;}
+.yellow-msg p {font-size: 11px;}
+.sector-details + .sector-details {margin-top: 5px; padding-top: 25px !important;}
+.review-flight-details .depart-dts h3 {font-size: 20px; line-height: 25px;}
+.review-flight-details .depart-dts span.city-head {font-size: 12px;}
+.review-flight-details .depart-dts p {font-size: 11px;}
+.review-flight-details .more-dts li, .review-flight-details .baggage li {font-size: 10px;}
+.review-flight-details .more-dts li i { margin-right: 2px;font-size: 10px;}
+.fare-right-box h2 {font-size: 16px;}
+.main-box {padding: 20px 0px;}
+.main-box h2 {font-size: 16px; margin-bottom:5px;}
+.sign-opt {margin-left: 5px;padding-left: 5px;font-size: 14px;}
+.main-box h2 small {font-size: 12px;}
+.contact-details {padding: 0px;}
+.contact-details .label-head {font-size: 13px;text-align: left; padding:2px 0px;}
+.contact-details .form-control {margin-bottom: 10px;}
+.contact-content p, .contact-content .custom-control-label {font-size: 12px;}
+.contact-details h3 { font-size: 16px; margin-bottom: 10px;}
+.bt {padding: 10px 0px; margin-top: 10px;}
+.box-gst .gst-title {  position: relative;}
+.box-gst .add-gst { position: relative;right: 0px;top: 0px;}
+.box-gst .gst-content { margin: 0px 15px 15px;}
+.box-gst .close-gst {right: 15px; top: 8px;}
+.contact-details .form-group { margin-bottom: 5px;}
+.far.fa-times-circle {right: 15px;top: 2px;}
+.btn-payment {padding: 8px 15px;font-size: 14px;font-weight: 600;}
+.fare-right-box { display: block;justify-content: none;}
+.fare-right-box > div {width: 100%; margin-top: 0px;}
+.fare-details ul li.total-pay {font-size: 15px;padding: 8px 15px;}
+.promo-code-box h3 { font-size: 14px; margin-bottom: 6px;}
+.promo-code-list li { margin: 10px 0px;}
+.promo-code-list li a.more-code {font-size: 14px;}
+.insuranceDetails { padding: 15px;}
+.insuranceDetails-check .custom-control-label { font-size: 14px;line-height: 20px;}
+.insuranceDetails .insurance-info {font-size: 12px;}
+.ins-benefits .benefits-head { margin-bottom: 10px;text-align: center;}
+.ins-benefits ul {flex-wrap: wrap;}
+.ins-benefits ul li { padding: 10px 10px;}
+.ins-benefits ul li h3 {font-size: 12px;line-height: 20px;}
+.ins-benefits ul li p { font-size: 11px;}
+.ins-benefits ul li .bft-icon {height: 40px;width: 40px;padding: 10px;margin-bottom: 10px;line-height: 20px;}
+
+.pay-creditcard {padding: 20px 5px;}
+
+/* Bus Result */
+.busHeading {font-size: 18px;padding-bottom: 10px;}
+.busSortBy ul li a {font-size: 10px;}
+.busList {flex-wrap: wrap;}
+.opName {width: 100%;margin-bottom: 15px;text-align: center;}
+.layout {width: 70%;}
+.opName h2 {margin-bottom: 5px;}
+.layoutLeft span, .layoutRight span {font-size: 14px;}
+.layoutCenter {text-align: center;width: 45%;}
+.durationTime::before, .durationTime::after{width: 15px;top: 10px;}
+.layout .dp {font-size: 11px;}
+.layoutCenter .durationTime {font-size: 12px;line-height: 23px;}
+.priceBox {width: 30%;flex-direction: column;}
+.priceBox .fgtPrice {font-size: 18px;}
+.priceBox .fgtPrice i {font-size: 14px;}
+.fgtPrice span { font-size: 11px;line-height: 16px;}
+.priceBox .fgtPrice { margin-right: 0px;text-align: right;}
+.priceBox .btn-select {padding: 5px 10px; margin-top:5px;font-size: 12px;}
+.btnBox span.cancelP {display: none;}
+.width40, .width80 {width: 100%;}
+.seatClose {left: auto;right: 0px;}
+.seat-selection h2 {font-size: 16px;font-weight: 600;}
+.mainBody {padding: 15px;}
+.travelDetail h3 {font-size: 16px;margin-bottom: 10px;}
+.colRight .nav-tabs .nav-link {font-size: 11px; padding: 10px 10px;}
+.travelDetail .table td, .travelDetail .table th {font-size: 12px;}
+.colWrapper {flex-direction: column;}
+.colWrapper > div {width: 100%;}
+.colLeft {padding: 10px;}
+.seatType li a {font-size: 13px; padding: 6px 10px;}
+.seat-selection {position: fixed;left: 0px;top: 0px;background: #ffffff;width: 100%;overflow: auto;height: 100%;}
+.seatBox {height: 250px;}
+.seatDetails li { font-size: 10px;padding: 0px 0px;}
+.travelDetail {padding: 15px 5px;}
+.btn-confirm {padding: 8px 15px; font-size: 14px; margin-top: 5px;}
+.seatDetails p {font-size: 12px;}
+.seat-selection h2 {font-size: 15px;}
+.travelDetail p {font-size: 12px;}
+.travelDetail .dateTimeList li {margin-right: 10px;font-size: 12px;}
+.selectBox label {font-size: 13px;margin-bottom: 2px;}
+.busLayout {padding: 0px;}
+.busLayout {flex-direction: column;}
+.busLayoutLeft {width: 100%;margin-bottom:20px;}
+.busLayoutRight { width: 100%; padding-left: 0px;}
+.busDetails h3 {font-size: 16px;line-height: 20px;}
+.busTotalTimes li {font-size: 11px;}
+.busTotalTimes li + li { padding-left: 6px;margin-left: 3px;line-height: 12px;}
+.busBoardingDts ul li + li {margin-top: 15px;}
+.busSeatsDts {font-size: 11px;}
+
+
+/* Hotel Result */
+.reviewRightSection {margin-top: 15px;}
+.bookindDate li {margin: 5px 0px;padding-right: 0px; width: 100%;}
+.bookroomtype {flex-direction: column;}
+.roomType {flex-direction: column;}
+.roomType > div {width: 100%;}
+.roomType div + div { border-left: none; padding-left: 0px; margin-left: 0px; margin-top: 10px;}
+.capText { margin-top: 10px;}
+.bookroomtype .roomColLeft, .bookroomtype .roomColRight { width: 100%;}
+.roomColRight .img-fluid { width: 100%; margin-top:10px;}
+
+
+
+
+}
+
+@media only screen and (min-width: 576px) and (max-width:767px) { 
+
+.booking-engine .rooms-adult-box .item-1 {width: 30%; margin-bottom: 0px;}
+.popular-desti-list ul.nav-tabs li { width: 16%;}
+.discover-content { min-height: 450px; padding-bottom: 290px;}
+
+}
+
+@media screen and (max-width:320px){
+	
+.filter-box li + li {margin-left: 25px !important;}
+
+}
+/* =============HOtel & bus========== */
+ 
+/* Responsive CSS */
+ 
+ 
+@media screen and (min-width:1500px){
+ 
+}
+
+@media screen and (max-width:1024px){
+	
+.filter-box li + li { margin-left: 50px;}
+
+.bookindDate li {margin: 5px 0px;padding-right: 20px;width: 48%;}
+.rooms-warp {display: none;}	
+}
+
+@media screen and (max-width:992px){
+ 
+ /* Flight result */	
+.modify-search {background: rgb(0, 52, 128);}
+.modify-box .m-from, .modify-box .m-to, .modify-box .m-date, .modify-box .m-traveller {width: 48%;}
+.modify-box .btn-search { width: auto;}
+.filter-box li + li {margin-left: 40px;}
+.fgt-box {width: 70%;}
+.price-box {width: 30%;}
+.fgt-drt-box {width: 50%;}
+.full-flexbox .container { padding: 15px 15px;}
+.full-flexbox .container > div {width: 22%;}
+.depart-time {padding: 5px;}
+.search-result { margin: 20px 0px;}
+.offers-box { margin-bottom: 0px;display: none;}
+.pdr-0 {padding-right: 5px;}
+.pdl-0 { padding-left: 5px;}
+.stop-circle {display: none;}
+.round-way .duration-stop {width: 20px;}
+.round-way .fgt-duration {padding-left: 10px;}
+.round-way .fgt-drt-box {padding: 0px 5px;}
+.round-way .flight-list {padding: 10px 10px;align-items: flex-start;}
+.round-way .fgt-link {margin: 0px 10px 5px; padding-top: 0px;}
+.round-way .fgt-price {line-height: 20px;}
+.round-way-sec .sort-by ul li:nth-child(1) { width: auto;}
+.day-button {display: none;}
+.trip-detail {padding: 15px; justify-content:space-between;}
+.pricing-det::before { height: 56px;}
+.trip-detail .fgt-box {width: 48%;}
+.trip-detail .fgt-box + .fgt-box::before { left:-20px;}
+.pricing-det .btn-book a { padding: 10px 12px;}
+.trip-detail .fgt-drt-box {padding: 0px 5px; width: 50%;justify-content: space-between;}
+.trip-detail .duration-stop { width: 10px;}
+.trip-detail .fgt-logo {width: 12%;}
+.international-trip .fgt-box {padding-right: 50px;}
+.sticky .mdSearch{ display:none;}
+#navSticky{ position:inherit;}
+
+.main-box {padding: 25px 0px;}
+.main-box h2 {font-size: 18px; margin-bottom: 6px;}
+.sign-opt {font-size: 18px;}
+.main-box h2 small {font-size: 13px;}
+.review-flight-details .dur-line { width: 170px;}
+.review-flight-details .more-dts li + li, .review-flight-details .baggage li + li {padding-left: 5px; margin-left: 5px;}
+.layover-seprator {left: 17%;}
+.contact-details {padding: 0px 10px 15px;}
+.contact-details .label-head {text-align: left;}
+.fareItem {position: relative; margin-top: 30px;}
+.fare-right-box {display: flex;justify-content: space-between; flex-wrap:wrap;}
+.fare-right-box > div {width: 48%;}
+.ins-benefits ul li p {font-size: 12px;}
+.ins-benefits ul li h3 { font-size: 13px;line-height: 18px;}
+
+.fare-right-box { margin-top: 0px;}
+.payment-sec {display: block;}
+.payment-sec > div {width: 100%;}
+.payment-sec .fareItem { margin-top: 0px;}
+.pay-creditcard {padding: 20px 20px;}
+.pay-creditcard h3 {font-size: 16px;margin-bottom: 15px;}
+.pay-creditcard label {font-size: 13px;margin-bottom: 3px;}
+.final-pay .fgt-price i { font-size: 18px;}
+.final-pay .fgt-price {font-size: 25px; margin-right: 45px;}
+.final-pay .price-box {margin-top: 0px;}
+
+
+/* Bus result */
+.bus-modofy .m-from, .bus-modofy .m-to, .bus-modofy .m-date {width: 100% !important;}
+.bus-filter li a {font-size: 13px;}
+.bus-filter li a span.chevron-down {margin-left: 4px;font-size: 9px;}
+.bus-filter li + li {margin-left: 20px;}
+.busHeading {font-size: 20px;padding-bottom: 15px;}
+.busSortBy ul li:nth-child(1) {width: 16%;}
+.busSortBy ul li:nth-child(6) {width: 13%;}
+.opName {width: 30%;}
+.opName h2 {font-size: 14px;margin-bottom: 5px;}
+.layout .dp { font-size: 11px;}
+.opName span {font-size: 12px;}
+.layout {width: 40%; padding: 0px 15px;}
+.durationTime::before, .durationTime::after { width: 20px; top:10px;}
+.layoutCenter .durationTime {font-size: 14px;}
+.priceBox {width: 30%;}
+.priceBox .fgtPrice {margin-right: 15px; line-height: 20px;}
+.fgtPrice span {font-size: 12px;margin-top: 2px;}
+.priceBox .btn-select { padding: 6px 10px;font-size: 14px;text-align: center;}
+.btnBox span.cancelP { margin-top: 5px;}
+.width40 { width: 60%;}
+.width80 {width: 100%;}
+.width80 .seatClose {left: auto;right: 0px;}
+.mainBody {padding: 15px;}
+.seat-selection h2 { font-size: 20px;padding-bottom: 10px;}
+.colLeft {padding: 15px;}
+.colRight .nav-tabs .nav-link {font-size: 13px; padding: 12px 8px;}
+.seatDetails li { font-size: 10px;padding: 0px 2px;}
+.travelDetail h2 {font-size: 16px !important;}
+.main-box h2 {font-size: 14px;margin-bottom: 5px;}
+.busLayoutLeft p {font-size: 12px;}
+.busDetails h3 {font-size: 20px;line-height: 25px;}
+.busBoardingDts ul li { font-size: 12px;}
+
+
+/* Hotel Result */
+.bookindDate {margin-top: 10px;margin-bottom: 0px;}
+.hotel-modify-search .modify-box .m-from, .hotel-modify-search .modify-box .m-date {width: 100%;}
+.heading-content {padding: 10px 0px;}
+.hotel-result { padding: 0px 0px;}
+.result-image .imgCont img { height: 130px;}
+.imgThumbList li span { height: 40px;}
+.result-box, .result-price { padding: 15px;}
+.result-content h2 {font-size: 18px;  margin-bottom: 5px;}
+.amenList-list { margin: 0px;}
+.result-content p {font-size: 12px;margin-bottom: 5px;}
+.tab-list li { font-size: 11px; padding: 2px 10px;}
+.appendBottom5 h3 {font-size: 22px;}
+.appendBottom5 h3 small {font-size: 12px;}
+.roomGuestBox {width: 92%;left: 15px; top: 55px;}
+.heading-content h2 {font-size: 16px; margin-bottom: 0px;}
+.total-result ul li {margin-right: 6px;font-size: 11px;}
+.total-result ul li + li { padding-left: 6px;}
+.mob-filter {background: #00ACEE;display: inline-flex;color: #fff;font-size: 15px; cursor:pointer; position: absolute; right: 15px;top: 15px; padding: 6px 12px; border-radius: 4px; justify-content: center; align-items: center;}
+.mob-filter span { display: inline-block; margin-right: 8px; font-size: 12px;}
+.filter-selection{ background-color: rgba(0,0,0,.6); width: 100%; height: 100%; position: fixed; z-index: 9999;left: 0; top: 0; display:none;}
+.left-filter { background: #ffffff; left: 0px; position: absolute;top: 0px; height: 100%;padding: 15px;width: 40%; overflow-y: auto;  overflow-x: hidden;}
+.filterClose { position: absolute; width: 40px;  height: 40px; background: #000;text-align: center;line-height: 40px;font-size: 20px; color: #fff;top: 0px;right: 0px;  cursor: pointer;}
+.left-filter h3 {font-size: 20px; margin-bottom: 10px;}
+.filter-01 .filter-head {font-size: 15px; margin-bottom: px;}
+.filter-01 li .custom-control-label { font-size: 12px;}
+.filter-01 + .filter-01 { margin-top: 20px;}
+.rooms-warp {display: none;}
+.slider-wrap .img-fluid {height: 250px;}
+.booking-box li a.book-now { padding: 8px 12px;font-size: 13px;}
+.booking-box li a, .review-box .all-reviews { font-size: 13px;}
+.price-dts h3 {font-size: 22px;}
+.page-section h2 {
+    font-size: 20px;
+ 
+}
+.navSticky li a {
+ 
+    font-size: 15px;
+ 
+    padding: 10px 20px;
+ 
+}
+.page-section {
+    padding-top: 25px;
+}
+.roomheader ul li, .roomleft h2, .optionwiths h3, .selected-item li, .facilityList .facilityGroupCol .facility-heading {
+ 
+    font-size: 14px;
+   
+}
+ 
+.optionwiths h3 span {
+    font-size: 10px;
+ 
+    padding: 3px 10px;
+ 
+    margin-left: 0px;
+ 
+}
+.optionwiths li, .includewidth li, .roomleft li, .roomleft ul ~ .more-rooms, .page-section p, .facilityGroupCol li {
+ 
+    font-size: 12px;
+ 
+}
+.pricewidth h3 {
+    font-size: 22px;
+ 
+}
+.pricewidth .select-room {
+ 
+    padding: 10px 15px;
+ 
+    font-size: 14px;
+ 
+}
+.headerleft {
+ 
+    justify-content: flex-start;
+ 
+    flex-wrap: wrap;
+}
+.userRatingBox {
+ 
+    width: 60%;
+    
+}
+.headerleft .sortByCont {
+    width: 100%;
+ 
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+ .sortByCont li {
+ 
+    text-align: left;
+ 
+}
+
+
+header .navbar {padding: 20px 0px;}
+.slider-wrapper {background:url('../images/03.jpg') no-repeat top center; padding: 0px 15px 15px;}
+.right-box, .wrap-sec::after { display: none;}
+.booking-tab ul { background: transparent;}
+.booking-tab ul li a {background: #fff;}
+.right-box {width: 100%;}
+.booking-engine {margin-top: 100px;margin-right: 0px;z-index: 99;min-height: 390px;}
+.popular-destination, .just-booked, .discover-new-location, .newslettar-sec, .top-footer, .footer-link, .footer-content {padding: 30px 0px;}
+.popular-destination h2, .just-booked h2, .traveller-think h2, .more-hotel h2 {font-size: 22px;padding-bottom: 25px; padding-top:0px;}
+.popular-desti-list ul.nav-tabs li {margin-bottom: 0px; width: auto;}
+.popular-desti-list ul.nav-tabs {margin-bottom: 30px;justify-content: space-between;}
+.popular-desti-list ul.nav-tabs li a span { display: block;}
+.destination-1 img {height: 200px;}
+.destination-1 .destination-content h3 span {position: relative;display: block;}
+.discover-content { padding: 35px 35px;min-height: 430px;}
+.discover-content span {margin-bottom: 0px;}
+.loaction-list {bottom: 35px;}
+.booked-1 {padding: 0px;}
+.booked-1 .img-fluid {height: 150px;}
+.booked-1 .booked-content h3 span {position: relative;display: block;}
+.more-hotel {margin-left: 0px;}
+.one-think {padding: 15px 15px;}
+.traveller-think{ padding-bottom:30px;}
+.more-infomation { padding-bottom: 0px;}
+.signup-box { padding: 30px;}
+.more-links ul {justify-content: space-between; flex-wrap: wrap;}
+.more-links li {width: 30%; padding: 15px; border: 1px solid #ccc; margin: 10px 0px; border-radius: 4px;display: flex;justify-content: center; align-items: center; min-height: 80px;}
+.downlode-app h2, .footer-about h2 {font-size: 20px;}
+.services-logo li img { width: 55px;}
+.copyright {padding: 20px 0px;}
+
+}
+ 
+
+@media screen and (max-width:767px){
+
+header {position: inherit;}	
+header .navbar {padding: 0px;}
+header #collapsibleNavbar { background: #003480;}
+header .navbar-brand {padding: 15px 15px;}
+.navbar-toggler .navbar-toggler-icon {position: relative;display: flex;justify-content: center;align-items: center;width: 100%;}
+.navbar-toggler .navbar-toggler-icon::before {content: "\f0c9"; font-family: "Font Awesome 5 Free";font-weight: 900; color: #fff;font-size: 24px; position: absolute;left: 0px;width: 100%;}
+.slider-wrapper { padding: 15px;}
+.popular-destination {padding-bottom: 0px;}
+.popular-destination h2, .just-booked h2, .traveller-think h2, .more-hotel h2 {font-size: 20px;padding-bottom: 20px; padding-top:0px;}
+.booking-content {padding: 15px;}
+.booking-engine { margin-top: 0px;min-height: 390px; width: 100%;}
+.booking-engine .rooms-adult-box {flex-wrap: wrap;}
+.booking-engine .rooms-adult-box .item-1 { width:48%; margin-bottom: 10px;}
+.booking-engine form .form-group select {width: 100%;}
+.popular-desti-list ul.nav-tabs li {width: 30%;}
+.popular-desti-list ul.nav-tabs {margin-bottom: 20px;}
+.destination-1 img {height: 200px;width: 100%;object-fit: cover;}
+.destination-1 {margin-bottom: 30px;}
+.slick-next, .slick-prev {right: 15px;z-index: 9999;border: 1px solid #ccc;top: auto;bottom: -55px; left: auto;}
+.slick-prev { left: auto;  right:65px}
+.see-more-box { padding-top: 15px;}
+.discover-content { padding: 20px 15px; min-height: 540px; padding-bottom:340px;}
+.loaction-list {  bottom: 20px;padding: 0px 31px;}
+.see-more-box { position: relative; bottom: 0px; width: 100%; padding-top: 20px; padding-right:100px;}
+.booked-1 { padding: 0px;margin-bottom: 35px;}
+.just-booked, .more-hotel {padding-bottom: 0px;}
+.top-footer {display: none;}
+.footer-link ul li a {padding: 6px 0px;}
+.services-logo {justify-content: space-between !important;}
+.footer-about {margin-top: 20px;}
+.downlode-app h2, .footer-about h2 { font-size: 18px;}
+.downlode-app .downlode-box .btn-search {padding: 10px 15px;}
+.footer-link {padding: 20px 0px;}
+.footer-link ul { margin: 10px 0px;}
+.signup-box {padding: 15px;}
+.signup-box h2 {font-size: 20px;}
+	
+.inner-header .navbar {padding: 0px;}
+.navbar-toggler {
+    border: 1px solid #003480;
+    background: #003480;
+    padding: 0px;
+    width: 45px;
+    height: 38px;
+    margin-right: 15px;
+}
+.top-footer { padding: 15px 0px;}
+.more-links ul {flex-direction: column;}
+.more-links li a {margin: 6px 0px;}
+.services-logo {justify-content: center;flex-wrap: wrap;}
+
+/* Flight result */	
+.m-modify{display:block;padding: 12px 0px; cursor:pointer;}
+.m-modify {display: block;color: #fff;font-weight: 600;font-size: 15px;}
+.m-modify span {float: right;}
+.modify-box {display: none;border-top: 1px solid  #fff; padding-top: 12px;}
+.modify-search {background: rgb(0, 52, 128);padding:0px 0px;}
+.modify-city, .m-dateclass {flex-direction: column;}
+.modify-box .m-from{margin-bottom: 16px;}
+.modify-box .m-date {width: 100%;margin-bottom: 15px;}
+.m-traveller { width: 100%;margin-left: 0px;}
+.modify-box .custom-checkbox { margin-top: 0px;}
+.modify-box .m-from, .modify-box .m-to, .modify-box .m-date, .modify-box .m-traveller {width: 100%;}
+.full-flexbox .container {padding: 0px 25px; flex-direction: column;}
+.full-flexbox .container > div {width: 100%; padding: 10px 0px;}
+.more-opt{padding-bottom: 10px; top:168px;}
+.full-flexbox {height: 100%;overflow: scroll;}
+.depart-time ul li {width: 25%;}
+.filter-box li, .filter-box li a{ margin:0px !important; font-size: 14px;}
+.filter-box li:first-child{padding:5px 12px;}
+.filter-box li + li {margin-left: 30px !important;}
+.filter-box li:nth-child(4), .filter-box li:nth-child(5), .filter-box li:nth-child(6){ display:none}
+.filter-top { padding: 0px 0px;height: 50px;}
+.total-flight p {font-size: 14px;}
+#cancelfilter {padding: 8px 8px;font-size: 14px;}
+.btn-apply {padding: 8px 15px; font-size: 14px;}
+.search-result {margin: 20px 0px;}
+.sort-by {padding: 5px 5px;}
+.sort-by ul li {font-size: 12px; width: auto !important;}
+.sort-by ul li + li{ margin-left:5px;}
+.sort-by ul li a {font-size: 11px;}
+.sort-by ul li:nth-child(1) { display: none;}
+.flight-list {display: flex;justify-content: space-between; align-items: center;padding: 10px;}
+.fgt-logo {width: 18% !important;flex-direction: column; align-items:flex-start;}
+.fgt-logo p {font-size: 11px;padding-left: 0px;margin-top: 3px;}
+.fgt-logo p span {display: none;}
+.fgt-box {width: 75%;}
+.fgt-from span, .fgt-to span, .stop-circle, .fgt-duration span .info  {display: none;}
+.fgt-drt-box { width: 50%;}
+.fgt-from, .fgt-to {font-size: 15px;}
+.duration-stop { width: 12px;}
+.fgt-duration {border-left: none;padding-left: 5px;font-size: 12px;font-weight: 500;}
+.fgt-duration span {font-size: 10px;}
+.price-box { width: 25%;flex-direction: column;align-items: flex-end;}
+.fgt-price i {font-size: 11px;margin-right: 3px;position: relative;top: -1px;}
+.fgt-price {font-size: 15px;margin-right: 0px;line-height: 22px;margin-bottom:0px;}
+.btn-book a {padding: 0px 2px;font-size: 13px;text-align: right;text-decoration: underline;background: transparent;border: none;color:#00ACEE;}
+.flight-det {display: none;}
+.offers-box {display: none;}
+.pdr-0{ padding-right:0px;}
+.pdl-0{ padding-left:0px;}
+.round-way-sec .sort-by {display: none;}
+.leg-header {padding:8px 5px;border-radius: 0px;flex-direction: column;align-items: center; margin-bottom:10px;}
+.leg-content h2 span { margin: 0px 5px;font-size: 8px; position: relative;top: -1px;}
+.leg-content h2 {font-size: 12px;margin-bottom: 3px;}
+.leg-content p {font-size: 11px;}
+.day-button {display: none;}
+.round-way-sec .flight-list {align-items: flex-start;flex-direction: column;}
+.round-way {border: 1px solid #cccccca8;box-shadow: none;border-radius: 0px;margin: 0px 0px; margin-right:-1px;margin-bottom:-1px;} 
+.round-way .fgt-box { width: 100%;}
+.round-way .fgt-logo {width: 20% !important;    margin-top: 3px;}
+.round-way .fgt-box {width: 100%;position: relative;margin-bottom:5px;}
+.round-way .fgt-box .fgt-drt-box {width: 80%; padding-left: 10px;padding-bottom: 15px;}
+.round-way .fgt-from, .round-way .fgt-to {font-size: 15px;font-weight: 500;}
+.round-way .duration-stop {width: 10px !important;}
+.round-way .fgt-duration {position: absolute;left: 40px; bottom: -1px;display: flex;padding: 0px;}
+.round-way .fgt-duration {font-size: 11px;line-height: 16px;}
+.round-way .fgt-duration span {font-size: 10px;line-height: 16px;margin-left: 10px;}
+.round-way .price-box {width: 100%;flex-direction: row;justify-content: space-between;}
+.round-way .fgt-price { margin-right: 0px;margin-left:40px;color:#00ACEE;font-size: 15px;}
+.round-way .fgt-price i { font-size: 11px;}
+.trip-detail {border: none;display: flex;flex-direction: column;padding: 0px 10px;}
+.pricing-det {display: flex;flex-direction: column;padding: 0px;justify-content: center;border-radius: 0px;}
+.price-tipsy h3 {font-size: 18px;line-height: 20px;margin-bottom: 0px;}
+.price-tipsy h3 i {font-size: 15px;}
+.price-tipsy p {display: none;}
+.pricing-det .btn-book a { padding: 0px 20px;display: block;}
+.trip-detail .fgt-logo {width: 15% !important;}
+.trip-detail .fgt-duration { width: 30%; border: none;position: relative;left: 0px;padding-left: 18px;}
+.trip-detail .fgt-box .fgt-drt-box {padding-bottom: 0px; width: 55%;}
+.trip-detail .fgt-duration .more-stops {display: none;}
+.trip-detail .fgt-box {align-items: center;margin-bottom: 0px;}
+.pricing-det::before {left: 0px;border-left: 1px dashed #cccccc75;top: 8px;height: 55px;}
+.price-tipsy span.total-fare {font-size: 10px;}
+.international-trip .fgt-box {width: 80%; padding-right: 20px;}
+.international-trip .fgt-one + .fgt-one {margin-top: 10px;}
+.international-trip .price-box {width: 20%;align-items: flex-end;}
+.international-trip .fgt-price {margin-bottom: 0px;}
+
+.fare-details ul li.total-pay {font-size: 15px;padding: 8px 15px;}
+.fare-details ul li {font-size: 12px;}
+.fare-details ul li.total-cost {font-size: 15px;}
+.fare-details ul li span i.fa-rupee-sign {font-size: 12px;}
+.box-content {margin-bottom: 20px;}
+.sector-details {padding: 0px;padding-top: 25px;}
+.review-airlines {flex-direction: row;justify-content: flex-start; background: #cccccc57;padding: 5px;border: 1px solid #cccccc70; border-radius: 4px;margin:10px 0px; }
+.review-airlines p {margin-top: 0pc; margin-left: 15px;}
+.review-airlines p span {display: inline-block; margin-right: 5px;}
+.review-flight-details .dur-line::before {display: none;}
+.review-flight-details .dur-line {width: 25px;margin: 4px auto;}
+.review-flight-details .more-dts li + li, .review-flight-details .baggage li + li {display: none;}
+.total-time, .layover-seprator, .layover-seprator::before, .layover-seprator::after {display: none;}
+.review-title { background-color: #666;left: 50%;top: 0px;transform: none;margin-left: -40px;color: #fff; border-radius: 2px;padding: 4px 5px;min-width: 80px;font-size: 12px; }
+.review-flight-details {margin-top: 0px;justify-content: space-between;}
+.box-content .md-20 {margin: 0px 0px;padding: 2px 5px;}
+.yellow-msg p {font-size: 11px;}
+.sector-details + .sector-details {margin-top: 5px; padding-top: 25px !important;}
+.review-flight-details .depart-dts h3 {font-size: 20px; line-height: 25px;}
+.review-flight-details .depart-dts span.city-head {font-size: 12px;}
+.review-flight-details .depart-dts p {font-size: 11px;}
+.review-flight-details .more-dts li, .review-flight-details .baggage li {font-size: 10px;}
+.review-flight-details .more-dts li i { margin-right: 2px;font-size: 10px;}
+.fare-right-box h2 {font-size: 16px;}
+.main-box {padding: 20px 0px;}
+.main-box h2 {font-size: 16px; margin-bottom:5px;}
+.sign-opt {margin-left: 5px;padding-left: 5px;font-size: 14px;}
+.main-box h2 small {font-size: 12px;}
+.contact-details {padding: 0px;}
+.contact-details .label-head {font-size: 13px;text-align: left; padding:2px 0px;}
+.contact-details .form-control {margin-bottom: 10px;}
+.contact-content p, .contact-content .custom-control-label {font-size: 12px;}
+.contact-details h3 { font-size: 16px; margin-bottom: 10px;}
+.bt {padding: 10px 0px; margin-top: 10px;}
+.box-gst .gst-title {  position: relative;}
+.box-gst .add-gst { position: relative;right: 0px;top: 0px;}
+.box-gst .gst-content { margin: 0px 15px 15px;}
+.box-gst .close-gst {right: 15px; top: 8px;}
+.contact-details .form-group { margin-bottom: 5px;}
+.far.fa-times-circle {right: 15px;top: 2px;}
+.btn-payment {padding: 8px 15px;font-size: 14px;font-weight: 600;}
+.fare-right-box { display: block;justify-content: none;}
+.fare-right-box > div {width: 100%; margin-top: 0px;}
+.fare-details ul li.total-pay {font-size: 15px;padding: 8px 15px;}
+.promo-code-box h3 { font-size: 14px; margin-bottom: 6px;}
+.promo-code-list li { margin: 10px 0px;}
+.promo-code-list li a.more-code {font-size: 14px;}
+.insuranceDetails { padding: 15px;}
+.insuranceDetails-check .custom-control-label { font-size: 14px;line-height: 20px;}
+.insuranceDetails .insurance-info {font-size: 12px;}
+.ins-benefits .benefits-head { margin-bottom: 10px;text-align: center;}
+.ins-benefits ul {flex-wrap: wrap;}
+.ins-benefits ul li { padding: 10px 10px;}
+.ins-benefits ul li h3 {font-size: 12px;line-height: 20px;}
+.ins-benefits ul li p { font-size: 11px;}
+.ins-benefits ul li .bft-icon {height: 40px;width: 40px;padding: 10px;margin-bottom: 10px;line-height: 20px;}
+
+.pay-creditcard {padding: 20px 5px;}
+
+/* Bus Result */
+.busHeading {font-size: 18px;padding-bottom: 10px;}
+.busSortBy ul li a {font-size: 10px;}
+.busList {flex-wrap: wrap;}
+.opName {width: 100%;margin-bottom: 15px;text-align: center;}
+.layout {width: 70%;}
+.opName h2 {margin-bottom: 5px;}
+.layoutLeft span, .layoutRight span {font-size: 14px;}
+.layoutCenter {text-align: center;width: 45%;}
+.durationTime::before, .durationTime::after{width: 15px;top: 10px;}
+.layout .dp {font-size: 11px;}
+.layoutCenter .durationTime {font-size: 12px;line-height: 23px;}
+.priceBox {width: 30%;flex-direction: column;}
+.priceBox .fgtPrice {font-size: 18px;}
+.priceBox .fgtPrice i {font-size: 14px;}
+.fgtPrice span { font-size: 11px;line-height: 16px;}
+.priceBox .fgtPrice { margin-right: 0px;text-align: right;}
+.priceBox .btn-select {padding: 5px 10px; margin-top:5px;font-size: 12px;}
+.btnBox span.cancelP {display: none;}
+.width40, .width80 {width: 100%;}
+.seatClose {left: auto;right: 0px;}
+.seat-selection h2 {font-size: 16px;font-weight: 600;}
+.mainBody {padding: 15px;}
+.travelDetail h3 {font-size: 16px;margin-bottom: 10px;}
+.colRight .nav-tabs .nav-link {font-size: 11px; padding: 10px 10px;}
+.travelDetail .table td, .travelDetail .table th {font-size: 12px;}
+.colWrapper {flex-direction: column;}
+.colWrapper > div {width: 100%;}
+.colLeft {padding: 10px;}
+.seatType li a {font-size: 13px; padding: 6px 10px;}
+.seat-selection {position: fixed;left: 0px;top: 0px;background: #ffffff;width: 100%;overflow: auto;height: 100%;}
+.seatBox {height: 250px;}
+.seatDetails li { font-size: 10px;padding: 0px 0px;}
+.travelDetail {padding: 15px 5px;}
+.btn-confirm {padding: 8px 15px; font-size: 14px; margin-top: 5px;}
+.seatDetails p {font-size: 12px;}
+.seat-selection h2 {font-size: 15px;}
+.travelDetail p {font-size: 12px;}
+.travelDetail .dateTimeList li {margin-right: 10px;font-size: 12px;}
+.selectBox label {font-size: 13px;margin-bottom: 2px;}
+.busLayout {padding: 0px;}
+.busLayout {flex-direction: column;}
+.busLayoutLeft {width: 100%;margin-bottom:20px;}
+.busLayoutRight { width: 100%; padding-left: 0px;}
+.busDetails h3 {font-size: 16px;line-height: 20px;}
+.busTotalTimes li {font-size: 11px;}
+.busTotalTimes li + li { padding-left: 6px;margin-left: 3px;line-height: 12px;}
+.busBoardingDts ul li + li {margin-top: 15px;}
+.busSeatsDts {font-size: 11px;}
+
+
+/* Hotel Result */
+.reviewRightSection {margin-top: 15px;}
+.bookindDate li {margin: 5px 0px;padding-right: 0px; width: 100%;}
+.bookroomtype {flex-direction: column;}
+.roomType {flex-direction: column;}
+.roomType > div {width: 100%;}
+.roomType div + div { border-left: none; padding-left: 0px; margin-left: 0px; margin-top: 10px;}
+.capText { margin-top: 10px;}
+.bookroomtype .roomColLeft, .bookroomtype .roomColRight { width: 100%;}
+.roomColRight .img-fluid { width: 100%; margin-top:10px;}
+.result-item-1 { flex-wrap: wrap;}
+.result-box, .result-price {width: 100%; height: auto;}
+.imgThumbList { display: none;}
+.result-box .result-image { width: 80px;}
+.result-image .imgCont img { height: 50px; border-radius:2px;}
+.result-box .result-content { width: 80%;}
+.result-content h2 { font-size: 16px; margin-bottom: 5px;}
+.priceDetailsTop { margin-bottom: 10px;}
+.tab-list { margin-bottom: 6px;}
+.heading-content {padding-right: 115px;}
+.total-result ul li + li { padding-left: 0px; border-left: none;}
+.left-filter {width: 80%;}
+.slider-wrap .img-fluid { height: 200px; width:100%;}
+.room-sort-details { padding: 15px;}
+.selected-item { padding: 10px 0px; flex-wrap: wrap;}
+.selected-item li {width: 50%; padding: 5px 15px;}
+.page-section h2 {font-size: 16px;}
+.roomheader ul li, .roomleft h2, .optionwiths h3, .selected-item li, .facilityList .facilityGroupCol .facility-heading { font-size: 13px;}
+.facilityList { display: flex;justify-content: start;flex-wrap: wrap;}
+.facilityList .facilityGroupCol {width: 50%; padding-right: 15px;}
+.reviewHeader {flex-wrap: wrap;}
+.headerleft .sortByCont { margin: 15px 0px;}
+.reviewHeader > div { width: 100%;}
+.reviewHeader .headerright {  border-left: none; padding-left: 0px;}
+.reviewBox h3, .replyBoxRight h4 {font-size: 16px;}
+.replyBoxRight h4 span {font-size: 12px; margin-left: 0px;}
+.ratingPoint {font-size: 13px;padding: 5px 6px;}
+.userRatingBox span { font-size: 30px;}
+.reviewHeader .headerright li {font-size: 12px; padding: 3px 10px;}
+.roomWrap {flex-wrap: wrap;}
+.roomWrap .roomleft, .roomWrap .roomright { width: 50%;padding: 10px;flex-wrap: wrap;}
+.makeFlex ul {margin: 0px;}
+.pricewidth .select-room {padding: 8px 10px;font-size: 13px;width: 100%;text-align: center;}
+.roomWrap .roomright .makeFlex { width: 100%;padding: 0px; border: none;}
+.main-Wrapper {padding: 30px 0px 0px;}
+.roomheader ul li {padding: 6px 6px;font-size: 11px !important;}
+#navSticky { display: none;}
+.proceed-payment {margin-bottom: 20px;}
+.contact-details p span {padding: 2px 5px;font-size: 12px;}
+
+
+}
+
+@media only screen and (min-width: 576px) and (max-width:767px) { 
+
+.booking-engine .rooms-adult-box .item-1 {width: 30%; margin-bottom: 0px;}
+.popular-desti-list ul.nav-tabs li { width: 16%;}
+.discover-content { min-height: 450px; padding-bottom: 290px;}
+.result-box {width: 70%; }
+.result-price {width: 30%; height: 100%;}
+
+.heading-content {padding-right: 0px;}
+.total-result ul li + li { padding-left: 10px; border-left: 1px solid #ccc;}
+.left-filter {width: 50%;}
+.reviewHeader > div { width: 50%;}
+.reviewHeader .headerright {border-left: 1px solid #ccc;padding-left: 15px;}
+.roomWrap { flex-wrap: nowrap;}
+.roomWrap .roomleft{ padding: 10px;width: 25%;}
+.roomWrap .roomright {width: 75%;padding: 0px;flex-wrap: nowrap;}
+.roomWrap .roomright .makeFlex {border-left: 1px solid #cccccc57 !important;padding: 15px !important;}
+.main-Wrapper { padding: 30px 0px;}
+.roomheader ul li {padding: 10px 10px;font-size: 13px !important;}
+#navSticky { display: block;}
+.facilityList .facilityGroupCol {width: 25%; padding-right: 15px;}
+.bookroomtype { flex-direction: row;}
+.bookroomtype .roomColLeft {width: 70%;}
+.bookroomtype .roomColRight { width: 30%;}
+.fare-right-box {display: flex;}
+.fare-right-box > div { width: 48%;}
+
+}
+
+@media screen and (max-width:320px){
+	
+.filter-box li + li {margin-left: 25px !important;}
+
+}

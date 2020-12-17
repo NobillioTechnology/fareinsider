@@ -1,0 +1,300 @@
+<section class="main-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-md-7 order-1">
+				<h2>Payment Method</h2>
+				<div class="box-content payment-box">
+					<div class="payment-wrap row">
+						<ul class="nav nav-tabs col-lg-3">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#creditcard">Credit Card</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#debitcard">Debit Card</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#netbanking">Net Banking</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#netWallet">Net Wallet</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#upi">UPI</a>
+							</li>
+						</ul>
+						<div class="tab-content col-lg-9">
+							<div class="tab-pane active" id="creditcard">
+								<div class="pay-creditcard">
+									<h3>Pay With Debit Card</h3>
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label>Credit Card Number</label>
+													<input type="text" class="form-control" name="cardNo" [(ngModel)]="intData.cardNo">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label>Name on Card</label>
+													<input type="text" class="form-control" name="holderName" [(ngModel)]="intData.holderName">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<label>Expiry Date</label>
+												<div class="form-group expiry-date">
+													<select class="form-control" name="month" [(ngModel)]="intData.month">
+														<option value="0">Month</option>
+														<option value="01">01</option>
+														<option value="02">02</option>
+														<option value="03">03</option>
+														<option value="04">04</option>
+														<option value="05">05</option>
+														<option value="06">06</option>
+														<option value="07">07</option>
+														<option value="08">08</option>
+														<option value="09">09</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+													</select>
+													<select class="form-control" name="year" [(ngModel)]="intData.year">
+														<option value="0">Year</option>
+														<option value="2020">2020</option>
+														<option value="2021">2021</option>
+														<option value="2022">2022</option>
+														<option value="2023">2023</option>
+														<option value="2024">2024</option>
+														<option value="2025">2025</option>
+														<option value="2026">2026</option>
+														<option value="2027">2027</option>
+														<option value="2028">2028</option>
+														<option value="2029">2029</option>
+														<option value="2030">2030</option>
+														<!-- <option value="0">2022</option> -->
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label>CVV</label>
+													<input type="text" class="form-control" name="cvv" [(ngModel)]="intData.cvv">
+												</div>
+											</div>
+											<div class="col-lg-12 final-pay">
+												<div class="price-box">
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="btn-book" (click)="creditCard('CC')"><a>Pay Now</a></div>
+												</div>
+												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
+											</div>
+										</div>
+								</div>	
+							</div>
+							<div class="tab-pane active" id="debitcard">
+								<div class="pay-creditcard">
+									<h3>Pay With Debit Card</h3>
+									<form>
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label>Credit Card Number</label>
+													<input type="text" class="form-control" name="cardNo" [(ngModel)]="intData.cardNo">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label>Name on Card</label>
+													<input type="text" class="form-control" name="holderName" [(ngModel)]="intData.holderName">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<label>Expiry Date</label>
+												<div class="form-group expiry-date">
+													<select class="form-control" name="month" [(ngModel)]="intData.month">
+														<option value="0">Month</option>
+														<option value="01">01</option>
+														<option value="02">02</option>
+														<option value="03">03</option>
+														<option value="04">04</option>
+														<option value="05">05</option>
+														<option value="06">06</option>
+														<option value="07">07</option>
+														<option value="08">08</option>
+														<option value="09">09</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+													</select>
+													<select class="form-control" name="year" [(ngModel)]="intData.year">
+														<option value="0">Year</option>
+														<option value="2020">2020</option>
+														<option value="2021">2021</option>
+														<option value="2022">2022</option>
+														<option value="2023">2023</option>
+														<option value="2024">2024</option>
+														<option value="2025">2025</option>
+														<option value="2026">2026</option>
+														<option value="2027">2027</option>
+														<option value="2028">2028</option>
+														<option value="2029">2029</option>
+														<option value="2030">2030</option>
+														<!-- <option value="0">2022</option> -->
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-3">
+												<div class="form-group">
+													<label>CVV</label>
+													<input type="text" class="form-control" name="cvv" [(ngModel)]="intData.cvv">
+												</div>
+											</div>
+											<div class="col-lg-12 final-pay">
+												<div class="price-box">
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="btn-book" (click)="payCard('DC')"><a>Pay Now</a></div>
+												</div>
+												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane" id="netbanking">
+								<div class="pay-creditcard">
+									<h3>Pay With Net Banking</h3>
+									<form>
+										<div class="row">
+											<div class="col-lg-8">
+												<label>Select Your Banks</label>
+												<div class="form-group">
+													<select class="form-control">
+														<option value="0" selected="selected">Select Your Bank</option>
+														<option value="1">01</option>
+														<option value="2">02</option>
+														<option value="3">03</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-12 final-pay">
+												<div class="price-box">
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="btn-book"  (click)="payNetBank('NB')"><a>Pay Now</a></div>
+												</div>
+												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane" id="netWallet">
+								<div class="pay-creditcard">
+									<h3>Pay With Net Wallet</h3>
+									<form>
+										<div class="row">
+											<div class="col-lg-8">
+												<div class="form-group">
+													<label>UPI</label>
+													<input type="text" class="form-control" name="walletCode" [(ngModel)]="intData.walletCode">
+												</div>
+											</div>
+											<div class="col-lg-12 final-pay">
+												<div class="price-box">
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="btn-book"  (click)="payNetWallet('NW')"><a>Pay Now</a></div>
+												</div>
+												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane" id="upi">
+								<div class="pay-creditcard">
+									<h3>Pay With UPI</h3>
+									<form>
+										<div class="row">
+											<div class="col-lg-8">
+												<div class="form-group">
+													<label>UPI</label>
+													<input type="text" class="form-control" name="upicode" [(ngModel)]="intData.upicode">
+												</div>
+											</div>
+											<div class="col-lg-12 final-pay">
+												<div class="price-box">
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="btn-book"  (click)="payNetUpi('UPI')"><a>Pay Now</a></div>
+												</div>
+												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>	 
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-5 order-md-2">
+				<div class="fare-right-box payment-sec">
+					<div class="fareItem">
+						<h2>Payment Details</h2>
+						<div class="box-content fare-details payment-details">
+							<ul>
+								<li>Total Flight Price<span><i class="small-inr"></i>{{this.orderAmount}}</span></li>
+								<li>Convenience Fee<span><i class="small-inr"></i>{{this.extraCharge}}</span></li>
+								<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{totalAmount}} </span></li>
+								<!-- <li>Earn eCash <span><i class="small-inr"></i>{{this.extraCharge}}</span></li> -->
+							</ul>
+						</div>
+					</div>
+					<div class="fareItem">
+						<h2>Booking Summary</h2>
+						<div class="box-content booking-summary">
+							<div class="summary-airline">
+								<img src="../assets/images/indigo.png" class="fgt-img" alt="">
+								<p><span>IndiGo</span>6E-452</p>	
+							</div>
+							<div class="summary-flight-details">
+								<div class="depart-dts">
+									<h3>Bangalore</h3>
+									<p>Thu, 23 Apr 2020<span>00:05</span></p>
+								</div>
+								<div class="summary-duration">
+									<span class="s-stops">Non stop</span>
+									<span class="s-icon"><i class="fas fa-plane"></i></span>
+								</div>
+								<div class="depart-dts">
+									<h3>New Delhi</h3>
+									<p>Thu, 23 Apr 2020<span>00:05</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>		
+</section>	
+<script src="https://www.cashfree.com/assets/cashfree.sdk.v1.2.js" type="text/javascript"></script>
+<script>
+	var slider = document.getElementById("myRange");
+	var output = document.getElementById("demo");
+	output.innerHTML = slider.value;
+
+	slider.oninput = function() {
+	  output.innerHTML = this.value;
+}
+   
+   
+var config = {};
+			config.layout = {};
+			config.checkout = "transparent";
+			config.mode = "TEST";
+			var response = CashFree.init(config);
+			if (response.status != "OK") {
+				alert(JSON.stringify(response));
+				// Handle error in initializing 
+			}
+
+</script>

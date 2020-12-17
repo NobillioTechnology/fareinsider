@@ -1,0 +1,179 @@
+<section class="login-banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="mybooking text-center">
+					<h2>My Booking!</h2>
+					
+			</div>
+		</div>
+	</div>
+</div></section>
+
+<!--My Profile-->
+<section class="booking-table">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 myprofilephoto">
+				<div class="myprofilec">
+					<h2>Welcome</h2>
+				</div>
+				
+				<h4>{{userDetail.UserName}}</h4>
+			</div>
+
+
+			<div class="col-lg-9">
+				<div class="myprofile">
+					<div class="myprofileh">
+						<div class="row">
+							<div class="col-md-9 col-6">
+							<h3>Profile</h3>
+							<p class="d-none d-lg-block d-md-block">Basic Info, for a faster booking experience</p>
+						</div>
+						<div class="col-md-3 col-6">
+							<button class="btn-editp" data-toggle="modal" data-target="#largeModal" (click)="showModal('open')">Edit <i class="far fa-edit"></i></button>
+						</div>
+							</div>
+
+					</div>
+
+					<div class="editsection">
+						<ul>
+							<li>
+								<span class="editsectionsl">Name</span>
+								<span class="editsectionsr">{{profile.ClientName}}</span>
+							</li>
+							<li>
+								<span class="editsectionsl">DOB</span>
+								<span class="editsectionsr">{{profile.ClientName}}</span>
+								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+							</li>
+							<!-- <li>
+								<span class="editsectionsl">Gender</span>
+								<span class="editsectionsr">{{profile.ClientName}}</span>
+								<span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span>
+							</li> -->
+							<li>
+								<span class="editsectionsl">Email</span>
+								<span class="editsectionsr">{{profile.EmailID}}</span>
+								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+							</li>
+							<li>
+								<span class="editsectionsl">Address</span>
+								<span class="editsectionsr">{{profile.Address}}</span>
+								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+							</li>
+							<li>
+								<span class="editsectionsl">City</span>
+								<span class="editsectionsr">{{profile.City}}</span>
+								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+							</li>
+							<li>
+								<span class="editsectionsl">State</span>
+								<span class="editsectionsr">{{profile.State}}</span>
+								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+							</li>
+							<li>
+								<span class="editsectionsl">Country</span>
+								<span class="editsectionsr">{{profile.Country}}</span>
+								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+							</li>
+							<li>
+								<span class="editsectionsl">Mobile</span>
+								<span class="editsectionsr">{{profile.Mobile}}</span>
+								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</section>
+
+<!--MOdal Pop-->
+ <div id="largeModal" class="modal fade" tabindex="-1" role="dialog" *ngif="closeTab=='open'">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+            	 <!-- Modal Header -->
+			        <div class="modal-header">
+			          <h4 class="modal-title">Edit Profile</h4>
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div>
+			        
+                <div class="modal-body">
+                    <form action="#">
+                    	<div class="row">
+                    		<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">Full Name *</label>
+								    <input type="input" class="form-control" placeholder="Gaurav Panwar" name="ClientName" [(ngModel)]="profile.ClientName">
+								  </div>
+                    		</div>
+                    		<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">Birthday</label>
+								    <input type="date" class="form-control" placeholder="Gaurav Panwar" name="dob" [(ngModel)]="profile.dob">
+								  </div>
+                    		</div>
+                    		<!-- <div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">Gender</label>
+								   <select class="form-control" id="sel1" name="sellist1" name="ClientName" [(ngModel)]="profile.ClientName">
+								        <option value="">Male</option>
+								        <option value="">Female</option>
+								      </select>
+								  </div>
+                    		</div> -->
+                    		<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">Email</label>
+								    <input type="email" class="form-control" placeholder="Email" name="EmailID" [(ngModel)]="profile.EmailID">
+								  </div>
+							</div>
+							<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">Address</label>
+								    <input type="input" class="form-control" placeholder="Address" name="Address" [(ngModel)]="profile.Address">
+								  </div>
+							</div>
+							<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">City</label>
+								    <input type="input" class="form-control" placeholder="City" name="City" [(ngModel)]="profile.City">
+								  </div>
+							</div>
+							<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">State</label>
+								    <input type="input" class="form-control" placeholder="State" name="State" [(ngModel)]="profile.State">
+								  </div>
+							</div>
+							<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">Country</label>
+								    <input type="input" class="form-control" placeholder="Country" name="Country" [(ngModel)]="profile.Country">
+								  </div>
+							</div>
+							<div class="col-md-6">
+                    			<div class="form-group">
+								    <label for="email">Mobile</label>
+								    <input type="number" class="form-control" placeholder="Mobile" name="Mobile" [(ngModel)]="profile.Mobile">
+								  </div>
+                    		</div>
+                    	</div>
+						  <br>
+						  <div class="divbtnp">
+						  	<button type="submit" class="btn-selectp" (click)="editProfile()">Submit</button>
+						 <button type="button" class="btn-selectpc" data-dismiss="modal" (click)="showModal('close')">Close</button>
+						  	</div>
+						</form>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <!--modal pop end-->

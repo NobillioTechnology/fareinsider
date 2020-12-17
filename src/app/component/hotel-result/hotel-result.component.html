@@ -1,0 +1,591 @@
+<section>
+	<div class="modify-search hotel-modify-search">
+		<div class="container">
+			<div class="m-modify">Modify Search<span><i class="fas fa-chevron-down"></i></span></div>
+			<div class="modify-box">
+				<form>
+					<div class="row">
+						<div class="col-lg-10 col-md-12">
+							<div class="row">
+								<div class="col-lg-3 col-md-6">
+									<div class="form-group">
+										<div class="m-from">
+											<label>CIty, Area of hotel</label>
+											<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-6">
+									<div class="form-group">
+										<div class="m-date">
+											<label>Check in</label>
+											<input type="text" class="form-control date-icon" placeholder="19 Apr 2019">
+										</div>
+									</div>
+								</div> 
+								<div class="col-lg-3 col-md-6">
+									<div class="form-group">
+										<div class="m-date">
+											<label>Check out</label>
+											<input type="text" class="form-control date-icon" placeholder="19 Apr 2019">
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-6 roomGuestList">
+									<div class="form-group">
+										<div class="m-from">
+											<label>Rooms & Guest</label>
+											<input type="text" class="form-control addRoom" placeholder="1Room, 2Guest">
+										</div>
+										<div class="roomGuestBox" style="display:none;">
+											<div class="addRoomRow">
+												<h3>Room 1</h3>
+												<div class="addRooomDetails">
+													<span>ADULTS (12y +) </span>
+													<ul>
+														<li class="selected">1</li>
+														<li>2</li>
+														<li>3</li>
+														<li>4</li>
+														<li>5</li>
+														<li>6</li>
+														<li>7</li>
+														<li>8</li>
+														<li>9</li>
+														<li>10</li>
+													</ul>
+												</div>
+												<div class="addRooomDetails">
+													<span>CHILDREN (1y - 12y )</span>
+													<ul>
+														<li class="selected">1</li>
+														<li>2</li>
+														<li>3</li>
+														<li>4</li>
+													</ul>
+												</div>
+											</div>
+											<div class="roomsGuestsBottom">
+												<button type="button" class="btn-add"><i class="fas fa-plus"></i>Add Another room</button>
+												<button type="button" class="btn-apply addApply">Apply</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-group">
+ 								<button class="btn-search" type="button">Search Again</button>
+							</div>
+ 						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+ <div class="filter-sec heading-content">
+	<div class="container">
+		<h2>Hotels and more in Goa</h2>
+		<div class="total-result">
+			<ul>
+				<li><strong>Sort by:</strong>
+				<div class="sortingBox">
+					<select>
+						<option value="1">Popularity</option>
+						<option value="2">Popularity</option>
+					</select>
+					<span><i class="fas fa-chevron-down"></i></span>
+				</div>
+				</li>
+				<li>Showing 4615 properties in Goa</li>
+			</ul>
+		</div>
+		<!-- <div class="mob-filter"><span class="filter-icon"><i class="fas fa-filter"></i></span>Filters</div> -->
+	</div>
+ </div> 
+	
+ <section class="hotel-result">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 filter-selection" id="mobileFilter">
+				<div class="left-filter ">
+					<span class="filterClose"><i class="fas fa-times"></i></span>
+					<h3>Select Filters</h3>
+					<div class="filter-01">
+						<span class="filter-head">Popular Filters</span>
+						<ul>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck11" name="example1">
+								<label class="custom-control-label" for="customCheck11">Pay @ Hotel Available</label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
+								<label class="custom-control-label" for="customCheck1">EMI Deals Available</label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck2" name="example1">
+								<label class="custom-control-label" for="customCheck2">Free Breakfast</label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck3" name="example1">
+								<label class="custom-control-label" for="customCheck3">Entire Property<span>(1692)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck4" name="example1">
+								<label class="custom-control-label" for="customCheck4">Stays for Saviours<span>(41)</span></label>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="show-more">Show More</a>	
+						</li>
+						</ul>
+					</div>
+					<div class="filter-01">
+						<span class="filter-head">Price Per Night</span>
+						<div class="price-filter">
+ 							 <div class="slidecontainer">
+								 <input type="range" min="1" max="9830" value="9830" class="slider" id="myRange">
+								 <span class="start-point"><i class="small-inr"></i>2,497</span>
+								 <span class="end-point"><i class="small-inr"></i>9,830</span>
+							</div>
+						</div>
+					</div>
+					<div class="filter-01">
+						<span class="filter-head">Locality<a href="#">Search Location</a></span>
+						<ul>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck21" name="example1">
+								<label class="custom-control-label" for="customCheck21">North Goa</label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck22" name="example1">
+								<label class="custom-control-label" for="customCheck22">South Goa</label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck23" name="example1">
+								<label class="custom-control-label" for="customCheck23">Calangute</label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck24" name="example1">
+								<label class="custom-control-label" for="customCheck24">Baga</label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck25" name="example1">
+								<label class="custom-control-label" for="customCheck25">Candolim</label>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="show-more">Show More</a>	
+						</li>
+						</ul>
+					</div>
+					<div class="filter-01">
+						<span class="filter-head">Star Category</span>
+						<ul>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck31" name="example1">
+								<label class="custom-control-label" for="customCheck31">5 Star<span>(70)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck32" name="example1">
+								<label class="custom-control-label" for="customCheck32">4 Star<span>(80)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck33" name="example1">
+								<label class="custom-control-label" for="customCheck33">3 Star<span>(50)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck34" name="example1">
+								<label class="custom-control-label" for="customCheck34">2 Star<span>(34)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck35" name="example1">
+								<label class="custom-control-label" for="customCheck35">1 Star<span>(41)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck36" name="example1">
+								<label class="custom-control-label" for="customCheck36">Unrated<span>(3372)</span></label>
+							</div>
+						</li>
+						</ul>
+					</div>
+					<div class="filter-01">
+						<span class="filter-head">User rating</span>
+						<ul>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck41" name="example1">
+								<label class="custom-control-label" for="customCheck41">4.5 & above (Excellent)<span>(495)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck42" name="example1">
+								<label class="custom-control-label" for="customCheck42">4 & above (Very Good)<span>(1257)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck43" name="example1">
+								<label class="custom-control-label" for="customCheck43">3 & above (Good)<span>(2288)</span></label>
+							</div>
+						</li>
+						</ul>
+					</div>
+					<div class="filter-01">
+						<span class="filter-head">Property Type</span>
+						<ul>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck51" name="example1">
+								<label class="custom-control-label" for="customCheck51">Apartment<span>(1084)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck52" name="example1">
+								<label class="custom-control-label" for="customCheck52">Villa<span>(862)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck53" name="example1">
+								<label class="custom-control-label" for="customCheck53">Hotel<span>(840)</span></label>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="show-more">Show More</a>	
+						</li>
+						</ul>
+					</div>
+					<div class="filter-01">
+						<span class="filter-head">Facility</span>
+						<ul>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck61" name="example1">
+								<label class="custom-control-label" for="customCheck61">Balcony/Terrace<span>(1466)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck62" name="example1">
+								<label class="custom-control-label" for="customCheck62">Bar<span>(726)</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customCheck63" name="example1">
+								<label class="custom-control-label" for="customCheck63">Barbeque<span>(414)</span></label>
+							</div>
+						</li>
+						<li>
+							<a href="#" class="show-more">Show More</a>	
+						</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-9 col-md-12">
+				<div class="row">
+					<div class="col-lg-12 pb-20">
+						<a href="#" class="result-item-1">
+							<div class="result-box">
+								<div class="result-image">
+									<div class="imgCont">
+										<img src="images/hotel-01.jpg" class="img-fluid" alt="" />	
+									</div>
+									<div class="imgThumbList">
+										<ul>
+											<li><span><img src="images/hotel-01.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-03.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li>
+											</ul>
+									</div>
+								</div>
+								<div class="result-content">
+									<h2>Caravela Beach Resort</h2>
+									<span class="area">Fatrade Beach</span>
+									<p>611 m from Fatrade Beach</p> 
+									<ul class="tab-list">
+										<li>Premium</li>
+										<li>Spa and Wellness</li>
+									</ul>
+									<ul class="amenList-list">
+										<li><span><i class="fas fa-check"></i></span>Childcare Services</li>
+										<li><span><i class="fas fa-wifi"></i></span>Free Wi-Fi</li>
+										<li><span><i class="fas fa-check"></i></span>Swimming Pool</li>
+									</ul>
+								</div>
+							</div>
+							<div class="result-price">
+								<div class="priceDetailsTop">
+									<p>included in this price</p>	
+									<ul class="include">
+										<li><span><i class="fas fa-check"></i></span>Free Cancellation</li>
+										<li><span><i class="fas fa-check"></i></span>Free Breakfast</li>
+									</ul>
+								</div>
+								<div class="appendBottom5">
+									<h3>INR 705<small>Per night</small></h3>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-12 pb-20">
+						<a href="#" class="result-item-1">
+							<div class="result-box">
+								<div class="result-image">
+									<div class="imgCont">
+										<img src="images/hotel-01.jpg" class="img-fluid" alt="" />	
+									</div>
+									<div class="imgThumbList">
+										<ul>
+											<li><span><img src="images/hotel-01.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-03.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li></ul>
+									</div>
+								</div>
+								<div class="result-content">
+									<h2>Caravela Beach Resort</h2>
+									<span class="area">Fatrade Beach</span>
+									<p>611 m from Fatrade Beach</p> 
+									<ul class="tab-list">
+										<li>Premium</li>
+										<li>Spa and Wellness</li>
+									</ul>
+									<ul class="amenList-list">
+										<li><span><i class="fas fa-check"></i></span>Childcare Services</li>
+										<li><span><i class="fas fa-wifi"></i></span>Free Wi-Fi</li>
+										<li><span><i class="fas fa-check"></i></span>Swimming Pool</li>
+									</ul>
+								</div>
+							</div>
+							<div class="result-price">
+								<div class="priceDetailsTop">
+									<p>included in this price</p>	
+									<ul class="include">
+										<li><span><i class="fas fa-check"></i></span>Free Cancellation</li>
+										<li><span><i class="fas fa-check"></i></span>Free Breakfast</li>
+									</ul>
+								</div>
+								<div class="appendBottom5">
+									<h3>INR 705<small>Per night</small></h3>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-12 pb-20">
+						<a href="#" class="result-item-1">
+							<div class="result-box">
+								<div class="result-image">
+									<div class="imgCont">
+										<img src="images/hotel-01.jpg" class="img-fluid" alt="" />	
+									</div>
+									<div class="imgThumbList">
+										<ul>
+											<li><span><img src="images/hotel-01.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-03.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li></ul>
+									</div>
+								</div>
+								<div class="result-content">
+									<h2>Caravela Beach Resort</h2>
+									<span class="area">Fatrade Beach</span>
+									<p>611 m from Fatrade Beach</p> 
+									<ul class="tab-list">
+										<li>Premium</li>
+										<li>Spa and Wellness</li>
+									</ul>
+									<ul class="amenList-list">
+										<li><span><i class="fas fa-check"></i></span>Childcare Services</li>
+										<li><span><i class="fas fa-wifi"></i></span>Free Wi-Fi</li>
+										<li><span><i class="fas fa-check"></i></span>Swimming Pool</li>
+									</ul>
+								</div>
+							</div>
+							<div class="result-price">
+								<div class="priceDetailsTop">
+									<p>included in this price</p>	
+									<ul class="include">
+										<li><span><i class="fas fa-check"></i></span>Free Cancellation</li>
+										<li><span><i class="fas fa-check"></i></span>Free Breakfast</li>
+									</ul>
+								</div>
+								<div class="appendBottom5">
+									<h3>INR 705<small>Per night</small></h3>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-12 pb-20">
+						<a href="#" class="result-item-1">
+							<div class="result-box">
+								<div class="result-image">
+									<div class="imgCont">
+										<img src="images/hotel-01.jpg" class="img-fluid" alt="" />	
+									</div>
+									<div class="imgThumbList">
+										<ul>
+											<li><span><img src="images/hotel-01.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-03.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li></ul>
+									</div>
+								</div>
+								<div class="result-content">
+									<h2>Caravela Beach Resort</h2>
+									<span class="area">Fatrade Beach</span>
+									<p>611 m from Fatrade Beach</p> 
+									<ul class="tab-list">
+										<li>Premium</li>
+										<li>Spa and Wellness</li>
+									</ul>
+									<ul class="amenList-list">
+										<li><span><i class="fas fa-check"></i></span>Childcare Services</li>
+										<li><span><i class="fas fa-wifi"></i></span>Free Wi-Fi</li>
+										<li><span><i class="fas fa-check"></i></span>Swimming Pool</li>
+									</ul>
+								</div>
+							</div>
+							<div class="result-price">
+								<div class="priceDetailsTop">
+									<p>included in this price</p>	
+									<ul class="include">
+										<li><span><i class="fas fa-check"></i></span>Free Cancellation</li>
+										<li><span><i class="fas fa-check"></i></span>Free Breakfast</li>
+									</ul>
+								</div>
+								<div class="appendBottom5">
+									<h3>INR 705<small>Per night</small></h3>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-12 pb-20">
+						<a href="#" class="result-item-1">
+							<div class="result-box">
+								<div class="result-image">
+									<div class="imgCont">
+										<img src="images/hotel-01.jpg" class="img-fluid" alt="" />	
+									</div>
+									<div class="imgThumbList">
+										<ul>
+											<li><span><img src="images/hotel-01.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-03.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li></ul>
+									</div>
+								</div>
+								<div class="result-content">
+									<h2>Caravela Beach Resort</h2>
+									<span class="area">Fatrade Beach</span>
+									<p>611 m from Fatrade Beach</p> 
+									<ul class="tab-list">
+										<li>Premium</li>
+										<li>Spa and Wellness</li>
+									</ul>
+									<ul class="amenList-list">
+										<li><span><i class="fas fa-check"></i></span>Childcare Services</li>
+										<li><span><i class="fas fa-wifi"></i></span>Free Wi-Fi</li>
+										<li><span><i class="fas fa-check"></i></span>Swimming Pool</li>
+									</ul>
+								</div>
+							</div>
+							<div class="result-price">
+								<div class="priceDetailsTop">
+									<p>included in this price</p>	
+									<ul class="include">
+										<li><span><i class="fas fa-check"></i></span>Free Cancellation</li>
+										<li><span><i class="fas fa-check"></i></span>Free Breakfast</li>
+									</ul>
+								</div>
+								<div class="appendBottom5">
+									<h3>INR 705<small>Per night</small></h3>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-12 pb-20">
+						<a href="#" class="result-item-1">
+							<div class="result-box">
+								<div class="result-image">
+									<div class="imgCont">
+										<img src="images/hotel-01.jpg" class="img-fluid" alt="" />	
+									</div>
+									<div class="imgThumbList">
+										<ul>
+											<li><span><img src="images/hotel-01.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-03.jpg" alt="" /></span></li>
+											<li><span><img src="images/hotel-02.jpg" alt="" /></span></li></ul>
+									</div>
+								</div>
+								<div class="result-content">
+									<h2>Caravela Beach Resort</h2>
+									<span class="area">Fatrade Beach</span>
+									<p>611 m from Fatrade Beach</p> 
+									<ul class="tab-list">
+										<li>Premium</li>
+										<li>Spa and Wellness</li>
+									</ul>
+									<ul class="amenList-list">
+										<li><span><i class="fas fa-check"></i></span>Childcare Services</li>
+										<li><span><i class="fas fa-wifi"></i></span>Free Wi-Fi</li>
+										<li><span><i class="fas fa-check"></i></span>Swimming Pool</li>
+									</ul>
+								</div>
+							</div>
+							<div class="result-price">
+								<div class="priceDetailsTop">
+									<p>included in this price</p>	
+									<ul class="include">
+										<li><span><i class="fas fa-check"></i></span>Free Cancellation</li>
+										<li><span><i class="fas fa-check"></i></span>Free Breakfast</li>
+									</ul>
+								</div>
+								<div class="appendBottom5">
+									<h3>INR 705<small>Per night</small></h3>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>	
+</section> 

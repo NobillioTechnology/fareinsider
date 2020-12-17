@@ -1,0 +1,168 @@
+<section class="login-sec">
+	<div class="form-box">
+		<div class="loginLogo"><a class="navbar-brand" ><img src="images/logo.png" alt="" /></a></div>
+			<div class="login-wrapper">
+			<ul class="loginTab">
+				<li><a  id="signin" [ngClass]="{active:isActive=='signIn'}" (click)="tab('signIn')">Sign in</a></li>
+				<li><a  id="signup" [ngClass]="{active:isActive=='signUp'}"  (click)="tab('signUp')">Sign up</a></li>
+			</ul>
+			<div class="loginContent">
+				<div class="signupForm" *ngIf="tabType=='signUp'">
+					<!-- <div class="sBox1" style="display:none;">
+						<h2>Create your account</h2>
+						<ul>
+							<li class="googleBtn"><a ><i class="fa-google1"></i>Continue with Google</a></li>
+							<li class="facebookBtn"><a ><i class="fab fa-facebook-square"></i>Continue with Facebook</a></li>
+							<li class="otherT"><span>OR</span></li>
+							<li class="googleBtn"><a ><i class="far fa-envelope"></i>Sign up with email</a></li>
+						</ul>
+						<div class="alreadyLogin">Already have a Getaround account?<a >Sign in</a></div>
+					</div> -->
+					<div class="sBox1">
+						<h2><i class="fas fa-arrow-left"></i>Sign up with email</h2>
+						<form class="formBox" [formGroup]="myForm" name="myForm">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Agency name" name="fName" formControlName="fName">
+									<span><i class="fas fa-user"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('fName').hasError('required') && myForm.get('fName').dirty">*Please enter Agency name</p>
+								</div>
+							</div>
+							<!-- <div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Last name" name="lastName" formControlName="lastName">
+									<span><i class="fas fa-user"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('lastName').hasError('required') && myForm.get('lastName').dirty">*Please enter Last name</p>
+								</div>
+							</div> -->
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Email" name="email" formControlName="email">
+									<span><i class="fas fa-envelope"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('email').hasError('required') && myForm.get('email').dirty">*Please enter Email</p>
+									<p style="color:#fd653c;" *ngIf="myForm.get('email').hasError('pattern') && myForm.get('email').dirty">*Invalid Email</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Address" name="add1" formControlName="add1">
+									<span><i class="fas fa-map-marker"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('add1').hasError('required') && myForm.get('add1').dirty">*Please enter Agency Address</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Country" name="country" formControlName="country">
+									<span><i class="fas fa-flag"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('country').hasError('required') && myForm.get('country').dirty">*Please enter Country</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="State" name="state" formControlName="state">
+									<span><i class="fas fa-map-marker"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('state').hasError('required') && myForm.get('state').dirty">*Please enter State</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="City" name="city" formControlName="city">
+									<span><i class="fas fa-map-marker"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('city').hasError('required') && myForm.get('city').dirty">*Please enter City</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="Agency Mobile No" name="mobile" formControlName="mobile">
+									<span><i class="fas fa-mobile"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('mobile').hasError('required') && myForm.get('mobile').dirty">*Please enter Agency Mobile No</p>
+									<p style="color:#fd653c;" *ngIf="myForm.get('mobile').hasError('pattern') && myForm.get('mobile').dirty">*Invalid mobile</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="WebUrl" name="weburl" formControlName="weburl">
+									<span><i class="fas fa-globe"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('weburl').hasError('required') && myForm.get('weburl').dirty">*Please enter WebUrl</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Contact Person Name" name="contactperson" formControlName="contactperson">
+									<span><i class="fas fa-user"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('contactperson').hasError('required') && myForm.get('contactperson').dirty">*Please enter Contact Person Name</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Remark" name="remark " formControlName="remark">
+									<span><i class="fas fa-pen"></i></span>
+									<p style="color:#fd653c;" *ngIf="myForm.get('remark').hasError('required') && myForm.get('remark').dirty">*Please enter Remark</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="customCheck01"  name="checkfield1" formControlName="checkfield1">
+										<label class="custom-control-label" for="customCheck01">I agree to the <a >privacy policy</a></label>
+									</div>
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="customCheck02"  name="checkfield2" formControlName="checkfield2">
+										<label class="custom-control-label" for="customCheck02">I would like to receive the Getaround newsletter and special offers</label>
+									</div>
+									<p style="color:#fd653c;" *ngIf="myForm.get('checkfield1').hasError('required') && myForm.get('checkfield1').dirty">*All the fields are mandatory</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<a class="btn-signin" [disabled]=myForm.invalid (click)="signup()">Confirm</a>
+							</div>
+							<!-- <div class="col-lg-12 alreadyLogin">Already have a Getaround account?<a  (click)="tab('signIn')">Sign in</a></div> -->
+						</div>
+					</form>
+					</div>
+				</div>
+				<div class="signinForm" *ngIf="tabType=='signIn'">
+					<h2>Login to your account </h2>
+					<!--<ul>
+						<li class="googleBtn"><a ><i class="fa-google1"></i>Continue with Google</a></li>
+						<li class="facebookBtn"><a ><i class="fab fa-facebook-square"></i>Continue with Facebook</a></li>
+						<li class="otherT"><span>OR</span></li>
+					</ul>-->
+					<form class="formBox" [formGroup]="logInForm" name="logInForm">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Email" name="emailId" formControlName="emailId">
+									<span><i class="fas fa-envelope"></i></span>
+									<p style="color:#fd653c;" *ngIf="logInForm.get('emailId').hasError('required') && logInForm.get('emailId').dirty">*Please enter mobile</p>
+									<p style="color:#fd653c;" *ngIf="logInForm.get('emailId').hasError('pattern') && logInForm.get('emailId').dirty">*Invalid mobile</p>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Password" name="password" formControlName="password">
+									<span><i class="fas fa-lock"></i></span>
+									<p style="color:#fd653c;" *ngIf="logInForm.get('password').hasError('required') && logInForm.get('password').dirty">*Please enter password</p>
+
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<a  class="forgotPassword">Forgotten password</a>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<a  class="btn-signin" [disabled]=logInForm.invalid (click)="logIn()">Sign in</a>
+								</div>
+							</div>
+							<!-- <div class="alreadyLogin">Don't have a Getaround account?<a  (click)="tab('signUp')">Sign up</a></div> -->
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="loginImage"></div>
+</section>

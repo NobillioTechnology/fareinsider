@@ -1,0 +1,613 @@
+
+<section class="main-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-md-12 order-1">
+				<h2>Review Your Booking<a (click)="chngeFlyt()">Change flight</a></h2>
+				<!-- ==================for oneway============= -->
+				<div class="box-content" *ngIf="tripName=='oneway'">
+					<div class="sector-details">
+						<span class="review-title">Departure</span>
+						<div *ngFor="let item of flightDetails let i = index">
+							<div class="layover-seprator" *ngIf="i!=0"></div>
+							<div class="col-lg-9 offset-lg-3 col-12 col-md-10 offset-md-2" *ngIf="i!=0">
+								<div class="yellow-msg md-20">
+									<p>Change plane at <strong>{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
+								</div>
+							</div>
+						<div class="review-article">
+							<div class="row">
+								<div class="col-lg-3 col-md-2">
+									<div class="review-airlines">
+										<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
+										<p><span>{{item.AirLineName}}</span>{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}</p>	
+									</div>
+								</div>
+								<div class="col-lg-9 col-md-10">
+									<div class="review-flight-details">
+										<div class="total-time" *ngIf="i==0 && flightDetails.length==1">Total Time: <span>{{item.Duration}}</span></div>
+										<div class="total-time" *ngIf="i==0 && flightDetails.length>1">Total Time: <span>{{totalTime}}</span></div>
+										<div class="depart-dts">
+											<span class="city-head">{{item.IntDepartureAirportName}}, IN</span>
+											<h3>{{item.DepartureDateTime | date:"HH:mm"}}</h3>
+											<p>{{item.DepartureDateTime | date }}</p>
+											<span class="city-name"><span *ngIf="item.IntStartTerminal>0"> Terminal</span> {{item.IntStartTerminal}}</span>
+										</div>
+										<div class="full-duration">
+											<ul class="more-dts">
+												<li><i class="far fa-clock"></i>{{item.Duration}}</li>
+												<li><i class="fas fa-utensils"></i>Paid Meal</li>
+												<li>Economy</li>
+											</ul>
+											<span class="dur-line"></span>
+											<ul class="baggage">
+												<li>{{item.BaggageAllowed.CheckInBaggage}}</li>
+												<li><span>{{item.BookingClassFare.Rule}}</span></li>
+											</ul>
+										</div>
+										<div class="depart-dts">
+											<span class="city-head">{{item.IntArrivalAirportName}}, IN</span>
+											<h3>{{item.ArrivalDateTime | date:"HH:mm"}}</h3>
+											<p>{{item.ArrivalDateTime | date }}</p>
+											<span class="city-name"><span *ngIf="item.IntEndTerminal>0"> Terminal</span> {{item.IntEndTerminal}}</span>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<!-- ======================oneway end================== -->
+				<!-- =========================roundway============= -->
+				<div class="box-content" *ngIf="tripName=='roundway'">
+					<div class="sector-details">
+						<span class="review-title">Departure</span>
+						<div *ngFor="let item of depFlightDet let i = index">
+							<div class="layover-seprator" *ngIf="i!=0"></div>
+							<div class="col-lg-9 offset-lg-3 col-12 col-md-10 offset-md-2" *ngIf="i!=0">
+								<div class="yellow-msg md-20">
+									<p>Change plane at <strong>{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
+								</div>
+							</div>
+						<div class="review-article">
+							<div class="row">
+								<div class="col-lg-3 col-md-2">
+									<div class="review-airlines">
+										<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
+										<p><span>{{item.AirLineName}}</span>{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}</p>	
+									</div>
+								</div>
+								<div class="col-lg-9 col-md-10">
+									<div class="review-flight-details">
+										<div class="total-time" *ngIf="i==0 && depFlightDet.length==1">Total Time: <span>{{item.Duration}}</span></div>
+										<div class="total-time" *ngIf="i==0 && depFlightDet.length>1">Total Time: <span>{{totalTime}}</span></div>
+										<div class="depart-dts">
+											<span class="city-head">{{item.IntDepartureAirportName}}, IN</span>
+											<h3>{{item.DepartureDateTime | date:"HH:mm"}}</h3>
+											<p>{{item.DepartureDateTime | date }}</p>
+											<span class="city-name"><span *ngIf="item.IntStartTerminal>0"> Terminal</span> {{item.IntStartTerminal}} </span>
+										</div>
+										<div class="full-duration">
+											<ul class="more-dts">
+												<li><i class="far fa-clock"></i>{{item.Duration}}</li>
+												<li><i class="fas fa-utensils"></i>Paid Meal</li>
+												<li>Economy</li>
+											</ul>
+											<span class="dur-line"></span>
+											<ul class="baggage">
+												<li>{{item.BaggageAllowed.CheckInBaggage}}</li>
+												<li><span>{{item.BookingClassFare.Rule}}</span></li>
+											</ul>
+										</div>
+										<div class="depart-dts">
+											<span class="city-head">{{item.IntArrivalAirportName}}, IN</span>
+											<h3>{{item.ArrivalDateTime | date:"HH:mm"}}</h3>
+											<p>{{item.ArrivalDateTime | date }}</p>
+											<span class="city-name"><span *ngIf="item.IntEndTerminal>0"> Terminal</span> {{item.IntEndTerminal}}</span>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div class="sector-details">
+						<span class="review-title">Return</span>
+						<div *ngFor="let item of returnFlightDet let i = index">
+							<div class="layover-seprator" *ngIf="i!=0"></div>
+							<div class="col-lg-9 offset-lg-3 col-12 col-md-10 offset-md-2" *ngIf="i!=0">
+								<div class="yellow-msg md-20">
+									<p>Change plane at <strong>{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
+								</div>
+							</div>
+						<div class="review-article">
+							<div class="row">
+								<div class="col-lg-3 col-md-2">
+									<div class="review-airlines">
+										<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
+										<p><span>{{item.AirLineName}}</span>{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}</p>	
+									</div>
+								</div>
+								<div class="col-lg-9 col-md-10">
+									<div class="review-flight-details">
+										<div class="total-time" *ngIf="i==0 && returnFlightDet.length==1">Total Time: <span>{{item.Duration}}</span></div>
+										<div class="total-time" *ngIf="i==0 && returnFlightDet.length>1">Total Time: <span>{{totalTime}}</span></div>
+										<div class="depart-dts">
+											<span class="city-head">{{item.IntDepartureAirportName}}, IN</span>
+											<h3>{{item.DepartureDateTime | date:"HH:mm"}}</h3>
+											<p>{{item.DepartureDateTime | date }}</p>
+											<span class="city-name"><span *ngIf="item.IntStartTerminal>0"> Terminal</span> {{item.IntStartTerminal}}</span>
+										</div>
+										<div class="full-duration">
+											<ul class="more-dts">
+												<li><i class="far fa-clock"></i>{{item.Duration}}</li>
+												<li><i class="fas fa-utensils"></i>Paid Meal</li>
+												<li>Economy</li>
+											</ul>
+											<span class="dur-line"></span>
+											<ul class="baggage">
+												<li>{{item.BaggageAllowed.CheckInBaggage}}</li>
+												<li><span>{{item.BookingClassFare.Rule}}</span></li>
+											</ul>
+										</div>
+										<div class="depart-dts">
+											<span class="city-head">{{item.IntArrivalAirportName}}, IN</span>
+											<h3>{{item.ArrivalDateTime | date:"HH:mm"}}</h3>
+											<p>{{item.ArrivalDateTime | date }}</p>
+											<span class="city-name"><span *ngIf="item.IntEndTerminal>0"> Terminal</span> {{item.IntEndTerminal}}</span>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<!-- =================roundwayEnd============= -->
+				<div *ngIf="isLogin!=2">
+				<h2>Enter Traveller Details <span class="sign-opt" (click)="showLoginForm()">Sign in</span><small>to book faster and use eCash</small></h2>
+				<div class="box-content login-box" *ngIf="actionType=='open'">
+					<div class="contact-details">
+						<div class="row">
+							<div class="col-lg-3 col-md-12">
+								<label class="label-head">Sign In Now</label>
+							</div>
+							<div class="col-lg-3 col-md-4">
+								<input type="text" class="form-control" placeholder="Email Address" name="emailAdd" [(ngModel)]="data.emailAdd">
+							</div>
+							<div class="col-lg-3 col-md-4">
+								<input type="password" class="form-control" placeholder="Password" name="passwrd" [(ngModel)]="data.passwrd">
+							</div>
+							<div class="col-lg-3 col-md-4 flex-box">
+								<button class="btn-defult" type="button" (click)="login()">Login</button>
+								<a class="forgot">Forgot?</a>
+								<span class="close-sign-box"><i class="far fa-times-circle"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="box-content">
+					<div class="contact-details" *ngIf="this.isLogin!=2">
+						<div class="row">
+							<div class="col-lg-3">
+								<label class="label-head">Contact Details</label>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<input type="text" class="form-control" placeholder="Email ID" name="emailId" [(ngModel)]="data.emailId">
+							</div>
+							<div class="col-lg-4 col-md-6 contact-input1">
+								<span>+91</span>
+								<input type="text" class="form-control" placeholder="Mobile Number" name="contact" [(ngModel)]="data.contact" (input)="enterNum()">
+							</div>
+						</div>
+						<div class="row" *ngIf="this.isLogin==1">
+							<div class="col-lg-3">
+								<label class="label-head">Contact Details</label>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<input type="number" class="form-control" placeholder="OTP" name="otp" [(ngModel)]="data.otp">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-9 offset-lg-3">
+								<div class="contact-content">
+									<!-- <p>Your booking details will be sent to this email address and mobile number. </p> -->
+									<!-- <div class="custom-control custom-checkbox" > -->
+										<!-- <input type="checkbox" class="custom-control-input" id="customcontact" name="example1"> -->
+										<!-- <label class="custom-control-label" for="customcontact">Also send my booking details on WhatsApp</label> -->
+										<!-- <span (click)="resend()" style="color: #068cbf;padding: 0 15px;"><u>Resend OTP</u></span> -->
+									<!-- </div> -->
+								</div>	
+							</div>	
+						</div>
+						<div class="marginTop10" *ngIf="this.isLogin==0 && mobileNum=='show'">
+							<div class="proceed-payment text-center">
+								<button type="button" class="btn-payment" (click)="sendOtp()">Send OTP</button>
+							</div>
+						</div>
+						<div class="marginTop10" *ngIf="this.isLogin==1">
+							<div class="proceed-payment text-center">
+								<button type="button" class="btn-payment" (click)="verify()">Verify</button>
+								<span (click)="resend()" style="color: #068cbf;padding: 0 15px;"><u>Resend OTP</u></span>
+							</div>
+						</div>
+					</div>
+					<div class="contact-details">
+						<div class="row">
+							<div class="col-lg-9 offset-lg-3">
+								<div class="contact-content bt">
+									<h3>Traveller Information</h3>
+									<p><span>Important Note:</span>Please ensure that the names of the passengers on the travel documents is the same as on their government issued identity proof. </p>
+								</div>
+							</div>
+						</div>
+						<div *ngFor="let temp of adultArr let i=index">
+						<div class="row" style="margin-bottom: 10px;">
+							<div class="col-lg-3 col-md-12">
+								<label class="label-head">Adult {{i+1}}</label>
+							</div>
+							<div class="col-lg-4 col-md-5 contact-input1">
+								<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
+									<option value="Mr" selected>Mr</option>
+									<option value="Ms">Ms</option>
+									<option value="Mrs">Mrs</option>
+									<option value="Mstr">Mstr</option>
+								</select></span>
+								<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
+								
+							</div>
+							<div class="col-lg-3 col-md-3">
+								<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">
+								
+							</div>
+							<!-- <div class="col-lg-2 col-md-4">
+								<input type="text" class="form-control" placeholder="Last Name" name="lName">
+							</div> -->
+						</div>
+							<div class="row" *ngIf="domInt=='I'" style="margin-bottom: 10px;">
+							<div class="col-lg-3 col-md-12">
+							</div>
+							<div class="col-lg-2 col-md-3">
+								<!-- <input type="text" class="form-control" placeholder="Nationality" name="nationality" [(ngModel)]="temp.nationality"> -->
+								<select class="form-control" name="nationality" [(ngModel)]="temp.nationality" (change)="selectCountry()">
+									<option>Country</option>
+									<option *ngFor="let item of countryList" value="{{item.Country}}">{{item.Country}}</option>
+								</select>
+							</div>
+							<div class="col-lg-2 col-md-3">
+								<input type="text" class="form-control" placeholder="Passport No." name="passNo" [(ngModel)]="temp.passNo">
+							</div>
+							<div class="col-lg-2 col-md-3">
+								<!-- <input type="text" class="form-control" placeholder="Issuing Country" name="issCon" [(ngModel)]="temp.issCon"> -->
+								<select class="form-control" name="issCon" [(ngModel)]="temp.issCon" (change)="selectCountry()">
+									<option>Issuing Country</option>
+									<option *ngFor="let item of countryList" value="{{item.Country}}">{{item.Country}}</option>
+								</select>
+							</div>
+							<div class="col-lg-2 col-md-3">
+								<input type="text" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
+							</div>
+                            </div>
+						</div>
+						<div *ngFor="let temp of childArr let i=index">
+							<div class="row" style="margin-bottom: 10px;">
+								<div class="col-lg-3 col-md-12">
+									<label class="label-head">Child {{i+1}}</label>
+								</div>
+								<div class="col-lg-4 col-md-5 contact-input1">
+									<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
+										<option>Mr</option>
+										<option>Ms</option>
+										<option>Mrs</option>
+									</select></span>
+									<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
+									
+								</div>
+								<div class="col-lg-3 col-md-3">
+									<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">
+									
+								</div>
+								<!-- <div class="col-lg-2 col-md-4">
+									<input type="text" class="form-control" placeholder="Last Name" name="lName">
+								</div> -->
+							</div>
+								<div class="row" *ngIf="domInt=='I'" style="margin-bottom: 10px;">
+								<div class="col-lg-3 col-md-12">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Nationality" name="nationality" [(ngModel)]="temp.nationality">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Passport No." name="passNo" [(ngModel)]="temp.passNo">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Issuing Country" name="issCon" [(ngModel)]="temp.issCon">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
+								</div>
+								</div>
+						</div>
+						<div *ngFor="let temp of infantArr let i=index">
+							<div class="row" style="margin-bottom: 10px;">
+								<div class="col-lg-3 col-md-12">
+									<label class="label-head">Infant {{i+1}}</label>
+								</div>
+								<div class="col-lg-4 col-md-5 contact-input1">
+									<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
+										<option>Mr</option>
+										<option>Ms</option>
+										<option>Mrs</option>
+									</select></span>
+									<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
+									
+								</div>
+								<div class="col-lg-3 col-md-3">
+									<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">
+									
+								</div>
+								<div class="col-lg-2 col-md-4">
+									<input type="date" class="form-control" placeholder="dd/mm/yyyy" name="dob" [(ngModel)]="temp.dob">
+								</div>
+							</div>
+								<div class="row" *ngIf="domInt=='I'" style="margin-bottom: 10px;">
+								<div class="col-lg-3 col-md-12">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Nationality" name="nationality" [(ngModel)]="temp.nationality">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Passport No." name="passNo" [(ngModel)]="temp.passNo">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Issuing Country" name="issCon" [(ngModel)]="temp.issCon">
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="text" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
+								</div>
+								</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-content box-gst">
+					<div class="gst-title">
+						<i class="gst-ico"></i>
+						<h3>Add your GST Details <small>(Optional)</small></h3>
+						<p>Claim credit of GST charges. Your taxes may get updated post submitting your GST details.</p>
+						<div>
+							<a class="add-gst" *ngIf="action=='close'" (click)="showGst('open')">Add</a>
+							<!-- <a class="add-gst" *ngIf="action=='open'" (click)="showGst('close')">Close</a> -->
+							<a class="close-gst" *ngIf="action=='open'" (click)="showGst('close')"><i class="fas fa-times"></i></a>
+						</div>
+						
+					</div>
+					<div class="gst-content" [ngStyle]="{'display': action=='open' ? 'block':'none'}">
+						<div class="contact-details">
+							<div class="row">
+								<div class="col-lg-3 col-md-2">
+									<div class="form-group">
+										<label class="label-head">GST Number</label>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-4">
+									<div class="form-group">
+										<input type="text" class="form-control" name="gstNo" [(ngModel)]=data.gstNo>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<div class="form-group">
+										<label class="label-head">Company Name</label>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-4">
+									<div class="form-group">
+										<input type="text" class="form-control" name="cmpny" [(ngModel)]=data.cmpny>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-2">
+									<div class="form-group">
+										<label class="label-head">Email Id</label>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-4">
+									<div class="form-group">
+										<input type="text" class="form-control" name="email" [(ngModel)]=data.email>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<div class="form-group">
+										<label class="label-head">Mobile Number</label>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-4 contact-input1">
+									<div class="form-group">
+										<span>+91</span>
+										<input type="text" class="form-control" name="mobile" [(ngModel)]=data.mobile>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-2">
+									<div class="form-group">
+										<label class="label-head">Address</label>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-4">
+									<div class="form-group">
+										<input type="text" class="form-control" name="address" [(ngModel)]=data.address>
+									</div>
+								</div>
+								<div class="col-lg-4 offset-lg-8 col-md-3 offset-md-2">
+									<a class="btn-gst" (click)="addGst()">Add GST</a>	
+								</div>	
+							</div>
+						</div>		
+					</div>
+				</div>
+				<!-- <h2>Travel Protection<small>(Recommended)</small></h2>
+				<div class="box-content insuranceDetails">
+					<div class="insuranceDetails-check">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="insurancecheck" name="example1">
+							<label class="custom-control-label" for="insurancecheck">Also send my booking details on WhatsApp</label>
+						</div>
+					</div>	
+					<span class="insurance-info">6000+ travellers on Yatra protect their trip daily. <a>Learn More</a></span>
+					<div class="ins-benefits">
+						<span class="benefits-head">Cover includes:</span>
+						<ul>
+							<li>
+								<span class="bft-icon"><img src="../assets/images/flight-cancel.png" alt="" /></span>
+								<p>Trip Cancellation</p>
+								<h3>Claim upto  Rs.25,000 </h3> 
+							</li>
+							<li>
+								<span class="bft-icon"><img src="../assets/images/airplane-flight.png" alt="" /></span>
+								<p>Flight Delay </p>
+								<h3>Claim upto  Rs.10,500 </h3> 
+							</li>
+							<li>
+								<span class="bft-icon"><img src="../assets/images/luggage.png" alt="" /></span>
+								<p>Loss of Baggage </p>
+								<h3>Claim upto  Rs.20,000 </h3> 
+							</li>
+							<li>
+								<span class="bft-icon"><img src="../assets/images/hospital.png" alt="" /></span>
+								<p>Medical Emergency </p>
+								<h3>Claim upto  Rs.2,00,000</h3> 
+							</li>
+							<li>
+								<span class="bft-icon"><img src="../assets/images/ambulance.png" alt="" /></span>
+								<p>Roadside & Medical</p>
+								<h3>Assistance</h3> 
+							</li>
+						</ul>
+					</div>
+					<p>Note: Travel Protection is applicable only for Indian citizens below the age of 70 years. <a>Terms & Conditions</a></p>
+					<ul class="insurance-agency">
+						<li><img src="../assets/images/cover-more-logo-v2.png" alt="" /></li>
+						<li><img src="../assets/images/Bharti-AXA-v2.jpg" alt="" /></li>
+					</ul>
+				</div> -->
+				<div class="proceed-payment text-center">
+					<button type="button" class="btn-payment" (click)="proceedToPay()">Proceed To Payment</button>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-12 order-md-2">
+				<div class="fare-right-box">
+					<div class="fareItem">
+					<h2>Fare Details
+						<!-- <a data-toggle="modal" data-target="#viewFareRule" (click)="showfarerule('open')">View Fare Rules</a> -->
+					</h2>
+					<div class="box-content fare-details"  *ngIf="tripName=='oneway'">
+						<ul>
+							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{fareDetails.ActualBaseFare}}</span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>{{netAmount(fareDetails.Tax)}}</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{netAmount(fareDetails.NetFare)}} </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{netAmount(fareDetails.NetFare)}} </span></li>
+							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
+						</ul>
+					</div>
+					<div class="box-content fare-details" *ngIf="tripName=='roundway'">
+						<ul>
+							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{(depFlightFare.ActualBaseFare+returnFlightFare.ActualBaseFare).toFixed(2)}}</span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>{{(netAmount(depFlightFare.Tax)+netAmount(returnFlightFare.Tax)).toFixed(2)}}</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toFixed(2)}} </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toFixed(2)}} </span></li>
+							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
+						</ul>
+					</div>
+					</div>
+					<div class="fareItem">
+						<h2>Promo Code </h2>
+						<div class="box-content promo-code-box">
+							<h3>Select a Promo Code</h3>
+							<div class="promo-code input-group">
+							  <input type="text" class="form-control" placeholder="Your promo code">
+							  <div class="input-group-append">
+								<button class="btn-apply" type="submit">Apply</button>
+							  </div>
+							</div>
+							<ul class="promo-code-list">
+								<li>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="promocode1" name="example1" value="customEx"  >
+										<label class="custom-control-label" for="promocode1"></label>
+									</div>
+									<div class="promo-content">
+										<span class="promo-key">YTUPI</span>
+										<p>Up to Rs.3,000 instant off, applicable on UPI payment modes only.</p>
+										<a>Terms & Condition</a> 
+									</div>
+								</li>
+								<li>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="promocode2" name="example1" value="customEx"  >
+										<label class="custom-control-label" for="promocode2"></label>
+									</div>
+									<div class="promo-content">
+										<span class="promo-key">YTUPI</span>
+										<p>Up to Rs.3,000 instant off, applicable on UPI payment modes only.</p>
+										<a>Terms & Condition</a> 
+									</div>
+								</li>
+								<li><a class="more-code">View All</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>		
+</section>
+<div class="modal" id="viewFareRule" *ngIf="fareTab=='open'">
+	<div class="modal-dialog fareRule-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h4 class="modal-title">Fare Rule</h4>
+		  <button type="button" class="close" data-dismiss="modal" (click)="showfarerule('close')">&times;</button>
+		</div>
+		<div class="modal-body">
+		  <div class="custom-farerule">
+			  <h4>BLR-HYD</h4>
+			  <table class="table fare-table">
+				  <thead>
+					  <tr>
+						  <th>Time</th>
+						  <th>Airline date</th>
+					  </tr>
+				  </thead> 
+				  <tbody>
+					  <tr>
+						  <td>Duration</td>
+						  <td>0 hour to 1 dyas</td>
+					  </tr>
+					  <tr>
+						  <td>Per Passenger</td>
+						  <td><i class="fas fa-rupee-sign"></i>5,581</td>
+					  </tr>		
+					  <tr>
+						  <td>&gt; 1 days</td>
+						  <td><i class="fas fa-rupee-sign"></i>5,581</td>
+					  </tr>
+				  </tbody>
+			  </table>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+<script>
+	var slider = document.getElementById("myRange");
+	var output = document.getElementById("demo");
+	output.innerHTML = slider.value;
+
+	slider.oninput = function() {
+	  output.innerHTML = this.value;
+}
+</script>	

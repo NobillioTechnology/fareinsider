@@ -1,0 +1,8 @@
+.newCss{
+    z-index:10!important;
+        left: -35px;
+        width: 6rem;
+}
+.custom-control-input{
+    z-index:1!important;
+}
