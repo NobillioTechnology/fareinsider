@@ -176,7 +176,25 @@ getFareDetail_2(){
 bookNow(tem,val){
   this.selGo=tem;
   this.selRet=val;
-
+  let searchId=Math.floor(Math.random() * 1000000);
+    localStorage.setItem("searchId",searchId.toString())
+    // console.log("selectedddd_flight========>"+JSON.stringify(obj))
+    let dataInfo={
+      "SearchId":searchId,
+      "Data": JSON.stringify(this.conectingFlyt),
+    }
+    this.service.testPostApiMethod(dataInfo,"Data/SaveData").subscribe(res=>{
+    },
+    (err)=>{
+     });
+     let datainfo={
+      "SearchId":searchId,
+      "Data": JSON.stringify(this.conectingFlyt_2),
+    }
+    this.service.testPostApiMethod(datainfo,"Data/SaveData").subscribe(res=>{
+    },
+    (err)=>{
+     });
   this.router.navigate(['flight-details'],{ queryParams: { 'flight1':this.selGo, 'flight2':this.selRet,'source':this.reqObj.source,'destination':this.reqObj.destination,'journeyDate':this.reqObj.journeyDate,'tripType':this.reqObj.tripTypeNum,'flightType':this.reqObj.flightTypeNum,'adults':this.reqObj.adults,'children':this.reqObj.children,'infants':this.reqObj.infants,'travelClass':this.reqObj.travelClass,'returnDate':this.reqObj.returnDate }}) 
 }
 selectStop(val){

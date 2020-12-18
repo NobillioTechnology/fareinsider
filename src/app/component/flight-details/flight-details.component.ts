@@ -625,6 +625,8 @@ export class FlightDetailsComponent implements OnInit {
       this.passengertype.push('INF')
     })
   }
+  if(this.fNameArr[0]!='' && this.lNameArr[0]!=''){
+    // alert("firstname"+this.fNameArr[0])
     let dataInfo= {
       "tt" :this.adultArr.length+ this.childArr.length+this.infantArr.length,
       "pjtype"  : this.reqObj.tripType,
@@ -645,23 +647,24 @@ export class FlightDetailsComponent implements OnInit {
        "PassIssueCountry" :this.issCountryArry,
        "passengertype":  this.passengertype
 }
-  this.service.testPostApiMethod(dataInfo,"Booking/SavePasenger").subscribe(res=>{
-    // console.log("getairport ====>"+JSON.stringify(res)); 
-     if(res.Status==true){
-      //  alert("save passenger Successful")
-      // this.tabType='signIn'
-       this.router.navigate(['payment'],{ queryParams: {'tripType':this.reqObj.tripType}})
-       // this.spinner.hide();
-      //  if(res.Data!=null){
-      //  this.airportSrcList=res.Data;
-      //  } 
-     }
-    },
-    (err)=>{
-     // this.spinner.hide(); 
-     // this.router.navigate(['login'])
-     // console.log(err)
-   }); 
+this.service.testPostApiMethod(dataInfo,"Booking/SavePasenger").subscribe(res=>{
+  // console.log("getairport ====>"+JSON.stringify(res)); 
+   if(res.Status==true){
+    //  alert("save passenger Successful")
+    // this.tabType='signIn'
+     this.router.navigate(['payment'],{ queryParams: {'tripType':this.reqObj.tripType}})
+     // this.spinner.hide();
+    //  if(res.Data!=null){
+    //  this.airportSrcList=res.Data;
+    //  } 
+   }
+  },
+  (err)=>{
+   // this.spinner.hide(); 
+   // this.router.navigate(['login'])
+   // console.log(err)
+ }); 
+  }
   }
   addGst(){
     let dataInfo= {

@@ -518,7 +518,22 @@ getFareDetailInt(){
   });
 }
 internationalFlightDetail(val,obj){
+  // this.index=val
+  let searchId=Math.floor(Math.random() * 1000000);
+  localStorage.setItem("searchId",searchId.toString())
+  console.log("selectedddd_flight========>"+JSON.stringify(obj))
   this.index=val
+  let dataInfo={
+    "SearchId":searchId,
+    "Data": JSON.stringify(obj),
+  }
+  this.service.testPostApiMethod(dataInfo,"Data/SaveData").subscribe(res=>{
+  },
+  (err)=>{
+     // this.spinner.hide(); 
+     // this.router.navigate(['login'])
+     // console.log(err)
+   });
   if(obj.IntOnward.FlightSegments.length==1){
     this.isConnect=0
   }else{

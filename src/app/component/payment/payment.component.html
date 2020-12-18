@@ -25,7 +25,7 @@
 						<div class="tab-content col-lg-9">
 							<div class="tab-pane active" id="creditcard">
 								<div class="pay-creditcard">
-									<h3>Pay With Debit Card</h3>
+									<h3>Pay With Credit Card</h3>
 										<div class="row">
 											<div class="col-lg-6">
 												<div class="form-group">
@@ -82,7 +82,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
 													<div class="btn-book" (click)="creditCard('CC')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -90,7 +90,7 @@
 										</div>
 								</div>	
 							</div>
-							<div class="tab-pane active" id="debitcard">
+							<div class="tab-pane" id="debitcard">
 								<div class="pay-creditcard">
 									<h3>Pay With Debit Card</h3>
 									<form>
@@ -150,7 +150,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
 													<div class="btn-book" (click)="payCard('DC')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -168,7 +168,7 @@
 												<label>Select Your Banks</label>
 												<div class="form-group">
 													<select class="form-control">
-														<option value="0" selected="selected">Select Your Bank</option>
+														<option value="0" selected="selected" name="bank" [(ngModel)]="intData.bank">Select Your Bank</option>
 														<option value="1">01</option>
 														<option value="2">02</option>
 														<option value="3">03</option>
@@ -177,7 +177,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
 													<div class="btn-book"  (click)="payNetBank('NB')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -199,7 +199,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
 													<div class="btn-book"  (click)="payNetWallet('NW')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -221,7 +221,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{orderAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
 													<div class="btn-book"  (click)="payNetUpi('UPI')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -240,8 +240,8 @@
 						<h2>Payment Details</h2>
 						<div class="box-content fare-details payment-details">
 							<ul>
-								<li>Total Flight Price<span><i class="small-inr"></i>{{this.orderAmount}}</span></li>
-								<li>Convenience Fee<span><i class="small-inr"></i>{{this.extraCharge}}</span></li>
+								<li>Total Flight Price<span><i class="small-inr"></i>{{orderAmount}}</span></li>
+								<li>Convenience Fee<span><i class="small-inr"></i>{{extraCharge}}</span></li>
 								<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{totalAmount}} </span></li>
 								<!-- <li>Earn eCash <span><i class="small-inr"></i>{{this.extraCharge}}</span></li> -->
 							</ul>
