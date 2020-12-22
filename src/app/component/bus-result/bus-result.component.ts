@@ -118,6 +118,9 @@ export class BusResultComponent implements OnInit {
   selectYourSeat(val,obj){
     this.isSelect=val
     this.seatObj=obj
+    alert("availableSeat"+this.seatObj.IsAvailableSeat)
+    alert("ladySeat"+this.seatObj.IsLadiesSeat)
+    // alert(this.seatObj.IsLadiesSeat)
     alert("seat selected")
     // alert("seat====="+JSON.stringify(this.seatObj))
   }

@@ -33,10 +33,8 @@
 										<div class="destination-box">
 											<label>Depart  from</label>
 											<input type="text" class="form-control" list="srcAirports"  name="goingfrom" formControlName="goingfrom"  (keyup)="searchSrcAirport()">
-											
 											<datalist id="srcAirports" *ngIf="airportSrcList.length!=0">
 												<option value="{{temp.Airport}}" *ngFor="let temp of airportSrcList">
-												
 											  </datalist>
 											  
 										</div>
@@ -244,9 +242,13 @@
 												<option value="{{temp.Name}}"  >
 												
 											  </datalist> -->
-											  <select class="form-control busSlct"  name="source" formControlName="source">
+											  <input type="text" class="form-control" list="busfrom"  name="source" formControlName="source"  (keyup)="searchSrcBus()">
+											<datalist id="busfrom" *ngIf="busSrcList.length!=0">
+												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">
+											  </datalist>
+											  <!-- <select class="form-control busSlct"  name="source" formControlName="source">
 												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">{{temp.Name}}</option>
-											   </select>  
+											   </select>   -->
 										</div>
 										
 										<p style="color:#fd653c;" *ngIf="busForm.get('source').hasError('required') && busForm.get('source').dirty">*Please enter source</p>
@@ -257,14 +259,13 @@
 									<div class="form-group">
 										<div class="destination-box">
 											<label>Going to</label>
-											<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland" name="destination" formControlName="destination">
-											<datalist id="desAirports" *ngIf="airportDesList.length!=0">
-												<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList">
-												
-											  </datalist> -->
-											  <select class="form-control busSlct"  name="destination" formControlName="destination">
+											<input type="text" class="form-control" list="busTo"  name="destination" formControlName="destination"  (keyup)="searchDesBus()">
+											<datalist id="busTo" *ngIf="busDesList.length!=0">
+												<option value="{{temp.Id}}" *ngFor="let temp of busDesList">
+											  </datalist>
+											  <!-- <select class="form-control busSlct"  name="destination" formControlName="destination">
 												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">{{temp.Name}}</option>
-											   </select> 
+											   </select>  -->
 										</div>
 									</div>
 									<p style="color:#fd653c;" *ngIf="busForm.get('destination').hasError('required') && busForm.get('destination').dirty">*Please enter destination</p>

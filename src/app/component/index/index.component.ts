@@ -28,6 +28,7 @@ export class IndexComponent implements OnInit {
   selectionType:any='flight';
   isActive:any='flight';
   busSrcList:any=[];
+  busDesList:any=[];
   errMsg:any='0';
   sourceName:any;
   destinationName:any;
@@ -49,6 +50,7 @@ export class IndexComponent implements OnInit {
       destination: new FormControl('',[Validators.required]),
       fromDate: new FormControl('',[Validators.required]),
       toDate: new FormControl(''),
+     
     
     }) 
    }
@@ -60,7 +62,7 @@ export class IndexComponent implements OnInit {
     this.myForm.controls["infant"].setValue('0');
     this.myForm.controls["class"].setValue('E');
     this.busForm.controls["tripTyp"].setValue('1');
-   this.selectSrc()
+  //  this.selectSrc()
     // source=HYD&destination=BLR&journeyDate=24-09-2020&tripType=1&flightType=1&adults=1&children=0&infants=0&travelClass=E&userType=5&returnDate=24-09-2020
   }
    availableFlights(){
@@ -214,14 +216,44 @@ export class IndexComponent implements OnInit {
     this.selectionType=val
     this.isActive=val
   }
-  selectSrc(){
-    this.service.getApiMethod("Buses/Sources").subscribe(res=>{
-    if(res!=null){
-      this.busSrcList=res;
+  // selectSrc(){
+  //   this.service.getApiMethod("Buses/Sources").subscribe(res=>{
+  //   if(res!=null){
+  //     this.busSrcList=res;
+  //   }
+  //  },
+  //  (err)=>{
+  // });
+  // }
+  searchSrcBus(){
+    this.busSrcList=[]
+    if(this.busForm.value.source.length>2 && this.busForm.value.source.length<6){
+    this.service.testGetApiMethod(`comman/GetBusCity/text=${this.busForm.value.source}`).subscribe(res=>{
+   // console.log("getairport ====>"+JSON.stringify(res)); 
+    if(res.Status==true){
+      if(res.Data!=null){
+      this.busSrcList=res.Data;
+      }   
     }
    },
    (err)=>{
   });
+  }
+  }
+  searchDesBus(){
+    this.busDesList=[]
+    if(this.busForm.value.destination.length>2 && this.busForm.value.destination.length<6){
+    this.service.testGetApiMethod(`comman/GetBusCity/text=${this.busForm.value.destination}`).subscribe(res=>{
+   // console.log("getairport ====>"+JSON.stringify(res)); 
+    if(res.Status==true){
+      if(res.Data!=null){
+      this.busDesList=res.Data;
+      }   
+    }
+   },
+   (err)=>{
+  });
+  }
   }
   searchBuses(){
     this.busSrcList.find((item,index)=>{
@@ -231,7 +263,7 @@ export class IndexComponent implements OnInit {
         return 1;
       }
     })
-    this.busSrcList.find((item,index)=>{
+    this.busDesList.find((item,index)=>{
       // console.log(JSON.stringify(item))
       if(item.Id==this.busForm.value.destination){
         this.destinationName=item.Name

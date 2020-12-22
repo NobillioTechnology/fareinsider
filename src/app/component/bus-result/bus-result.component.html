@@ -387,12 +387,11 @@
 														<!-- <li class="seating"><i class="ico-sprite ico-avbl"></i></li> -->
 														<li class="seating" *ngFor="let item of temp.Seats let i=index" (click)="selectYourSeat(i,item)">
 															<i class="ico-sprite icon-avbl" *ngIf="item.IsAvailableSeat=='True' && item.IsLadiesSeat=='False'" ></i>
-															<i class="ico-sprite icon-bked" *ngIf="item.IsAvailableSeat=='False'"></i>
-															<i class="ico-sprite icon-sltd" *ngIf="item.IsAvailableSeat=='True' && isSelect==i"></i>
+															<i class="ico-sprite icon-bked" *ngIf="item.IsAvailableSeat==False"></i>
+															<i class="ico-sprite icon-sltd" *ngIf="item.IsAvailableSeat==True && isSelect==i"></i>
 															<!-- <i class="ico-sprite icon-bookfemale" *ngIf="item.IsAvailableSeat!='True' && item.IsLadiesSeat=='True'"></i> -->
-															<i class="ico-sprite icon-female" *ngIf="item.IsLadiesSeat=='True' && item.IsAvailableSeat=='True'"></i>
+															<i class="ico-sprite icon-female" *ngIf="item.IsLadiesSeat==True && item.IsAvailableSeat==True"></i>
 															<!-- <i class="ico-sprite icon-male" *ngIf="item.IsLadiesSeat=='False'"></i> -->
-
 														</li>
 														<!-- <li class="seating"><i class="ico-sprite ico-default"></i></li>
 														<li class="seating"><i class="ico-sprite ico-default"></i></li>

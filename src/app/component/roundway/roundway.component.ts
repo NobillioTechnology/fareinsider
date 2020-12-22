@@ -182,16 +182,18 @@ bookNow(tem,val){
     let dataInfo={
       "SearchId":searchId,
       "Data": JSON.stringify(this.conectingFlyt),
+      "Trip":"1"
     }
-    this.service.testPostApiMethod(dataInfo,"Data/SaveData").subscribe(res=>{
+    this.service.testPostApiMethod(dataInfo,"Data/SaveRoundTripData").subscribe(res=>{
     },
     (err)=>{
      });
      let datainfo={
       "SearchId":searchId,
       "Data": JSON.stringify(this.conectingFlyt_2),
+      "Trip":"2"
     }
-    this.service.testPostApiMethod(datainfo,"Data/SaveData").subscribe(res=>{
+    this.service.testPostApiMethod(datainfo,"Data/SaveRoundTripData").subscribe(res=>{
     },
     (err)=>{
      });
