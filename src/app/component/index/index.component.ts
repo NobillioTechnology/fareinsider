@@ -30,8 +30,8 @@ export class IndexComponent implements OnInit {
   busSrcList:any=[];
   busDesList:any=[];
   errMsg:any='0';
-  sourceName:any;
-  destinationName:any;
+  sourceId:any;
+  destinationId:any;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService) {
     this.myForm = new FormGroup({
       selectWay: new FormControl('',[Validators.required]),
@@ -71,7 +71,7 @@ export class IndexComponent implements OnInit {
     this.countrySrc= this.myForm.value.goingfrom.split(' ')[this.myForm.value.goingfrom.split(' ').length-2]
     let src=this.myForm.value.goingfrom.split('(')[this.myForm.value.goingfrom.split('(').length-1]
     this.source=src.split(')')[src.split(')').length-2]
-    // alert(this.source)
+    // alert(this.myForm.value.goingfrom)
     // this.destination=this.myForm.value.goingTo
     this.countryDes= this.myForm.value.goingTo.split(' ')[this.myForm.value.goingTo.split(' ').length-2]
     let dest=this.myForm.value.goingTo.split('(')[this.myForm.value.goingTo.split('(').length-1]
@@ -226,28 +226,66 @@ export class IndexComponent implements OnInit {
   // });
   // }
   searchSrcBus(){
-    this.busSrcList=[]
+    // alert("111111"+this.busForm.value.source)
+    
     if(this.busForm.value.source.length>2 && this.busForm.value.source.length<6){
-    this.service.testGetApiMethod(`comman/GetBusCity/text=${this.busForm.value.source}`).subscribe(res=>{
-   // console.log("getairport ====>"+JSON.stringify(res)); 
+      alert("inside")
+    this.service.testGetApiMethod(`Comman/BusCity?City=${this.busForm.value.source}`).subscribe(res=>{
+   console.log("getbuscity ====>"+JSON.stringify(res.Data)); 
     if(res.Status==true){
       if(res.Data!=null){
-      this.busSrcList=res.Data;
+        this.busSrcList=[]
+        this.busSrcList=res.Data;
+      // this.busSrcList.find((item,index)=>{
+      //   console.log(item.City+"========="+this.busForm.value.source.trim())
+      // //  alert ("lan------->"+this.busForm.value.source)
+      // //  // alert (item.City)
+      //   if(item.City==this.busForm.value.source.trim()){
+      //    alert("2222"+this.busForm.value.source)
+      //    alert("3333"+item.City)
+      //     this.sourceId=item.Id
+      //     alert("4444"+this.sourceId)
+      //     return 1;
+      //   }
+      // })
+      // console.log("busfrom====="+JSON.stringify(this.busSrcList))
       }   
     }
    },
    (err)=>{
   });
+  } else {
+    alert("ddddd")
+    console.log("========="+JSON.stringify(this.busSrcList))
+    this.busSrcList.find((item,index)=>{
+      console.log(item.City+"========="+this.busForm.value.source.trim())
+    //  alert ("lan------->"+this.busForm.value.source)
+    //  // alert (item.City)
+      if(item.City==this.busForm.value.source.trim()){
+       alert("2222"+this.busForm.value.source)
+       alert("3333"+item.City)
+        this.sourceId=item.Id
+        alert("4444"+this.sourceId)
+        return 1;
+      }
+    }) 
   }
   }
   searchDesBus(){
     this.busDesList=[]
     if(this.busForm.value.destination.length>2 && this.busForm.value.destination.length<6){
-    this.service.testGetApiMethod(`comman/GetBusCity/text=${this.busForm.value.destination}`).subscribe(res=>{
+    this.service.testGetApiMethod(`Comman/BusCity?City=${this.busForm.value.destination}`).subscribe(res=>{
    // console.log("getairport ====>"+JSON.stringify(res)); 
     if(res.Status==true){
       if(res.Data!=null){
       this.busDesList=res.Data;
+      this.busDesList.find((item,index)=>{
+        // console.log(JSON.stringify(item))
+        if(item.City==this.busForm.value.destination){
+          this.destinationId=item.Id
+          return 1;
+        }
+      })
       }   
     }
    },
@@ -256,30 +294,31 @@ export class IndexComponent implements OnInit {
   }
   }
   searchBuses(){
-    this.busSrcList.find((item,index)=>{
-      // console.log(JSON.stringify(item))
-      if(item.Id==this.busForm.value.source){
-        this.sourceName=item.Name
-        return 1;
-      }
-    })
-    this.busDesList.find((item,index)=>{
-      // console.log(JSON.stringify(item))
-      if(item.Id==this.busForm.value.destination){
-        this.destinationName=item.Name
-        return 1;
-      }
-    })
+    // this.busSrcList.find((item,index)=>{
+    //   // console.log(JSON.stringify(item))
+    //   if(item.City==this.busForm.value.source){
+    //     console.log(JSON.stringify(item))
+    //     this.sourceId=item.Id
+    //     return 1;
+    //   }
+    // })
+    // this.busDesList.find((item,index)=>{
+    //   // console.log(JSON.stringify(item))
+    //   if(item.City==this.busForm.value.destination){
+    //     this.destinationId=item.Id
+    //     return 1;
+    //   }
+    // })
     this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
     this.returndate = new Date(this.busForm.value.toDate).getDate() + '-' + (new Date(this.busForm.value.toDate).getMonth() + 1) + '-' + new Date(this.busForm.value.toDate).getFullYear();
     if(this.busForm.value.tripTyp=='1'){
       this.returndate=this.journeydate
-          this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.busForm.value.source,'destinationId':this.busForm.value.destination,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate,'srcName':this.sourceName,'destName':this.destinationName}})
+          this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.sourceId,'destinationId':this.destinationId,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}})
     }else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate==''){
       this.errMsg='1'
     }else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate!=''){
       this.errMsg='0'
-          this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.busForm.value.source,'destinationId':this.busForm.value.destination,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate}})
+          this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.sourceId,'destinationId':this.destinationId,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}})
     }
   
   

@@ -48,7 +48,7 @@
 											<input type="text" class="form-control" list="desAirports"  name="goingTo" formControlName="goingTo" (keyup)="searchDesAirport()">
 											
 											<datalist id="desAirports" *ngIf="airportDesList.length!=0">
-												<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList">
+												<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList"></option>
 												
 											  </datalist>
 										</div>
@@ -242,9 +242,9 @@
 												<option value="{{temp.Name}}"  >
 												
 											  </datalist> -->
-											  <input type="text" class="form-control" list="busfrom"  name="source" formControlName="source"  (keyup)="searchSrcBus()">
+											  <input type="text" class="form-control" list="busfrom"  name="source" formControlName="source" (keyup)="searchSrcBus()"  (change)="searchSrcBus()">
 											<datalist id="busfrom" *ngIf="busSrcList.length!=0">
-												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">
+												<option value="{{temp.City}}" *ngFor="let temp of busSrcList">
 											  </datalist>
 											  <!-- <select class="form-control busSlct"  name="source" formControlName="source">
 												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">{{temp.Name}}</option>
@@ -261,7 +261,7 @@
 											<label>Going to</label>
 											<input type="text" class="form-control" list="busTo"  name="destination" formControlName="destination"  (keyup)="searchDesBus()">
 											<datalist id="busTo" *ngIf="busDesList.length!=0">
-												<option value="{{temp.Id}}" *ngFor="let temp of busDesList">
+												<option value="{{temp.City}}" *ngFor="let temp of busDesList">
 											  </datalist>
 											  <!-- <select class="form-control busSlct"  name="destination" formControlName="destination">
 												<option value="{{temp.Id}}" *ngFor="let temp of busSrcList">{{temp.Name}}</option>
