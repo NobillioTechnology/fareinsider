@@ -226,8 +226,6 @@ export class IndexComponent implements OnInit {
   // });
   // }
   searchSrcBus(){
-    // alert("111111"+this.busForm.value.source)
-    
     if(this.busForm.value.source.length>2 && this.busForm.value.source.length<6){
       alert("inside")
     this.service.testGetApiMethod(`Comman/BusCity?City=${this.busForm.value.source}`).subscribe(res=>{
@@ -236,63 +234,74 @@ export class IndexComponent implements OnInit {
       if(res.Data!=null){
         this.busSrcList=[]
         this.busSrcList=res.Data;
-      // this.busSrcList.find((item,index)=>{
-      //   console.log(item.City+"========="+this.busForm.value.source.trim())
-      // //  alert ("lan------->"+this.busForm.value.source)
-      // //  // alert (item.City)
-      //   if(item.City==this.busForm.value.source.trim()){
-      //    alert("2222"+this.busForm.value.source)
-      //    alert("3333"+item.City)
-      //     this.sourceId=item.Id
-      //     alert("4444"+this.sourceId)
-      //     return 1;
-      //   }
-      // })
-      // console.log("busfrom====="+JSON.stringify(this.busSrcList))
       }   
     }
    },
    (err)=>{
   });
   } else {
-    alert("ddddd")
+    //alert("ddddd")
     console.log("========="+JSON.stringify(this.busSrcList))
     this.busSrcList.find((item,index)=>{
       console.log(item.City+"========="+this.busForm.value.source.trim())
-    //  alert ("lan------->"+this.busForm.value.source)
-    //  // alert (item.City)
       if(item.City==this.busForm.value.source.trim()){
-       alert("2222"+this.busForm.value.source)
-       alert("3333"+item.City)
         this.sourceId=item.Id
-        alert("4444"+this.sourceId)
+        //alert("4444"+this.sourceId)
         return 1;
       }
     }) 
   }
   }
+
   searchDesBus(){
-    this.busDesList=[]
     if(this.busForm.value.destination.length>2 && this.busForm.value.destination.length<6){
+      alert("inside")
     this.service.testGetApiMethod(`Comman/BusCity?City=${this.busForm.value.destination}`).subscribe(res=>{
-   // console.log("getairport ====>"+JSON.stringify(res)); 
+   console.log("getbuscity ====>"+JSON.stringify(res.Data)); 
     if(res.Status==true){
       if(res.Data!=null){
-      this.busDesList=res.Data;
-      this.busDesList.find((item,index)=>{
-        // console.log(JSON.stringify(item))
-        if(item.City==this.busForm.value.destination){
-          this.destinationId=item.Id
-          return 1;
-        }
-      })
+        this.busDesList=[]
+        this.busDesList=res.Data;
       }   
     }
    },
    (err)=>{
   });
+  } else {
+    //alert("ddddd")
+    console.log("========="+JSON.stringify(this.busDesList))
+    this.busDesList.find((item,index)=>{
+      console.log(item.City+"========="+this.busForm.value.destination.trim())
+      if(item.City==this.busForm.value.destination.trim()){
+        this.destinationId=item.Id
+        //alert("4444"+this.sourceId)
+        return 1;
+      }
+    }) 
   }
   }
+  // searchDesBus1(){
+  //   this.busDesList=[]
+  //   if(this.busForm.value.destination.length>2 && this.busForm.value.destination.length<6){
+  //   this.service.testGetApiMethod(`Comman/BusCity?City=${this.busForm.value.destination}`).subscribe(res=>{
+  //  // console.log("getairport ====>"+JSON.stringify(res)); 
+  //   if(res.Status==true){
+  //     if(res.Data!=null){
+  //     this.busDesList=res.Data;
+  //     this.busDesList.find((item,index)=>{
+  //       // console.log(JSON.stringify(item))
+  //       if(item.City==this.busForm.value.destination){
+  //         this.destinationId=item.Id
+  //         return 1;
+  //       }
+  //     })
+  //     }   
+  //   }
+  //  },
+  //  (err)=>{
+  // });
+  // }
+  // }
   searchBuses(){
     // this.busSrcList.find((item,index)=>{
     //   // console.log(JSON.stringify(item))

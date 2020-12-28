@@ -85,7 +85,9 @@ export class RoundwayComponent implements OnInit {
       // }
       this.returnFlightList=res.DomesticReturnFlights;
       this.selFlight=this.onwardFlightList[0];
-      this.selReturnFlight=this.returnFlightList[0];
+      this.conectingFlyt= this.onwardFlightList[0];
+      this.selReturnFlight= this.returnFlightList[0];
+      this.conectingFlyt_2= this.returnFlightList[0];
   // alert("1111========>"+this.onwardFlightList[0].FlightSegments[0].IntDepartureAirportName)
   //     alert("2222===>"+this.onwardFlightList[0].FlightSegments[this.onwardFlightList[0].FlightSegments.length-1].IntArrivalAirportName)
 
@@ -179,21 +181,21 @@ bookNow(tem,val){
   let searchId=Math.floor(Math.random() * 1000000);
     localStorage.setItem("searchId",searchId.toString())
     // console.log("selectedddd_flight========>"+JSON.stringify(obj))
-    let dataInfo={
+    let dataInfo1={
       "SearchId":searchId,
       "Data": JSON.stringify(this.conectingFlyt),
       "Trip":"1"
     }
-    this.service.testPostApiMethod(dataInfo,"Data/SaveRoundTripData").subscribe(res=>{
+    this.service.testPostApiMethod(dataInfo1,"Data/SaveRoundTripData").subscribe(res=>{
     },
     (err)=>{
      });
-     let datainfo={
+     let datainfo2={
       "SearchId":searchId,
       "Data": JSON.stringify(this.conectingFlyt_2),
       "Trip":"2"
     }
-    this.service.testPostApiMethod(datainfo,"Data/SaveRoundTripData").subscribe(res=>{
+    this.service.testPostApiMethod(datainfo2,"Data/SaveRoundTripData").subscribe(res=>{
     },
     (err)=>{
      });

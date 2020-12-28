@@ -242,7 +242,7 @@
 												<option value="{{temp.Name}}"  >
 												
 											  </datalist> -->
-											  <input type="text" class="form-control" list="busfrom"  name="source" formControlName="source" (keyup)="searchSrcBus()"  (change)="searchSrcBus()">
+											  <input type="text" class="form-control" list="busfrom"  name="source" formControlName="source" (keyup)="searchSrcBus()">
 											<datalist id="busfrom" *ngIf="busSrcList.length!=0">
 												<option value="{{temp.City}}" *ngFor="let temp of busSrcList">
 											  </datalist>
