@@ -296,16 +296,14 @@ this.filtersection=val
     let searchId=Math.floor(Math.random() * 1000000);
     localStorage.setItem("searchId",searchId.toString())
     console.log("selectedddd_flight========>"+JSON.stringify(obj))
-    let dataInfo={
+     let dataInfo={
       "SearchId":searchId,
       "Data": JSON.stringify(obj),
+      "Trip":"I"
     }
-    this.service.testPostApiMethod(dataInfo,"Data/SaveData").subscribe(res=>{
+    this.service.testPostApiMethod(dataInfo,"Data/SaveRoundTripData").subscribe(res=>{
     },
     (err)=>{
-       // this.spinner.hide(); 
-       // this.router.navigate(['login'])
-       // console.log(err)
      });
     this.index=val
     if(obj.IntOnward.FlightSegments.length==1){

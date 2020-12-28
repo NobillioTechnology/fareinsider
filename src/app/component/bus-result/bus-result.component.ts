@@ -118,6 +118,7 @@ export class BusResultComponent implements OnInit {
   selectYourSeat(val,obj){
     this.isSelect=val
     this.seatObj=obj
+    localStorage.setItem("seatSelected", JSON.stringify(this.seatObj))
     alert("availableSeat"+this.seatObj.IsAvailableSeat)
     alert("ladySeat"+this.seatObj.IsLadiesSeat)
     // alert(this.seatObj.IsLadiesSeat)
@@ -127,8 +128,13 @@ export class BusResultComponent implements OnInit {
   blockSeat(){
     // alert(this.reqObj.tripType)
     // alert(this.flag)
+    let searchId=Math.floor(Math.random() * 1000000);
+    localStorage.setItem("searchId",searchId.toString())
+    localStorage.setItem("saveBusObj", JSON.stringify(this.busObj)) 
     if(this.reqObj.tripType=='1'){
-      this.onewayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],"BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
+      this.onewayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],
+      "BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],
+      "BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
       "ConvenienceFee": this.busObj.ConvenienceFee,
       "DepartureTime": this.busObj.DepartureTime,
       "DestinationId": this.busObj.DestinationId,
@@ -149,7 +155,7 @@ export class BusResultComponent implements OnInit {
     }
     console.log("oneway====>"+JSON.stringify(this.onewayObj))
     localStorage.setItem('onewayObject', JSON.stringify(this.onewayObj));
-      this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'seatNo':this.seatObj.Number,'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime}})
+      this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'seatNo':this.seatObj.Number,'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime,'tripType':this.reqObj.tripType}})
     }else if(this.reqObj.tripType=='2' && this.flag==1){
       this.onewayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],"BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
       "ConvenienceFee": this.busObj.ConvenienceFee,
@@ -196,7 +202,7 @@ export class BusResultComponent implements OnInit {
     }
     console.log("roundway====>"+JSON.stringify(this.roundwayObj))
     localStorage.setItem('roundwayObject', JSON.stringify(this.roundwayObj));
-      this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'seatNo':this.seatObj.Number,'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime}}) 
+      this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'seatNo':this.seatObj.Number,'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime,'tripType':this.reqObj.tripType}}) 
 
   }
  

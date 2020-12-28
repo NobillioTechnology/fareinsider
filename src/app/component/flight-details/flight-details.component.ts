@@ -59,7 +59,8 @@ export class FlightDetailsComponent implements OnInit {
   mobileNum:any='close';
   closetem:any=0;
   actionType:any='close';
-  countryList:any=[]
+  countryList:any=[];
+  jType:any;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
   ngOnInit(){
@@ -144,6 +145,7 @@ export class FlightDetailsComponent implements OnInit {
     if(res.ResponseStatus==200){
       if(this.reqObj.tripType=='1' && this.reqObj.flightType=='1'){
         this.tripName='oneway'
+        this.jType='O'
         this.domInt='D'
         // alert(this.tripType)
         this.flightDetails=res.DomesticOnwardFlights[this.ind].FlightSegments;
@@ -156,6 +158,7 @@ export class FlightDetailsComponent implements OnInit {
       // console.log("selFlyt"+this.selectedFlight)
       }else if(this.reqObj.tripType=='1' && this.reqObj.flightType=='2'){
         this.tripName='oneway'
+        this.jType='O'
         this.domInt='I'
         this.flightDetails=res.InternationalFlights[this.ind].IntOnward.FlightSegments;
       this.totalTime=this.flightDetails[this.flightDetails.length-1].AccumulatedDuration
@@ -167,6 +170,7 @@ export class FlightDetailsComponent implements OnInit {
       localStorage.setItem("orderAount",totAmount)
       }else if(this.reqObj.tripType=='2' && this.reqObj.flightType=='1'){
         this.tripName='roundway'
+        this.jType='R'
         this.domInt='D'
         this.flightDepart=res.DomesticOnwardFlights;
         this.flightReturn=res.DomesticReturnFlights
@@ -194,6 +198,7 @@ export class FlightDetailsComponent implements OnInit {
       localStorage.setItem("orderAount",totAmount)
       }else if(this.reqObj.tripType=='2' && this.reqObj.flightType=='2'){
         this.tripName='roundway'
+        this.jType='R'
         this.domInt='I'
         // this.selectedFlight=res.InternationalFlights[this.ind]
         this.depFlightDet=res.InternationalFlights[this.ind].IntOnward.FlightSegments;
@@ -381,7 +386,7 @@ export class FlightDetailsComponent implements OnInit {
       "UserName":this.userDetail.UserName,
       "emailAddress":this.userDetail.UserEMailD,
       "domInter":this.domInt,
-      "journeyType" :this.domInt,
+      "journeyType" :this.jType,
       "departureDate":this.saveFlyOne.depdate, 
       "arrivalDate":this.saveFlyOne.arrdate,
        "adt":this.reqObj.adults,

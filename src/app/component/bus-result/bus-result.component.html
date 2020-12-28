@@ -491,7 +491,7 @@
 																		<label>Select Boarding Point</label>
 																		<select class="form-control arrowRight" name="boardingdId" [(ngModel)]="data.boardingdId">
 																			<option value="0" selected="selected">Select Boarding Point</option>
-																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.BoardingTimes" >{{item.Time | date:"HH:mm"}}</option>
+																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.BoardingTimes" >{{item.Location}}-{{item.Time | date:"HH:mm"}}</option>
 																			<!-- <option value="2">2</option> -->
 																		</select>
 																	</div>
@@ -501,7 +501,7 @@
 																		<label>Select Dropping Point</label>
 																		<select class="form-control arrowRight" name="dropingId" [(ngModel)]="data.dropingId">
 																			<option value="0" selected="selected">Select Dropping Point</option>
-																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.DroppingTimes" >{{item.Time | date:"HH:mm"}}</option>
+																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.DroppingTimes" >{{item.Location}}-{{item.Time | date:"HH:mm"}}</option>
 																			<!-- <option value="2">2</option> -->
 																		</select>
 																	</div>
