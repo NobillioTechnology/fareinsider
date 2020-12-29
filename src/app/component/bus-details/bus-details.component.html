@@ -44,7 +44,7 @@
 						</div>
 					</div>
 				</div>
-				<h2>Enter Traveller Details <span class="sign-opt">Sign in</span><small>to book faster </small></h2>
+				<!-- <h2>Enter Traveller Details <span class="sign-opt">Sign in</span><small>to book faster </small></h2>
 				<div class="box-content login-box" style="display: none;">
 					<div class="contact-details">
 						<div class="row">
@@ -64,9 +64,32 @@
 							</div>
 						</div>
 					</div>
+				</div> -->
+				<div *ngIf="isLogin!=2">
+					<h2>Enter Traveller Details <span class="sign-opt" (click)="showLoginForm()">Sign in</span><small>to book faster</small></h2>
+					<div class="box-content login-box" *ngIf="actionType=='open'">
+						<div class="contact-details">
+							<div class="row">
+								<div class="col-lg-3 col-md-12">
+									<label class="label-head">Sign In Now</label>
+								</div>
+								<div class="col-lg-3 col-md-4">
+									<input type="text" class="form-control" placeholder="Email Address" name="emailAdd" [(ngModel)]="data.emailAdd">
+								</div>
+								<div class="col-lg-3 col-md-4">
+									<input type="password" class="form-control" placeholder="Password" name="passwrd" [(ngModel)]="data.passwrd">
+								</div>
+								<div class="col-lg-3 col-md-4 flex-box">
+									<button class="btn-defult" type="button" (click)="login()">Login</button>
+									<a class="forgot">Forgot?</a>
+									<span class="close-sign-box"><i class="far fa-times-circle"></i></span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="box-content">
-					<div class="contact-details">
+					<!-- <div class="contact-details">
 						<div class="row">
 							<div class="col-lg-3">
 								<label class="label-head">Contact Details</label>
@@ -90,6 +113,51 @@
 								</div>	
 							</div>	
 						</div>
+					</div> -->
+					<div class="contact-details" *ngIf="this.isLogin!=2">
+						<div class="row">
+							<div class="col-lg-3">
+								<label class="label-head">Contact Details</label>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<input type="text" class="form-control" placeholder="Email ID" name="emailId" [(ngModel)]="data.emailId">
+							</div>
+							<div class="col-lg-4 col-md-6 contact-input1">
+								<span>+91</span>
+								<input type="text" class="form-control" placeholder="Mobile Number" name="contact" [(ngModel)]="data.contact" (input)="enterNum()">
+							</div>
+						</div>
+						<div class="row" *ngIf="this.isLogin==1">
+							<div class="col-lg-3">
+								<label class="label-head">Contact Details</label>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<input type="number" class="form-control" placeholder="OTP" name="otp" [(ngModel)]="data.otp">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-9 offset-lg-3">
+								<div class="contact-content">
+									<!-- <p>Your booking details will be sent to this email address and mobile number. </p> -->
+									<!-- <div class="custom-control custom-checkbox" > -->
+										<!-- <input type="checkbox" class="custom-control-input" id="customcontact" name="example1"> -->
+										<!-- <label class="custom-control-label" for="customcontact">Also send my booking details on WhatsApp</label> -->
+										<!-- <span (click)="resend()" style="color: #068cbf;padding: 0 15px;"><u>Resend OTP</u></span> -->
+									<!-- </div> -->
+								</div>	
+							</div>	
+						</div>
+						<div class="marginTop10" *ngIf="this.isLogin==0 && mobileNum=='show'">
+							<div class="proceed-payment text-center">
+								<button type="button" class="btn-payment" (click)="sendOtp()">Send OTP</button>
+							</div>
+						</div>
+						<div class="marginTop10" *ngIf="this.isLogin==1">
+							<div class="proceed-payment text-center">
+								<button type="button" class="btn-payment" (click)="verify()">Verify</button>
+								<span (click)="resend()" style="color: #068cbf;padding: 0 15px;"><u>Resend OTP</u></span>
+							</div>
+						</div>
 					</div>
 					<div class="contact-details">
 						<div class="row">
@@ -100,7 +168,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-lg-3">
 								<label class="label-head">Adult 1</label>
 							</div>
@@ -114,7 +182,70 @@
 							<div class="col-lg-3 col-md-4">
 								<input type="text" class="form-control" placeholder="DD/MM/YYYY">
 							</div>
-						</div>
+						</div> -->
+						<div *ngFor="let temp of adultArr let i=index">
+							<div class="row" style="margin-bottom: 10px;">
+								<div class="col-lg-3 col-md-12">
+									<label class="label-head">Adult {{i+1}}</label>
+								</div>
+								<div class="col-lg-4 col-md-5 contact-input1">
+									<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
+										<option value="Mr" selected>Mr</option>
+										<option value="Ms">Ms</option>
+										<option value="Mrs">Mrs</option>
+										<option value="Mstr">Mstr</option>
+									</select></span>
+									<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
+									
+								</div>
+								<div class="col-lg-3 col-md-3">
+									<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">
+									
+								</div>
+							</div>
+							</div>
+							<div *ngFor="let temp of childArr let i=index">
+								<div class="row" style="margin-bottom: 10px;">
+									<div class="col-lg-3 col-md-12">
+										<label class="label-head">Child {{i+1}}</label>
+									</div>
+									<div class="col-lg-4 col-md-5 contact-input1">
+										<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
+											<option>Mr</option>
+											<option>Ms</option>
+											<option>Mrs</option>
+										</select></span>
+										<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
+										
+									</div>
+									<div class="col-lg-3 col-md-3">
+										<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">	
+									</div>
+								</div>
+							</div>
+							<div *ngFor="let temp of infantArr let i=index">
+								<div class="row" style="margin-bottom: 10px;">
+									<div class="col-lg-3 col-md-12">
+										<label class="label-head">Infant {{i+1}}</label>
+									</div>
+									<div class="col-lg-4 col-md-5 contact-input1">
+										<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
+											<option>Mr</option>
+											<option>Ms</option>
+											<option>Mrs</option>
+										</select></span>
+										<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
+										
+									</div>
+									<div class="col-lg-3 col-md-3">
+										<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">
+										
+									</div>
+									<div class="col-lg-2 col-md-4">
+										<input type="date" class="form-control" placeholder="dd/mm/yyyy" name="dob" [(ngModel)]="temp.dob">
+									</div>
+								</div>
+							</div>	
 					</div>
 				</div>
 				<div class="proceed-payment text-center">

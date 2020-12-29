@@ -36,7 +36,6 @@ export class BusResultComponent implements OnInit {
     this.availableBuses()
    
   }
- 
   availableBuses(){
     // this.spinner.show();
     this.service.getApiMethod(`Buses/AvailableBuses?sourceId=${this.reqObj.sourceId}&destinationId=${this.reqObj.destinationId}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripType}&userType=5&returnDate=${this.reqObj.returnDate}`).subscribe(res=>{
@@ -100,8 +99,7 @@ export class BusResultComponent implements OnInit {
           }
         } 
         // console.log("seatssssss=====>"+JSON.stringify(this.rowLayout))
-          }
-         
+          }     
             }
        },
      
@@ -203,9 +201,7 @@ export class BusResultComponent implements OnInit {
     console.log("roundway====>"+JSON.stringify(this.roundwayObj))
     localStorage.setItem('roundwayObject', JSON.stringify(this.roundwayObj));
       this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'seatNo':this.seatObj.Number,'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime,'tripType':this.reqObj.tripType}}) 
-
   }
- 
   }
 }
 
