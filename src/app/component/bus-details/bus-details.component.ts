@@ -31,10 +31,13 @@ export class BusDetailsComponent implements OnInit {
   mTicketAllowed:any;
   IdProofRequired:any;
   PartialCancellationAllowed:any;
-  // titleArr:any=[];
-  // fNameArr:any=[];
-  // lNameArr:any=[];
-  // dobArr:any=[];
+  titleArr:any=[];
+  fNameArr:any=[];
+  lNameArr:any=[];
+  genderArr:any=[];
+  ageArr:any=[];
+  baseFare:any;
+  tax:any;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
   ngOnInit(): void {
@@ -48,6 +51,8 @@ export class BusDetailsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       //  console.log(params);
        this.reqObj=params
+       this.baseFare=(parseInt(this.selectedSeat.Fare))*(this.reqObj.noOfSeats)
+       this.tax=(this.netAmount(parseInt(this.selectedSeat.Servicetax)))*(this.reqObj.noOfSeats)
        if(this.reqObj.tripType=='1'){
        this.jType="O"
        }else if(this.reqObj.tripType=='2'){
@@ -74,16 +79,9 @@ export class BusDetailsComponent implements OnInit {
      }
     this.getIP()
     this.salesRule()
-    for(let i=0;i<this.reqObj.adults;i++){
-      this.adultArr.push({"title":'Mr',"fname":'',"lName":'',"dob":new Date()})
-    }
-    for(let i=0;i<this.reqObj.children;i++){
-      this.childArr.push({"title":'Mr',"fname":'',"lName":'',"dob":new Date()})
-    }
-    for(let i=0;i<this.reqObj.infants;i++){
-      this.infantArr.push({"title":'Mr',"fname":'',"lName":'',"dob":new Date()})
-    }
-    
+    for(let i=0;i<this.reqObj.noOfSeats;i++){
+      this.adultArr.push({"title":'Mr',"fname":'',"lName":'','age':''})
+    } 
   }
   getIP(){
     this.ip.getIPAddress().subscribe((res:any)=>{
@@ -242,25 +240,49 @@ saveBusfare(){
    });
 }
 savePassenger(){
-  let dataInfo={
-    "tt":"2", 
-    "jtype":"O",
-    "searchID":this.searchId, 
-    "AgentCode":this.userDetail.Acode, 
-    "Title": ["Mr.","Mr."],
-     "FirstName": ["Vikas","Amar"],
-     "LastName":  ["Panwar","Singh"],
-     "Age" :["30","26"],
-     "Gender":["M","F"],
-     "isLead":["1","0"]
-  }
-  this.service.testPostApiMethod(dataInfo,"Booking/SaveBusPasenger").subscribe(res=>{
-  },
-  (err)=>{
-     // this.spinner.hide(); 
-     // this.router.navigate(['login'])
-     // console.log(err)
-   });
+  this.titleArr = []
+      this.fNameArr= []
+      this.lNameArr=[]
+      this.genderArr=[]
+      this.ageArr=[]
+      if(this.adultArr.length!=0){
+        this.adultArr.find((item,index)=>{
+          this.titleArr.push(item.title)
+          if(item.title=="Mr" || item.title=="Mstr"){
+            this.genderArr.push("M")
+          }else if(item.title=="Ms" || item.title=="Mrs"){
+            this.genderArr.push("F")
+          }
+          this.fNameArr.push(item.fname)
+          this.lNameArr.push(item.lName)
+          this.ageArr.push(item.age)
+        })
+      }
+      if(this.fNameArr[0]!='' && this.lNameArr[0]!=''){
+        let dataInfo={
+          "tt":this.reqObj.noOfSeats,
+          "jtype":this.jType,
+          "searchID":this.searchId, 
+          "AgentCode":this.userDetail.Acode, 
+          "Title": this.titleArr,
+          "FirstName":this.fNameArr,
+          "LastName":this.lNameArr,
+          "Age" :this.ageArr,
+          "Gender":this.genderArr,
+          "isLead":["1","0"]
+        }
+        this.service.testPostApiMethod(dataInfo,"Booking/SaveBusPasenger").subscribe(res=>{
+          if(res.Status==true){
+             this.router.navigate(['bus-payment'],{ queryParams: {'baseFare':this.baseFare,'tax':this.tax}})
+           }
+        },
+        (err)=>{
+           // this.spinner.hide(); 
+           // this.router.navigate(['login'])
+           // console.log(err)
+         });
+      }
+  
  }
 payment(){
   if(this.isLogin==0){
@@ -270,6 +292,7 @@ payment(){
     this.saveBus()
     this.saveBusSeat()
     this.saveBusfare()
+    this.savePassenger()
       // this.bookTckt()
       // if(this.reqObj.tripType=='1'){
       // this.saveSelectedFlight_1()

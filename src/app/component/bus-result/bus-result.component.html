@@ -384,13 +384,13 @@
 
 												
 													<ul class="seatMap" *ngFor="let temp of rowLayout">
-														<!-- <li class="seating"><i class="ico-sprite ico-avbl"></i></li> -->
+														<!-- <li class="seating"><i class="ico-sprite ico-avbl"></i> -->
 														<li class="seating" *ngFor="let item of temp.Seats let i=index" (click)="selectYourSeat(i,item)">
 															<i class="ico-sprite icon-avbl" *ngIf="item.IsAvailableSeat=='True' && item.IsLadiesSeat=='False'" ></i>
-															<i class="ico-sprite icon-bked" *ngIf="item.IsAvailableSeat==False"></i>
-															<i class="ico-sprite icon-sltd" *ngIf="item.IsAvailableSeat==True && isSelect==i"></i>
+															<i class="ico-sprite icon-bked" *ngIf="item.IsAvailableSeat=='False'"></i>
+															<i class="ico-sprite icon-sltd" *ngIf="item.IsAvailableSeat=='True' && isSelect==i"></i>
 															<!-- <i class="ico-sprite icon-bookfemale" *ngIf="item.IsAvailableSeat!='True' && item.IsLadiesSeat=='True'"></i> -->
-															<i class="ico-sprite icon-female" *ngIf="item.IsLadiesSeat==True && item.IsAvailableSeat==True"></i>
+															<i class="ico-sprite icon-female" *ngIf="item.IsLadiesSeat=='True' && item.IsAvailableSeat=='True'"></i>
 															<!-- <i class="ico-sprite icon-male" *ngIf="item.IsLadiesSeat=='False'"></i> -->
 														</li>
 														<!-- <li class="seating"><i class="ico-sprite ico-default"></i></li>
@@ -465,17 +465,17 @@
 										<div class="colRight">
 											<ul class="nav nav-tabs">
 												<li class="nav-item">
-													<a class="nav-link active" data-toggle="tab" href="#city">{{source}}-{{destination}}</a>
+													<a class="nav-link active" data-toggle="tab" href="#city+{{i}}">{{source}}-{{destination}}</a>
 												</li>
 												<li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#boardingPoints">Boarding Points</a>
+													<a class="nav-link" data-toggle="tab" href="#boardingPoints+{{i}}">Boarding Points</a>
 												</li>
 												<li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#droppingPoints">Dropping Points</a>
+													<a class="nav-link" data-toggle="tab" href="#droppingPoints+{{i}}">Dropping Points</a>
 												</li>
 											</ul>
 											<div class="tab-content">
-												<div class="tab-pane active" id="city">
+												<div class="tab-pane active" id="city+{{i}}">
 													<div class="travelDetail">
 												<thead>
 														<h2>Country Line Travels and Cargo</h2>
@@ -514,7 +514,7 @@
 														</thead>
 													</div>
 												</div>
-												<div class="tab-pane" id="boardingPoints">
+												<div class="tab-pane" id="boardingPoints+{{i}}">
 													<div class="travelDetail">
 														<h3>Onward Boarding Points</h3>
 														<table class="table">
@@ -541,7 +541,7 @@
 														</table>
 													</div>
 												</div>
-												<div class="tab-pane" id="droppingPoints">
+												<div class="tab-pane" id="droppingPoints+{{i}}">
 													<div class="travelDetail">
 														<h3>Onward Dropping Points</h3>
 														<table class="table">
@@ -573,7 +573,7 @@
 									</div>
 								</div>
 								</div>
-								<div class="seat-selection" id="boardingPoint" [ngStyle]="{'display':action==i ? 'block':'none'}">
+								<div class="seat-selection"  [ngStyle]="{'display':action==i ? 'block':'none'}">
 									<div class="mainBody width40">
 										<span class="seatClose" (click)="showBDpoints(-1,temp)"><i class="fas fa-times"></i></span>
 										<h2>Bording/Dropping Points</h2>

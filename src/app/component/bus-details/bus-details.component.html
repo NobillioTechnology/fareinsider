@@ -186,7 +186,7 @@
 						<div *ngFor="let temp of adultArr let i=index">
 							<div class="row" style="margin-bottom: 10px;">
 								<div class="col-lg-3 col-md-12">
-									<label class="label-head">Adult {{i+1}}</label>
+									<label class="label-head">Passenger {{i+1}}</label>
 								</div>
 								<div class="col-lg-4 col-md-5 contact-input1">
 									<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
@@ -196,55 +196,14 @@
 										<option value="Mstr">Mstr</option>
 									</select></span>
 									<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
-									
 								</div>
 								<div class="col-lg-3 col-md-3">
-									<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">
-									
+									<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">	
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<input type="number" class="form-control" placeholder="Age" name="age" [(ngModel)]="temp.age">	
 								</div>
 							</div>
-							</div>
-							<div *ngFor="let temp of childArr let i=index">
-								<div class="row" style="margin-bottom: 10px;">
-									<div class="col-lg-3 col-md-12">
-										<label class="label-head">Child {{i+1}}</label>
-									</div>
-									<div class="col-lg-4 col-md-5 contact-input1">
-										<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
-											<option>Mr</option>
-											<option>Ms</option>
-											<option>Mrs</option>
-										</select></span>
-										<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
-										
-									</div>
-									<div class="col-lg-3 col-md-3">
-										<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">	
-									</div>
-								</div>
-							</div>
-							<div *ngFor="let temp of infantArr let i=index">
-								<div class="row" style="margin-bottom: 10px;">
-									<div class="col-lg-3 col-md-12">
-										<label class="label-head">Infant {{i+1}}</label>
-									</div>
-									<div class="col-lg-4 col-md-5 contact-input1">
-										<span><select style="border: none;" name="title" [(ngModel)]="temp.title">
-											<option>Mr</option>
-											<option>Ms</option>
-											<option>Mrs</option>
-										</select></span>
-										<input type="text" class="form-control" placeholder="First Name" name="fname" [(ngModel)]="temp.fname">
-										
-									</div>
-									<div class="col-lg-3 col-md-3">
-										<input type="text" class="form-control" placeholder="Last Name" name="lName" [(ngModel)]="temp.lName">
-										
-									</div>
-									<div class="col-lg-2 col-md-4">
-										<input type="date" class="form-control" placeholder="dd/mm/yyyy" name="dob" [(ngModel)]="temp.dob">
-									</div>
-								</div>
 							</div>	
 					</div>
 				</div>
@@ -258,10 +217,10 @@
 					<h2>Fare Details<a>View Fare Rules</a></h2>
 					<div class="box-content fare-details">
 						<ul>
-							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>3,893</span></li>
-							<li>Fee & Surcharges<span><i class="small-inr"></i>1,008</span></li>
-							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>4,901 </span></li>
-							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>4,901 </span></li>
+							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{baseFare}}</span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>{{tax}}</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{baseFare+tax}} </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{baseFare+tax}} </span></li>
 							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
 						</ul>
 					</div>
