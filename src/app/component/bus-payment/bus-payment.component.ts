@@ -17,6 +17,7 @@ export class BusPaymentComponent implements OnInit {
   ipAddress:any;
   totalAmount: any;
   orderAmount:any;
+  intData:any={};
   constructor(private router: Router,private route: ActivatedRoute,private ip:IpServiceService,private service: RestDataService) { }
 
   ngOnInit(): void {
@@ -78,4 +79,35 @@ export class BusPaymentComponent implements OnInit {
     (err)=>{
    }); 
   }
+creditCard(val){
+    this.getExtraCharge(val)
+    if(this.intData.cardNo!=undefined && this.intData.holderName!=undefined && this.intData.month!=undefined && this.intData.year!=undefined && this.intData.cvv!=undefined){
+      window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customeremail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=BusBooking&paymenttype=card&cardnum=${this.intData.cardNo}&cardcvv=${this.intData.cvv}&cardmonth=${this.intData.month}&cardyear=${this.intData.year}&cardholdername=${this.intData.holderName}`); 
+    }
+  }
+payCard(val){
+    this.getExtraCharge(val)
+    if(this.intData.cardNo!=undefined && this.intData.holderName!=undefined && this.intData.month!=undefined && this.intData.year!=undefined && this.intData.cvv!=undefined){
+      window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customeremail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=BusBooking&paymenttype=card&cardnum=${this.intData.cardNo}&cardcvv=${this.intData.cvv}&cardmonth=${this.intData.month}&cardyear=${this.intData.year}&cardholdername=${this.intData.holderName}`);
+    }
+  }
+  payNetBank(val){
+    this.getExtraCharge(val)
+    if(this.intData.bank!=undefined){
+      window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=BusBooking&paymenttype=net banking&bankcode=" + bankcode + "`);
+    }
+  }
+  payNetWallet(val){
+    this.getExtraCharge(val)
+    if(this.intData.walletCode!=undefined){
+      window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=BusBooking&paymenttype=net wallet&walletcode=${this.intData.walletCode}`);
+    }
+  }
+  payNetUpi(val){
+    this.getExtraCharge(val)
+    if(this.intData.upicode!=undefined){
+      window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=BusBooking&paymenttype=upi&upivpa=${this.intData.upicode}`);
+    }
+  }
 }
+

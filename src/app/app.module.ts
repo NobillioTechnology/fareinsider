@@ -38,6 +38,8 @@ import { MyBookingComponent } from './component/my-booking/my-booking.component'
 import { ChangePaswordComponent } from './component/change-pasword/change-pasword.component';
 import { SuccessComponent } from './component/success/success.component';
 import { ErrorComponent } from './component/error/error.component';
+import { BusTcktSuccessComponent } from './component/bus-tckt-success/bus-tckt-success.component';
+import { BusTcktErrorComponent } from './component/bus-tckt-error/bus-tckt-error.component';
 
 
 const APP_Routing: Routes =[
@@ -64,6 +66,8 @@ const APP_Routing: Routes =[
   { path: 'change-pasword', component: ChangePaswordComponent },
   { path: 'success/:searchId', component: SuccessComponent },
   { path: 'error', component: ErrorComponent },
+  { path: 'bus-tckt-success/:searchId', component: BusTcktSuccessComponent },
+  { path: 'bus-tckt-error', component: BusTcktErrorComponent },
  
   ]
 
@@ -92,6 +96,8 @@ const APP_Routing: Routes =[
     ChangePaswordComponent,
     SuccessComponent,
     ErrorComponent,
+    BusTcktSuccessComponent,
+    BusTcktErrorComponent,
     
    
 

@@ -137,11 +137,6 @@ export class PaymentComponent implements OnInit {
   }
 creditCard(val){
   this.getExtraCharge(val)
-  // alert("1111"+this.intData.cardNo)
-  // alert("2222"+this.intData.holderName)
-  // alert("333"+this.intData.month)
-  // alert("4444"+this.intData.year)
-  // alert("5555"+this.intData.cvv)
   if(this.intData.cardNo!=undefined && this.intData.holderName!=undefined && this.intData.month!=undefined && this.intData.year!=undefined && this.intData.cvv!=undefined){
     window.location.replace(`https://secure.fareinsider.com/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customeremail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=Flight Booking&paymenttype=card&cardnum=${this.intData.cardNo}&cardcvv=${this.intData.cvv}&cardmonth=${this.intData.month}&cardyear=${this.intData.year}&cardholdername=${this.intData.holderName}`); 
   }
@@ -151,7 +146,7 @@ payCard(val) {
   if(this.intData.cardNo!=undefined && this.intData.holderName!=undefined && this.intData.month!=undefined && this.intData.year!=undefined && this.intData.cvv!=undefined){
     window.location.replace(`https://secure.fareinsider.com/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customeremail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=Flight Booking&paymenttype=card&cardnum=${this.intData.cardNo}&cardcvv=${this.intData.cvv}&cardmonth=${this.intData.month}&cardyear=${this.intData.year}&cardholdername=${this.intData.holderName}`);
   }
-};
+}
 payNetBank(val){
   this.getExtraCharge(val)
   if(this.intData.bank!=undefined){

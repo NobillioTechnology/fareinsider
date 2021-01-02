@@ -52,7 +52,7 @@
     <div class="filter-sec" id="navSticky">
 		<div class="filter-face">
 			<div class="container">
-				<div class="filter-box bus-filter">
+				<div class="filter-box bus-filter" (click)="closeFilter('2')" *ngIf="filtersection=='1'">
 					<ul>
 						<li><span class="filter-icon"><i class="fas fa-filter"></i></span>Filter</li>
                         <li><a class="item-01">Bus Type<span class="chevron-down"><i class="fas fa-chevron-down"></i></span></a></li>
@@ -63,25 +63,30 @@
 					</ul>
 					<a class="mdSearch" href="#modifySearch">Modify Search<i class="fas fa-arrow-up"></i></a>
 				</div>
-				<div class="filter-top" style="display: none;">
+				<div class="filter-top" *ngIf="filtersection=='2'">
 					<div class="total-flight"><p>166 of 166 Buses</p></div>
 					<div class="filter-action">
-						<a id="cancelfilter">Cancel</a>
-						<button type="submit" class="btn-apply">Apply Filter</button>
+						<a id="cancelfilter" (click)="closeFilter('1')">Cancel</a>
+						<button type="submit" class="btn-apply" (click)="filter()">Apply Filter</button>
+						<button type="submit" class="btn-apply" (click)="clearFilter()">Reset All Filters</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="more-opt" style="display: none;">
+		<div class="more-opt" *ngIf="filtersection=='2'">
 			<div class="full-flexbox">
 				<div class="container">
 					<div class="search-filter aircraft bustype">
 						<h2>Bus Type</h2>
-						<div class="custom-control custom-checkbox">
+						<div class="custom-control custom-checkbox" *ngFor="let temp of bustypeArr.bustypeJson">
+							<input type="checkbox" class="custom-control-input" id="{{temp.bustypeName}}" name="bustypeName" [(ngModel)]="temp.isChkd" (change)="checkBusType(temp)">
+							<label class="custom-control-label" for="{{temp.bustypeName}}">{{temp.bustypeName}}</label>
+						</div>
+						<!-- <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck6" name="example1">
 							<label class="custom-control-label" for="customCheck6">Airbus A320</label>
-						</div>
-						<div class="custom-control custom-checkbox">
+						</div> -->
+						<!-- <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck7" name="example1">
 							<label class="custom-control-label" for="customCheck7">Airbus A320-100</label>
 						</div>
@@ -96,27 +101,27 @@
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck10" name="example1">
 							<label class="custom-control-label" for="customCheck10">Boeing 737-800</label>
-						</div>
+						</div> -->
 					</div>
 					<div class="depart-filter">
 						<h2>Depart Time</h2>
 						<div class="depart-time">
-							<p>New Delhi</p>
+							<p>{{source}}</p>
 							<ul>
-								<li><a><span></span>00-06</a></li>
-								<li><a><span></span>06-12</a></li>
-								<li><a><span></span>12-18</a></li>
-								<li><a><span></span>18-00</a></li>
+								<li (click)="selectTime('00:00','06:00')"><a [ngClass]="{active:isAct=='00:00' } "><span></span>00-06</a></li>
+								<li (click)="selectTime('06:00','12:00')"><a [ngClass]="{active:isAct=='06:00' } "><span></span>06-12</a></li>
+								<li (click)="selectTime('12:00','18:00')"><a [ngClass]="{active:isAct=='12:00' } "><span></span>12-18</a></li>
+								<li (click)="selectTime('18:00','00:00')"><a [ngClass]="{active:isAct=='18:00' } "><span></span>18-00</a></li>
 							</ul>
 						</div>
                         <h2>Arrival Time</h2>
 						<div class="depart-time">
-							<p>To Jaipur</p>
+							<p> To {{destination}}</p>
 							<ul>
-								<li><a><span></span>00-06</a></li>
-								<li><a><span></span>06-12</a></li>
-								<li><a><span></span>12-18</a></li>
-								<li><a><span></span>18-00</a></li>
+								<li (click)="selectarrTime('00:00','06:00')"><a [ngClass]="{active:isActive=='00:00' } "><span></span>00-06</a></li>
+								<li (click)="selectarrTime('06:00','12:00')"><a [ngClass]="{active:isActive=='06:00' } "><span></span>06-12</a></li>
+								<li (click)="selectarrTime('12:00','18:00')"><a [ngClass]="{active:isActive=='12:00' } "><span></span>12-18</a></li>
+								<li (click)="selectarrTime('18:00','00:00')"><a [ngClass]="{active:isActive=='18:00' } "><span></span>18-00</a></li>
 							</ul>
 						</div>
 					</div>
@@ -238,15 +243,16 @@
 							<input type="text" class="form-control" placeholder="Search All Bus Operators">
 						</div>
 						<div class="busTab">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" id="customCheck6" name="example1">
-							<label class="custom-control-label" for="customCheck6">Shreenath Tranns Connect</label>
+					
+						<div class="custom-control custom-checkbox" *ngFor="let temp of busOprtArr.busOprJson">
+							<input type="checkbox" class="custom-control-input" id="{{temp.busOprName}}" name="busOprName" [(ngModel)]="temp.isChkd" (change)="checkBusOpr(temp)">
+							<label class="custom-control-label" for="{{temp.busOprName}}">{{temp.busOprName}}</label>
 						</div>
-						<div class="custom-control custom-checkbox">
+						<!-- <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck7" name="example1">
 							<label class="custom-control-label" for="customCheck7">Country Line Travels and Cargo</label>
-						</div>
-						<div class="custom-control custom-checkbox">
+						</div> -->
+						<!-- <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck8" name="example1">
 							<label class="custom-control-label" for="customCheck8">Laxmi traveller</label>
 						</div>
@@ -277,7 +283,7 @@
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck10" name="example1">
 							<label class="custom-control-label" for="customCheck10">Raj Kalpana Travels Pvt LtdVIA JAIPUR,AJMER,PALI,ABUROAD,PALANPUR</label>
-						</div>
+						</div> -->
                         </div>
 					</div>
 				</div>
@@ -385,12 +391,13 @@
 												
 													<ul class="seatMap" *ngFor="let temp of rowLayout">
 														<!-- <li class="seating"><i class="ico-sprite ico-avbl"></i> -->
-														<li class="seating" *ngFor="let item of temp.Seats let i=index" (click)="selectYourSeat(i,item)">
-															<i class="ico-sprite icon-avbl" *ngIf="item.IsAvailableSeat=='True' && item.IsLadiesSeat=='False'" ></i>
-															<i class="ico-sprite icon-bked" *ngIf="item.IsAvailableSeat=='False'"></i>
-															<i class="ico-sprite icon-sltd" *ngIf="item.IsAvailableSeat=='True' && isSelect==i"></i>
+														<li class="seating"  *ngFor="let item of temp.Seats let i=index" [ngClass]="{active:item.isActive==true,forFemale:item.IsLadiesSeat=='True',booked:item.IsAvailableSeat!='True'}"   (click)="selectYourSeat(i,item)">
+															<i class="ico-sprite ico-default"></i> 
+															<!-- <i class="ico-sprite icon-avbl" *ngIf="item.IsAvailableSeat=='True' && item.IsLadiesSeat=='False'" ></i> -->
+															<!-- <i class="ico-sprite icon-bked" *ngIf="item.IsAvailableSeat=='False'"></i> -->
+															<!-- <i class="ico-sprite icon-sltd" *ngIf="item.IsAvailableSeat=='True' && isSelect==i"></i> -->
 															<!-- <i class="ico-sprite icon-bookfemale" *ngIf="item.IsAvailableSeat!='True' && item.IsLadiesSeat=='True'"></i> -->
-															<i class="ico-sprite icon-female" *ngIf="item.IsLadiesSeat=='True' && item.IsAvailableSeat=='True'"></i>
+															<!-- <i class="ico-sprite icon-female" *ngIf="item.IsLadiesSeat=='True' && item.IsAvailableSeat=='True'"></i> -->
 															<!-- <i class="ico-sprite icon-male" *ngIf="item.IsLadiesSeat=='False'"></i> -->
 														</li>
 														<!-- <li class="seating"><i class="ico-sprite ico-default"></i></li>
@@ -491,7 +498,7 @@
 																		<label>Select Boarding Point</label>
 																		<select class="form-control arrowRight" name="boardingdId" [(ngModel)]="data.boardingdId">
 																			<option value="0" selected="selected">Select Boarding Point</option>
-																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.BoardingTimes" >{{item.Location}}-{{item.Time | date:"HH:mm"}}</option>
+																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.BoardingTimes" >{{item.Location}}</option>
 																			<!-- <option value="2">2</option> -->
 																		</select>
 																	</div>
@@ -501,7 +508,7 @@
 																		<label>Select Dropping Point</label>
 																		<select class="form-control arrowRight" name="dropingId" [(ngModel)]="data.dropingId">
 																			<option value="0" selected="selected">Select Dropping Point</option>
-																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.DroppingTimes" >{{item.Location}}-{{item.Time | date:"HH:mm"}}</option>
+																			<option value="{{item.Time}}~{{item.PointId}}~{{item.Location}}" *ngFor="let item of temp.DroppingTimes" >{{item.Location}}</option>
 																			<!-- <option value="2">2</option> -->
 																		</select>
 																	</div>

@@ -15,6 +15,12 @@
 							<li class="nav-item">
 								<a class="nav-link" data-toggle="tab" href="#netbanking">Net Banking</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#netWallet">Net Wallet</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#upi">UPI</a>
+							</li>
 						</ul>
 						<div class="tab-content col-lg-9">
 							<div class="tab-pane active" id="creditcard">
@@ -25,42 +31,60 @@
 											<div class="col-lg-6">
 												<div class="form-group">
 													<label>Credit Card Number</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" name="cardNo" [(ngModel)]="intData.cardNo">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
 													<label>Name on Card</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" name="holderName" [(ngModel)]="intData.holderName">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<label>Expiry Date</label>
 												<div class="form-group expiry-date">
-													<select class="form-control">
+													<select class="form-control" name="month" [(ngModel)]="intData.month">
 														<option value="0">Month</option>
-														<option value="0">01</option>
-														<option value="0">02</option>
-														<option value="0">03</option>
+														<option value="01">01</option>
+														<option value="02">02</option>
+														<option value="03">03</option>
+														<option value="04">04</option>
+														<option value="05">05</option>
+														<option value="06">06</option>
+														<option value="07">07</option>
+														<option value="08">08</option>
+														<option value="09">09</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
 													</select>
-													<select class="form-control">
+													<select class="form-control" name="year" [(ngModel)]="intData.year">
 														<option value="0">Year</option>
-														<option value="0">2020</option>
-														<option value="0">2021</option>
-														<option value="0">2022</option>
+														<option value="2020">2020</option>
+														<option value="2021">2021</option>
+														<option value="2022">2022</option>
+														<option value="2023">2023</option>
+														<option value="2024">2024</option>
+														<option value="2025">2025</option>
+														<option value="2026">2026</option>
+														<option value="2027">2027</option>
+														<option value="2028">2028</option>
+														<option value="2029">2029</option>
+														<option value="2030">2030</option>
+														<!-- <option value="0">2022</option> -->
 													</select>
 												</div>
 											</div>
 											<div class="col-lg-3">
 												<div class="form-group">
 													<label>CVV</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" name="cvv" [(ngModel)]="intData.cvv">
 												</div>
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
 													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
-													<div class="btn-book"><a>Pay Now</a></div>
+													<div class="btn-book" (click)="creditCard('CC')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
 											</div>
@@ -76,42 +100,60 @@
 											<div class="col-lg-6">
 												<div class="form-group">
 													<label>Credit Card Number</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" name="cardNo" [(ngModel)]="intData.cardNo">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="form-group">
 													<label>Name on Card</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" name="holderName" [(ngModel)]="intData.holderName">
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<label>Expiry Date</label>
 												<div class="form-group expiry-date">
-													<select class="form-control">
+													<select class="form-control" name="month" [(ngModel)]="intData.month">
 														<option value="0">Month</option>
-														<option value="0">01</option>
-														<option value="0">02</option>
-														<option value="0">03</option>
+														<option value="01">01</option>
+														<option value="02">02</option>
+														<option value="03">03</option>
+														<option value="04">04</option>
+														<option value="05">05</option>
+														<option value="06">06</option>
+														<option value="07">07</option>
+														<option value="08">08</option>
+														<option value="09">09</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
 													</select>
-													<select class="form-control">
+													<select class="form-control" name="year" [(ngModel)]="intData.year">
 														<option value="0">Year</option>
-														<option value="0">2020</option>
-														<option value="0">2021</option>
-														<option value="0">2022</option>
+														<option value="2020">2020</option>
+														<option value="2021">2021</option>
+														<option value="2022">2022</option>
+														<option value="2023">2023</option>
+														<option value="2024">2024</option>
+														<option value="2025">2025</option>
+														<option value="2026">2026</option>
+														<option value="2027">2027</option>
+														<option value="2028">2028</option>
+														<option value="2029">2029</option>
+														<option value="2030">2030</option>
+														<!-- <option value="0">2022</option> -->
 													</select>
 												</div>
 											</div>
 											<div class="col-lg-3">
 												<div class="form-group">
 													<label>CVV</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" name="cvv" [(ngModel)]="intData.cvv">
 												</div>
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
 													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
-													<div class="btn-book"><a>Pay Now</a></div>
+													<div class="btn-book" (click)="payCard('DC')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
 											</div>
@@ -128,7 +170,7 @@
 												<label>Select Your Banks</label>
 												<div class="form-group">
 													<select class="form-control">
-														<option value="0" selected="selected">Select Your Bank</option>
+														<option value="0" selected="selected" name="bank" [(ngModel)]="intData.bank">Select Your Bank</option>
 														<option value="1">01</option>
 														<option value="2">02</option>
 														<option value="3">03</option>
@@ -138,7 +180,51 @@
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
 													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
-													<div class="btn-book"><a>Pay Now</a></div>
+													<div class="btn-book"  (click)="payNetBank('NB')"><a>Pay Now</a></div>
+												</div>
+												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane" id="netWallet">
+								<div class="pay-creditcard">
+									<h3>Pay With Net Wallet</h3>
+									<form>
+										<div class="row">
+											<div class="col-lg-8">
+												<div class="form-group">
+													<label>UPI</label>
+													<input type="text" class="form-control" name="walletCode" [(ngModel)]="intData.walletCode">
+												</div>
+											</div>
+											<div class="col-lg-12 final-pay">
+												<div class="price-box">
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
+													<div class="btn-book"  (click)="payNetWallet('NW')"><a>Pay Now</a></div>
+												</div>
+												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane" id="upi">
+								<div class="pay-creditcard">
+									<h3>Pay With UPI</h3>
+									<form>
+										<div class="row">
+											<div class="col-lg-8">
+												<div class="form-group">
+													<label>UPI</label>
+													<input type="text" class="form-control" name="upicode" [(ngModel)]="intData.upicode">
+												</div>
+											</div>
+											<div class="col-lg-12 final-pay">
+												<div class="price-box">
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
+													<div class="btn-book"  (click)="payNetUpi('UPI')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
 											</div>

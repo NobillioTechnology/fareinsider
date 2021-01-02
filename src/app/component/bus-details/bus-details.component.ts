@@ -38,6 +38,7 @@ export class BusDetailsComponent implements OnInit {
   ageArr:any=[];
   baseFare:any;
   tax:any;
+  mobileNum:any='close';
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
   ngOnInit(): void {
@@ -82,10 +83,12 @@ export class BusDetailsComponent implements OnInit {
     for(let i=0;i<this.reqObj.noOfSeats;i++){
       this.adultArr.push({"title":'Mr',"fname":'',"lName":'','age':''})
     } 
+    // alert(this.isLogin)
   }
   getIP(){
     this.ip.getIPAddress().subscribe((res:any)=>{
       this.ipAddress=res.ip;
+      console.log("IP ====>"+JSON.stringify(this.ipAddress)); 
     });
   }
   salesRule(){
@@ -154,7 +157,7 @@ export class BusDetailsComponent implements OnInit {
    "agentcode":this.userDetail.Acode, 
    "ip":this.ipAddress, 
    "jtype":this.jType, 
-   "ticketholdkey":"2", 
+   "ticketholdkey":this.saveBusObj.Provider,
    "seatblockjson":"0"
   }
   this.service.testPostApiMethod(dataInfo,"Booking/SaveBus").subscribe(res=>{
@@ -313,6 +316,12 @@ payment(){
         this.closetem=0
         this.actionType='close';
       }
+    }
+    enterNum(){
+      if(this.data.contact.length==10){
+        this.mobileNum='show'
+      }else
+        this.mobileNum='close'
     }
     sendOtp(){
       this.service.testGetApiMethod("/comman/GetOtp?MobileNo="+this.data.contact).subscribe(res=>{
