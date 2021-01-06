@@ -108,11 +108,13 @@ export class BusDetailsComponent implements OnInit {
     if(this.comissionType=="% Mark Up"){
       netPrice =Math.round(val+ (val*this.comission)/100) 
     } else {
-      netPrice = Math.round(val+this.comission) 
-      
+      netPrice = Math.round(val+this.comission)  
     }
     // alert(netPrice)
    return netPrice
+  }
+  chngeBus(){
+    window.history.back()
   }
  searchcriteria(){
   let dataInfo={

@@ -35,7 +35,9 @@ export class BusResultComponent implements OnInit {
   mintimeArvl:any;
   maxtimeArvl:any;
   busOprtArr:any=[];
-  BusOprArr:any=[]
+  BusOprArr:any=[];
+  boardingPointArr:any=[];
+  BuspickUpArr:any=[]
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute) {
     
    }
@@ -94,13 +96,32 @@ export class BusResultComponent implements OnInit {
         this.busOprtArr=oprtArr
         // console.log("busOpr====>"+JSON.stringify(this.busOprtArr))
       }
+      let boardingArr={boardingObj:[],boardingJson:[]}
+      if(this.busList.length!=0){
+        this.busList.find((item,index)=>{
+          item.BoardingTimes.find((tem,index)=>{
+          if(boardingArr.boardingObj.indexOf(tem.Location)==-1){
+            boardingArr.boardingObj.push(tem.Location)
+            boardingArr.boardingJson.push({"locationName":tem.Location,"isChkd":false}) 
+          } 
+        })
+      })
+        // this.busList[0].BoardingTimes.find((item,index)=>{
+        //   //     boardingArr.boardingObj.push(item.Travels)
+        //       boardingArr.boardingJson.push({"locationName":item.Location,"isChkd":false}) 
+         
+        //   })
+        this.boardingPointArr=boardingArr
+        // console.log("busOpr====>"+JSON.stringify(this.busOprtArr))
+      
       // console.log("listOfFlight=====>"+JSON.stringify(this.flightList)) 
         }
-   },
+   }
    (err)=>{
     // this.spinner.hide(); 
     // this.router.navigate(['login'])
     // console.log(err)
+    }
   });
   }
   returnBus(){
@@ -130,6 +151,7 @@ export class BusResultComponent implements OnInit {
         if(res.ResponseStatus==200){
           // this.spinner.hide();
           this.seatLayout=res.Seats;
+          this.rowLayout=[]
           for(let i=1; i<=this.seatLayout[this.seatLayout.length-1].Row; i++){
             this.rowLayout.push({'Row':i,'Seats':[]})
           }
@@ -140,10 +162,8 @@ export class BusResultComponent implements OnInit {
               if(this.rowLayout[k].Row==this.seatLayout[j].Row){
             //     alert("k===="+k)
             //     alert("j====="+j)
-              
             //     alert("new======="+this.rowLayout[k].Row)
             // alert("old========="+this.seatLayout[j].Row)
-            
             this.rowLayout[k].Seats.push(this.seatLayout[j])
           }
         } 
@@ -162,6 +182,13 @@ export class BusResultComponent implements OnInit {
     this.action=val;
     this.busObj=obj 
   }
+timeConvert(val){
+    var minutes = val%60
+    var hours = (val - minutes) / 60
+    var boardingTym=hours+":"+minutes
+    return boardingTym
+    console.log(boardingTym)
+   }
   selectYourSeat(val,obj){
     obj.isActive=true
     alert("active====="+obj.isActive)
@@ -182,76 +209,76 @@ export class BusResultComponent implements OnInit {
     localStorage.setItem("searchId",searchId.toString())
     localStorage.setItem("saveBusObj", JSON.stringify(this.busObj)) 
     if(this.reqObj.tripType=='1'){
-      this.onewayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],
-      "BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],
-      "BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
-      "ConvenienceFee": this.busObj.ConvenienceFee,
-      "DepartureTime": this.busObj.DepartureTime,
-      "DestinationId": this.busObj.DestinationId,
-      "DestinationName": this.destination,
-      "DisplayName":this.busObj.DisplayName, "Operator": this.busObj.Travels,
-      "PartialCancellationAllowed": this.busObj.PartialCancellationAllowed,
-      "DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2],"JourneyDate":this.reqObj.journeyDate,
-      "DroppingPointDetails":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],"Fares": this.seatObj.Fare,
-      "Provider": this.busObj.Provider,
-    "ReturnDate":this.reqObj.returnDate,
-    "Seatcodes":  this.seatObj.SeatCode,
-    "SeatNos": this.seatObj.Number,
-    "ServiceCharge":this.seatObj.OperatorServiceCharge,
-    "Servicetax": this.seatObj.Servicetax,
-    "SourceId":this.busObj.SourceId,
-    "SourceName": this.source,"TripId": this.busObj.Id,
-    "TripType": this.reqObj.tripType,
-    }
+    //   this.onewayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],
+    //   "BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],
+    //   "BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
+    //   "ConvenienceFee": this.busObj.ConvenienceFee,
+    //   "DepartureTime": this.busObj.DepartureTime,
+    //   "DestinationId": this.busObj.DestinationId,
+    //   "DestinationName": this.destination,
+    //   "DisplayName":this.busObj.DisplayName, "Operator": this.busObj.Travels,
+    //   "PartialCancellationAllowed": this.busObj.PartialCancellationAllowed,
+    //   "DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2],"JourneyDate":this.reqObj.journeyDate,
+    //   "DroppingPointDetails":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],"Fares": this.seatObj.Fare,
+    //   "Provider": this.busObj.Provider,
+    //   "ReturnDate":this.reqObj.returnDate,
+    //   "Seatcodes":  this.seatObj.SeatCode,
+    //   "SeatNos": this.seatObj.Number,
+    //   "ServiceCharge":this.seatObj.OperatorServiceCharge,
+    //   "Servicetax": this.seatObj.Servicetax,
+    //   "SourceId":this.busObj.SourceId,
+    //   "SourceName": this.source,"TripId": this.busObj.Id,
+    //   "TripType": this.reqObj.tripType,
+    // }
     // console.log("oneway====>"+JSON.stringify(this.onewayObj))
-    localStorage.setItem('onewayObject', JSON.stringify(this.onewayObj));
+    // localStorage.setItem('onewayObject', JSON.stringify(this.onewayObj));
       this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'seatNo':this.seatObj.Number,'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime,'tripType':this.reqObj.tripType,'noOfSeats':1}})
     }else if(this.reqObj.tripType=='2' && this.flag==1){
-      this.onewayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],"BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
-      "ConvenienceFee": this.busObj.ConvenienceFee,
-      "DepartureTime": this.busObj.DepartureTime,
-      "DestinationId": this.busObj.DestinationId,
-      "DestinationName": this.destination,
-      "DisplayName":this.busObj.DisplayName, "Operator": this.busObj.Travels,
-      "PartialCancellationAllowed": this.busObj.PartialCancellationAllowed,
-      "DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2],"JourneyDate":this.reqObj.journeyDate,
-      "DroppingPointDetails":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],"Fares": this.seatObj.Fare,
-      "Provider": this.busObj.Provider,
-    "ReturnDate":this.reqObj.returnDate,
-    "Seatcodes":  this.seatObj.SeatCode,
-    "SeatNos": this.seatObj.Number,
-    "ServiceCharge":this.seatObj.OperatorServiceCharge,
-    "Servicetax": this.seatObj.Servicetax,
-    "SourceId":this.busObj.SourceId,
-    "SourceName": this.source,"TripId": this.busObj.Id,
-    "TripType": this.reqObj.tripType,
-    }
+    //   this.onewayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],"BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
+    //   "ConvenienceFee": this.busObj.ConvenienceFee,
+    //   "DepartureTime": this.busObj.DepartureTime,
+    //   "DestinationId": this.busObj.DestinationId,
+    //   "DestinationName": this.destination,
+    //   "DisplayName":this.busObj.DisplayName, "Operator": this.busObj.Travels,
+    //   "PartialCancellationAllowed": this.busObj.PartialCancellationAllowed,
+    //   "DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2],"JourneyDate":this.reqObj.journeyDate,
+    //   "DroppingPointDetails":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],"Fares": this.seatObj.Fare,
+    //   "Provider": this.busObj.Provider,
+    // "ReturnDate":this.reqObj.returnDate,
+    // "Seatcodes":  this.seatObj.SeatCode,
+    // "SeatNos": this.seatObj.Number,
+    // "ServiceCharge":this.seatObj.OperatorServiceCharge,
+    // "Servicetax": this.seatObj.Servicetax,
+    // "SourceId":this.busObj.SourceId,
+    // "SourceName": this.source,"TripId": this.busObj.Id,
+    // "TripType": this.reqObj.tripType,
+    // }
     // console.log("oneway====>"+JSON.stringify(this.onewayObj))
-    localStorage.setItem('onewayObject', JSON.stringify(this.onewayObj));
+    // localStorage.setItem('onewayObject', JSON.stringify(this.onewayObj));
     this.actionType=-1;
         this.returnBus()  
     }else if(this.reqObj.tripType=='2' && this.flag==2){
-      this.roundwayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],"BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
-      "ConvenienceFee": this.busObj.ConvenienceFee,
-      "DepartureTime": this.busObj.DepartureTime,
-      "DestinationId": this.busObj.DestinationId,
-      "DestinationName": this.destination,
-      "DisplayName":this.busObj.DisplayName, "Operator": this.busObj.Travels,
-      "PartialCancellationAllowed": this.busObj.PartialCancellationAllowed,
-      "DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2],"JourneyDate":this.reqObj.journeyDate,
-      "DroppingPointDetails":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],"Fares": this.seatObj.Fare,
-      "Provider": this.busObj.Provider,
-    "ReturnDate":this.reqObj.returnDate,
-    "Seatcodes":  this.seatObj.SeatCode,
-    "SeatNos": this.seatObj.Number,
-    "ServiceCharge":this.seatObj.OperatorServiceCharge,
-    "Servicetax": this.seatObj.Servicetax,
-    "SourceId":this.busObj.SourceId,
-    "SourceName": this.source,"TripId": this.busObj.Id,
-    "TripType": this.reqObj.tripType,
-    }
+    //   this.roundwayObj={"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"BoardingPointDetails": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],"BusTypeName":this.busObj.BusType,"CancellationPolicy":this.busObj.CancellationPolicy,
+    //   "ConvenienceFee": this.busObj.ConvenienceFee,
+    //   "DepartureTime": this.busObj.DepartureTime,
+    //   "DestinationId": this.busObj.DestinationId,
+    //   "DestinationName": this.destination,
+    //   "DisplayName":this.busObj.DisplayName, "Operator": this.busObj.Travels,
+    //   "PartialCancellationAllowed": this.busObj.PartialCancellationAllowed,
+    //   "DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2],"JourneyDate":this.reqObj.journeyDate,
+    //   "DroppingPointDetails":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],"Fares": this.seatObj.Fare,
+    //   "Provider": this.busObj.Provider,
+    // "ReturnDate":this.reqObj.returnDate,
+    // "Seatcodes":  this.seatObj.SeatCode,
+    // "SeatNos": this.seatObj.Number,
+    // "ServiceCharge":this.seatObj.OperatorServiceCharge,
+    // "Servicetax": this.seatObj.Servicetax,
+    // "SourceId":this.busObj.SourceId,
+    // "SourceName": this.source,"TripId": this.busObj.Id,
+    // "TripType": this.reqObj.tripType,
+    // }
     // console.log("roundway====>"+JSON.stringify(this.roundwayObj))
-    localStorage.setItem('roundwayObject', JSON.stringify(this.roundwayObj));
+    // localStorage.setItem('roundwayObject', JSON.stringify(this.roundwayObj));
       this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'seatNo':this.seatObj.Number,'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime,'tripType':this.reqObj.tripType,'noOfSeats':1}}) 
   }
   }
@@ -265,6 +292,12 @@ export class BusResultComponent implements OnInit {
     // alert(JSON.stringify(val))
     if(this.BusOprArr.indexOf(val.busOprName)==-1){
       this.BusOprArr.push(val.busOprName)
+    }
+  }
+  checkBoarding(val){
+    // alert(JSON.stringify(val))
+    if(this.BuspickUpArr.indexOf(val.locationName)==-1){
+      this.BuspickUpArr.push(val.locationName)
     }
   }
   selectTime(val,tem){
@@ -351,6 +384,38 @@ filter(){
               }
               // this.flightList=tempData
               console.log("filteroperator=====>"+JSON.stringify(tempData))
+          }
+          if(this.BuspickUpArr.length!=0){
+            let busArr=[]
+            if(tempData.length==0){
+                this.busList.find((item,index)=>{
+                  item.BoardingTimes.find((tem,index)=>{
+                  this.BuspickUpArr.find((temp,ind) =>{
+                    // alert(temp)
+                      if(tem.Location==temp){
+                        busArr.push(item)
+                       }
+                    })
+                  })
+                })
+                tempData=busArr
+                // this.busList=tempData
+              }else{
+                tempData.find((item,index)=>{
+                  item.BoardingTimes.find((tem,index)=>{
+                  this.BuspickUpArr.find((temp,ind) =>{
+                    // alert(temp)
+                    if(tem.Location==temp){
+                      busArr.push(item)
+                     }
+                  })
+                })
+                })
+                tempData=busArr
+                // this.busList=tempData
+              }
+              // this.flightList=tempData
+              console.log("filterboardingPoint=====>"+JSON.stringify(tempData))
           }
         if(this.mintime!=undefined && this.maxtime!=undefined){
           let busArr=[]
@@ -476,7 +541,7 @@ filter(){
         }
      
         this.busList=tempData
-        
+        console.log("filterfinal=====>"+JSON.stringify(this.busList))
          },3000)
          this.filtersection='1'
       }

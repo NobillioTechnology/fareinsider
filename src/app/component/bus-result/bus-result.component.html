@@ -64,7 +64,7 @@
 					<a class="mdSearch" href="#modifySearch">Modify Search<i class="fas fa-arrow-up"></i></a>
 				</div>
 				<div class="filter-top" *ngIf="filtersection=='2'">
-					<div class="total-flight"><p>166 of 166 Buses</p></div>
+					<!-- <div class="total-flight"><p>166 of 166 Buses</p></div> -->
 					<div class="filter-action">
 						<a id="cancelfilter" (click)="closeFilter('1')">Cancel</a>
 						<button type="submit" class="btn-apply" (click)="filter()">Apply Filter</button>
@@ -127,18 +127,16 @@
 					</div>
 					<div class="search-filter airlines">
                     <h2>Boarding Points</h2>
-                     
-						
 						<div class="input-search">
 							<span><i class="fas fa-search"></i></span>
 							<input type="text" class="form-control" placeholder="Search Boarding Points">
 						</div>
 						<div class="busTab">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" id="customCheck11" name="example1" >
-							<label class="custom-control-label" for="customCheck11">8279260449dhaula,kua</label>
+						<div class="custom-control custom-checkbox" *ngFor="let temp of boardingPointArr.boardingJson">
+							<input type="checkbox" class="custom-control-input" id="{{temp.locationName}}" name="locationName" [(ngModel)]="temp.isChkd" (change)="checkBoarding(temp)">
+							<label class="custom-control-label" for="{{temp.locationName}}">{{temp.locationName}}</label>
 						</div>
-						<div class="custom-control custom-checkbox">
+						<!-- <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
 							<label class="custom-control-label" for="customCheck1">8279260449 fatehpuri</label>
 						</div>
@@ -173,18 +171,18 @@
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck3" name="example1">
 							<label class="custom-control-label" for="customCheck3">Airport Mahipalpur,N</label>
-						</div>
-						<div class="custom-control custom-checkbox">
+						</div> -->
+						<!-- <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck4" name="example1">
 							<label class="custom-control-label" for="customCheck4">Ashoka Road</label>
 						</div>
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck5" name="example1">
 							<label class="custom-control-label" for="customCheck5">Ashram Chowk</label>
-						</div>
+						</div> -->
                         </div>
 					</div>
-					<div class="search-filter aircraft">
+					<!-- <div class="search-filter aircraft">
                     <h2>Dropping Points</h2>
                      
 						
@@ -234,7 +232,7 @@
 							<label class="custom-control-label" for="customCheck10">Bharat Bakers Durgap</label>
 						</div>
                         </div>
-					</div>
+					</div> -->
                     <div class="search-filter aircraft">
 						<h2>All Bus Operators</h2>
                         
@@ -485,8 +483,8 @@
 												<div class="tab-pane active" id="city+{{i}}">
 													<div class="travelDetail">
 												<thead>
-														<h2>Country Line Travels and Cargo</h2>
-														<p>{{temp.DisplayName}}</p>
+														<h2>{{temp.DisplayName}}</h2>
+														<p>{{temp.BusType}}</p>
 														<ul class="dateTimeList">
 															<li>Date:<strong>{{temp.Journeydate | date}}</strong></li>
 															<li>Time:<strong>{{temp.DepartureTime}} - {{temp.ArrivalTime}}</strong></li>
@@ -534,7 +532,7 @@
 															<tbody>
 																<tr *ngFor="let item of temp.BoardingTimes">
 																	<td>{{item.Location}}</td>
-																	<td class="text-right">{{item.Time | date:"HH:mm"}}</td>
+																	<td class="text-right">{{timeConvert(item.Time)}}</td>
 																</tr>
 																<!-- <tr>
 																	<td>Dhaula Kuan (Dhola Kuan)</td>
@@ -561,7 +559,7 @@
 															<tbody>
 																<tr *ngFor="let item of temp.DroppingTimes">
 																	<td>{{item.Location}}</td>
-																	<td class="text-right">{{item.Time | date:"HH:mm"}}</td>
+																	<td class="text-right">{{timeConvert(item.Time)}}</td>
 																</tr>
 																<!-- <tr>
 																	<td>Dhaula Kuan (Dhola Kuan)</td>
@@ -588,14 +586,14 @@
 											<div class="colRight fullWidth">
 												<ul class="nav nav-tabs">
 													<li class="nav-item">
-														<a class="nav-link active" data-toggle="tab" href="#boardingPoints1">Boarding Points</a>
+														<a class="nav-link active" data-toggle="tab" href="#boardingPointss1">Boarding Points</a>
 													</li>
 													<li class="nav-item">
-														<a class="nav-link" data-toggle="tab" href="#droppingPoints1">Dropping Points</a>
+														<a class="nav-link" data-toggle="tab" href="#droppingPointss1">Dropping Points</a>
 													</li>
 												</ul>
 												<div class="tab-content">
-													<div class="tab-pane active" id="boardingPoints1">
+													<div class="tab-pane active" id="boardingPointss1">
 														<div class="travelDetail">
 															<h3>Onward Boarding Points</h3>
 															<table class="table">
@@ -608,7 +606,7 @@
 																<tbody>
 																	<tr *ngFor="let item of temp.BoardingTimes">
 																		<td>{{item.Location}}</td>
-																		<td class="text-right">{{item.Time | date:"HH:mm"}}</td>
+																		<td class="text-right">{{timeConvert(item.Time)}}</td>
 																	</tr>
 																	<!-- <tr>
 																		<td>Dhaula Kuan (Dhola Kuan)</td>
@@ -622,7 +620,7 @@
 															</table>
 														</div>
 													</div>
-													<div class="tab-pane" id="droppingPoints1">
+													<div class="tab-pane" id="droppingPointss1">
 														<div class="travelDetail">
 															<h3>Onward Dropping Points</h3>
 															<table class="table">
@@ -635,7 +633,7 @@
 																<tbody>
 																	<tr *ngFor="let item of temp.DroppingTimes">
 																		<td>{{item.Location}}</td>
-																		<td class="text-right">{{item.Time | date:"HH:mm"}}</td>
+																		<td class="text-right">{{timeConvert(item.Time)}}</td>
 																	</tr>
 																	<!-- <tr>
 																		<td>Dhaula Kuan (Dhola Kuan)</td>
