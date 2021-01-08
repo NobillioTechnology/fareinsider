@@ -32,13 +32,13 @@
 							<div class="busBottom">
 								<div class="busBoardingDts">
 									<ul>
-										<li>Boarding Point & Time<strong>{{reqObj.boardingPoint}} : {{reqObj.boardingTime}}</strong></li>
-										<li>Dropping Point & Time<strong>{{reqObj.dropingPoint}} : {{reqObj.dropingTime}}</strong></li>
+										<li>Boarding Point & Time<strong>{{reqObj.boardingPoint}} : {{timeConvert(reqObj.boardingTime)}}</strong></li>
+										<li>Dropping Point & Time<strong>{{reqObj.dropingPoint}} : {{timeConvert(reqObj.dropingTime)}}</strong></li>
 									</ul>
 								</div>
 								<div class="busSeatsDts">
 									Seat Number(s)
-									<strong>{{reqObj.seatNo}}</strong>
+									<span><strong *ngFor="let temp of selectedSeat">{{temp.Number}},</strong></span>
 								</div>
 							</div>
 						</div>
@@ -218,9 +218,9 @@
 					<div class="box-content fare-details">
 						<ul>
 							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{baseFare}}</span></li>
-							<li>Fee & Surcharges<span><i class="small-inr"></i>{{tax}}</span></li>
-							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{baseFare+tax}} </span></li>
-							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{baseFare+tax}} </span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>{{netAmount(tax)}}</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{baseFare+netAmount(tax)}} </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{baseFare+netAmount(tax)}} </span></li>
 							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
 						</ul>
 					</div>

@@ -17,8 +17,8 @@ export class BusDetailsComponent implements OnInit {
   userDetail:any={};
   ipAddress:string;
   searchId:any;
-  seatBlockOneway:any={};
-  selectedSeat:any={};
+  // seatBlockOneway:any={};
+  selectedSeat:any=[];
   comission:any =0;
   comissionType:any="";
   adultArr:any=[];
@@ -36,8 +36,8 @@ export class BusDetailsComponent implements OnInit {
   lNameArr:any=[];
   genderArr:any=[];
   ageArr:any=[];
-  baseFare:any;
-  tax:any;
+  baseFare:any=0
+  tax:any=0
   mobileNum:any='close';
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
@@ -46,14 +46,19 @@ export class BusDetailsComponent implements OnInit {
     if(this.userDetail){
       this.isLogin=2
     } 
-    this.seatBlockOneway = JSON.parse(localStorage.getItem('onewayObject'));
+    // this.seatBlockOneway = JSON.parse(localStorage.getItem('onewayObject'));
     this.selectedSeat = JSON.parse(localStorage.getItem('seatSelected'));
     this.searchId= localStorage.getItem("searchId");
     this.route.queryParams.subscribe(params => {
       //  console.log(params);
        this.reqObj=params
-       this.baseFare=(parseInt(this.selectedSeat.Fare))*(this.reqObj.noOfSeats)
-       this.tax=(this.netAmount(parseInt(this.selectedSeat.Servicetax)))*(this.reqObj.noOfSeats)
+       for(let i=0;i<this.selectedSeat.length;i++){
+        this.baseFare=this.baseFare+parseInt(this.selectedSeat[i].Fare)
+        this.tax=this.tax+parseInt(this.selectedSeat[i].Servicetax)
+       }
+     
+      //  this.baseFare=(parseInt(this.selectedSeat.Fare))*(this.reqObj.noOfSeats)
+      //  this.tax=(this.netAmount(parseInt(this.selectedSeat.Servicetax)))*(this.reqObj.noOfSeats)
        if(this.reqObj.tripType=='1'){
        this.jType="O"
        }else if(this.reqObj.tripType=='2'){
@@ -113,6 +118,13 @@ export class BusDetailsComponent implements OnInit {
     // alert(netPrice)
    return netPrice
   }
+  timeConvert(val){
+    var minutes = val%60
+    var hours = (val - minutes) / 60
+    var boardingTym=hours+":"+minutes
+    return boardingTym
+    console.log(boardingTym)
+   }
   chngeBus(){
     window.history.back()
   }
@@ -170,80 +182,81 @@ export class BusDetailsComponent implements OnInit {
      // console.log(err)
    });
 }
-saveBusSeat(){
-  let dataInfo={
-       "searchId":this.searchId,  
-        "seatId":this.selectedSeat.Number,
-        "sRow":this.selectedSeat.Row,  
-        "sColumn":this.selectedSeat.Column,  
-        "zIndex":this.selectedSeat.Zindex,  
-        "sLength":this.selectedSeat.Length,  
-        "sWidth":this.selectedSeat.Width,  
-         "Fare":this.selectedSeat.Fare,  
-         "totalFareWithTaxes":parseInt(this.selectedSeat.Fare)+parseInt(this.selectedSeat.Servicetax), 
-         "serviceTaxAmount":this.selectedSeat.Servicetax,  
-         "serviceTaxPer":"0",  
-         "operatorServiceChargeAbsolute":this.selectedSeat.OperatorServiceCharge,  
-         "operatorServiceChargePercent":"0",  
-         "commission":this.saveBusObj.PartnerFareDatails.Commission,  
-        "available":(this.selectedSeat.IsAvailableSeat=="True")?1:0,  
-        "ladiesSeat":(this.selectedSeat.IsLadiesSeat=="True")?1:0,  
-        "bookedBy":"1",  
-        "Ac":"0",  
-        "sleeper":"0",  
-        "serviceTaxApplicable":"0",  
-        "inventoryType":0,  
-        "boardingPoints":this.seatBlockOneway.BoardingId,  
-        "jType":this.jType,
-        "IP":this.ipAddress,   
-        "userid":this.userDetail.UserID,  
-        "dropingpointId":this.seatBlockOneway.DroppingId
-  }
-  this.service.testPostApiMethod(dataInfo,"Booking/SaveBusSeat").subscribe(res=>{
-  },
-  (err)=>{
-     // this.spinner.hide(); 
-     // this.router.navigate(['login'])
-     // console.log(err)
-   });
-}
-saveBusfare(){
-  let dataInfo={
-    "searchID":this.searchId, 
-    "jtype":this.jType,
-    "seatid":this.selectedSeat.Number, 
-     "CompanyFare":this.selectedSeat.Fare,
-     "CompanyServicetax":this.selectedSeat.Servicetax,
-     "CompanyDiscount":"0", 
-     "CompanyCommission":this.saveBusObj.PartnerFareDatails.Commission,  
-     "Companytds":"0", 
-     "CompanyTotalAmount":parseInt(this.selectedSeat.Fare)+parseInt(this.selectedSeat.Servicetax),
-     "CompanyTax":"0", 
-     "AgentFare":this.netAmount(parseInt(this.selectedSeat.Fare)), 
-     "AgentServicetax":"0", 
-     "AgentDiscount":"0", 
-     "AgentCommission":"0", 
-     "Agenttds":"0", 
-     "AgentTotalAmount":this.netAmount(parseInt(this.selectedSeat.Fare))+parseInt(this.selectedSeat.Servicetax), 
-     "AgentTax":this.comission, 
-     "CustomerFare":this.netAmount(parseInt(this.selectedSeat.Fare)), 
-     "CustomerServicetax":"0", 
-     "CustomerDiscount":"0", 
-     "CustomerCommission":"0", 
-     "Customertds":"0", 
-     "CustomerTotalAmount":this.netAmount(parseInt(this.selectedSeat.Fare))+parseInt(this.selectedSeat.Servicetax), 
-     "CustomerTax":this.comission,
-     "ip":this.ipAddress,
-     "Userid":this.userDetail.UserID, 
-  }
-  this.service.testPostApiMethod(dataInfo,"Booking/SaveBusFare").subscribe(res=>{
-  },
-  (err)=>{
-     // this.spinner.hide(); 
-     // this.router.navigate(['login'])
-     // console.log(err)
-   });
-}
+
+// saveBusSeat(){
+//   let dataInfo={
+//        "searchId":this.searchId,  
+//         "seatId":this.selectedSeat.Number,
+//         "sRow":this.selectedSeat.Row,  
+//         "sColumn":this.selectedSeat.Column,  
+//         "zIndex":this.selectedSeat.Zindex,  
+//         "sLength":this.selectedSeat.Length,  
+//         "sWidth":this.selectedSeat.Width,  
+//          "Fare":this.selectedSeat.Fare,  
+//          "totalFareWithTaxes":parseInt(this.selectedSeat.Fare)+parseInt(this.selectedSeat.Servicetax), 
+//          "serviceTaxAmount":this.selectedSeat.Servicetax,  
+//          "serviceTaxPer":"0",  
+//          "operatorServiceChargeAbsolute":this.selectedSeat.OperatorServiceCharge,  
+//          "operatorServiceChargePercent":"0",  
+//          "commission":this.saveBusObj.PartnerFareDatails.Commission,  
+//         "available":(this.selectedSeat.IsAvailableSeat=="True")?1:0,  
+//         "ladiesSeat":(this.selectedSeat.IsLadiesSeat=="True")?1:0,  
+//         "bookedBy":"1",  
+//         "Ac":"0",  
+//         "sleeper":"0",  
+//         "serviceTaxApplicable":"0",  
+//         "inventoryType":0,  
+//         "boardingPoints":this.seatBlockOneway.BoardingId,  
+//         "jType":this.jType,
+//         "IP":this.ipAddress,   
+//         "userid":this.userDetail.UserID,  
+//         "dropingpointId":this.seatBlockOneway.DroppingId
+//   }
+//   this.service.testPostApiMethod(dataInfo,"Booking/SaveBusSeat").subscribe(res=>{
+//   },
+//   (err)=>{
+//      // this.spinner.hide(); 
+//      // this.router.navigate(['login'])
+//      // console.log(err)
+//    });
+// }
+// saveBusfare(){
+//   let dataInfo={
+//     "searchID":this.searchId, 
+//     "jtype":this.jType,
+//     "seatid":this.selectedSeat.Number, 
+//      "CompanyFare":this.selectedSeat.Fare,
+//      "CompanyServicetax":this.selectedSeat.Servicetax,
+//      "CompanyDiscount":"0", 
+//      "CompanyCommission":this.saveBusObj.PartnerFareDatails.Commission,  
+//      "Companytds":"0", 
+//      "CompanyTotalAmount":parseInt(this.selectedSeat.Fare)+parseInt(this.selectedSeat.Servicetax),
+//      "CompanyTax":"0", 
+//      "AgentFare":this.netAmount(parseInt(this.selectedSeat.Fare)), 
+//      "AgentServicetax":"0", 
+//      "AgentDiscount":"0", 
+//      "AgentCommission":"0", 
+//      "Agenttds":"0", 
+//      "AgentTotalAmount":this.netAmount(parseInt(this.selectedSeat.Fare))+parseInt(this.selectedSeat.Servicetax), 
+//      "AgentTax":this.comission, 
+//      "CustomerFare":this.netAmount(parseInt(this.selectedSeat.Fare)), 
+//      "CustomerServicetax":"0", 
+//      "CustomerDiscount":"0", 
+//      "CustomerCommission":"0", 
+//      "Customertds":"0", 
+//      "CustomerTotalAmount":this.netAmount(parseInt(this.selectedSeat.Fare))+parseInt(this.selectedSeat.Servicetax), 
+//      "CustomerTax":this.comission,
+//      "ip":this.ipAddress,
+//      "Userid":this.userDetail.UserID, 
+//   }
+//   this.service.testPostApiMethod(dataInfo,"Booking/SaveBusFare").subscribe(res=>{
+//   },
+//   (err)=>{
+//      // this.spinner.hide(); 
+//      // this.router.navigate(['login'])
+//      // console.log(err)
+//    });
+// }
 savePassenger(){
   this.titleArr = []
       this.fNameArr= []
@@ -295,8 +308,79 @@ payment(){
   }else{
     this.searchcriteria()
     this.saveBus()
-    this.saveBusSeat()
-    this.saveBusfare()
+    for(let i=0;i<this.selectedSeat.length;i++){
+      let dataInfo={
+        "searchId":this.searchId,  
+         "seatId":this.selectedSeat[i].Number,
+         "sRow":this.selectedSeat[i].Row,  
+         "sColumn":this.selectedSeat[i].Column,  
+         "zIndex":this.selectedSeat[i].Zindex,  
+         "sLength":this.selectedSeat[i].Length,  
+         "sWidth":this.selectedSeat[i].Width,  
+          "Fare":this.selectedSeat[i].Fare,  
+          "totalFareWithTaxes":parseInt(this.selectedSeat[i].Fare)+parseInt(this.selectedSeat[i].Servicetax), 
+          "serviceTaxAmount":this.selectedSeat[i].Servicetax,  
+          "serviceTaxPer":"0",  
+          "operatorServiceChargeAbsolute":this.selectedSeat[i].OperatorServiceCharge,  
+          "operatorServiceChargePercent":"0",  
+          "commission":this.saveBusObj.PartnerFareDatails.Commission,  
+         "available":(this.selectedSeat[i].IsAvailableSeat=="True")?1:0,  
+         "ladiesSeat":(this.selectedSeat[i].IsLadiesSeat=="True")?1:0,  
+         "bookedBy":"1",  
+         "Ac":"0",  
+         "sleeper":"0",  
+         "serviceTaxApplicable":"0",  
+         "inventoryType":0,  
+         "boardingPoints":this.reqObj.BoardingId,  
+         "jType":this.jType,
+         "IP":this.ipAddress,   
+         "userid":this.userDetail.UserID,  
+         "dropingpointId":this.reqObj.DroppingId
+   }
+   this.service.testPostApiMethod(dataInfo,"Booking/SaveBusSeat").subscribe(res=>{
+   },
+   (err)=>{
+      // this.spinner.hide(); 
+      // this.router.navigate(['login'])
+      // console.log(err)
+    });
+    let datainfo={
+      "searchID":this.searchId, 
+      "jtype":this.jType,
+      "seatid":this.selectedSeat[i].Number, 
+       "CompanyFare":this.selectedSeat[i].Fare,
+       "CompanyServicetax":this.selectedSeat[i].Servicetax,
+       "CompanyDiscount":"0", 
+       "CompanyCommission":this.saveBusObj.PartnerFareDatails.Commission,  
+       "Companytds":"0", 
+       "CompanyTotalAmount":parseInt(this.selectedSeat[i].Fare)+parseInt(this.selectedSeat[i].Servicetax),
+       "CompanyTax":"0", 
+       "AgentFare":this.netAmount(parseInt(this.selectedSeat[i].Fare)), 
+       "AgentServicetax":"0", 
+       "AgentDiscount":"0", 
+       "AgentCommission":"0", 
+       "Agenttds":"0", 
+       "AgentTotalAmount":this.netAmount(parseInt(this.selectedSeat[i].Fare))+parseInt(this.selectedSeat[i].Servicetax), 
+       "AgentTax":this.comission, 
+       "CustomerFare":this.netAmount(parseInt(this.selectedSeat[i].Fare)), 
+       "CustomerServicetax":"0", 
+       "CustomerDiscount":"0", 
+       "CustomerCommission":"0", 
+       "Customertds":"0", 
+       "CustomerTotalAmount":this.netAmount(parseInt(this.selectedSeat[i].Fare))+parseInt(this.selectedSeat[i].Servicetax), 
+       "CustomerTax":this.comission,
+       "ip":this.ipAddress,
+       "Userid":this.userDetail.UserID, 
+    }
+    this.service.testPostApiMethod(datainfo,"Booking/SaveBusFare").subscribe(res=>{
+    },
+    (err)=>{
+       // this.spinner.hide(); 
+       // this.router.navigate(['login'])
+       // console.log(err)
+     });
+    }
+  
     this.savePassenger()
       // this.bookTckt()
       // if(this.reqObj.tripType=='1'){

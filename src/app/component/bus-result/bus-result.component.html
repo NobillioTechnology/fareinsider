@@ -512,6 +512,10 @@
 																	</div>
 																</div>
 																<div class="col-lg-12">
+																	<ul class="dateTimeList">
+																		<li>Total Amount:<strong>{{amount}}</strong></li>
+																		<li>Seats No.:<strong><span *ngFor="let temp of seatArr">{{temp.Number}},</span></strong></li>
+																	</ul>
 																	<button type="button" class="btn-confirm" (click)="blockSeat()">Confirm Seats</button>
 																</div>
 															</div>

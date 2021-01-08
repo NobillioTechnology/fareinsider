@@ -49,7 +49,7 @@ export class IndexComponent implements OnInit {
       source: new FormControl('',[Validators.required]),
       destination: new FormControl('',[Validators.required]),
       fromDate: new FormControl('',[Validators.required]),
-      toDate: new FormControl(''),
+      // toDate: new FormControl(''),
      
     
     }) 
@@ -319,16 +319,17 @@ export class IndexComponent implements OnInit {
     //   }
     // })
     this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
-    this.returndate = new Date(this.busForm.value.toDate).getDate() + '-' + (new Date(this.busForm.value.toDate).getMonth() + 1) + '-' + new Date(this.busForm.value.toDate).getFullYear();
+    // this.returndate = new Date(this.busForm.value.toDate).getDate() + '-' + (new Date(this.busForm.value.toDate).getMonth() + 1) + '-' + new Date(this.busForm.value.toDate).getFullYear();
     if(this.busForm.value.tripTyp=='1'){
       this.returndate=this.journeydate
           this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.sourceId,'destinationId':this.destinationId,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}})
-    }else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate==''){
-      this.errMsg='1'
-    }else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate!=''){
-      this.errMsg='0'
-          this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.sourceId,'destinationId':this.destinationId,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}})
     }
+    // else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate==''){
+    //   this.errMsg='1'
+    // }else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate!=''){
+    //   this.errMsg='0'
+    //       this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.sourceId,'destinationId':this.destinationId,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}})
+    // }
   
   
     // if(this.busForm.value.tripTyp=='1'){

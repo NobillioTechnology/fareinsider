@@ -227,10 +227,10 @@
 											<input type="radio" class="custom-control-input" id="customRadio3" value="1" name="tripTyp" formControlName="tripTyp" checked>
 											<label class="custom-control-label" for="customRadio3">One way</label>
 										  </div>
-										  <div class="custom-control custom-radio custom-control-inline">
+										  <!-- <div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input" id="customRadio4" value="2" name="tripTyp" formControlName="tripTyp">
 											<label class="custom-control-label" for="customRadio4">Round way</label>
-										  </div>
+										  </div> -->
 									</div>
 								</div>
 								<div class="col-lg-12">
@@ -279,11 +279,11 @@
 												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate">
 											</div>
 											<p style="color:#fd653c;" *ngIf="busForm.get('fromDate').hasError('required') && busForm.get('fromDate').dirty">*Please enter journey date</p>
-											<div class="date1" *ngIf="busForm.value.tripTyp=='2'">
+											<!-- <div class="date1" *ngIf="busForm.value.tripTyp=='2'">
 												<label>Return Date</label>
 												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" placeholder="dd-mm-yyyy" name="toDate" formControlName="toDate">
 											</div>
-											<p style="color:#fd653c;" *ngIf="errMsg=='1'">*Please enter return date</p>
+											<p style="color:#fd653c;" *ngIf="errMsg=='1'">*Please enter return date</p> -->
 										</div>
 									</div>
 								</div>
