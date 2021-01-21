@@ -3,7 +3,9 @@ import { Router} from '@angular/router';
 import { RestDataService } from '../../rest-data.service';
 import { HeroService } from '../../hero.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+// import { saveAs } from 'file-saver';
+// import { FileSaver }  from 'angular-file-saver';
 @Component({
   selector: 'app-bus-result',
   templateUrl: './bus-result.component.html',
@@ -18,8 +20,9 @@ export class BusResultComponent implements OnInit {
   destination:any;
   action:any=-1;
   rowLayout:any=[];
+  rowLayoutUpper:any=[];
   seatLayout:any=[];
-  isSelect:any=-1;
+  // isSelect:any=-1;
   seatObj:any={};
   data:any={};
   flag:any=1;
@@ -31,7 +34,8 @@ export class BusResultComponent implements OnInit {
   mintime:any;
   maxtime:any;
   isAct:any;
-  isActive:any;
+  isActiveTym:any;
+  isActive:any=false;
   mintimeArvl:any;
   maxtimeArvl:any;
   busOprtArr:any=[];
@@ -39,9 +43,29 @@ export class BusResultComponent implements OnInit {
   boardingPointArr:any=[];
   BuspickUpArr:any=[];
   seatArr:any=[];
-  amount:any=0
+  amount:any=0;
+  totalAmm:any=0;
+  deckType:any='lower';
+  isActiveDeck:any='lower';
+  index:any;
+  busForm: any = FormGroup;
+  busSrcList:any=[];
+  busDesList:any=[];
+  // errMsg:any='0';
+  sourceId:any;
+  destinationId:any;
+  journeydate:any;
+  searchFlag:any='0';
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute) {
+    this.busForm = new FormGroup({
+      // tripTyp:new FormControl('',[Validators.required]),
+      source: new FormControl('',[Validators.required]),
+      destination: new FormControl('',[Validators.required]),
+      fromDate: new FormControl('',[Validators.required]),
+      // toDate: new FormControl(''),
+     
     
+    }) 
    }
 
   ngOnInit(): void {
@@ -67,6 +91,73 @@ export class BusResultComponent implements OnInit {
     // },10000)
    
   }
+  // saveAFile(): void {
+  //   const dlink: HTMLAnchorElement = document.createElement('a');
+  //   dlink.download = 'myfile.txt'; // the file name
+  //   const myFileContent: string = 'I am a text file! 😂';
+  //   dlink.href = 'data:text/plain;charset=utf-16,' + myFileContent;
+  //   dlink.click(); // this will trigger the dialog window
+  //   dlink.remove();
+  // }
+  // savetoTextFile(temp) {
+  //   (function() {
+  //     var textFile = null,
+  //       makeTextFile = function(text) {
+  //         var data = new Blob([text], {
+  //           type: 'text/plain'
+  //         });
+  //         if (textFile !== null) {
+  //           window.URL.revokeObjectURL(textFile);
+  //         }
+  //         textFile = window.URL.createObjectURL(data);
+  //         // console.log("saveTxt====="+textFile)
+  //         return textFile;  
+  //       }; 
+  //       var array=JSON.stringify(temp)
+  //       let a = document.createElement('a')
+  //       a.href =  makeTextFile(array);
+  //       a.download = 'myresponse.txt'
+  //       document.body.appendChild(a)
+  //       a.click()
+  //       document.body.removeChild(a)
+       
+  //   })();
+  //   }
+  //   saveReqtoTextFile(temp) {
+  //     (function() {
+  //       var textFile = null,
+  //         makeTextFile = function(text) {
+  //           var data = new Blob([text], {
+  //             type: 'text/plain'
+  //           });
+  //           if (textFile !== null) {
+  //             window.URL.revokeObjectURL(textFile);
+  //           }
+  //           textFile = window.URL.createObjectURL(data);
+  //           // console.log("saveTxt====="+textFile)
+  //           return textFile;  
+  //         }; 
+  //         // var array=JSON.stringify(temp)
+  //         // makeTextFile(array);
+  //         const dlink: HTMLAnchorElement = document.createElement('a');
+  //         dlink.download = 'myrequestfile.txt'; // the file name
+  //         // const myFileContent: string = 'I am a text file! ';
+  //         dlink.href =  makeTextFile(temp);
+  //         dlink.click(); // this will trigger the dialog window
+  //         dlink.remove();
+  //     })();
+  //     }
+  saveTextfileBus(obj){
+    let dataInfo={
+      "Method": "SearchBus",
+      "Services" :"Bus",
+      "Data" :JSON.stringify(obj)
+    }
+    this.service.testPostApiMethod(dataInfo,"Comman/SaveLogs").subscribe(res=>{
+    },
+    (err)=>{
+     }); 
+  }
   availableBuses(){
     // this.spinner.show();
     this.service.getApiMethod(`Buses/AvailableBuses?sourceId=${this.reqObj.sourceId}&destinationId=${this.reqObj.destinationId}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripType}&userType=5&returnDate=${this.reqObj.returnDate}`).subscribe(res=>{
@@ -74,18 +165,24 @@ export class BusResultComponent implements OnInit {
     if(res.ResponseStatus==200){
       // this.spinner.hide();
       this.busList=res.AvailableTrips;
+     if(this.searchFlag=='1'){ 
+      this.saveTextfileBus(`Buses/AvailableBuses?sourceId=${this.reqObj.sourceId}&destinationId=${this.reqObj.destinationId}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripType}&userType=5&returnDate=${this.reqObj.returnDate}`)
+      this.saveTextfileBus(res)
+    }
       this.source=this.reqObj.srcName
       this.destination=this.reqObj.destName
       let tempArr={bustypeObj:[],bustypeJson:[]}
       if(this.busList.length!=0){
-        this.busList.find((item,index)=>{
-          if(tempArr.bustypeObj.indexOf(item.BusType)==-1){
-            tempArr.bustypeObj.push(item.BusType)
-            tempArr.bustypeJson.push({"bustypeName":item.BusType,"isChkd":false}) 
-          } 
-        })
-        this.bustypeArr=tempArr
+        // this.busList.find((item,index)=>{
+        //   if(tempArr.bustypeObj.indexOf(item.BusType)==-1){
+        //     tempArr.bustypeObj.push(item.BusType)
+        //     tempArr.bustypeJson.push({"bustypeName":item.BusType,"isChkd":false}) 
+        //   } 
+        // })
+        // this.bustypeArr=tempArr
         // console.log("bustypes====>"+JSON.stringify(this.bustypeArr))
+        this.bustypeArr=[{"bustypeName":'AC Semi-Sleeper',"isChkd":false,"busTypeId":1},{"bustypeName":'AC Sleeper',"isChkd":false,"busTypeId":2},
+        {"bustypeName":'Non-AC Semi-Sleeper',"isChkd":false,"busTypeId":3},{"bustypeName":'Non-AC Sleeper',"isChkd":false,"busTypeId":4}]
       }
       let oprtArr={busOprObj:[],busOprJson:[]}
       if(this.busList.length!=0){
@@ -144,6 +241,13 @@ export class BusResultComponent implements OnInit {
   //     // console.log(err)
   //   });
   // }
+  searchAgain(){
+   this.searchFlag='1'
+    this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
+this.reqObj={"sourceId":this.sourceId,"destinationId":this.destinationId,"journeyDate":this.journeydate,"tripType":'1',"returnDate":this.journeydate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}
+  this.availableBuses()
+console.log("search again===="+JSON.stringify(this.reqObj))
+}
   selectSeat(val,obj){
       this.actionType=val;
       this.busObj=obj
@@ -153,25 +257,75 @@ export class BusResultComponent implements OnInit {
        
         if(res.ResponseStatus==200){
           // this.spinner.hide();
+          this.saveTextfileBus(`Buses/TripDetails?tripId=${this.busObj.Id}&sourceId=${this.busObj.SourceId}&destinationId=${this.busObj.DestinationId}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripType}&userType=5&provider=${this.busObj.Provider}&travelOPerator=${this.busObj.Travels}&user=''&returnDate=${this.reqObj.returnDate}`)
+          this.saveTextfileBus(res)
           this.seatLayout=res.Seats;
+          let lowerDeck=[];
+          let upperdeck=[];
+         for(let a=0; a<this.seatLayout.length; a++){
+         if(this.seatLayout[a].Zindex==0){
+          lowerDeck.push(this.seatLayout[a])
+         }else if(this.seatLayout[a].Zindex==1)
+         upperdeck.push(this.seatLayout[a])
+         }
           this.rowLayout=[]
-          for(let i=1; i<=this.seatLayout[this.seatLayout.length-1].Row; i++){
+          for(let i=1; i<=lowerDeck[lowerDeck.length-1].Row; i++){
             this.rowLayout.push({'Row':i,'Seats':[]})
           }
           // console.log("row===>"+JSON.stringify(this.rowLayout))
          
             for(let k=0;k<this.rowLayout.length;k++){
-              for(let j=0;j<this.seatLayout.length;j++){
-              if(this.rowLayout[k].Row==this.seatLayout[j].Row){
-            //     alert("k===="+k)
-            //     alert("j====="+j)
-            //     alert("new======="+this.rowLayout[k].Row)
-            // alert("old========="+this.seatLayout[j].Row)
-            this.rowLayout[k].Seats.push(this.seatLayout[j])
+              for(let j=0;j<lowerDeck.length;j++){
+              if(this.rowLayout[k].Row==lowerDeck[j].Row){
+                if(k==0){
+                  this.rowLayout[k].Seats.push(lowerDeck[j])
+                }else if(this.rowLayout[k-1].Seats.length==1){
+                  // alert(this.rowLayout[k-1].Seats[0].Column-1)
+                  let col= this.rowLayout[k-1].Seats[0].Column-1
+                  for(let l=0;l<col;l++){
+                
+                    this.rowLayout[k-1].Seats.splice(l,0,{})
+                  }
+                  this.rowLayout[k].Seats.push(lowerDeck[j])
+                }else{
+                  this.rowLayout[k].Seats.push(lowerDeck[j])
+                }
+           
           }
         } 
-        // console.log("seatssssss=====>"+JSON.stringify(this.rowLayout))
-          }     
+          }  
+         
+        
+//  console.log("seatssssss=====>"+JSON.stringify(this.rowLayout))
+
+ if(upperdeck.length!=0){
+   this.rowLayoutUpper=[]
+ for(let i=1; i<=upperdeck[upperdeck.length-1].Row; i++){
+   this.rowLayoutUpper.push({'Row':i,'Seats':[]})
+ }
+ // console.log("row===>"+JSON.stringify(this.rowLayoutUpper))
+
+   for(let k=0;k<this.rowLayoutUpper.length;k++){
+     for(let j=0;j<upperdeck.length;j++){
+     if(this.rowLayoutUpper[k].Row==upperdeck[j].Row){
+      if(k==0){
+        this.rowLayoutUpper[k].Seats.push(upperdeck[j])
+      }else if(this.rowLayoutUpper[k-1].Seats.length==1){
+        // alert(this.rowLayout[k-1].Seats[0].Column-1)
+        let col= this.rowLayoutUpper[k-1].Seats[0].Column-1
+        for(let l=0;l<col;l++){
+      
+          this.rowLayoutUpper[k-1].Seats.splice(l,0,{})
+        }
+        this.rowLayoutUpper[k].Seats.push(upperdeck[j])
+      }else{
+        this.rowLayoutUpper[k].Seats.push(upperdeck[j])
+      }
+  //  this.rowLayoutUpper[k].Seats.push(upperdeck[j])
+ }
+} 
+ }   }  
+// console.log("seatssssssUppr=====>"+JSON.stringify(this.rowLayoutUpper))
             }
        },
      
@@ -180,6 +334,14 @@ export class BusResultComponent implements OnInit {
         // this.router.navigate(['login'])
         // console.log(err)
       });
+      this.seatArr=[] 
+      this.totalAmm=0
+      this.deckType='lower'
+      this.isActiveDeck='lower'
+  }
+  chngedeck(val){
+    this.deckType=val
+    this.isActiveDeck=val
   }
   showBDpoints(val,obj){
     this.action=val;
@@ -193,13 +355,12 @@ timeConvert(val){
     console.log(boardingTym)
    }
   selectYourSeat(val,obj){
-    obj.isActive=true
-    alert("active====="+obj.isActive)
-    alert("ladieseat====="+obj.IsLadiesSeat)
-    this.isSelect=val
+    // alert("active====="+obj.isActive)
+    // alert("ladieseat====="+obj.IsLadiesSeat)
+    // this.isSelect=val
     this.seatObj=obj
     var flag=0
-    if(this.seatArr.length!=0){
+    if(this.seatArr.length!=0 && this.seatArr.length<6){
       this.seatArr.find((item,index)=>{
         if(item.Number==this.seatObj.Number){
          flag=1
@@ -208,11 +369,40 @@ timeConvert(val){
       if(flag==0){
         this.seatArr.push(this.seatObj)
         this.amount=this.amount+parseInt(this.seatObj.Fare)
+        this.totalAmm=this.amount.toLocaleString('en-IN')
+      
       }
-    }else{
+      if(obj.isActive==true){
+        obj.isActive=false
+        for(let i=0;i<this.seatArr.length;i++){
+          if (this.seatArr[i].Number == this.seatObj.Number) {
+          this.seatArr.splice(i,1);
+        }}
+        this.amount=this.amount-parseInt(this.seatObj.Fare)
+        this.totalAmm=this.amount.toLocaleString('en-IN')
+        console.log("spliced===="+JSON.stringify(this.seatArr))
+      }else if(obj.isActive==undefined || obj.isActive==false){
+        obj.isActive=true
+      }
+    }else if(this.seatArr.length==0){
       this.seatArr.push(this.seatObj) 
       this.amount=this.amount+parseInt(this.seatObj.Fare)
+      this.totalAmm=this.amount.toLocaleString('en-IN')
+      console.log("pushed===="+JSON.stringify(this.seatArr))
+        obj.isActive=true
+    }else{
+      if(obj.isActive==true){
+        obj.isActive=false
+        for(let i=0;i<this.seatArr.length;i++){
+          if (this.seatArr[i].Number == this.seatObj.Number) {
+          this.seatArr.splice(i,1);
+        }}
+        this.amount=this.amount-parseInt(this.seatObj.Fare)
+        this.totalAmm=this.amount.toLocaleString('en-IN')
+        console.log("spliced===="+JSON.stringify(this.seatArr))
+      }
     }
+  
 
     // localStorage.setItem("seatSelected", JSON.stringify(this.seatArr))
     // alert("availableSeat"+this.seatObj.IsAvailableSeat)
@@ -222,11 +412,10 @@ timeConvert(val){
     // alert("seat====="+JSON.stringify(this.seatObj))
   }
   blockSeat(){
-    // alert(this.reqObj.tripType)
-    // alert(this.flag)
+    // alert("b_ID"+this.data.boardingdId)
+    // alert("d_ID"+this.data.dropingId)
     let searchId=Math.floor(Math.random() * 1000000);
     localStorage.setItem("searchId",searchId.toString())
-    
     if(this.reqObj.tripType=='1'){
       localStorage.setItem("saveBusObj", JSON.stringify(this.busObj))
       localStorage.setItem("seatSelected", JSON.stringify(this.seatArr))
@@ -253,7 +442,7 @@ timeConvert(val){
     // }
     // console.log("oneway====>"+JSON.stringify(this.onewayObj))
     // localStorage.setItem('onewayObject', JSON.stringify(this.onewayObj));
-      this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'BusType':this.busObj.BusType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime,'tripType':this.reqObj.tripType,'noOfSeats':this.seatArr.length,"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2]}})
+      this.router.navigate(['bus-details'],{ queryParams: {'DisplayName':this.busObj.DisplayName,'SeatType':this.busObj.SeatType,'source':this.source,'destination':this.destination,'Journeydate':this.busObj.Journeydate,'Duration':this.busObj.Duration,'boardingPoint':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-1],'boardingTime':this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-3],'dropingPoint':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-1],'dropingTime':this.data.dropingId.split('~')[this.data.dropingId.split('~').length-3],'DepartureTime':this.busObj.DepartureTime,'ArrivalTime':this.busObj.ArrivalTime,'tripType':this.reqObj.tripType,'noOfSeats':this.seatArr.length,"BoardingId": this.data.boardingdId.split('~')[this.data.boardingdId.split('~').length-2],"DroppingId":this.data.dropingId.split('~')[this.data.dropingId.split('~').length-2]}})
     }
     // else if(this.reqObj.tripType=='2' && this.flag==1){
     //   localStorage.setItem("saveBusObj", JSON.stringify(this.busObj))
@@ -310,8 +499,8 @@ timeConvert(val){
   }
   checkBusType(val){
     // alert(JSON.stringify(val))
-    if(this.BusTypArr.indexOf(val.bustypeName)==-1){
-      this.BusTypArr.push(val.bustypeName)
+    if(this.BusTypArr.indexOf(val.busTypeId)==-1){
+      this.BusTypArr.push(val.busTypeId)
     }
   }
   checkBusOpr(val){
@@ -334,7 +523,7 @@ timeConvert(val){
   selectarrTime(val,tem){
     this.mintimeArvl=val
     this.maxtimeArvl=tem
-    this.isActive=val
+    this.isActiveTym=val
  
    
   }
@@ -346,14 +535,17 @@ clearFilter(){
         this.mintime=''
         this.maxtime=''
         // this.price=''
+        this.isAct=''
+        this.isActiveTym=''
         this.BusTypArr=[]
         this.BusOprArr=[]
+        this.BuspickUpArr=[]
         this.filtersection='1'
         this.availableBuses()
       }
 filter(){
-        this.availableBuses()
-        setTimeout(()=>{
+        // this.availableBuses()
+        // setTimeout(()=>{
           let tempData=[]
           if(this.BusTypArr.length!=0){
             let busArr=[]
@@ -361,7 +553,7 @@ filter(){
                 this.busList.find((item,index)=>{
                   this.BusTypArr.find((temp,ind) =>{
                     // alert(temp)
-                      if(item.BusType==temp){
+                      if(item.SeatType==temp){
                         busArr.push(item)
                        }
                     })
@@ -372,7 +564,7 @@ filter(){
                 tempData.find((item,index)=>{
                   this.BusTypArr.find((temp,ind) =>{
                     // alert(temp)
-                    if(item.BusType==temp){
+                    if(item.SeatType==temp){
                       busArr.push(item)
                      }
                   })
@@ -568,9 +760,64 @@ filter(){
      
         this.busList=tempData
         console.log("filterfinal=====>"+JSON.stringify(this.busList))
-         },3000)
+        //  },3000)
          this.filtersection='1'
       }
+      searchSrcBus(){
+        if(this.busForm.value.source.length>2 && this.busForm.value.source.length<6){
+          // alert("inside")
+        this.service.testGetApiMethod(`Comman/BusCity?City=${this.busForm.value.source}`).subscribe(res=>{
+       console.log("getbuscity ====>"+JSON.stringify(res.Data)); 
+        if(res.Status==true){
+          if(res.Data!=null){
+            this.busSrcList=[]
+            this.busSrcList=res.Data;
+          }   
+        }
+       },
+       (err)=>{
+      });
+      } else {
+        //alert("ddddd")
+        // console.log("========="+JSON.stringify(this.busSrcList))
+        this.busSrcList.find((item,index)=>{
+          // console.log(item.City+"========="+this.busForm.value.source.trim())
+          if(item.City==this.busForm.value.source.trim()){
+            this.sourceId=item.Id
+            //alert("4444"+this.sourceId)
+            return 1;
+          }
+        }) 
+      }
+      }
+      searchDesBus(){
+        if(this.busForm.value.destination.length>2 && this.busForm.value.destination.length<6){
+          // alert("inside")
+        this.service.testGetApiMethod(`Comman/BusCity?City=${this.busForm.value.destination}`).subscribe(res=>{
+      //  console.log("getbuscity ====>"+JSON.stringify(res.Data)); 
+        if(res.Status==true){
+          if(res.Data!=null){
+            this.busDesList=[]
+            this.busDesList=res.Data;
+          }   
+        }
+       },
+       (err)=>{
+      });
+      } else {
+        //alert("ddddd")
+        // console.log("========="+JSON.stringify(this.busDesList))
+        this.busDesList.find((item,index)=>{
+          // console.log(item.City+"========="+this.busForm.value.destination.trim())
+          if(item.City==this.busForm.value.destination.trim()){
+            this.destinationId=item.Id
+            //alert("4444"+this.sourceId)
+            return 1;
+          }
+        }) 
+      }
+      }
+    
 }
 
 // let dataInfo={

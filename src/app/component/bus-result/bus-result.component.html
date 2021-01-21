@@ -3,7 +3,7 @@
 		<div class="container">
 				<div class="m-modify">Modify Search<span><i class="fas fa-chevron-down"></i></span></div>
 				<div class="modify-box bus-modofy">
-				<form>
+				<form [formGroup]="busForm">
 					<div class="row">
                     	<div class="col-lg-10 col-md-12">
                         <div class="row">
@@ -12,19 +12,32 @@
 								<div class="modify-city">
 									<div class="m-from">
 										<label>from</label>
-										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland"> -->
+										<input type="text" class="form-control" list="busfrom"  name="source" formControlName="source" autocomplete="off" (keyup)="searchSrcBus()">
+										<datalist id="busfrom" *ngIf="busSrcList.length!=0">
+											<option value="{{temp.City}}" *ngFor="let temp of busSrcList">
+										  </datalist>
 									</div>
 								</div>
+								<p style="color:#fd653c;" *ngIf="busForm.get('source').hasError('required') && busForm.get('source').dirty">*Please enter source</p>
+
 							</div>
 						</div>
+						
                         <div class="col-lg-4 col-md-4">
 							<div class="form-group">
 								<div class="modify-city">
 									<div class="m-to">
 										<label>To</label>
-										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland"> -->
+										<input type="text" class="form-control" list="busTo"  name="destination" formControlName="destination" autocomplete="off"  (keyup)="searchDesBus()">
+										<datalist id="busTo" *ngIf="busDesList.length!=0">
+											<option value="{{temp.City}}" *ngFor="let temp of busDesList">
+										  </datalist>
 									</div>
 								</div>
+								<p style="color:#fd653c;" *ngIf="busForm.get('destination').hasError('required') && busForm.get('destination').dirty">*Please enter destination</p>
+
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4">
@@ -32,16 +45,20 @@
 								<div class="m-dateclass">
 									<div class="m-date">
 										<label>Date</label>
-										<input type="text" class="form-control date-icon" placeholder="19 Apr 2019">
+										<!-- <input type="text" class="form-control date-icon" placeholder="19 Apr 2019"> -->
+										<input type="date"  class="form-control date-icon" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate">
+
  									</div>
 								</div>
+								<p style="color:#fd653c;" *ngIf="busForm.get('fromDate').hasError('required') && busForm.get('fromDate').dirty">*Please enter journey date</p>
+
 							</div>
 						</div>
                         </div>
                         </div>
 						<div class="col-lg-2 col-md-12">
 							<div class="form-group">
- 								<button class="btn-search" type="button">Search Again</button>
+ 								<button class="btn-search" type="button" [disabled]=busForm.invalid (click)="searchAgain()">Search Again</button>
 							</div>
  						</div>
 					</div>
@@ -78,7 +95,7 @@
 				<div class="container">
 					<div class="search-filter aircraft bustype">
 						<h2>Bus Type</h2>
-						<div class="custom-control custom-checkbox" *ngFor="let temp of bustypeArr.bustypeJson">
+						<div class="custom-control custom-checkbox" *ngFor="let temp of bustypeArr">
 							<input type="checkbox" class="custom-control-input" id="{{temp.bustypeName}}" name="bustypeName" [(ngModel)]="temp.isChkd" (change)="checkBusType(temp)">
 							<label class="custom-control-label" for="{{temp.bustypeName}}">{{temp.bustypeName}}</label>
 						</div>
@@ -118,10 +135,10 @@
 						<div class="depart-time">
 							<p> To {{destination}}</p>
 							<ul>
-								<li (click)="selectarrTime('00:00','06:00')"><a [ngClass]="{active:isActive=='00:00' } "><span></span>00-06</a></li>
-								<li (click)="selectarrTime('06:00','12:00')"><a [ngClass]="{active:isActive=='06:00' } "><span></span>06-12</a></li>
-								<li (click)="selectarrTime('12:00','18:00')"><a [ngClass]="{active:isActive=='12:00' } "><span></span>12-18</a></li>
-								<li (click)="selectarrTime('18:00','00:00')"><a [ngClass]="{active:isActive=='18:00' } "><span></span>18-00</a></li>
+								<li (click)="selectarrTime('00:00','06:00')"><a [ngClass]="{active:isActiveTym=='00:00' } "><span></span>00-06</a></li>
+								<li (click)="selectarrTime('06:00','12:00')"><a [ngClass]="{active:isActiveTym=='06:00' } "><span></span>06-12</a></li>
+								<li (click)="selectarrTime('12:00','18:00')"><a [ngClass]="{active:isActiveTym=='12:00' } "><span></span>12-18</a></li>
+								<li (click)="selectarrTime('18:00','00:00')"><a [ngClass]="{active:isActiveTym=='18:00' } "><span></span>18-00</a></li>
 							</ul>
 						</div>
 					</div>
@@ -305,13 +322,17 @@
 						<li><a>Select Seats</a></li>
 					</ul>
 				</div>
+				<!-- <a download="info.txt" id="downloadlink" >Download</a> -->
 				<div class="bus-sec">
 					<div class="row">
 						<div class="col-md-12" *ngFor="let temp of busList let i=index">
 							<div class="busList">
 								<div class="opName">
 									<h2>{{temp.DisplayName}}</h2>
-									<span>{{temp.BusType}}</span>
+									<span *ngIf="temp.SeatType==1">AC Semi-Sleeper</span>
+									<span *ngIf="temp.SeatType==2">AC Sleeper</span>
+									<span *ngIf="temp.SeatType==3">Non-AC Semi-Sleeper</span>
+									<span *ngIf="temp.SeatType==4">Non-AC Sleeper</span>
 								</div>
 								<div class="layout">
 									<div class="layoutLeft"><span>{{temp.DepartureTime}}</span></div>
@@ -334,12 +355,12 @@
 										<div class="colLeft">
 											<div class="seatType">
 												<ul>
-													<li><a id="lowerDeck" class="active">Lower Deck</a></li>
-													<li><a id="upperDeck">Upper Deck</a></li>
+													<li><a id="lowerDeck" [ngClass]="{active:isActiveDeck=='lower'}" (click)="chngedeck('lower')">Lower Deck</a></li>
+													<li><a id="upperDeck" [ngClass]="{active:isActiveDeck=='upper'}" (click)="chngedeck('upper')">Upper Deck</a></li>
 												</ul>
 											</div>
 											<div class="seatBox">
-												<div class="lowerDeckBox">
+												<div class="lowerDeckBox"  *ngIf="deckType=='lower'">
 												<div class="driverSeat"><i class="ico-sprite ico-driver"></i></div>
 												<div class="seatBodyBox">
 													<!-- <ul class="seatMap">
@@ -389,7 +410,7 @@
 												
 													<ul class="seatMap" *ngFor="let temp of rowLayout">
 														<!-- <li class="seating"><i class="ico-sprite ico-avbl"></i> -->
-														<li class="seating"  *ngFor="let item of temp.Seats let i=index" [ngClass]="{active:item.isActive==true,forFemale:item.IsLadiesSeat=='True',booked:item.IsAvailableSeat!='True'}"   (click)="selectYourSeat(i,item)">
+														<li   *ngFor="let item of temp.Seats let i=index"  [ngClass]="{active:item.isActive==true,forFemale:item.IsLadiesSeat=='True',booked:item.IsAvailableSeat!='True',seating:item.Length==1,sleeper:item.Length==2}"   (click)="selectYourSeat(i,item)">
 															<i class="ico-sprite ico-default"></i> 
 															<!-- <i class="ico-sprite icon-avbl" *ngIf="item.IsAvailableSeat=='True' && item.IsLadiesSeat=='False'" ></i> -->
 															<!-- <i class="ico-sprite icon-bked" *ngIf="item.IsAvailableSeat=='False'"></i> -->
@@ -409,10 +430,10 @@
 													</ul>
 												</div>
 												</div>
-												<div class="upperDeckBox" style="display:none;">
+												<div class="upperDeckBox" *ngIf="deckType=='upper'">
 												<div class="blankDiv"></div>
 												<div class="seatBodyBox">
-													<ul class="seatMap">
+													<!-- <ul class="seatMap">
 														<li></li>
 														<li></li>
 														<li></li>
@@ -427,8 +448,8 @@
 														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
 														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
 														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
-													</ul>
-													<ul class="seatMap">
+													</ul> -->
+													<!-- <ul class="seatMap">
 														<li></li>
 														<li></li>
 														<li></li>
@@ -443,14 +464,12 @@
 														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
 														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
 														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
-													</ul>
-													<ul class="seatMap">
-														<li class="sleeper forFemale"><i class="ico-sprite ico-default"></i></li>
-														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
-														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
-														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
-														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
-														<li class="sleeper"><i class="ico-sprite ico-default"></i></li>
+													</ul> -->
+													<ul class="seatMap" *ngFor="let temp of rowLayoutUpper">
+														<!-- <li class="seating"><i class="ico-sprite ico-avbl"></i> -->
+														<li  *ngFor="let item of temp.Seats let i=index"  [ngClass]="{active:item.isActive==true,forFemale:item.IsLadiesSeat=='True',booked:item.IsAvailableSeat!='True',seating:item.Length==1,sleeper:item.Length==2}"   (click)="selectYourSeat(i,item)">
+															<i class="ico-sprite ico-default"></i> 
+														</li>
 													</ul>
 												</div>
 												</div>
@@ -470,21 +489,24 @@
 										<div class="colRight">
 											<ul class="nav nav-tabs">
 												<li class="nav-item">
-													<a class="nav-link active" data-toggle="tab" href="#city+{{i}}">{{source}}-{{destination}}</a>
+													<a class="nav-link active" data-toggle="tab" href="#city{{i}}">{{source}}-{{destination}}</a>
 												</li>
 												<li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#boardingPoints+{{i}}">Boarding Points</a>
+													<a class="nav-link" data-toggle="tab" href="#boardingPoints{{i}}">Boarding Points</a>
 												</li>
 												<li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#droppingPoints+{{i}}">Dropping Points</a>
+													<a class="nav-link" data-toggle="tab" href="#droppingPoints{{i}}">Dropping Points</a>
 												</li>
 											</ul>
 											<div class="tab-content">
-												<div class="tab-pane active" id="city+{{i}}">
+												<div class="tab-pane active" id="city{{i}}">
 													<div class="travelDetail">
 												<thead>
 														<h2>{{temp.DisplayName}}</h2>
-														<p>{{temp.BusType}}</p>
+														<p *ngIf="temp.SeatType==1">AC Semi-Sleeper</p>
+							                            <p *ngIf="temp.SeatType==2">AC Sleeper</p>
+							                            <p *ngIf="temp.SeatType==3">Non-AC Semi-Sleeper</p>
+							                            <p *ngIf="temp.SeatType==4">Non-AC Sleeper</p>
 														<ul class="dateTimeList">
 															<li>Date:<strong>{{temp.Journeydate | date}}</strong></li>
 															<li>Time:<strong>{{temp.DepartureTime}} - {{temp.ArrivalTime}}</strong></li>
@@ -512,18 +534,18 @@
 																	</div>
 																</div>
 																<div class="col-lg-12">
-																	<ul class="dateTimeList">
-																		<li>Total Amount:<strong>{{amount}}</strong></li>
-																		<li>Seats No.:<strong><span *ngFor="let temp of seatArr">{{temp.Number}},</span></strong></li>
+																	<ul class="dateTimeList" *ngIf="seatArr.length!=0">
+																		<li>Total Amount:<strong>{{totalAmm}}</strong></li>
+																		<li>Seats No.:<strong><span *ngFor="let temp of seatArr">{{temp.Number}} &nbsp;</span></strong></li>
 																	</ul>
-																	<button type="button" class="btn-confirm" (click)="blockSeat()">Confirm Seats</button>
+																	<button type="button" class="btn-confirm" [disabled]="(seatArr.length==0 || data.boardingdId==undefined || data.dropingId==undefined)? true:false" (click)="blockSeat()">Confirm Seats</button>
 																</div>
 															</div>
 														</div>
 														</thead>
 													</div>
 												</div>
-												<div class="tab-pane" id="boardingPoints+{{i}}">
+												<div class="tab-pane" id="boardingPoints{{i}}">
 													<div class="travelDetail">
 														<h3>Onward Boarding Points</h3>
 														<table class="table">
@@ -550,7 +572,7 @@
 														</table>
 													</div>
 												</div>
-												<div class="tab-pane" id="droppingPoints+{{i}}">
+												<div class="tab-pane" id="droppingPoints{{i}}">
 													<div class="travelDetail">
 														<h3>Onward Dropping Points</h3>
 														<table class="table">
@@ -590,14 +612,14 @@
 											<div class="colRight fullWidth">
 												<ul class="nav nav-tabs">
 													<li class="nav-item">
-														<a class="nav-link active" data-toggle="tab" href="#boardingPointss1">Boarding Points</a>
+														<a class="nav-link active" data-toggle="tab" href="#boardingPointss{{i}}">Boarding Points</a>
 													</li>
 													<li class="nav-item">
-														<a class="nav-link" data-toggle="tab" href="#droppingPointss1">Dropping Points</a>
+														<a class="nav-link" data-toggle="tab" href="#droppingPointss{{i}}">Dropping Points</a>
 													</li>
 												</ul>
 												<div class="tab-content">
-													<div class="tab-pane active" id="boardingPointss1">
+													<div class="tab-pane active" id="boardingPointss{{i}}">
 														<div class="travelDetail">
 															<h3>Onward Boarding Points</h3>
 															<table class="table">
@@ -624,7 +646,7 @@
 															</table>
 														</div>
 													</div>
-													<div class="tab-pane" id="droppingPointss1">
+													<div class="tab-pane" id="droppingPointss{{i}}">
 														<div class="travelDetail">
 															<h3>Onward Dropping Points</h3>
 															<table class="table">

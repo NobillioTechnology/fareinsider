@@ -1,3 +1,7 @@
 .marginTop10{
     margin-top: 20px;
 }
+.btn-payment[disabled],.btn-payment[disabled]:hover{
+    background: grey;
+    border-color: grey;
+      } 

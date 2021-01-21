@@ -82,7 +82,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(totalAmount).toLocaleString('en-IN')}}</div>	
 													<div class="btn-book" (click)="creditCard('CC')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -150,7 +150,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(totalAmount).toLocaleString('en-IN')}}</div>	
 													<div class="btn-book" (click)="payCard('DC')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -177,7 +177,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(totalAmount).toLocaleString('en-IN')}}</div>	
 													<div class="btn-book"  (click)="payNetBank('NB')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -199,7 +199,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(totalAmount).toLocaleString('en-IN')}}</div>	
 													<div class="btn-book"  (click)="payNetWallet('NW')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -221,7 +221,7 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{totalAmount}}</div>	
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(totalAmount).toLocaleString('en-IN')}}</div>	
 													<div class="btn-book"  (click)="payNetUpi('UPI')"><a>Pay Now</a></div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
@@ -240,9 +240,9 @@
 						<h2>Payment Details</h2>
 						<div class="box-content fare-details payment-details">
 							<ul>
-								<li>Total Flight Price<span><i class="small-inr"></i>{{orderAmount}}</span></li>
-								<li>Convenience Fee<span><i class="small-inr"></i>{{extraCharge}}</span></li>
-								<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{totalAmount}} </span></li>
+								<li>Total Flight Price<span><i class="small-inr"></i>{{(orderAmount).toLocaleString('en-IN')}}</span></li>
+								<li>Convenience Fee<span><i class="small-inr"></i>{{(extraCharge).toLocaleString('en-IN')}}</span></li>
+								<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(totalAmount).toLocaleString('en-IN')}} </span></li>
 								<!-- <li>Earn eCash <span><i class="small-inr"></i>{{this.extraCharge}}</span></li> -->
 							</ul>
 						</div>

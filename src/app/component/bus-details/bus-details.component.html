@@ -8,7 +8,10 @@
 						<div class="busLayoutLeft">
 							<span class="busIcon"><i class="ico-sprite ico-bus"></i></span>
 							<h2>{{reqObj.DisplayName}}</h2>
-							<p>{{reqObj.BusType}}</p>
+							<p *ngIf="reqObj.SeatType==1">AC Semi-Sleeper</p>
+							<p *ngIf="reqObj.SeatType==2">AC Sleeper</p>
+							<p *ngIf="reqObj.SeatType==3">Non-AC Semi-Sleeper</p>
+							<p *ngIf="reqObj.SeatType==4">Non-AC Sleeper</p>
 						</div>
 						<div class="busLayoutRight">
 							<div class="busTop">
@@ -37,8 +40,8 @@
 									</ul>
 								</div>
 								<div class="busSeatsDts">
-									Seat Number(s)
-									<span><strong *ngFor="let temp of selectedSeat">{{temp.Number}},</strong></span>
+									<span>Seat Number(s)</span>
+									<strong *ngFor="let temp of selectedSeat"><b>{{temp.Number}}</b> &nbsp;</strong>
 								</div>
 							</div>
 						</div>
@@ -208,7 +211,7 @@
 					</div>
 				</div>
 				<div class="proceed-payment text-center">
-					<button type="button" class="btn-payment" (click)="payment()">Proceed To Payment</button>
+					<button type="button" class="btn-payment" [disabled]="(isLogin!=2 || adultArr[adultArr.length-1].fname=='' || adultArr[adultArr.length-1].lName=='' || adultArr[adultArr.length-1].age=='')? true:false" (click)="payment()">Proceed To Payment</button>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-12 order-md-2">

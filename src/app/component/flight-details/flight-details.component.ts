@@ -27,6 +27,7 @@ export class FlightDetailsComponent implements OnInit {
   returnFlightFare:any={};
   depFlightFare:any={};
   totalTime:any;
+  totalTimeRet:any;
   reqObj:any={};
   logintab:any='close';
   userDetail:any={};
@@ -61,6 +62,9 @@ export class FlightDetailsComponent implements OnInit {
   actionType:any='close';
   countryList:any=[];
   jType:any;
+  agentCode:any;
+  salechanl:any;
+  travelClass:any;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
   ngOnInit(){
@@ -89,31 +93,55 @@ export class FlightDetailsComponent implements OnInit {
     // }
   })
   this.flightDetail()
+  this.travelClass=localStorage.getItem("travelclass")
   this.userDetail = JSON.parse(localStorage.getItem('userData'));
   this.saveFlyOne=JSON.parse(localStorage.getItem('saveFlyt'));
   console.log('saved flyt====>', this.saveFlyOne);
   this.saveFlyRound=JSON.parse(localStorage.getItem('saveRetFlyt'));
-  if(this.userDetail){
-    this.isLogin=2
-  } 
+  this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    if(this.userDetail){
+      this.isLogin=2
+      this.agentCode=this.userDetail.Acode
+    
+      if(this.userDetail.UserType=="Agent"){
+        this.salechanl='SA-B2B'
+      }
+    }else{
+      this.agentCode='FAREIN0001'
+      this.salechanl='DO-B2B2C'
+    }
+  
   
   this.salesRule()
   for(let i=0;i<this.reqObj.adults;i++){
+    if(this.reqObj.flightType=='1'){
     this.adultArr.push({"title":'Mr',"fname":'',"lName":'',"dob":new Date(),"nationality":'india',"passNo":'122121212',"issCon":'india',"passExp":new Date()})
+  }else if(this.reqObj.flightType=='2'){
+    this.adultArr.push({"title":'Mr',"fname":'',"lName":'',"dob":'',"nationality":'',"passNo":'',"issCon":'',"passExp":''})
   }
+}
   for(let i=0;i<this.reqObj.children;i++){
+    if(this.reqObj.flightType=='1'){
     this.childArr.push({"title":'Mr',"fname":'',"lName":'',"dob":new Date(),"nationality":'india',"passNo":'122121212',"issCon":'india',"passExp":new Date()})
+  }else if(this.reqObj.flightType=='2'){
+    this.childArr.push({"title":'Mr',"fname":'',"lName":'',"dob":'',"nationality":'',"passNo":'',"issCon":'',"passExp":''})
   }
+}
   for(let i=0;i<this.reqObj.infants;i++){
+    if(this.reqObj.flightType=='1'){
     this.infantArr.push({"title":'Mr',"fname":'',"lName":'',"dob":new Date(),"nationality":'india',"passNo":'122121212',"issCon":'india',"passExp":new Date()})
+  }else if(this.reqObj.flightType=='2'){
+    this.infantArr.push({"title":'Mr',"fname":'',"lName":'',"dob":'',"nationality":'',"passNo":'',"issCon":'',"passExp":''})
   }
+}
+
   }
   chngeFlyt(){
     window.history.back()
   }
   salesRule(){
     // this.spinner.show();
-    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0002&agentcode=FAREIN0001&salechannel=DO-B2B2C`).subscribe(res=>{
+    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0002&agentcode=${this.agentCode}&salechannel=${this.salechanl}`).subscribe(res=>{
     // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
     if(res.Status==true){
     this.comissionType= res.Data.commType
@@ -189,7 +217,7 @@ export class FlightDetailsComponent implements OnInit {
           if(item.FlightUId==this.return){
             // this.selReturnFlyt=item
             this.returnFlightDet=item.FlightSegments
-            this.totalTime=this.returnFlightDet[this.returnFlightDet.length-1].AccumulatedDuration
+            this.totalTimeRet=this.returnFlightDet[this.returnFlightDet.length-1].AccumulatedDuration
             this.returnFlightFare=item.FareDetails.ChargeableFares
             return 1;
           }
@@ -206,7 +234,7 @@ export class FlightDetailsComponent implements OnInit {
       this.depFlightFare=res.InternationalFlights[this.ind].FareDetails.ChargeableFares
 
       this.returnFlightDet=res.InternationalFlights[this.ind].IntReturn.FlightSegments;
-      this.totalTime=this.returnFlightDet[this.returnFlightDet.length-1].AccumulatedDuration
+      this.totalTimeRet=this.returnFlightDet[this.returnFlightDet.length-1].AccumulatedDuration
       this.returnFlightFare=res.InternationalFlights[this.ind].FareDetails.ChargeableFares
       let totAmount:any=this.netAmount(this.depFlightFare.NetFare+this.returnFlightFare.NetFare)
       localStorage.setItem("orderAount",totAmount)
@@ -312,7 +340,7 @@ export class FlightDetailsComponent implements OnInit {
       // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
       if(res.Status==true){
         this.isLogin=2
-        localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy"}))
+        localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy",UserName:'Guest Login'}))
         // alert("successfull")
       // this.comissionType= res.Data.commType
       //   this.comission= parseInt(res.Data.commMarkup)
@@ -338,19 +366,9 @@ export class FlightDetailsComponent implements OnInit {
      }); 
   }
   selectCountry(){
-    // alert("hit")
-    // this.airportDesList=[]
-    // this.spinner.show();testGetApiMethod
-    // var data={
-    //   "Country": "india"
-    // }
-    // if(this.myForm.value.goingTo.length>2 && this.myForm.value.goingTo.length<6){
     this.service.testGetApiMethod(`comman/Country`).subscribe(res=>{
     // console.log("getairport ====>"+JSON.stringify(res)); 
     if(res.Status==true){
-      // this.router.navigate(['oneway'])
-      // this.spinner.hide();
-    
       this.countryList=res.Data;
       // console.log("getCountry ====>"+JSON.stringify(this.countryList)); 
     }
@@ -393,7 +411,7 @@ export class FlightDetailsComponent implements OnInit {
       "chd":this.reqObj.children,
       "inf":this.reqObj.infants,
       "cabinClass":this.reqObj.travelClass,
-      "SaleChannel":"DO-B2C",
+      "SaleChannel":this.salechanl,
       "CompanyID":"1",
       "branchCode":"ETL-1",
       "trackid":this.saveFlyOne.flytId,

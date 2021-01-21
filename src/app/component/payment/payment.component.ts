@@ -28,7 +28,8 @@ export class PaymentComponent implements OnInit {
   extraCharge:any;
   ipAddress:any;
   totalAmount: any;
- 
+  agentCode:any;
+  salechanl:any;
   constructor(private router: Router,private service: RestDataService,private route: ActivatedRoute,private ip:IpServiceService) {
 
    }
@@ -37,6 +38,20 @@ export class PaymentComponent implements OnInit {
     this.getIP()
     this.orderId=Math.floor(Math.random() * 1000000);
     this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    if(this.userDetail){
+      // this.isLogin=2
+      this.agentCode=this.userDetail.Acode
+    
+      if(this.userDetail.UserType=="Agent"){
+        this.salechanl='SA-B2B'
+      }
+    }else{
+      this.agentCode='FAREIN0001'
+      this.salechanl='DO-B2B2C'
+    }
+  
+    
     console.log('details from payment=====>', this.userDetail);
   this.saveFlyOne=JSON.parse(localStorage.getItem('saveFlyt'));
   this.saveFlyRound=JSON.parse(localStorage.getItem('saveRetFlyt'));
@@ -46,12 +61,12 @@ export class PaymentComponent implements OnInit {
     this.reqObj=params
   })
   this.salesRule()
-  this.orderAmount=localStorage.getItem("orderAount")
+  this.orderAmount=parseInt(localStorage.getItem("orderAount"))
   this.getExtraCharge('CC')
   }
   salesRule(){
     // this.spinner.show();
-    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0002&agentcode=FAREIN0001&salechannel=DO-B2B2C`).subscribe(res=>{
+    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0002&agentcode=${this.agentCode}&salechannel=${this.salechanl}`).subscribe(res=>{
     console.log("GetSalesRule ====>"+JSON.stringify(res)); 
     if(res.Status==true){
     this.comissionType= res.Data.commType

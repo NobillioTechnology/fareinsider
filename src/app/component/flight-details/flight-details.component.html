@@ -37,7 +37,7 @@
 											<ul class="more-dts">
 												<li><i class="far fa-clock"></i>{{item.Duration}}</li>
 												<li><i class="fas fa-utensils"></i>Paid Meal</li>
-												<li>Economy</li>
+												<li>{{travelClass}}</li>
 											</ul>
 											<span class="dur-line"></span>
 											<ul class="baggage">
@@ -92,7 +92,7 @@
 											<ul class="more-dts">
 												<li><i class="far fa-clock"></i>{{item.Duration}}</li>
 												<li><i class="fas fa-utensils"></i>Paid Meal</li>
-												<li>Economy</li>
+												<li>{{travelClass}}</li>
 											</ul>
 											<span class="dur-line"></span>
 											<ul class="baggage">
@@ -132,7 +132,7 @@
 								<div class="col-lg-9 col-md-10">
 									<div class="review-flight-details">
 										<div class="total-time" *ngIf="i==0 && returnFlightDet.length==1">Total Time: <span>{{item.Duration}}</span></div>
-										<div class="total-time" *ngIf="i==0 && returnFlightDet.length>1">Total Time: <span>{{totalTime}}</span></div>
+										<div class="total-time" *ngIf="i==0 && returnFlightDet.length>1">Total Time: <span>{{totalTimeRet}}</span></div>
 										<div class="depart-dts">
 											<span class="city-head">{{item.IntDepartureAirportName}}, IN</span>
 											<h3>{{item.DepartureDateTime | date:"HH:mm"}}</h3>
@@ -143,7 +143,7 @@
 											<ul class="more-dts">
 												<li><i class="far fa-clock"></i>{{item.Duration}}</li>
 												<li><i class="fas fa-utensils"></i>Paid Meal</li>
-												<li>Economy</li>
+												<li>{{travelClass}}</li>
 											</ul>
 											<span class="dur-line"></span>
 											<ul class="baggage">
@@ -287,7 +287,7 @@
 								</select>
 							</div>
 							<div class="col-lg-2 col-md-3">
-								<input type="text" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
+								<input type="date" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
 							</div>
                             </div>
 						</div>
@@ -316,17 +316,26 @@
 								<div class="row" *ngIf="domInt=='I'" style="margin-bottom: 10px;">
 								<div class="col-lg-3 col-md-12">
 								</div>
+							
 								<div class="col-lg-2 col-md-3">
-									<input type="text" class="form-control" placeholder="Nationality" name="nationality" [(ngModel)]="temp.nationality">
+									<!-- <input type="text" class="form-control" placeholder="Nationality" name="nationality" [(ngModel)]="temp.nationality"> -->
+									<select class="form-control" name="nationality" [(ngModel)]="temp.nationality" (change)="selectCountry()">
+										<option>Country</option>
+										<option *ngFor="let item of countryList" value="{{item.Country}}">{{item.Country}}</option>
+									</select>
 								</div>
 								<div class="col-lg-2 col-md-3">
 									<input type="text" class="form-control" placeholder="Passport No." name="passNo" [(ngModel)]="temp.passNo">
 								</div>
 								<div class="col-lg-2 col-md-3">
-									<input type="text" class="form-control" placeholder="Issuing Country" name="issCon" [(ngModel)]="temp.issCon">
+									<!-- <input type="text" class="form-control" placeholder="Issuing Country" name="issCon" [(ngModel)]="temp.issCon"> -->
+									<select class="form-control" name="issCon" [(ngModel)]="temp.issCon" (change)="selectCountry()">
+										<option>Issuing Country</option>
+										<option *ngFor="let item of countryList" value="{{item.Country}}">{{item.Country}}</option>
+									</select>
 								</div>
 								<div class="col-lg-2 col-md-3">
-									<input type="text" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
+									<input type="date" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
 								</div>
 								</div>
 						</div>
@@ -356,16 +365,24 @@
 								<div class="col-lg-3 col-md-12">
 								</div>
 								<div class="col-lg-2 col-md-3">
-									<input type="text" class="form-control" placeholder="Nationality" name="nationality" [(ngModel)]="temp.nationality">
+									<!-- <input type="text" class="form-control" placeholder="Nationality" name="nationality" [(ngModel)]="temp.nationality"> -->
+									<select class="form-control" name="nationality" [(ngModel)]="temp.nationality" (change)="selectCountry()">
+										<option>Country</option>
+										<option *ngFor="let item of countryList" value="{{item.Country}}">{{item.Country}}</option>
+									</select>
 								</div>
 								<div class="col-lg-2 col-md-3">
 									<input type="text" class="form-control" placeholder="Passport No." name="passNo" [(ngModel)]="temp.passNo">
 								</div>
 								<div class="col-lg-2 col-md-3">
-									<input type="text" class="form-control" placeholder="Issuing Country" name="issCon" [(ngModel)]="temp.issCon">
+									<!-- <input type="text" class="form-control" placeholder="Issuing Country" name="issCon" [(ngModel)]="temp.issCon"> -->
+									<select class="form-control" name="issCon" [(ngModel)]="temp.issCon" (change)="selectCountry()">
+										<option>Issuing Country</option>
+										<option *ngFor="let item of countryList" value="{{item.Country}}">{{item.Country}}</option>
+									</select>
 								</div>
 								<div class="col-lg-2 col-md-3">
-									<input type="text" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
+									<input type="date" class="form-control" placeholder="Passport Expiry" name="passExp" [(ngModel)]="temp.passExp">
 								</div>
 								</div>
 						</div>
@@ -494,7 +511,7 @@
 					</ul>
 				</div> -->
 				<div class="proceed-payment text-center">
-					<button type="button" class="btn-payment" (click)="proceedToPay()">Proceed To Payment</button>
+					<button type="button" class="btn-payment" [disabled]="(isLogin!=2 || adultArr[adultArr.length-1].fname=='' || adultArr[adultArr.length-1].lName=='')? true:false" (click)="proceedToPay()">Proceed To Payment</button>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-12 order-md-2">
@@ -505,19 +522,19 @@
 					</h2>
 					<div class="box-content fare-details"  *ngIf="tripName=='oneway'">
 						<ul>
-							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{fareDetails.ActualBaseFare}}</span></li>
-							<li>Fee & Surcharges<span><i class="small-inr"></i>{{netAmount(fareDetails.Tax)}}</span></li>
-							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{netAmount(fareDetails.NetFare)}} </span></li>
-							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{netAmount(fareDetails.NetFare)}} </span></li>
+							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{(fareDetails.ActualBaseFare).toLocaleString('en-IN')}}</span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>{{(netAmount(fareDetails.Tax)).toLocaleString('en-IN')}}</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{(netAmount(fareDetails.NetFare)).toLocaleString('en-IN')}} </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(netAmount(fareDetails.NetFare)).toLocaleString('en-IN')}} </span></li>
 							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
 						</ul>
 					</div>
 					<div class="box-content fare-details" *ngIf="tripName=='roundway'">
 						<ul>
-							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{(depFlightFare.ActualBaseFare+returnFlightFare.ActualBaseFare).toFixed(2)}}</span></li>
-							<li>Fee & Surcharges<span><i class="small-inr"></i>{{(netAmount(depFlightFare.Tax)+netAmount(returnFlightFare.Tax)).toFixed(2)}}</span></li>
-							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toFixed(2)}} </span></li>
-							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toFixed(2)}} </span></li>
+							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{(depFlightFare.ActualBaseFare+returnFlightFare.ActualBaseFare).toLocaleString('en-IN')}}</span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>{{(netAmount(depFlightFare.Tax)+netAmount(returnFlightFare.Tax)).toLocaleString('en-IN')}}</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toLocaleString('en-IN')}} </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toLocaleString('en-IN')}} </span></li>
 							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
 						</ul>
 					</div>

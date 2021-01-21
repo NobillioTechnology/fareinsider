@@ -10,22 +10,29 @@ export class HeaderComponent implements OnInit {
   isLogin:any=0;
   userDetail:any={}
   username:any;
+  isActive:any;
+  showButn:any=true;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+   
     this.userDetail =JSON.parse(localStorage.getItem('userData'));
-    this.username=this.userDetail.UserName
     if(this.userDetail){
       this.isLogin=2;
+      this.username=this.userDetail.UserName
     }
   }
   home(){
+    this.showButn=true
     this.router.navigate(['index'])
   }
-  customerLogin(){
+  customerLogin(val){
+    this.isActive=val
     this.router.navigate(['customer-login'])
   }
-  agentLogin(){
+  agentLogin(val){
+    this.isActive=val
+    this.showButn=false
     this.router.navigate(['agent-login'])
   }
   logout(){

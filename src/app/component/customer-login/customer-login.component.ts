@@ -65,6 +65,7 @@ export class CustomerLoginComponent implements OnInit {
       // console.log("getairport ====>"+JSON.stringify(res)); 
        if(res.Status==true){
         this.tabType='signIn'
+        this.isActive='signIn'
          // this.router.navigate(['oneway'])
          // this.spinner.hide();
         //  if(res.Data!=null){

@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { RestDataService } from '../../rest-data.service';
 import { HeroService } from '../../hero.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-international-flight',
@@ -33,9 +34,34 @@ export class InternationalFlightComponent implements OnInit {
   filtersection:any='1';
   intConectingFlyt:any={};
   fareRuleInt:any;
-  // IntReturnflight:any=[];
-  
-  constructor(private router: Router,private route: ActivatedRoute,private service: RestDataService,private heroservice:HeroService) { }
+  myForm: any = FormGroup;
+  agentCode:any;
+  salechanl:any;
+  userDetail:any={};
+  airportSrcList:any=[];
+  airportDesList:any=[];
+  source:any;
+  countrySrc:any;
+  destination:any;
+  countryDes:any;
+  flightType:any;
+  journeydate:any;
+  returndate:any;
+  travelClass:any;
+  searchFlag:any='0';
+  constructor(private router: Router,private route: ActivatedRoute,private service: RestDataService,private heroservice:HeroService) {
+    this.myForm = new FormGroup({
+      // selectWay: new FormControl('',[Validators.required]),
+      goingfrom: new FormControl('',[Validators.required]),
+      goingTo: new FormControl('',[Validators.required]),
+      depDate: new FormControl('',[Validators.required]),
+      returnDate: new FormControl(''),
+      // adult: new FormControl('',[Validators.required]),
+      // child: new FormControl('',[Validators.required]),
+      // infant: new FormControl('',[Validators.required]),
+      // class: new FormControl('',[Validators.required]), 	
+    }) 
+   }
 
   ngOnInit(): void {
    
@@ -44,7 +70,22 @@ export class InternationalFlightComponent implements OnInit {
       console.log(params);
       this.reqObj=params
     })
+    this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    if(this.userDetail){
+      // this.isLogin=2
+      this.agentCode=this.userDetail.Acode
+    
+      if(this.userDetail.UserType=="Agent"){
+        this.salechanl='SA-B2B'
+      }
+    }else{
+      this.agentCode='FAREIN0001'
+      this.salechanl='DO-B2B2C'
+    }
+  
     this.availableIntRoundwayFlights()
+    this.travelClass=localStorage.getItem("travelclass")
     setTimeout(()=>{
     let tempArr={airlineObj:[],airlynJson:[]}
     if(this.IntFlights.length!=0){
@@ -59,13 +100,76 @@ export class InternationalFlightComponent implements OnInit {
   },4000)
     this.salesRule()
   }
+  // savetoTextFile(temp) {
+  //   (function() {
+  //     var textFile = null,
+  //       makeTextFile = function(text) {
+  //         var data = new Blob([text], {
+  //           type: 'text/plain'
+  //         });
+  //         if (textFile !== null) {
+  //           window.URL.revokeObjectURL(textFile);
+  //         }
+  //         textFile = window.URL.createObjectURL(data);
+  //         // console.log("saveTxt====="+textFile)
+  //         return textFile;  
+  //       }; 
+  //       var array=JSON.stringify(temp)
+  //       // makeTextFile(array);
+  //       const dlink: HTMLAnchorElement = document.createElement('a');
+  //       dlink.download = 'myresponsefile.txt'; // the file name
+  //       // const myFileContent: string = 'I am a text file! ';
+  //       dlink.href =  makeTextFile(array);
+  //       dlink.click(); // this will trigger the dialog window
+  //       dlink.remove();
+  //   })();
+  //   }
+    // saveReqtoTextFile(temp) {
+    //   (function() {
+    //     var textFile = null,
+    //       makeTextFile = function(text) {
+    //         var data = new Blob([text], {
+    //           type: 'text/plain'
+    //         });
+    //         if (textFile !== null) {
+    //           window.URL.revokeObjectURL(textFile);
+    //         }
+    //         textFile = window.URL.createObjectURL(data);
+    //         // console.log("saveTxt====="+textFile)
+    //         return textFile;  
+    //       }; 
+    //       // var array=JSON.stringify(temp)
+    //       // makeTextFile(array);
+    //       const dlink: HTMLAnchorElement = document.createElement('a');
+    //       dlink.download = 'myrequestfile.txt'; // the file name
+    //       // const myFileContent: string = 'I am a text file! ';
+    //       dlink.href =  makeTextFile(temp);
+    //       dlink.click(); // this will trigger the dialog window
+    //       dlink.remove();
+    //   })();
+    //   }
+    saveTextfile(obj){
+      let dataInfo={
+        "Method": "SearchFlight",
+        "Services" :"Flight",
+        "Data" :JSON.stringify(obj)
+      }
+      this.service.testPostApiMethod(dataInfo,"Comman/SaveLogs").subscribe(res=>{
+      },
+      (err)=>{
+       }); 
+    }
   availableIntRoundwayFlights(){
     // this.spinner.show();
     this.service.getApiMethod(`Flights/AvailableFlights?source=${this.reqObj.source}&destination=${this.reqObj.destination}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripTypeNum}&flightType=${this.reqObj.flightTypeNum}&adults=${this.reqObj.adults}&children=${this.reqObj.children}&infants=${this.reqObj.infants}&travelClass=${this.reqObj.travelClass}&userType=5&returnDate=${this.reqObj.returnDate}`).subscribe(res=>{
     console.log("getflights ====>"+JSON.stringify(res)); 
     if(res.ResponseStatus==200){
       // this.spinner.hide();
+      if(this.searchFlag=='1'){ 
+      this.saveTextfile(`Flights/AvailableFlights?source=${this.reqObj.source}&destination=${this.reqObj.destination}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripTypeNum}&flightType=${this.reqObj.flightTypeNum}&adults=${this.reqObj.adults}&children=${this.reqObj.children}&infants=${this.reqObj.infants}&travelClass=${this.reqObj.travelClass}&userType=5&returnDate=${this.reqObj.returnDate}`)
+      this.saveTextfile(res)}
       this.IntFlights=res.InternationalFlights;
+      
       // let tempArr=[]
       // if(this.IntFlights.length!=0){
       //   this.IntFlights.find((item,index)=>{
@@ -85,6 +189,54 @@ export class InternationalFlightComponent implements OnInit {
     // this.router.navigate(['login'])
     // console.log(err)
   });
+  }
+  searchSrcAirport(){
+    this.airportSrcList=[]
+    // this.spinner.show();testGetApiMethod
+    // var data={
+    //   "Country": "india"
+    // }
+    if(this.myForm.value.goingfrom.length>2 && this.myForm.value.goingfrom.length<6){
+    this.service.testGetApiMethod(`comman/Airport?airport=${this.myForm.value.goingfrom}`).subscribe(res=>{
+   // console.log("getairport ====>"+JSON.stringify(res)); 
+    if(res.Status==true){
+      // this.router.navigate(['oneway'])
+      // this.spinner.hide();
+      if(res.Data!=null){
+      this.airportSrcList=res.Data;
+      } 
+    }
+   },
+   (err)=>{
+    // this.spinner.hide(); 
+    // this.router.navigate(['login'])
+    // console.log(err)
+  });
+  }
+  }
+  searchDesAirport(){
+    this.airportDesList=[]
+    // this.spinner.show();testGetApiMethod
+    // var data={
+    //   "Country": "india"
+    // }
+    if(this.myForm.value.goingTo.length>2 && this.myForm.value.goingTo.length<6){
+    this.service.testGetApiMethod(`comman/Airport?airport=${this.myForm.value.goingTo}`).subscribe(res=>{
+    // console.log("getairport ====>"+JSON.stringify(res)); 
+    if(res.Status==true){
+      // this.router.navigate(['oneway'])
+      // this.spinner.hide();
+      if(res.Data!=null){
+      this.airportDesList=res.Data;
+      }
+    }
+   },
+   (err)=>{
+    // this.spinner.hide(); 
+    // this.router.navigate(['login'])
+    // console.log(err)
+  });
+  }
   }
   selectStop(val){
     this.stop=val
@@ -115,6 +267,8 @@ this.filtersection=val
     this.stop=''
     this.mintime=''
     this.maxtime=''
+    this.isActive=''
+    this.isAct=''
     this.price=''
     this.checkArr=[]
     this.fareTyp=''
@@ -252,7 +406,7 @@ this.filtersection=val
   }
   salesRule(){
     // this.spinner.show();
-    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0002&agentcode=FAREIN0001&salechannel=DO-B2B2C`).subscribe(res=>{
+    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0002&agentcode=${this.agentCode}&salechannel=${this.salechanl}`).subscribe(res=>{
     console.log("GetSalesRule ====>"+JSON.stringify(res)); 
     if(res.Status==true){
     this.comissionType= res.Data.commType
@@ -321,5 +475,25 @@ this.filtersection=val
     let twoInt={"flytId":obj.FlightUId,"carrierCode":obj.IntReturn.FlightSegments[0].OperatingAirlineCode,"FlyNum":obj.IntReturn.FlightSegments[0].FlightNumber,"depdate":obj.IntReturn.FlightSegments[0].DepartureDateTime,"arrdate":obj.IntReturn.FlightSegments[0].ArrivalDateTime,"duration":obj.IntReturn.FlightSegments[0].Duration,"totfare":obj.FareDetails.ChargeableFares.NetFare,"tax":obj.FareDetails.ChargeableFares.Tax,"isconnect":this.isCnct}
     localStorage.setItem("saveRetFlyt", JSON.stringify(twoInt)) 
     this.router.navigate(['flight-details'],{ queryParams: {'index': this.index,'source':this.reqObj.source,'destination':this.reqObj.destination,'journeyDate':this.reqObj.journeyDate,'tripType':this.reqObj.tripTypeNum,'flightType':this.reqObj.flightTypeNum,'adults':this.reqObj.adults,'children':this.reqObj.children,'infants':this.reqObj.infants,'travelClass':this.reqObj.travelClass,'returnDate':this.reqObj.returnDate } }) 
+  }
+  searchAgain(){
+    // alert("ok")
+    this.searchFlag='1'
+    this.journeydate = new Date(this.myForm.value.depDate).getDate() + '-' + (new Date(this.myForm.value.depDate).getMonth() + 1) + '-' + new Date(this.myForm.value.depDate).getFullYear();
+    this.returndate = new Date(this.myForm.value.returnDate).getDate() + '-' + (new Date(this.myForm.value.returnDate).getMonth() + 1) + '-' + new Date(this.myForm.value.returnDate).getFullYear();
+    this.countrySrc= this.myForm.value.goingfrom.split(' ')[this.myForm.value.goingfrom.split(' ').length-2]
+    let src=this.myForm.value.goingfrom.split('(')[this.myForm.value.goingfrom.split('(').length-1]
+    this.source=src.split(')')[src.split(')').length-2]
+    this.countryDes= this.myForm.value.goingTo.split(' ')[this.myForm.value.goingTo.split(' ').length-2]
+    let dest=this.myForm.value.goingTo.split('(')[this.myForm.value.goingTo.split('(').length-1]
+    this.destination=dest.split(')')[dest.split(')').length-2]
+    if(this.countrySrc==this.countryDes){
+     this.flightType=1
+    }else{
+      this.flightType=2
+    }
+    this.reqObj={"source":this.source,"destination":this.destination,"journeyDate":this.journeydate,"flightTypeNum":this.flightType,"returnDate":this.returndate,"tripTypeNum":this.reqObj.tripTypeNum,"adults":this.reqObj.adults,"children":this.reqObj.children,"infants":this.reqObj.infants,"travelClass":this.reqObj.travelClass}
+    this.availableIntRoundwayFlights()
+  
   }
 }

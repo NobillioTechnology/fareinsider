@@ -1,0 +1,4 @@
+.btn-payment[disabled],.btn-payment[disabled]:hover{
+    background: grey;
+    border-color: grey;
+      } 

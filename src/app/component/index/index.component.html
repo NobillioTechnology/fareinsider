@@ -32,7 +32,7 @@
 									<div class="form-group">
 										<div class="destination-box">
 											<label>Depart  from</label>
-											<input type="text" class="form-control" list="srcAirports"  name="goingfrom" formControlName="goingfrom"  (keyup)="searchSrcAirport()">
+											<input type="text" class="form-control" list="srcAirports"  name="goingfrom" formControlName="goingfrom"  (keyup)="searchSrcAirport()" autocomplete="off">
 											<datalist id="srcAirports" *ngIf="airportSrcList.length!=0">
 												<option value="{{temp.Airport}}" *ngFor="let temp of airportSrcList">
 											  </datalist>
@@ -45,7 +45,7 @@
 									<div class="form-group">
 										<div class="destination-box">
 											<label>Going to</label>
-											<input type="text" class="form-control" list="desAirports"  name="goingTo" formControlName="goingTo" (keyup)="searchDesAirport()">
+											<input type="text" class="form-control" list="desAirports"  name="goingTo" formControlName="goingTo" (keyup)="searchDesAirport()" autocomplete="off">
 											
 											<datalist id="desAirports" *ngIf="airportDesList.length!=0">
 												<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList"></option>
@@ -148,7 +148,7 @@
 								<div class="col-lg-12">
 									<div class="btn-group">
 										<button class="btn-search" type="button"  [disabled]=myForm.invalid (click)="availableFlights()">Search offers</button>	
-										<a>more offers<span><img src="../assets/images/arrow.png" alt="" /></span></a>
+										<!-- <a>more offers<span><img src="../assets/images/arrow.png" alt="" /></span></a> -->
 									</div>
 								</div>
 							</div>
@@ -221,18 +221,18 @@
 						<div class="bus-sec" *ngIf="selectionType=='bus'">
 						<form [formGroup]="busForm">
 							<div class="row">
-								<div class="col-lg-12">
+								<!-- <div class="col-lg-12">
 									<div class="form-group">
 										 <div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input" id="customRadio3" value="1" name="tripTyp" formControlName="tripTyp" checked>
 											<label class="custom-control-label" for="customRadio3">One way</label>
-										  </div>
+										  </div> -->
 										  <!-- <div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input" id="customRadio4" value="2" name="tripTyp" formControlName="tripTyp">
 											<label class="custom-control-label" for="customRadio4">Round way</label>
 										  </div> -->
-									</div>
-								</div>
+									<!-- </div>
+								</div> -->
 								<div class="col-lg-12">
 									<div class="form-group">
 										<div class="destination-box">
@@ -242,7 +242,7 @@
 												<option value="{{temp.Name}}"  >
 												
 											  </datalist> -->
-											  <input type="text" class="form-control" list="busfrom"  name="source" formControlName="source" (keyup)="searchSrcBus()">
+											  <input type="text" class="form-control" list="busfrom"  name="source" formControlName="source" autocomplete="off" (keyup)="searchSrcBus()">
 											<datalist id="busfrom" *ngIf="busSrcList.length!=0">
 												<option value="{{temp.City}}" *ngFor="let temp of busSrcList">
 											  </datalist>
@@ -259,7 +259,7 @@
 									<div class="form-group">
 										<div class="destination-box">
 											<label>Going to</label>
-											<input type="text" class="form-control" list="busTo"  name="destination" formControlName="destination"  (keyup)="searchDesBus()">
+											<input type="text" class="form-control" list="busTo"  name="destination" formControlName="destination" autocomplete="off"  (keyup)="searchDesBus()">
 											<datalist id="busTo" *ngIf="busDesList.length!=0">
 												<option value="{{temp.City}}" *ngFor="let temp of busDesList">
 											  </datalist>
@@ -273,7 +273,7 @@
 								</div>
 								<div class="col-lg-12">
 									<div class="form-group">
-										<div class="date-box">
+										<div class="date-box" style="display: block;">
 											<div class="date1">
 												<label>Depart Date</label>
 												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate">
@@ -290,7 +290,7 @@
 								<div class="col-lg-12">
 									<div class="btn-group">
 										<button class="btn-search" type="button" [disabled]=busForm.invalid (click)="searchBuses()">Search offers</button>	
-										<a>more offers<span><img src="../assets/images/arrow.png" alt="" /></span></a>
+										<!-- <a>more offers<span><img src="../assets/images/arrow.png" alt="" /></span></a> -->
 									</div>
 								</div>
 							</div>

@@ -3,9 +3,9 @@
 		<div class="container">
 				<div class="m-modify">Modify Search<span><i class="fas fa-chevron-down"></i></span></div>
 				<div class="modify-box">
-				<form>
+				<form [formGroup]="myForm" name="myForm">
 					<div class="row">
-						<div class="col-lg-12 auto-hide">
+						<!-- <div class="col-lg-12 auto-hide">
 						 <div class="custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx" checked>
 							<label class="custom-control-label" for="customRadio">One way</label>
@@ -15,18 +15,32 @@
 							<label class="custom-control-label" for="customRadio2">Round way</label>
 						  </div>
 						  <span class="close-box"><i class="fas fa-times"></i></span>
-						</div>
+						</div> -->
 						<div class="col-lg-5">
 							<div class="form-group">
 								<div class="modify-city">
 									<div class="m-from">
 										<label>from</label>
-										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland"> -->
+										<input type="text" class="form-control" list="srcAirports"  name="goingfrom" formControlName="goingfrom"  (keyup)="searchSrcAirport()">
+											<datalist id="srcAirports" *ngIf="airportSrcList.length!=0">
+												<option value="{{temp.Airport}}" *ngFor="let temp of airportSrcList">
+											  </datalist>
 									</div>
+									<p style="color:#fd653c;" *ngIf="myForm.get('goingfrom').hasError('required') && myForm.get('goingfrom').dirty">*Please enter source</p>
+
 									<div class="m-to">
 										<label>To</label>
-										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland"> -->
+										<input type="text" class="form-control" list="desAirports"  name="goingTo" formControlName="goingTo" (keyup)="searchDesAirport()">
+											
+										<datalist id="desAirports" *ngIf="airportDesList.length!=0">
+											<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList"></option>
+											
+										  </datalist>
 									</div>
+									<p style="color:#fd653c;" *ngIf="myForm.get('goingTo').hasError('required') && myForm.get('goingTo').dirty">*Please enter destination</p>
+
 								</div>
 							</div>
 						</div>
@@ -35,27 +49,29 @@
 								<div class="m-dateclass">
 									<div class="m-date">
 										<label>Date</label>
-										<input type="text" class="form-control" placeholder="19 Apr 2019">
-										<input type="text" class="form-control date-icon" placeholder="Return">
+										<!-- <input type="text" class="form-control" placeholder="19 Apr 2019"> -->
+										<input type="date"  placeholder="dd-mm-yyyy" class="form-control" name="depDate" formControlName="depDate" >
+
+										<input type="date" class="form-control date-icon" placeholder="Return" name="returnDate" formControlName="returnDate">
 									</div>
-									<div class="m-traveller">
+									<!-- <div class="m-traveller">
 										<label>Traveller(s),Class</label>
 										<input type="text" class="form-control" placeholder="Warsaw,Poland">
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-2">
 							<div class="form-group">
- 								<button class="btn-search" type="button">Search Again</button>
+ 								<button class="btn-search" type="button" [disabled]=myForm.invalid (click)="searchAgain()">Search Again</button>
 							</div>
  						</div>
-						<div class="col-lg-12 auto-hide">
+						<!-- <div class="col-lg-12 auto-hide">
 						 <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
 							<label class="custom-control-label" for="customCheck">Non Stop Flights Only</label>
 						  </div>
-						</div>
+						</div> -->
 					</div>
 				</form>
 			</div>
@@ -208,6 +224,7 @@
 					<div class="filter-action">
 						<a id="cancelfilter" (click)="closeFilter('1')">Cancel</a>
 						<button type="submit" class="btn-apply" (click)="filter()">Apply Filter</button>
+						<button type="submit" class="btn-apply" (click)="clearFilter()">Reset All Filters</button>
 					</div>
 				</div>
 				
@@ -230,8 +247,8 @@
 							<p>Upto:<i class="small-inr"></i><span id="demo">{{data.price}}</span></p>
 							 <div class="slidecontainer">
 								 <input type="range" min="1" max="9830" value="9830" class="slider" id="myRange" name="price" [(ngModel)]="data.price" (change)="getValue(data.price)">
-								 <span class="start-point"><i class="small-inr"></i>2,497</span>
-								 <span class="end-point"><i class="small-inr"></i>9,830</span>
+								 <span class="start-point"><i class="small-inr"></i>500</span>
+								 <span class="end-point"><i class="small-inr"></i>50,000</span>
 							</div>
 						</div>
 					</div>
@@ -403,7 +420,7 @@
 										</div>
 									</div>
 									<div class="price-box">
-										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</div>	
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</div>	
 										<div class="custom-control custom-radio custom-control-inline">
 											<!-- <input type="radio" class="custom-control-input" name="FlightUId" value="temp.FlightUId" [(ngModel)]="temp.FlightUId"> -->
 											<input type="radio" name="FlightUId1" value="{{temp.FlightUId}}" [(ngModel)]="data.FlightUId"  (change)="changeRadio($event.target.value,temp)" checked="checked">
@@ -412,27 +429,27 @@
 									</div>
 								</div>
 								<div class="flight-det">
-									<div class="fgt-link" (click)="showDetail(i)">
+									<div class="fgt-link" (click)="showDetail(i,temp)">
 										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
 									</div>
-									<div class="row" id="flightdetails" [ngStyle]="{'display': actionType==i ? 'block':'none'}">
+									<div class="row" id="flightdetails{{i}}" [ngStyle]="{'display': actionType==i ? 'block':'none'}">
 										<div class="col-lg-12">
 											<div class="fare-summary">
 												<div class="fare-wrap">
-												<span class="flightdetails-close" (click)="showDetail('-1')"><i class="fas fa-times"></i></span>
+												<span class="flightdetails-close" (click)="showDetail('-1',temp)"><i class="fas fa-times"></i></span>
 												<ul class="nav nav-tabs">
 												 <li class="nav-item">
-													<a class="nav-link active" data-toggle="tab" href="#flightdts">Fare Flight Details</a>
+													<a class="nav-link active" data-toggle="tab" href="#flightdts{{i}}">Fare Flight Details</a>
 												  </li>
 												  <li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#faresummary">Fare Summary</a>
+													<a class="nav-link" data-toggle="tab" href="#faresummary{{i}}">Fare Summary</a>
 												  </li>
 												  <li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#fareRules">Fare Rules</a>
+													<a class="nav-link" data-toggle="tab" href="#fareRules{{i}}">Fare Rules</a>
 												  </li>
 												</ul>
 												<div class="tab-content">
-												  <div class="tab-pane active container" id="flightdts" >
+												  <div class="tab-pane active container" id="flightdts{{i}}" >
 													  <div class="flight-contents" style="min-height:auto;" *ngFor="let item of temp.FlightSegments let j = index">
 														<div class="yellow-msg" style="margin-top: 0;" *ngIf="temp.FlightSegments.length>1 && j!=0">
 															<p>Change plane at <strong>{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
@@ -442,8 +459,8 @@
 														<div class="airline-logo">
 															<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
 															<div class="airline-code">
-																<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
-																<span>Airbus A320-100</span>
+																<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>{{travelClass}}</small></p>
+																<!-- <span>Airbus A320-100</span> -->
 															</div>
 														</div>
 														<div class="amenties">
@@ -520,7 +537,7 @@
 													
 												</div>
 												  </div>
-												  <div class="tab-pane container faresummary" id="faresummary">
+												  <div class="tab-pane container faresummary" id="faresummary{{i}}">
 													<table class="table fare-table">
 														<thead>
 															<tr>
@@ -545,18 +562,18 @@
 																<td><p style="margin-bottom: 0rem;">Adult x {{temp.RequestDetails.Adults}}</p>
 																	<p style="margin-bottom: 0rem;" *ngIf="temp.RequestDetails.Children!=0">Child x {{temp.RequestDetails.Children}}</p>
 																	<p style="margin-bottom: 0rem;" *ngIf="temp.RequestDetails.Infants!=0">Infant x {{temp.RequestDetails.Infants}}</p></td>
-																<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.ActualBaseFare}}</td>
-																<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.Tax}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(temp.FareDetails.ChargeableFares.ActualBaseFare).toLocaleString('en-IN')}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(temp.FareDetails.ChargeableFares.Tax).toLocaleString('en-IN')}}</td>
 															</tr>		
 															<tr class="total">
 																<td colspan="2">You Pay :</td>
-																<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</td>
 															</tr>
 														</tbody>
 													</table>
 													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
 												  </div>
-												  <div class="tab-pane" id="fareRules">
+												  <div class="tab-pane" id="fareRules{{i}}">
 													<div class="custom-farerule" style="display:none;">
 														<p>No Fare rules are found for this flight </p>
 													</div>
@@ -1252,7 +1269,7 @@
 										</div>
 									</div>
 									<div class="price-box">
-										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(obj.FareDetails.ChargeableFares.NetFare)}}</div>	
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(netAmount(obj.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</div>	
 										<div class="custom-control custom-radio custom-control-inline">
 											<!-- <input type="radio" class="custom-control-input" id="customRadio11" name="example" value="customEx" checked="checked">
 											<label class="custom-control-label" for="customRadio11"></label> -->
@@ -1261,28 +1278,28 @@
 									</div>
 								</div>
 								<div class="flight-det">
-									<div class="fgt-link" (click)="showDetail_ret(i)">
+									<div class="fgt-link" (click)="showDetail_ret(i,obj)">
 										<a>Flight Details<span><i class="fas fa-chevron-down"></i></span></a>
 									</div>
-									<div class="row" id="flightdetails" [ngStyle]="{'display': action==i ? 'block':'none'}">
+									<div class="row" id="flightdetailss{{i}}" [ngStyle]="{'display': action==i ? 'block':'none'}">
 										<div class="col-lg-12">
 											<div class="fare-summary">
 												<div class="fare-wrap">
-												<span class="flightdetails-close" (click)="showDetail_ret('-1')"><i class="fas fa-times"></i></span>
+												<span class="flightdetails-close" (click)="showDetail_ret('-1',obj)"><i class="fas fa-times"></i></span>
 												<ul class="nav nav-tabs">
 												 <li class="nav-item">
-													<a class="nav-link active" data-toggle="tab" href="#flightdts1">Fare Flight Details</a>
+													<a class="nav-link active" data-toggle="tab" href="#flightdtss{{i}}">Fare Flight Details</a>
 												  </li>
 												  <li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#faresummary1">Fare Summary</a>
+													<a class="nav-link" data-toggle="tab" href="#faresummarys{{i}}">Fare Summary</a>
 												  </li>
 												  <li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#farerule1">Fare Rules</a>
+													<a class="nav-link" data-toggle="tab" href="#farerules{{i}}">Fare Rules</a>
 												  </li>
 													
 												</ul>
 												<div class="tab-content">
-												  <div class="tab-pane active container" id="flightdts1" >
+												  <div class="tab-pane active container" id="flightdtss{{i}}" >
 													  <div class="flight-contents" style="min-height:auto;" *ngFor="let item of obj.FlightSegments let j = index">
 														<div class="yellow-msg" style="margin-top: 0;" *ngIf="obj.FlightSegments.length>1 && j!=0">
 															<p>Change plane at <strong>{{item.IntDepartureAirportName}} ({{item.DepartureAirportCode}})</strong>, Connecting Time: <strong>{{item.GroundTime}}</strong> </p>
@@ -1292,8 +1309,8 @@
 																<div class="airline-logo">
 																	<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
 																	<div class="airline-code">
-																		<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
-																		<span>Airbus A320-100</span>
+																		<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>{{travelClass}}</small></p>
+																		<!-- <span>Airbus A320-100</span> -->
 																	</div>
 																</div>
 																<div class="amenties">
@@ -1370,7 +1387,7 @@
 													</div> -->
 												</div>
 												  </div>
-												  <div class="tab-pane container faresummary" id="faresummary1">
+												  <div class="tab-pane container faresummary" id="faresummarys{{i}}">
 													<table class="table fare-table">
 														<thead>
 															<tr>
@@ -1384,18 +1401,18 @@
 																<td><p style="margin-bottom: 0rem;">Adult x {{obj.RequestDetails.Adults}}</p>
 																	<p style="margin-bottom: 0rem;" *ngIf="obj.RequestDetails.Children!=0">Child x {{obj.RequestDetails.Children}}</p>
 																	<p style="margin-bottom: 0rem;" *ngIf="obj.RequestDetails.Infants!=0">Infant x {{obj.RequestDetails.Infants}}</p></td>
-																<td><i class="fas fa-rupee-sign"></i>{{obj.FareDetails.ChargeableFares.ActualBaseFare}}</td>
-																<td><i class="fas fa-rupee-sign"></i>{{netAmount(obj.FareDetails.ChargeableFares.Tax)}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(obj.FareDetails.ChargeableFares.ActualBaseFare).toLocaleString('en-IN')}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(netAmount(obj.FareDetails.ChargeableFares.Tax)).toLocaleString('en-IN')}}</td>
 															</tr>		
 															<tr class="total">
 																<td colspan="2">You Pay :</td>
-																<td><i class="fas fa-rupee-sign"></i>{{netAmount(obj.FareDetails.ChargeableFares.NetFare)}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(netAmount(obj.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</td>
 															</tr>
 														</tbody>
 													</table>
 													<p>Note: Total fare displayed above has been rounded off and may show a slight difference from actual fare.</p>
 												  </div>
-												  <div class="tab-pane" id="farerule1">
+												  <div class="tab-pane" id="farerules{{i}}">
 													<div class="custom-farerule" style="display:none;">
 														<p>No Fare rules are found for this flight </p>
 													</div>
@@ -2097,7 +2114,7 @@
 			<div class="col-lg-3 col-4 pricing-det">
 				<div class="price-tipsy">
 					<span class="total-fare">Total Fare :</span>
-					<h3><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.NetFare) + netAmount(selReturnFlight.FareDetails.ChargeableFares.NetFare)).toFixed(2)}}</h3>
+					<h3><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.NetFare) + netAmount(selReturnFlight.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</h3>
 					<p >Earn eCash:<span>500</span></p>
 				</div>
 				<div class="pricing-fare-summary" style="display: none;">
@@ -2115,12 +2132,12 @@
 								<td><p style="margin-bottom: 0rem;">Adult x {{selFlight.RequestDetails.Adults}}</p>
 									<p style="margin-bottom: 0rem;" *ngIf="selFlight.RequestDetails.Children!='0'">Child x {{selFlight.RequestDetails.Children}}</p>
 									<p style="margin-bottom: 0rem;"  *ngIf="selFlight.RequestDetails.Infants!='0'">Infant x {{selFlight.RequestDetails.Infants}}</p></td>
-								<td><i class="fas fa-rupee-sign"></i>{{(selFlight.FareDetails.ChargeableFares.ActualBaseFare + selReturnFlight.FareDetails.ChargeableFares.ActualBaseFare).toFixed(2)}}</td>
-								<td><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.Tax) + netAmount(selReturnFlight.FareDetails.ChargeableFares.Tax)).toFixed(2)}}</td>
+								<td><i class="fas fa-rupee-sign"></i>{{(selFlight.FareDetails.ChargeableFares.ActualBaseFare + selReturnFlight.FareDetails.ChargeableFares.ActualBaseFare).toLocaleString('en-IN')}}</td>
+								<td><i class="fas fa-rupee-sign"></i>{{((netAmount(selFlight.FareDetails.ChargeableFares.Tax) + netAmount(selReturnFlight.FareDetails.ChargeableFares.Tax))).toLocaleString('en-IN')}}</td>
 							</tr>		
 							<tr class="total">
 								<td colspan="2">You Pay :</td>
-								<td><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.NetFare) + netAmount(selReturnFlight.FareDetails.ChargeableFares.NetFare)).toFixed(2)}}</td>
+								<td><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.NetFare) + netAmount(selReturnFlight.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</td>
 							</tr>
 						</tbody>
 					</table>

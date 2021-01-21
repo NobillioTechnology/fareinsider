@@ -9,9 +9,112 @@
 		</div>
 	</div>
 </div></section>
-
-<!--Table booking-->
+<!--My Profile-->
 <section class="booking-table">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 myprofilephoto">
+				<div class="myprofilec">
+					<h2>Welcome</h2>
+				</div>				
+				<h4>{{userDetail.UserName}}</h4>
+			</div>
+			<div class="col-lg-9">
+				<div class="myprofile">
+					<div class="myprofileh">
+						<div class="row">
+							<div class="col-md-12">
+							<h3>View Booking</h3>
+						</div>						
+							</div>
+					</div>
+					<div class="contact-details changepwd">
+						<div class="form-row">
+						    <div class="form-group col-md-4">
+						      <label for="inputCity">Booking Refrence Number</label>
+						      <input type="text" class="form-control" id="inputCity" name="bRefNo" [(ngModel)]="data.bRefNo">
+						    </div>
+						    <div class="form-group col-md-4">
+						      <label for="inputState">To Date</label>
+						      <input type="date" class="form-control" id="inputCity" name="toDate" [(ngModel)]="data.toDate">
+						    </div>
+						    <div class="form-group col-md-4">
+						      <label for="inputZip">From Date</label>
+						      <input type="date" class="form-control" id="inputCity" name="fromDate" [(ngModel)]="data.fromDate">
+						    </div>
+						  </div>
+							</div>
+							<div class="row">
+								<div class="btn-selectpx">
+									<a  class="btn-selectp" (click)="search()">Search</a>	
+								</div>	
+							</div>
+	<div class="table-responsive tableb">
+    <table class="table table-bordered" *ngIf="bookingList.length!=0">
+      <thead>
+        <tr>
+		  <th>#</th>
+		  <th>Name</th>
+		  <th>Booking Ref No.</th>
+		  <th>Trip Start Date</th>
+		  <th>Date of Booking</th>
+		  <th>Created by</th>
+		  <th>Service</th>
+          <!-- <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Age</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Sex</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th>
+          <th>Example</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let temp of bookingList let i = index" (click)="showTckt(temp.BookingRef)">
+		  <td>{{i+1}}</td>
+		  <td>{{temp.ClientName}}</td>
+          <td>{{temp.BookingRef}}</td>
+          <td>{{temp.TripStartDate}}</td>
+          <td>{{temp.DateofBooking}}</td>
+          <td>{{temp.CreatedBy}}</td>
+          <td>{{temp.Services}}</td>
+          <!-- <td>{{temp.BookingRef}}</td>
+          <td>{{temp.BookingRef}}</td>
+          <td>{{temp.BookingRef}}</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+						</div>
+				</div>
+			</div>
+		</div>
+	<!-- </div> -->
+	
+</section>
+<!--Table booking-->
+<!-- <section class="booking-table">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -46,4 +149,4 @@
 		</div>
 	</div>
 	
-</section>
+</section> -->

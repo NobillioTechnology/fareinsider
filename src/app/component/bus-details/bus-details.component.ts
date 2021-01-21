@@ -39,13 +39,26 @@ export class BusDetailsComponent implements OnInit {
   baseFare:any=0
   tax:any=0
   mobileNum:any='close';
+  agentCode:any;
+  salechanl:any;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
   ngOnInit(): void {
     this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    this.userDetail = JSON.parse(localStorage.getItem('userData'));
     if(this.userDetail){
       this.isLogin=2
-    } 
+      this.agentCode=this.userDetail.Acode
+    
+      if(this.userDetail.UserType=="Agent"){
+        this.salechanl='SA-B2B'
+      }
+    }else{
+      this.agentCode='FAREIN0001'
+      this.salechanl='DO-B2B2C'
+    }
+  
+    // alert(this.fNameArr[this.fNameArr.length-1])
     // this.seatBlockOneway = JSON.parse(localStorage.getItem('onewayObject'));
     this.selectedSeat = JSON.parse(localStorage.getItem('seatSelected'));
     this.searchId= localStorage.getItem("searchId");
@@ -97,7 +110,7 @@ export class BusDetailsComponent implements OnInit {
     });
   }
   salesRule(){
-    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0010&agentcode=FAREIN0001&salechannel=DO-B2B2C`).subscribe(res=>{
+    this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0010&agentcode=${this.agentCode}&salechannel=${this.salechanl}`).subscribe(res=>{
     // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
     if(res.Status==true){
     this.comissionType= res.Data.commType
@@ -276,7 +289,7 @@ savePassenger(){
           this.ageArr.push(item.age)
         })
       }
-      if(this.fNameArr[0]!='' && this.lNameArr[0]!=''){
+      if(this.fNameArr[0]!='' && this.lNameArr[0]!='' && this.ageArr[0]!=''){
         let dataInfo={
           "tt":this.reqObj.noOfSeats,
           "jtype":this.jType,
@@ -300,7 +313,6 @@ savePassenger(){
            // console.log(err)
          });
       }
-  
  }
 payment(){
   if(this.isLogin==0){

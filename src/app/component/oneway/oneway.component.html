@@ -3,9 +3,9 @@
 		<div class="container">
 				<div class="m-modify">Modify Search<span><i class="fas fa-chevron-down"></i></span></div>
 				<div class="modify-box">
-				<form>
+				<form [formGroup]="myForm" name="myForm">
 					<div class="row">
-						<div class="col-lg-12 auto-hide">
+						<!-- <div class="col-lg-12 auto-hide">
 						 <div class="custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx" checked>
 							<label class="custom-control-label" for="customRadio">One way</label>
@@ -15,18 +15,32 @@
 							<label class="custom-control-label" for="customRadio2">Round way</label>
 						  </div>
 						  <span class="close-box"><i class="fas fa-times"></i></span>
-						</div>
+						</div> -->
 						<div class="col-lg-5">
 							<div class="form-group">
 								<div class="modify-city">
 									<div class="m-from">
 										<label>from</label>
-										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland"> -->
+										<input type="text" class="form-control" list="srcAirports"  name="goingfrom" formControlName="goingfrom"  (keyup)="searchSrcAirport()">
+											<datalist id="srcAirports" *ngIf="airportSrcList.length!=0">
+												<option value="{{temp.Airport}}" *ngFor="let temp of airportSrcList">
+											  </datalist>
 									</div>
+									<p style="color:#fd653c;" *ngIf="myForm.get('goingfrom').hasError('required') && myForm.get('goingfrom').dirty">*Please enter source</p>
+
 									<div class="m-to">
 										<label>To</label>
-										<input type="text" class="form-control" placeholder="Warsaw,Poland">
+										<!-- <input type="text" class="form-control" placeholder="Warsaw,Poland"> -->
+										<input type="text" class="form-control" list="desAirports"  name="goingTo" formControlName="goingTo" (keyup)="searchDesAirport()">
+											
+										<datalist id="desAirports" *ngIf="airportDesList.length!=0">
+											<option value="{{temp.Airport}}" *ngFor="let temp of airportDesList"></option>
+											
+										  </datalist>
 									</div>
+									<p style="color:#fd653c;" *ngIf="myForm.get('goingTo').hasError('required') && myForm.get('goingTo').dirty">*Please enter destination</p>
+
 								</div>
 							</div>
 						</div>
@@ -35,27 +49,29 @@
 								<div class="m-dateclass">
 									<div class="m-date">
 										<label>Date</label>
-										<input type="text" class="form-control" placeholder="19 Apr 2019">
-										<input type="text" class="form-control date-icon" placeholder="Return">
+										<!-- <input type="text" class="form-control" placeholder="19 Apr 2019"> -->
+										<input type="date"  placeholder="dd-mm-yyyy" class="form-control date-icon" name="depDate" formControlName="depDate" style="width: 100%;">
+
+										<!-- <input type="date" class="form-control date-icon" placeholder="Return" name="returnDate" formControlName="returnDate"> -->
 									</div>
-									<div class="m-traveller">
+									<!-- <div class="m-traveller">
 										<label>Traveller(s),Class</label>
 										<input type="text" class="form-control" placeholder="Warsaw,Poland">
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-2">
 							<div class="form-group">
- 								<button class="btn-search" type="button">Search Again</button>
+ 								<button class="btn-search" type="button" [disabled]=myForm.invalid (click)="searchAgain()">Search Again</button>
 							</div>
  						</div>
-						<div class="col-lg-12 auto-hide">
+						<!-- <div class="col-lg-12 auto-hide">
 						 <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
 							<label class="custom-control-label" for="customCheck">Non Stop Flights Only</label>
 						  </div>
-						</div>
+						</div> -->
 					</div>
 				</form>
 			</div>
@@ -109,8 +125,8 @@
 							<p>Upto:<i class="small-inr"></i><span id="demo">{{data.price}}</span></p>
 							 <div class="slidecontainer">
 								 <input type="range" min="1" max="9830" value="9830" class="slider" id="myRange" name="price" [(ngModel)]="data.price" (change)="getValue(data.price)">
-								 <span class="start-point"><i class="small-inr"></i>2,497</span>
-								 <span class="end-point"><i class="small-inr"></i>9,830</span>
+								 <span class="start-point"><i class="small-inr"></i>500</span>
+								 <span class="end-point"><i class="small-inr"></i>50,000</span>
 							</div>
 						</div>
 					</div>
@@ -234,7 +250,7 @@
 										</div>
 									</div>
 									<div class="price-box">
-										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</div>	
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</div>	
 										<div class="btn-book" (click)="flightDetail(i,temp)"><a>Book</a></div>
 									</div>
 								</div>
@@ -251,8 +267,8 @@
 													<div class="airline-logo">
 														<img src="{{url+temp.FlightSegments[0].ImagePath}}" class="fgt-img" alt="">
 														<div class="airline-code">
-															<p>{{temp.FlightSegments[0].AirLineName}},{{temp.FlightSegments[0].OperatingAirlineCode}}-{{temp.FlightSegments[0].OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
-															<span>Airbus A320-100</span>
+															<p>{{temp.FlightSegments[0].AirLineName}},{{temp.FlightSegments[0].OperatingAirlineCode}}-{{temp.FlightSegments[0].OperatingAirlineFlightNumber}}<small>{{travelClass}}</small></p>
+															<!-- <span>Airbus A320-100</span> -->
 														</div>
 													</div>
 													<div class="amenties">
@@ -318,12 +334,12 @@
 																<td><p style="margin-bottom: 0rem;">Adult x {{temp.RequestDetails.Adults}}</p>
 																	<p style="margin-bottom: 0rem;">Child x {{temp.RequestDetails.Children}}</p>
 																	<p style="margin-bottom: 0rem;">Infant x {{temp.RequestDetails.Infants}}</p></td>
-																<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.ActualBaseFare}}</td>
-																<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.Tax)}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(temp.FareDetails.ChargeableFares.ActualBaseFare).toLocaleString('en-IN')}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.Tax)).toLocaleString('en-IN')}}</td>
 															</tr>		
 															<tr class="total">
 																<td colspan="2">You Pay :</td>
-																<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</td>
 															</tr>
 														</tbody>
 													</table>
@@ -436,7 +452,7 @@
 										</div>
 									</div>
 									<div class="price-box">
-										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</div>	
+										<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</div>	
 										<div class="btn-book" (click)="flightDetail(i,temp)"><a>Book</a></div>
 									</div>
 								</div>
@@ -457,8 +473,8 @@
 													<div class="airline-logo">
 														<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
 														<div class="airline-code">
-															<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
-															<span>Airbus A320-100</span>
+															<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>{{travelClass}}</small></p>
+															<!-- <span>Airbus A320-100</span> -->
 														</div>
 													</div>
 													<div class="amenties">
@@ -566,12 +582,12 @@
 																<td><p style="margin-bottom: 0rem;">Adult x {{temp.RequestDetails.Adults}}</p>
 																	<p style="margin-bottom: 0rem;">Child x {{temp.RequestDetails.Children}}</p>
 																	<p style="margin-bottom: 0rem;">Infant x {{temp.RequestDetails.Infants}}</p></td>
-																<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.ActualBaseFare}}</td>
-																<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.Tax)}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(temp.FareDetails.ChargeableFares.ActualBaseFare).toLocaleString('en-IN')}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.Tax)).toLocaleString('en-IN')}}</td>
 															</tr>		
 															<tr class="total">
 																<td colspan="2">You Pay :</td>
-																<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</td>
+																<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</td>
 															</tr>
 														</tbody>
 													</table>
@@ -671,7 +687,7 @@
 											</div>
 										</div>
 										<div class="price-box">
-											<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</div>	
+											<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</div>	
 											<div class="btn-book" (click)="internationalFlightDetail(i,temp)"><a>Book</a></div>
 										</div>
 									</div>
@@ -688,8 +704,8 @@
 														<div class="airline-logo">
 															<img src="{{url+temp.IntOnward.FlightSegments[0].ImagePath}}" class="fgt-img" alt="">
 															<div class="airline-code">
-																<p>{{temp.IntOnward.FlightSegments[0].AirLineName}},{{temp.IntOnward.FlightSegments[0].OperatingAirlineCode}}-{{temp.IntOnward.FlightSegments[0].OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
-																<span>Airbus A320-100</span>
+																<p>{{temp.IntOnward.FlightSegments[0].AirLineName}},{{temp.IntOnward.FlightSegments[0].OperatingAirlineCode}}-{{temp.IntOnward.FlightSegments[0].OperatingAirlineFlightNumber}}<small>{{this.reqObj}}</small></p>
+																<!-- <span>Airbus A320-100</span> -->
 															</div>
 														</div>
 														<div class="amenties">
@@ -754,12 +770,12 @@
 																	<td><p style="margin-bottom: 0rem;">Adult x {{temp.RequestDetails.Adults}}</p>
 																		<p style="margin-bottom: 0rem;">Child x {{temp.RequestDetails.Children}}</p>
 																		<p style="margin-bottom: 0rem;">Infant x {{temp.RequestDetails.Infants}}</p></td>
-																	<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.ActualBaseFare}}</td>
-																	<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.Tax)}}</td>
+																	<td><i class="fas fa-rupee-sign"></i>{{(temp.FareDetails.ChargeableFares.ActualBaseFare).toLocaleString('en-IN')}}</td>
+																	<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.Tax)).toLocaleString('en-IN')}}</td>
 																</tr>		
 																<tr class="total">
 																	<td colspan="2">You Pay :</td>
-																	<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</td>
+																	<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</td>
 																</tr>
 															</tbody>
 														</table>
@@ -849,7 +865,7 @@
 											</div>
 										</div>
 										<div class="price-box">
-											<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</div>	
+											<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</div>	
 											<div class="btn-book" (click)="internationalFlightDetail(i,temp)"><a>Book</a></div>
 										</div>
 									</div>
@@ -870,8 +886,8 @@
 														<div class="airline-logo">
 															<img src="{{url+item.ImagePath}}" class="fgt-img" alt="">
 															<div class="airline-code">
-																<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>(Economy)</small></p>
-																<span>Airbus A320-100</span>
+																<p>{{item.AirLineName}},{{item.OperatingAirlineCode}}-{{item.OperatingAirlineFlightNumber}}<small>{{travelClass}}</small></p>
+																<!-- <span>Airbus A320-100</span> -->
 															</div>
 														</div>
 														<div class="amenties">
@@ -979,12 +995,12 @@
 																	<td><p style="margin-bottom: 0rem;">Adult x {{temp.RequestDetails.Adults}}</p>
 																		<p style="margin-bottom: 0rem;">Child x {{temp.RequestDetails.Children}}</p>
 																		<p style="margin-bottom: 0rem;">Infant x {{temp.RequestDetails.Infants}}</p></td>
-																	<td><i class="fas fa-rupee-sign"></i>{{temp.FareDetails.ChargeableFares.ActualBaseFare}}</td>
-																	<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.Tax)}}</td>
+																	<td><i class="fas fa-rupee-sign"></i>{{(temp.FareDetails.ChargeableFares.ActualBaseFare).toLocaleString('en-IN')}}</td>
+																	<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.Tax)).toLocaleString('en-IN')}}</td>
 																</tr>		
 																<tr class="total">
 																	<td colspan="2">You Pay :</td>
-																	<td><i class="fas fa-rupee-sign"></i>{{netAmount(temp.FareDetails.ChargeableFares.NetFare)}}</td>
+																	<td><i class="fas fa-rupee-sign"></i>{{(netAmount(temp.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</td>
 																</tr>
 															</tbody>
 														</table>

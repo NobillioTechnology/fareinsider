@@ -19,4 +19,15 @@
 .available{font-size: 25px;
     color: #d8d8d8;} */
 
-             
+    .btn-confirm[disabled],.btn-confirm[disabled]:hover{
+        background: grey;
+        border-color: grey;
+          }   
+          .btn-search[disabled],.btn-search[disabled]:hover{
+            background: grey;
+            border-color: grey;
+              }          
+ .seatMap .booked{
+    pointer-events: none;
+ }
+ .date-icon{padding-right:0px;}

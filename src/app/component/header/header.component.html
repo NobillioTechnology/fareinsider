@@ -24,11 +24,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="collapsibleNavbar" *ngIf="isLogin!=2">
 				<ul class="navbar-nav">
-				  <li class="nav-item">
-					<a class="nav-link button" (click)="customerLogin()">Customer</a>
+				  <li class="nav-item" *ngIf="showButn==true" >
+					<a class="nav-link button" [ngClass]="{active:isActive=='customer'}" (click)="customerLogin('customer')">Customer</a>
 				  </li>
 				  <li class="nav-item">
-					<a class="nav-link button" (click)="agentLogin()">Agent</a>
+					<a class="nav-link button" [ngClass]="{active:isActive=='agent'}" (click)="agentLogin('agent')">Agent</a>
 				  </li>
 				</ul>
 				

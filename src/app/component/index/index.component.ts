@@ -32,6 +32,7 @@ export class IndexComponent implements OnInit {
   errMsg:any='0';
   sourceId:any;
   destinationId:any;
+  trvlClass:any;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService) {
     this.myForm = new FormGroup({
       selectWay: new FormControl('',[Validators.required]),
@@ -65,14 +66,89 @@ export class IndexComponent implements OnInit {
   //  this.selectSrc()
     // source=HYD&destination=BLR&journeyDate=24-09-2020&tripType=1&flightType=1&adults=1&children=0&infants=0&travelClass=E&userType=5&returnDate=24-09-2020
   }
+  // savetoTextFile(temp) {
+  //   (function() {
+  //     var textFile = null,
+  //       makeTextFile = function(text) {
+  //         var data = new Blob([text], {
+  //           type: 'text/plain'
+  //         });
+  //         if (textFile !== null) {
+  //           window.URL.revokeObjectURL(textFile);
+  //         }
+  //         textFile = window.URL.createObjectURL(data);
+  //         // console.log("saveTxt====="+textFile)
+  //         return textFile;  
+  //       }; 
+  //       var array=JSON.stringify(temp)
+  //       // makeTextFile(array);
+  //       const dlink: HTMLAnchorElement = document.createElement('a');
+  //       dlink.download = 'myresponsefile.txt'; // the file name
+  //       // const myFileContent: string = 'I am a text file! ';
+  //       dlink.href =  makeTextFile(array);
+  //       dlink.click(); // this will trigger the dialog window
+  //       dlink.remove();
+  //   })();
+  //   }
+    // saveReqtoTextFile(temp) {
+    //   (function() {
+    //     var textFile = null,
+    //       makeTextFile = function(text) {
+    //         var data = new Blob([text], {
+    //           type: 'text/plain'
+    //         });
+    //         if (textFile !== null) {
+    //           window.URL.revokeObjectURL(textFile);
+    //         }
+    //         textFile = window.URL.createObjectURL(data);
+    //         // console.log("saveTxt====="+textFile)
+    //         return textFile;  
+    //       }; 
+    //       // var array=JSON.stringify(temp)
+    //       // makeTextFile(array);
+    //       const dlink: HTMLAnchorElement = document.createElement('a');
+    //       dlink.download = 'myrequestfile.txt'; 
+    //       dlink.href =  makeTextFile(temp);
+    //       dlink.click(); 
+    //       dlink.remove();
+    //   })();
+    //   }
+    saveTextfile(obj){
+      let dataInfo={
+        "Method": "SearchFlight",
+        "Services" :"Flight",
+        "Data" :JSON.stringify(obj)
+      }
+      this.service.testPostApiMethod(dataInfo,"Comman/SaveLogs").subscribe(res=>{
+      },
+      (err)=>{
+       }); 
+    }
+    saveTextfileBus(obj){
+      let dataInfo={
+        "Method": "SearchBus",
+        "Services" :"Bus",
+        "Data" :JSON.stringify(obj)
+      }
+      this.service.testPostApiMethod(dataInfo,"Comman/SaveLogs").subscribe(res=>{
+      },
+      (err)=>{
+       }); 
+    }
    availableFlights(){
+     if(this.myForm.value.class=='E'){
+      this.trvlClass='Economy'
+     }else if(this.myForm.value.class=='PE'){
+      this.trvlClass='Premium Economy'
+     }else if(this.myForm.value.class=='B'){
+      this.trvlClass='Business'
+     }
+     localStorage.setItem("travelclass",this.myForm.value.class)
     this.journeydate = new Date(this.myForm.value.depDate).getDate() + '-' + (new Date(this.myForm.value.depDate).getMonth() + 1) + '-' + new Date(this.myForm.value.depDate).getFullYear();
     this.returndate = new Date(this.myForm.value.returnDate).getDate() + '-' + (new Date(this.myForm.value.returnDate).getMonth() + 1) + '-' + new Date(this.myForm.value.returnDate).getFullYear();
     this.countrySrc= this.myForm.value.goingfrom.split(' ')[this.myForm.value.goingfrom.split(' ').length-2]
     let src=this.myForm.value.goingfrom.split('(')[this.myForm.value.goingfrom.split('(').length-1]
     this.source=src.split(')')[src.split(')').length-2]
-    // alert(this.myForm.value.goingfrom)
-    // this.destination=this.myForm.value.goingTo
     this.countryDes= this.myForm.value.goingTo.split(' ')[this.myForm.value.goingTo.split(' ').length-2]
     let dest=this.myForm.value.goingTo.split('(')[this.myForm.value.goingTo.split('(').length-1]
     this.destination=dest.split(')')[dest.split(')').length-2]
@@ -83,29 +159,50 @@ export class IndexComponent implements OnInit {
     }
 
     if(this.myForm.value.selectWay=='1'){
-      this.returndate=this.journeydate
-        this.temp={'source':this.source,'destination':this.destination,'journeyDate':this.journeydate,'tripTypeNum':this.myForm.value.selectWay,'flightTypeNum':this.flightType,'adults':this.myForm.value.adult,'children':this.myForm.value.child,'infants':this.myForm.value.infant,'travelClass':this.myForm.value.class,'returnDate':this.returndate}
-          if(this.myForm.value.selectWay=='1'){
-            this.router.navigate(['oneway'],{ queryParams: {'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate}})
-          }else if(this.myForm.value.selectWay=='2' && this.flightType=='1'){
-            this.router.navigate(['roundway'],{ queryParams: {'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate}})
-          }else if(this.myForm.value.selectWay=='2' && this.flightType=='2'){
-            this.router.navigate(['international-flight'],{ queryParams:{'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate} })
-          }
+      // this.returndate=this.journeydate
+        this.temp={'source':this.source,'destination':this.destination,'journeyDate':this.journeydate,'tripTypeNum':this.myForm.value.selectWay,'flightTypeNum':this.flightType,'adults':this.myForm.value.adult,'children':this.myForm.value.child,'infants':this.myForm.value.infant,'travelClass':this.myForm.value.class,'returnDate':this.journeydate}
+            this.service.getApiMethod(`Flights/AvailableFlights?source=${this.temp.source}&destination=${this.temp.destination}&journeyDate=${this.temp.journeyDate}&tripType=${this.temp.tripTypeNum}&flightType=${this.temp.flightTypeNum}&adults=${this.temp.adults}&children=${this.temp.children}&infants=${this.temp.infants}&travelClass=${this.temp.travelClass}&userType=5&returnDate=${this.temp.returnDate}`).subscribe(res=>{
+              // console.log("getflights ====>"+JSON.stringify(res)); 
+              if(res.ResponseStatus==200){
+                this.saveTextfile(`Flights/AvailableFlights?source=${this.temp.source}&destination=${this.temp.destination}&journeyDate=${this.temp.journeyDate}&tripType=${this.temp.tripTypeNum}&flightType=${this.temp.flightTypeNum}&adults=${this.temp.adults}&children=${this.temp.children}&infants=${this.temp.infants}&travelClass=${this.temp.travelClass}&userType=5&returnDate=${this.temp.returnDate}`)
+                this.saveTextfile(res)
+                this.router.navigate(['oneway'],{ queryParams: {'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate}})
+                  }
+             },
+             (err)=>{
+              
+            });
+          // else if(this.myForm.value.selectWay=='2' && this.flightType=='1'){
+          //   this.router.navigate(['roundway'],{ queryParams: {'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate}})
+          // }else if(this.myForm.value.selectWay=='2' && this.flightType=='2'){
+          //   this.router.navigate(['international-flight'],{ queryParams:{'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate} })
+          // }
         
-    }else if(this.myForm.value.selectWay=='2' && this.myForm.value.returnDate=='') {
-      this.msgFlag='1'
-      }else if(this.myForm.value.selectWay=='2' && this.myForm.value.returnDate!=''){
+    }else if(this.myForm.value.selectWay=='2') {
+      if(this.myForm.value.returnDate==''){
+        this.msgFlag='1'
+      }else if(this.myForm.value.returnDate!=''){
         this.msgFlag='0'
-          this.temp={'source':this.source,'destination':this.destination,'journeyDate':this.journeydate,'tripTypeNum':this.myForm.value.selectWay,'flightTypeNum':this.flightType,'adults':this.myForm.value.adult,'children':this.myForm.value.child,'infants':this.myForm.value.infant,'travelClass':this.myForm.value.class,'returnDate':this.returndate}
-            if(this.myForm.value.selectWay=='1'){
-              this.router.navigate(['oneway'],{ queryParams: {'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate}})
-            }else if(this.myForm.value.selectWay=='2' && this.flightType=='1'){
+        this.temp={'source':this.source,'destination':this.destination,'journeyDate':this.journeydate,'tripTypeNum':this.myForm.value.selectWay,'flightTypeNum':this.flightType,'adults':this.myForm.value.adult,'children':this.myForm.value.child,'infants':this.myForm.value.infant,'travelClass':this.myForm.value.class,'returnDate':this.returndate}
+        this.service.getApiMethod(`Flights/AvailableFlights?source=${this.temp.source}&destination=${this.temp.destination}&journeyDate=${this.temp.journeyDate}&tripType=${this.temp.tripTypeNum}&flightType=${this.temp.flightTypeNum}&adults=${this.temp.adults}&children=${this.temp.children}&infants=${this.temp.infants}&travelClass=${this.temp.travelClass}&userType=5&returnDate=${this.temp.returnDate}`).subscribe(res=>{
+          if(res.ResponseStatus==200){
+            this.saveTextfile(`Flights/AvailableFlights?source=${this.temp.source}&destination=${this.temp.destination}&journeyDate=${this.temp.journeyDate}&tripType=${this.temp.tripTypeNum}&flightType=${this.temp.flightTypeNum}&adults=${this.temp.adults}&children=${this.temp.children}&infants=${this.temp.infants}&travelClass=${this.temp.travelClass}&userType=5&returnDate=${this.temp.returnDate}`)
+            this.saveTextfile(res)
+            if(this.myForm.value.selectWay=='2' && this.flightType=='1'){
               this.router.navigate(['roundway'],{ queryParams: {'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate}})
             }else if(this.myForm.value.selectWay=='2' && this.flightType=='2'){
               this.router.navigate(['international-flight'],{ queryParams:{'source':this.temp.source,'destination':this.temp.destination,'journeyDate':this.temp.journeyDate,'tripTypeNum':this.temp.tripTypeNum,'flightTypeNum':this.temp.flightTypeNum,'adults':this.temp.adults,'children':this.temp.children,'infants':this.temp.infants,'travelClass':this.temp.travelClass,'returnDate':this.temp.returnDate} })
             }
+          }
+         },
+         (err)=>{ 
+        });
       }
+      }
+        
+          
+         
+      
 
 
 
@@ -303,6 +400,19 @@ export class IndexComponent implements OnInit {
   // }
   // }
   searchBuses(){
+    this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
+    this.service.getApiMethod(`Buses/AvailableBuses?sourceId=${this.sourceId}&destinationId=${this.destinationId}&journeyDate=${this.journeydate}&tripType=1&userType=5&returnDate=${this.journeydate}`).subscribe(res=>{
+      // console.log("getbuses ====>"+JSON.stringify(res)); 
+      if(res.ResponseStatus==200){
+        this.saveTextfileBus(`Buses/AvailableBuses?sourceId=${this.sourceId}&destinationId=${this.destinationId}&journeyDate=${this.journeydate}&tripType=1&userType=5&returnDate=${this.journeydate}`)
+        this.saveTextfileBus(res)
+        this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.sourceId,'destinationId':this.destinationId,'journeyDate':this.journeydate,'tripType':'1','returnDate':this.journeydate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}})        
+     }
+     (err)=>{
+     
+      }
+    });
+  }
     // this.busSrcList.find((item,index)=>{
     //   // console.log(JSON.stringify(item))
     //   if(item.City==this.busForm.value.source){
@@ -318,12 +428,11 @@ export class IndexComponent implements OnInit {
     //     return 1;
     //   }
     // })
-    this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
+    // this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
     // this.returndate = new Date(this.busForm.value.toDate).getDate() + '-' + (new Date(this.busForm.value.toDate).getMonth() + 1) + '-' + new Date(this.busForm.value.toDate).getFullYear();
-    if(this.busForm.value.tripTyp=='1'){
-      this.returndate=this.journeydate
-          this.router.navigate(['bus-result'],{ queryParams: {'sourceId':this.sourceId,'destinationId':this.destinationId,'journeyDate':this.journeydate,'tripType':this.busForm.value.tripTyp,'returnDate':this.returndate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}})
-    }
+    
+      // this.returndate=this.journeydate
+    
     // else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate==''){
     //   this.errMsg='1'
     // }else if(this.busForm.value.tripTyp=='2' && this.busForm.value.toDate!=''){
@@ -367,5 +476,5 @@ export class IndexComponent implements OnInit {
     //     // console.log(err)
     //   });
     // }
-  }
+  
 }

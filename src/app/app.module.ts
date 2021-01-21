@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http';
+// import { saveAs } from 'file-saver';
 // import { AgmCoreModule } from '@agm/core';
 // import {SocialLoginModule,AuthServiceConfig,GoogleLoginProvider,FacebookLoginProvider,} from "angular-6-social-login";
 // import { NgxSpinnerModule } from 'ngx-spinner';
@@ -103,6 +104,7 @@ const APP_Routing: Routes =[
 
   ],
   imports: [
+    // saveAs,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(APP_Routing),
