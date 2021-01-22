@@ -37,7 +37,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.getIP()
     this.orderId=Math.floor(Math.random() * 1000000);
-    this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    // this.userDetail = JSON.parse(localStorage.getItem('userData'));
     this.userDetail = JSON.parse(localStorage.getItem('userData'));
     if(this.userDetail){
       // this.isLogin=2

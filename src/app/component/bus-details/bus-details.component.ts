@@ -41,6 +41,7 @@ export class BusDetailsComponent implements OnInit {
   mobileNum:any='close';
   agentCode:any;
   salechanl:any;
+  leadArr:any=[]
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
   ngOnInit(): void {
@@ -276,6 +277,7 @@ savePassenger(){
       this.lNameArr=[]
       this.genderArr=[]
       this.ageArr=[]
+      this.leadArr=[]
       if(this.adultArr.length!=0){
         this.adultArr.find((item,index)=>{
           this.titleArr.push(item.title)
@@ -283,6 +285,12 @@ savePassenger(){
             this.genderArr.push("M")
           }else if(item.title=="Ms" || item.title=="Mrs"){
             this.genderArr.push("F")
+          }
+          if(index==0){
+            this.leadArr.push("1")
+          }
+          else{
+            this.leadArr.push("0")
           }
           this.fNameArr.push(item.fname)
           this.lNameArr.push(item.lName)
@@ -300,7 +308,7 @@ savePassenger(){
           "LastName":this.lNameArr,
           "Age" :this.ageArr,
           "Gender":this.genderArr,
-          "isLead":["1","0"]
+          "isLead":this.leadArr
         }
         this.service.testPostApiMethod(dataInfo,"Booking/SaveBusPasenger").subscribe(res=>{
           if(res.Status==true){
