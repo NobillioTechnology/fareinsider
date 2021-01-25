@@ -31,8 +31,8 @@ export class BusResultComponent implements OnInit {
   bustypeArr:any=[];
   BusTypArr:any=[];
   filtersection:any='1';
-  mintime:any;
-  maxtime:any;
+  mintime:any='';
+  maxtime:any='';
   isAct:any;
   isActiveTym:any;
   isActive:any=false;

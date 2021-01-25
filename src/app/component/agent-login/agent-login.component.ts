@@ -39,9 +39,10 @@ export class AgentLoginComponent implements OnInit {
     })
     this.logInForm = new FormGroup({
       emailId: new FormControl('',[Validators.required,Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]),
-      password: new FormControl('',[Validators.required,Validators.pattern("([a-zA-Z0-9@#$%&?*]).{6,10}$")]), 
+      password: new FormControl('',[Validators.required]), 
     }) 
    }
+   //Validators.pattern("([a-zA-Z0-9@#$%&?*]).{6,10}$")
 
   ngOnInit(): void {
     this.getIP();

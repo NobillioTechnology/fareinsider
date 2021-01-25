@@ -4,6 +4,7 @@ import { RestDataService } from '../../rest-data.service';
 import { HeroService } from '../../hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { IpServiceService } from '../../ip-service.service';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-flight-details',
@@ -293,7 +294,7 @@ export class FlightDetailsComponent implements OnInit {
   // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
   if(res.Status==true){
     this.isLogin=1
-    this.signUp()
+    
     // alert("successfull")
     
   // this.comissionType= res.Data.commType
@@ -339,8 +340,10 @@ export class FlightDetailsComponent implements OnInit {
     this.service.testGetApiMethod("/comman/verifyOtp?MobileNo="+this.data.contact+"&Otp="+this.data.otp).subscribe(res=>{
       // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
       if(res.Status==true){
+        this.signUp()
         this.isLogin=2
         localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy",UserName:'Guest Login'}))
+        window.location.reload()
         // alert("successfull")
       // this.comissionType= res.Data.commType
       //   this.comission= parseInt(res.Data.commMarkup)
@@ -358,6 +361,7 @@ export class FlightDetailsComponent implements OnInit {
       "IP":this.ipAddress
     }
     this.service.testPostApiMethod(dataInfo,"Client/ClientRegistration").subscribe(res=>{
+      localStorage.setItem('userData', JSON.stringify(res.Data));
     },
     (err)=>{
        // this.spinner.hide(); 

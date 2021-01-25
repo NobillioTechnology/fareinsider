@@ -393,7 +393,7 @@
 				<a data-dismiss="modal" aria-hidden="true" class="fClose" (click)="newReg()"><i class="fas fa-times"></i></a>
 			</div>
 			<div class="modal-body loginForm-body">
-				<form>
+				<form [formGroup]="logInForm" name="logInForm">
 				<!-- <div class="externalLogin">
 					<p>Log in with</p>
 					<ul>
@@ -407,8 +407,8 @@
 						<div class="col-lg-12">
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="Email" name="emailId" formControlName="emailId">
-								<p style="color:#fd653c;" *ngIf="logInForm.get('emailId').hasError('required') && logInForm.get('emailId').dirty">*Please enter mobile</p>
-								<p style="color:#fd653c;" *ngIf="logInForm.get('emailId').hasError('pattern') && logInForm.get('emailId').dirty">*Invalid mobile</p>
+								<p style="color:#fd653c;" *ngIf="logInForm.get('emailId').hasError('required') && logInForm.get('emailId').dirty">*Please enter Email</p>
+								<p style="color:#fd653c;" *ngIf="logInForm.get('emailId').hasError('pattern') && logInForm.get('emailId').dirty">*Invalid Email</p>
 							</div>
 						</div>
 						<div class="col-lg-12">
