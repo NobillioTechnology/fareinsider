@@ -3,6 +3,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestDataService } from '../../rest-data.service';
 import { IpServiceService } from '../../ip-service.service';
 import { Router} from '@angular/router';
+import { iif } from 'rxjs';
+// import { count } from 'console';
 
 @Component({
   selector: 'app-agent-login',
@@ -46,7 +48,8 @@ export class AgentLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIP();
-    this.selectCountry()
+    this.selectCountry(false);
+    // this.actionType='signup'
   }
   getIP()
   {
@@ -82,6 +85,7 @@ verify(){
         // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
         if(res.Status==true){
          this.actionType='signup'
+         this.myForm.value.mobile = this.data.contact;
           // localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy"}))
           // alert("successfull")
         // this.comissionType= res.Data.commType
@@ -106,41 +110,58 @@ resend(){
         
       });
 }
-selectCountry(){
-  this.service.testGetApiMethod(`comman/Country`).subscribe(res=>{
-  // console.log("getairport ====>"+JSON.stringify(res)); 
-  if(res.Status==true){
-    this.countryList=res.Data;
-    this.selectState(this.myForm.value.country)
-    // console.log("getCountry ====>"+JSON.stringify(this.countryList)); 
-  }
- },
- (err)=>{
-});
-// }
+selectCountry(select){
+  if(!select){
+      this.service.testGetApiMethod(`comman/Country`).subscribe(res=>{
+      console.log("Data from country api ====>"+JSON.stringify(res)); 
+      if(res.Status==true){
+        this.countryList=res.Data;
+        // this.selectState(this.myForm.value.country)
+        // console.log("getCountry ====>"+JSON.stringify(this.countryList)); 
+      }
+    },
+    (err)=>{
+    });
+  }else{
+    this.selectState(this.myForm.value.country);
+        console.log("Data after seleted country====>", this.myForm.value.country);
+    }
 }
 selectState(country){
-  this.service.testGetApiMethod("comman/state?Country="+country).subscribe(res=>{
-    // console.log("getairport ====>"+JSON.stringify(res)); 
-    if(res.Status==true){
-      this.stateList=res.Data;
-      this.selectCity(this.myForm.value.state)
-      // console.log("getCountry ====>"+JSON.stringify(this.countryList)); 
-    }
-   },
-   (err)=>{
-  });
+  if(country!=undefined){
+      this.service.testGetApiMethod("comman/state?Country="+country).subscribe(res=>{
+        console.log("Data from state api ====>"+JSON.stringify(res)); 
+        if(res.Status==true){
+          this.stateList=res.Data;
+          // console.log("getCountry ====>"+JSON.stringify(this.countryList)); 
+        }else{
+          this.stateList=[];
+        }
+      },
+      (err)=>{
+      });
+  }else{
+    this.selectCity(this.myForm.value.state)
+    console.log("Data after selected state====>", this.myForm.value.state);
+  }
 }
 selectCity(state){
-  this.service.testGetApiMethod("comman/City?State="+state).subscribe(res=>{
-    // console.log("getairport ====>"+JSON.stringify(res)); 
-    if(res.Status==true){
-      this.cityList=res.Data;
-      // console.log("getCountry ====>"+JSON.stringify(this.countryList)); 
-    }
-   },
-   (err)=>{
-  });
+  if(state!=undefined){
+    console.log("Data state", state);
+    this.service.testGetApiMethod("comman/City?State="+state).subscribe(res=>{
+      console.log("Data from City api ====>"+JSON.stringify(res)); 
+      if(res.Status==true){
+        this.cityList=res.Data;
+        // console.log("getCountry ====>"+JSON.stringify(this.countryList)); 
+      }else{
+        this.cityList=[];
+      }
+    },
+    (err)=>{
+    });
+  }else{
+
+  }
 }
 signup(){
     let dataInfo={
@@ -182,16 +203,15 @@ signup(){
   }
   logIn(){
     this.service.testGetApiMethod(`Agent/AgentLogin?email=${this.logInForm.value.emailId}&password=${this.logInForm.value.password}`).subscribe(res=>{
-      // console.log("getairport ====>"+JSON.stringify(res)); 
-       if(res.Status==true){
+      console.log('response from login agent', JSON.stringify(res));
+      if(res.Status==true){
         //  localStorage.setItem("userId",res.Data.UserID)
-        console.log(JSON.stringify(res));
          localStorage.setItem('userData', JSON.stringify(res.Data));
         //  window.history.back()
         this.action='close'
         this.router.navigate(['index'])
          setTimeout(()=>{
-          window.location.reload()
+          // window.location.reload()
          },1000)
         
         //  this.router.navigate(['window.location.pathname'])
@@ -202,6 +222,7 @@ signup(){
        }
       },
       (err)=>{
+        console.log('error while login', err);
        // this.spinner.hide(); 
        // this.router.navigate(['login'])
        // console.log(err)

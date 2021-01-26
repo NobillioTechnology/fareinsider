@@ -136,6 +136,7 @@ export class IndexComponent implements OnInit {
        }); 
     }
    availableFlights(){
+     console.log('im clicked search');
      if(this.myForm.value.class=='E'){
       this.trvlClass='Economy'
      }else if(this.myForm.value.class=='PE'){

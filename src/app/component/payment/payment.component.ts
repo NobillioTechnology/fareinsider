@@ -30,6 +30,9 @@ export class PaymentComponent implements OnInit {
   totalAmount: any;
   agentCode:any;
   salechanl:any;
+  userType:any;
+  walletBalance:any;
+  walletPayButton:any;
   constructor(private router: Router,private service: RestDataService,private route: ActivatedRoute,private ip:IpServiceService) {
 
    }
@@ -38,6 +41,8 @@ export class PaymentComponent implements OnInit {
     this.getIP()
     this.orderId=Math.floor(Math.random() * 1000000);
     // this.userDetail = JSON.parse(localStorage.getItem('userData'));
+    this.orderAmount=parseInt(localStorage.getItem("orderAount"));
+    this.totalAmount = this.orderAmount;
     this.userDetail = JSON.parse(localStorage.getItem('userData'));
     if(this.userDetail){
       // this.isLogin=2
@@ -45,6 +50,12 @@ export class PaymentComponent implements OnInit {
     
       if(this.userDetail.UserType=="Agent"){
         this.salechanl='SA-B2B'
+        this.userType = this.userDetail.UserType;
+        this.getExtraCharge('NW');
+        this.getWalletBalance();
+        // this.userType = "customer";
+      }else{
+        this.getExtraCharge('CC')
       }
     }else{
       this.agentCode='FAREIN0001'
@@ -61,9 +72,34 @@ export class PaymentComponent implements OnInit {
     this.reqObj=params
   })
   this.salesRule()
-  this.orderAmount=parseInt(localStorage.getItem("orderAount"))
-  this.getExtraCharge('CC')
+  
+  
   }
+
+  getWalletBalance(){
+    this.service.testGetApiMethod(`Agent/AgentBalance?Agentcode=${this.agentCode}`).subscribe(res=>{
+      if(res.Status==true){
+        this.walletBalance=parseInt(res.Data);
+        console.log("Get wallet balance====>", this.walletBalance, this.totalAmount);
+        if(this.walletBalance>=this.totalAmount)
+          this.walletPayButton=true;
+        else
+          this.walletPayButton=false;
+
+          console.log('pay button is====>', this.walletPayButton);
+      }
+     },
+     (err)=>{
+      
+    });
+  }
+
+  walletPay(){
+    console.log('im clicked wallet pay');
+    window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=BusBooking&paymenttype=AgentWallet`);
+
+  }
+
   salesRule(){
     // this.spinner.show();
     this.service.testGetApiMethod(`Booking/GetSalesRule?product=SV0002&agentcode=${this.agentCode}&salechannel=${this.salechanl}`).subscribe(res=>{
@@ -87,6 +123,7 @@ export class PaymentComponent implements OnInit {
    return netPrice
   }
   getExtraCharge(mode){
+    console.log('data before getExtraCharge=====>', this.userDetail.Acode, this.orderAmount, mode);
     this.service.testGetApiMethod(`Booking/GetPGCharges?agentCode=${this.userDetail.Acode}&totalAmount=${this.orderAmount}&PaxNo=2&paymode=${mode}&SaleChannel=DO-B2C&product=Flights&CID=1&branchcode=ETL-1`).subscribe(res=>{
       console.log("extra_charges========>"+JSON.stringify(res))
       if(res.Status==true){
@@ -95,6 +132,8 @@ export class PaymentComponent implements OnInit {
       this.updateCriteria_1(mode)
       // this.router.navigate(['oneway'])
       // this.spinner.hide();
+    }else{
+      this.extraCharge=0;
     }
    },
    (err)=>{

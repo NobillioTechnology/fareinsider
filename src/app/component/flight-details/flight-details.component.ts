@@ -12,6 +12,8 @@ import { ResourceLoader } from '@angular/compiler';
   styleUrls: ['./flight-details.component.css']
 })
 export class FlightDetailsComponent implements OnInit {
+
+  loginType:any;
   index:any;
   flightDetails:any=[];
   fareDetails:any={};

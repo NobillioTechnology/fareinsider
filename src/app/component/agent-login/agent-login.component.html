@@ -468,7 +468,7 @@
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
-							<select class="form-control" name="country" formControlName="country" (change)="selectCountry()">
+							<select class="form-control" name="country" formControlName="country" (change)="selectCountry(true)">
 								<!-- <span><i class="fas fa-flag"></i></span> -->
 								<option value="">Country</option>
 								<option *ngFor="let item of countryList" value="{{item.Country}}">{{item.Country}}</option>
@@ -506,7 +506,7 @@
 					</div>
 					<div class="col-lg-12">
 						<div class="form-group">
-							<input type="number" class="form-control" placeholder="Agency Mobile No" name="mobile" formControlName="mobile">
+							<input type="number" class="form-control" placeholder="Agency Mobile No" name="mobile" formControlName="mobile" disabled [(ngModel)]="data.contact">
 							<span><i class="fas fa-mobile"></i></span>
 							<p style="color:#fd653c;" *ngIf="myForm.get('mobile').hasError('required') && myForm.get('mobile').dirty">*Please enter Agency Mobile No</p>
 							<p style="color:#fd653c;" *ngIf="myForm.get('mobile').hasError('pattern') && myForm.get('mobile').dirty">*Invalid mobile</p>

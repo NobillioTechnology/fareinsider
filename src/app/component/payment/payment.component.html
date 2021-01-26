@@ -1,7 +1,7 @@
 <section class="main-box">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-9 col-md-7 order-1" >
+			<div class="col-lg-9 col-md-7 order-1" *ngIf="userType!='Agent'">
 				<h2>Payment Method</h2>
 				<div class="box-content payment-box">
 					<div class="payment-wrap row">
@@ -238,14 +238,14 @@
 			</div>
 
 			<!-- ======for agent==== -->
-			<!-- <div class="col-lg-9 col-md-7 order-1" >
+			<div class="col-lg-9 col-md-7 order-1" *ngIf="userType=='Agent'">
 				<h2>Payment Method</h2>
 				<div class="box-content payment-box">
 					<div class="payment-wrap row">
 						<div class="tab-content col-lg-9">
-							<div class="tab-pane" id="netWallet">
+							<div class="tab-pane active" id="netWallet">
 								<div class="pay-creditcard">
-									<h3>Pay With Net Wallet</h3>
+									<h3>Pay With Net Wallet (<i class="fas fa-rupee-sign"></i> {{(walletBalance)}})</h3>
 									<form>
 										<div class="row">
 											<div class="col-lg-8">
@@ -256,8 +256,10 @@
 											</div>
 											<div class="col-lg-12 final-pay">
 												<div class="price-box">
-													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>2,000</div>	
-													<div class="btn-book" ><a>Pay Now</a></div>
+													<div class="fgt-price"><i class="fas fa-rupee-sign"></i>{{(totalAmount).toLocaleString('en-IN')}}</div>	
+													<div class="proceed-payment text-center">
+														<button type="button" class="btn-payment" [disabled]="walletPayButton==false ? true:false" (click)="walletPay()">Pay Now</button>
+													</div>
 												</div>
 												<p>By clicking on Pay Now, you are agreeing to our <a>Terms & Conditions</a>and<a>Privacy policy</a>and<a>User Agreement</a></p>
 											</div>
@@ -268,7 +270,7 @@
 						</div>
 					</div>	 
 				</div>
-			</div> -->
+			</div>
 
 			<div class="col-lg-3 col-md-5 order-md-2">
 				<div class="fare-right-box payment-sec">
