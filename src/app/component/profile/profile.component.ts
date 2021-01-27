@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   }
   myProfile(){
     this.service.testGetApiMethod(`Client/ClientProfile?ClientCode=${this.userDetail.UserCode}`).subscribe(res=>{
-      // console.log("getairport ====>"+JSON.stringify(res)); 
+      console.log("profile ====>"+JSON.stringify(res)); 
        if(res.Status==true){
        this.profile=res.Data
        }

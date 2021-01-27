@@ -185,7 +185,7 @@ signup(){
        if(res.Status==true){
           // this.tabType='signIn'
           // this.isActive='signIn'
-          // localStorage.setItem('userData', JSON.stringify(res.Data));
+          localStorage.setItem('userData', JSON.stringify(res.Data));
           setTimeout(()=>{
             window.location.reload()
            },1000)
@@ -211,7 +211,7 @@ signup(){
         this.action='close'
         this.router.navigate(['index'])
          setTimeout(()=>{
-          // window.location.reload()
+          window.location.reload()
          },1000)
         
         //  this.router.navigate(['window.location.pathname'])

@@ -20,7 +20,9 @@ export class HeaderComponent implements OnInit {
     if(this.userDetail){
       this.isLogin=2;
       this.username=this.userDetail.UserName
+      
     }
+    // alert(this.isLogin)
   }
   home(){
     this.showButn=true

@@ -94,7 +94,7 @@
 </section>
 
 <!--MOdal Pop-->
- <div id="largeModal" class="modal fade" tabindex="-1" role="dialog" *ngif="closeTab=='open'">
+ <div id="largeModal" class="modal fade" tabindex="-1" role="dialog"  [ngStyle]="{'display': closeTab=='open' ? 'block':'none'}">
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
             	 <!-- Modal Header -->

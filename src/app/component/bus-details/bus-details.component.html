@@ -220,10 +220,10 @@
 					<!-- <h2>Fare Details<a>View Fare Rules</a></h2> -->
 					<div class="box-content fare-details">
 						<ul>
-							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{baseFare}}</span></li>
-							<li>Fee & Surcharges<span><i class="small-inr"></i>{{netAmount(tax)}}</span></li>
-							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{baseFare+netAmount(tax)}} </span></li>
-							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{baseFare+netAmount(tax)}} </span></li>
+							<li>Base Fare (1 Traveller)<span><i class="small-inr"></i>{{baseFare.toLocaleString('en-IN')}}</span></li>
+							<li>Fee & Surcharges<span><i class="small-inr"></i>{{(netAmount(tax).toLocaleString('en-IN'))}}</span></li>
+							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{(baseFare+netAmount(tax)).toLocaleString('en-IN')}} </span></li>
+							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(baseFare+netAmount(tax)).toLocaleString('en-IN')}} </span></li>
 							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
 						</ul>
 					</div>

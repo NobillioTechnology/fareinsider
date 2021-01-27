@@ -47,15 +47,15 @@ export class PaymentComponent implements OnInit {
     if(this.userDetail){
       // this.isLogin=2
       this.agentCode=this.userDetail.Acode
-    
+      this.userType = this.userDetail.UserType;
       if(this.userDetail.UserType=="Agent"){
         this.salechanl='SA-B2B'
-        this.userType = this.userDetail.UserType;
         this.getExtraCharge('NW');
         this.getWalletBalance();
         // this.userType = "customer";
       }else{
         this.getExtraCharge('CC')
+        this.salechanl='DO-B2B2C'
       }
     }else{
       this.agentCode='FAREIN0001'
@@ -96,7 +96,7 @@ export class PaymentComponent implements OnInit {
 
   walletPay(){
     console.log('im clicked wallet pay');
-    window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=BusBooking&paymenttype=AgentWallet`);
+    window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=flightBooking&paymenttype=AgentWallet`);
 
   }
 
@@ -124,7 +124,7 @@ export class PaymentComponent implements OnInit {
   }
   getExtraCharge(mode){
     console.log('data before getExtraCharge=====>', this.userDetail.Acode, this.orderAmount, mode);
-    this.service.testGetApiMethod(`Booking/GetPGCharges?agentCode=${this.userDetail.Acode}&totalAmount=${this.orderAmount}&PaxNo=2&paymode=${mode}&SaleChannel=DO-B2C&product=Flights&CID=1&branchcode=ETL-1`).subscribe(res=>{
+    this.service.testGetApiMethod(`Booking/GetPGCharges?agentCode=${this.userDetail.Acode}&totalAmount=${this.orderAmount}&PaxNo=2&paymode=${mode}&SaleChannel=${this.salechanl}&product=Flights&CID=1&branchcode=ETL-1`).subscribe(res=>{
       console.log("extra_charges========>"+JSON.stringify(res))
       if(res.Status==true){
       this.extraCharge=res.Data.PayChage
