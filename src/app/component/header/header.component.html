@@ -41,7 +41,8 @@
 						 Hey {{username}}
 					   </a>
 					   <div class="dropdown-menu">
-						 <a class="dropdown-item" (click)="myTrip()">My Trips</a>
+						 <a class="dropdown-item" (click)="myTrip()">My Booking</a>
+						 <a class="dropdown-item" *ngIf="userType=='Agent'" (click)="myAccount()">My Account Statement</a>
 						 <a class="dropdown-item" (click)="myProfile()">My Profile</a>
 						 <a class="dropdown-item" (click)="chngePswrd()">Change Pasword</a>
 						 <a class="dropdown-item" (click)="logout()">Log Out</a>

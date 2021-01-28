@@ -41,6 +41,7 @@ import { SuccessComponent } from './component/success/success.component';
 import { ErrorComponent } from './component/error/error.component';
 import { BusTcktSuccessComponent } from './component/bus-tckt-success/bus-tckt-success.component';
 import { BusTcktErrorComponent } from './component/bus-tckt-error/bus-tckt-error.component';
+import { AccountStatemntComponent } from './component/account-statemnt/account-statemnt.component';
 
 
 const APP_Routing: Routes =[
@@ -69,6 +70,7 @@ const APP_Routing: Routes =[
   { path: 'error', component: ErrorComponent },
   { path: 'bus-tckt-success/:searchId', component: BusTcktSuccessComponent },
   { path: 'bus-tckt-error', component: BusTcktErrorComponent },
+  { path: 'account-statemnt', component: AccountStatemntComponent },
  
   ]
 
@@ -99,6 +101,7 @@ const APP_Routing: Routes =[
     ErrorComponent,
     BusTcktSuccessComponent,
     BusTcktErrorComponent,
+    AccountStatemntComponent,
     
    
 

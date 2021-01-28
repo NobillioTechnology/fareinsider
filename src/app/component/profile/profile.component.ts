@@ -10,17 +10,33 @@ export class ProfileComponent implements OnInit {
   userDetail:any={};
   profile:any={};
   closeTab:any='close';
+  userType:any;
   constructor(private service: RestDataService) { }
 
   ngOnInit(): void {
     this.userDetail =JSON.parse(localStorage.getItem('userData'));
-    this.myProfile()
+    this.userType = this.userDetail.UserType;
+    // this.myProfile()
+    this.agentProfile()
   }
   myProfile(){
     this.service.testGetApiMethod(`Client/ClientProfile?ClientCode=${this.userDetail.UserCode}`).subscribe(res=>{
       console.log("profile ====>"+JSON.stringify(res)); 
        if(res.Status==true){
        this.profile=res.Data
+       }
+      },
+      (err)=>{
+       // this.spinner.hide(); 
+       // this.router.navigate(['login'])
+       // console.log(err)
+     }); 
+  }
+  agentProfile(){
+    this.service.testGetApiMethod(`Agent/AgentProfile?AgentCode=${this.userDetail.UserCode}`).subscribe(res=>{
+      console.log("profile ====>"+JSON.stringify(res)); 
+       if(res.Status==true){
+       this.profile=res.Data[0]
        }
       },
       (err)=>{

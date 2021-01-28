@@ -81,11 +81,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let temp of bookingList let i = index" (click)="showTckt(temp.BookingRef)">
+        <tr *ngFor="let temp of bookingList let i = index" (click)="showTckt(temp.BookingRef,temp.Services)">
 		  <td>{{i+1}}</td>
 		  <td>{{temp.ClientName}}</td>
           <td>{{temp.BookingRef}}</td>
-          <td>{{temp.TripStartDate}}</td>
+          <td>{{temp.TripStartDate | date}}</td>
           <td>{{temp.DateofBooking}}</td>
           <td>{{temp.CreatedBy}}</td>
           <td>{{temp.Services}}</td>

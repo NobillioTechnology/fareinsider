@@ -29,7 +29,11 @@
 					</div>
 					<div class="contact-details changepwd">
 							<div class="row">
-								<div class="col-lg-6 col-md-6">			
+								<div class="col-lg-6 col-md-6">	
+									<div class="form-group"  *ngIf="userType=='Agent'">
+									    <label for="pwd">Old Password</label>
+									    <input type="password" class="form-control" placeholder="Enter Old password"  name="oldPswrd" [(ngModel)]="data.oldPswrd">
+									  </div>		
 									  <div class="form-group">
 									    <label for="pwd">New Password</label>
 									    <input type="password" class="form-control" placeholder="Enter New password"  name="newPswrd" [(ngModel)]="data.newPswrd">

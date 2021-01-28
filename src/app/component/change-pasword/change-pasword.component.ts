@@ -8,13 +8,22 @@ import { RestDataService } from '../../rest-data.service';
 })
 export class ChangePaswordComponent implements OnInit {
   data:any={};
-  userDetail:any={}
+  userDetail:any={};
+  userType:any;
   constructor(private service: RestDataService) { }
 
   ngOnInit(): void {
     this.userDetail =JSON.parse(localStorage.getItem('userData'));
+    this.userType = this.userDetail.UserType;
   }
-chngePaswrd(){
+  chngePaswrd(){
+    if(this.userType=='Agent'){
+     this.chngePaswrdAgent()
+    }else{
+      this.chngePaswrdClient()
+    }
+  }
+chngePaswrdClient(){
 if(this.data.newPswrd==this.data.cnfrmPswrd){
   let dataInfo={
     "ClientCode":this.userDetail.UserCode,
@@ -33,4 +42,25 @@ if(this.data.newPswrd==this.data.cnfrmPswrd){
 });
 }
 }
+chngePaswrdAgent(){
+  if(this.data.newPswrd==this.data.cnfrmPswrd && this.data.oldPswrd!=undefined){
+    let dataInfo={
+      "AgentCode":this.userDetail.UserCode,
+      "NewPassword":this.data.newPswrd,
+      "OldPassword":this.data.oldPswrd,
+      "ConfirmPassword":this.data.cnfrmPswrd
+  }
+    this.service.testPostApiMethod(dataInfo,"Agent/AgentChangePassWord").subscribe(res=>{
+    // console.log("getairport ====>"+JSON.stringify(res)); 
+    if(res.Status==true){
+      alert("password changed successfully")
+    }
+   },
+   (err)=>{
+    // this.spinner.hide(); 
+    // this.router.navigate(['login'])
+    // console.log(err)
+  });
+  }
+  }
 }

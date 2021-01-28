@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="mybooking text-center">
-					<h2>My Booking!</h2>
+					<h2>My Profile!</h2>
 					
 			</div>
 		</div>
@@ -11,7 +11,7 @@
 </div></section>
 
 <!--My Profile-->
-<section class="booking-table">
+<section class="booking-table" *ngIf="userType!='Agent'">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3 myprofilephoto">
@@ -46,7 +46,7 @@
 							</li>
 							<li>
 								<span class="editsectionsl">DOB</span>
-								<span class="editsectionsr">{{profile.ClientName}}</span>
+								<span class="editsectionsr">{{profile.dob}}</span>
 								<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
 							</li>
 							<!-- <li>
@@ -176,4 +176,96 @@
         </div>
     </div>
 
-    <!--modal pop end-->
+	<!--modal pop end-->
+	<section class="booking-table" *ngIf="userType=='Agent'">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 myprofilephoto">
+					<div class="myprofilec">
+						<h2>Welcome</h2>
+					</div>
+					
+					<h4>{{userDetail.UserName}}</h4>
+				</div>
+	
+	
+				<div class="col-lg-9">
+					<div class="myprofile">
+						<div class="myprofileh">
+							<div class="row">
+								<div class="col-md-9 col-6">
+								<h3>Profile</h3>
+								<p class="d-none d-lg-block d-md-block">Basic Info, for a faster booking experience</p>
+							</div>
+							<!-- <div class="col-md-3 col-6">
+								<button class="btn-editp" data-toggle="modal" data-target="#largeModal" (click)="showModal('open')">Edit <i class="far fa-edit"></i></button>
+							</div> -->
+								</div>
+	
+						</div>
+	
+						<div class="editsection">
+							<ul>
+								<li>
+									<span class="editsectionsl">Agency Code</span>
+									<span class="editsectionsr">{{profile.Agency_Code}}</span>
+								</li>
+								<li>
+									<span class="editsectionsl">Company Name</span>
+									<!-- <span class="editsectionsr">{{profile.Company Name}}</span> -->
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">Date Of Operation</span>
+									<!-- <span class="editsectionsr">{{profile.Date Of Operation | date}}</span> -->
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">Email ID</span>
+									<!-- <span class="editsectionsr">{{profile.Email ID}}</span> -->
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">Address</span>
+									<span class="editsectionsr">{{profile.Address}}</span>
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">City</span>
+									<span class="editsectionsr">{{profile.City}}</span>
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">State</span>
+									<span class="editsectionsr">{{profile.State}}</span>
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">Country</span>
+									<span class="editsectionsr">{{profile.Country}}</span>
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">Mobile No</span>
+									<!-- <span class="editsectionsr">{{profile.Mobile No.}}</span> -->
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">Phone No.</span>
+									<!-- <span class="editsectionsr">{{profile.Phone No.}}</span> -->
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								<li>
+									<span class="editsectionsl">Fax No.</span>
+									<!-- <span class="editsectionsr">{{profile.Fax No.}}</span> -->
+									<!-- <span class="editsectionsr editsectionsradd" data-toggle="modal" data-target="#largeModal">+ Add</span> -->
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>

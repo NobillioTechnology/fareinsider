@@ -81,10 +81,12 @@ export class PaymentComponent implements OnInit {
       if(res.Status==true){
         this.walletBalance=parseInt(res.Data);
         console.log("Get wallet balance====>", this.walletBalance, this.totalAmount);
-        if(this.walletBalance>=this.totalAmount)
+        if(this.walletBalance>=this.totalAmount){
           this.walletPayButton=true;
-        else
+        } else{
           this.walletPayButton=false;
+        }
+          
 
           console.log('pay button is====>', this.walletPayButton);
       }

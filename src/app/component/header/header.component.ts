@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   username:any;
   isActive:any;
   showButn:any=true;
+  userType:any;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
     if(this.userDetail){
       this.isLogin=2;
       this.username=this.userDetail.UserName
+      this.userType = this.userDetail.UserType;
       
     }
     // alert(this.isLogin)
@@ -49,5 +51,8 @@ export class HeaderComponent implements OnInit {
   }
   myTrip(){
     this.router.navigate(['my-booking'])
+  }
+  myAccount(){
+    this.router.navigate(['account-statemnt'])
   }
 }

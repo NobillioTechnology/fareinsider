@@ -59,9 +59,9 @@ export class BusPaymentComponent implements OnInit {
         this.walletBalance=parseInt(res.Data);
         console.log("Get wallet balance====>", this.walletBalance, this.totalAmount);
         if(this.walletBalance>=this.totalAmount)
-          this.walletPayButton=true;
+         { this.walletPayButton=true;}
         else
-          this.walletPayButton=false;
+         { this.walletPayButton=false;}
 
           console.log('pay button is====>', this.walletPayButton);
       }
