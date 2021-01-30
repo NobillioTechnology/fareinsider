@@ -136,6 +136,7 @@ export class PaymentComponent implements OnInit {
       // this.spinner.hide();
     }else{
       this.extraCharge=0;
+      
     }
    },
    (err)=>{

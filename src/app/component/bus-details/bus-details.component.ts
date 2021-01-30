@@ -50,7 +50,7 @@ export class BusDetailsComponent implements OnInit {
     if(this.userDetail){
       this.isLogin=2
       this.agentCode=this.userDetail.Acode
-    
+      this.salechanl='DO-B2B2C'
       if(this.userDetail.UserType=="Agent"){
         this.salechanl='SA-B2B'
       }
@@ -449,11 +449,14 @@ payment(){
         this.service.testGetApiMethod(`Client/ClientLogin?Email=${this.data.emailAdd}&Password=${this.data.passwrd}`).subscribe(res=>{
           // console.log("getairport ====>"+JSON.stringify(res)); 
            if(res.Status==true){
+            alert(res.Message)
             //  localStorage.setItem("userId",res.Data.UserID)
              localStorage.setItem('userData', JSON.stringify(res.Data));
             //  window.history.back()
+            window.location.reload();
              setTimeout(()=>{
               // window.location.reload();
+             
               this.userDetail = JSON.parse(localStorage.getItem('userData'));
               if(this.userDetail){
                 this.isLogin=2
@@ -468,6 +471,8 @@ payment(){
             //  if(res.Data!=null){
             //  this.airportSrcList=res.Data;
             //  } 
+           }else{
+            alert(res.Message)
            }
           },
           (err)=>{
@@ -499,12 +504,20 @@ payment(){
           "IP":this.ipAddress
         }
         this.service.testPostApiMethod(dataInfo,"Client/ClientRegistration").subscribe(res=>{
+          if(res.Status==true){
+            alert(res.Message)
+          }else{
+            alert(res.Message)
+          }
         },
         (err)=>{
            // this.spinner.hide(); 
            // this.router.navigate(['login'])
            // console.log(err)
          }); 
+      }
+      chngePswrd(){
+        this.router.navigate(['change-pasword'])
       }
 }
 

@@ -105,7 +105,7 @@ export class FlightDetailsComponent implements OnInit {
     if(this.userDetail){
       this.isLogin=2
       this.agentCode=this.userDetail.Acode
-    
+      this.salechanl='DO-B2B2C'
       if(this.userDetail.UserType=="Agent"){
         this.salechanl='SA-B2B'
       }
@@ -313,7 +313,9 @@ export class FlightDetailsComponent implements OnInit {
        if(res.Status==true){
         //  localStorage.setItem("userId",res.Data.UserID)
          localStorage.setItem('userData', JSON.stringify(res.Data));
+         alert(res.Message)
         //  window.history.back()
+        window.location.reload()
          setTimeout(()=>{
           // window.location.reload();
           this.userDetail = JSON.parse(localStorage.getItem('userData'));
@@ -324,12 +326,14 @@ export class FlightDetailsComponent implements OnInit {
           // this.router.navigate(['flight-details'],{ queryParams:this.route.queryParams});
           // this.ngOnInit();
         },1000)
-        
+       
         //  this.router.navigate(['window.location.pathname'])
          // this.spinner.hide();
         //  if(res.Data!=null){
         //  this.airportSrcList=res.Data;
         //  } 
+       }else{
+        alert(res.Message)
        }
       },
       (err)=>{
@@ -363,7 +367,12 @@ export class FlightDetailsComponent implements OnInit {
       "IP":this.ipAddress
     }
     this.service.testPostApiMethod(dataInfo,"Client/ClientRegistration").subscribe(res=>{
+      if(res.Status==true){
       localStorage.setItem('userData', JSON.stringify(res.Data));
+      alert(res.Message)
+      }else{
+        alert(res.Message)
+      }
     },
     (err)=>{
        // this.spinner.hide(); 
@@ -739,6 +748,8 @@ this.service.testPostApiMethod(dataInfo,"Booking/SavePasenger").subscribe(res=>{
      (err)=>{ 
     });
   }
- 
+  chngePswrd(){
+    this.router.navigate(['change-pasword'])
+  }
   
 }

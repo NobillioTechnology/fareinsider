@@ -24,4 +24,4 @@
     z-index:1!important;
 }
 .m-date::after {display: none;}
-.date-icon{padding-right:0px;}
+.date-icon{padding-right:0px !important;}

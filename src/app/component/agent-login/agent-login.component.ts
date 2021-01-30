@@ -64,6 +64,9 @@ export class AgentLoginComponent implements OnInit {
   newReg(){
     this.action='close'
   }
+  agentSignIn(){
+    this.action='open'
+  }
   sendOtp(){
     this.service.testGetApiMethod("/comman/GetOtp?MobileNo="+this.data.contact).subscribe(res=>{
     // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
@@ -71,9 +74,12 @@ export class AgentLoginComponent implements OnInit {
       this.tabtype='enterotp'
       // this.signUp()
       // alert("successfull")
-      
+      alert(res.Message)
     // this.comissionType= res.Data.commType
     //   this.comission= parseInt(res.Data.commMarkup)
+        }
+        else{
+          alert(res.Message)
         }
    },
    (err)=>{
@@ -86,10 +92,13 @@ verify(){
         if(res.Status==true){
          this.actionType='signup'
          this.myForm.value.mobile = this.data.contact;
+         alert(res.Message)
           // localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy"}))
           // alert("successfull")
         // this.comissionType= res.Data.commType
         //   this.comission= parseInt(res.Data.commMarkup)
+            }else{
+              alert(res.Message)
             }
        },
        (err)=>{
@@ -186,6 +195,7 @@ signup(){
           // this.tabType='signIn'
           // this.isActive='signIn'
           localStorage.setItem('userData', JSON.stringify(res.Data));
+          alert(res.Message)
           setTimeout(()=>{
             window.location.reload()
            },1000)
@@ -193,6 +203,8 @@ signup(){
         //  if(res.Data!=null){
         //  this.airportSrcList=res.Data;
         //  } 
+       }else{
+        alert(res.Message)
        }
       },
       (err)=>{
@@ -205,6 +217,7 @@ signup(){
     this.service.testGetApiMethod(`Agent/AgentLogin?email=${this.logInForm.value.emailId}&password=${this.logInForm.value.password}`).subscribe(res=>{
       console.log('response from login agent', JSON.stringify(res));
       if(res.Status==true){
+        alert(res.Message)
         //  localStorage.setItem("userId",res.Data.UserID)
          localStorage.setItem('userData', JSON.stringify(res.Data));
         //  window.history.back()
@@ -219,6 +232,8 @@ signup(){
         //  if(res.Data!=null){
         //  this.airportSrcList=res.Data;
         //  } 
+       }else{
+        alert(res.Message)
        }
       },
       (err)=>{

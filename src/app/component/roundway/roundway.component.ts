@@ -83,7 +83,7 @@ export class RoundwayComponent implements OnInit {
     if(this.userDetail){
       // this.isLogin=2
       this.agentCode=this.userDetail.Acode
-    
+      this.salechanl='DO-B2B2C'
       if(this.userDetail.UserType=="Agent"){
         this.salechanl='SA-B2B'
       }

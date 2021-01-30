@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import { RestDataService } from '../../rest-data.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,9 @@ export class HeaderComponent implements OnInit {
   isActive:any;
   showButn:any=true;
   userType:any;
-  constructor(private router: Router) { }
+  walletBalance:any;
+  agentCode:any;
+  constructor(private router: Router,private service: RestDataService) { }
 
   ngOnInit(): void {
    
@@ -22,9 +25,25 @@ export class HeaderComponent implements OnInit {
       this.isLogin=2;
       this.username=this.userDetail.UserName
       this.userType = this.userDetail.UserType;
+     
+      if(this.userType=='Agent'){
+        this.agentCode=this.userDetail.Acode
+        this.getWalletBalance()
+      }
       
     }
     // alert(this.isLogin)
+  }
+  getWalletBalance(){
+    this.service.testGetApiMethod(`Agent/AgentBalance?Agentcode=${this.agentCode}`).subscribe(res=>{
+      if(res.Status==true){
+        this.walletBalance=parseInt(res.Data);
+          // console.log('pay button is====>', this.walletPayButton);
+      }
+     },
+     (err)=>{
+      
+    });
   }
   home(){
     this.showButn=true

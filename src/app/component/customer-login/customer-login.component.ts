@@ -66,11 +66,14 @@ export class CustomerLoginComponent implements OnInit {
        if(res.Status==true){
         this.tabType='signIn'
         this.isActive='signIn'
+        alert(res.Message)
          // this.router.navigate(['oneway'])
          // this.spinner.hide();
         //  if(res.Data!=null){
         //  this.airportSrcList=res.Data;
         //  } 
+       }else{
+        alert(res.Message)
        }
       },
       (err)=>{
@@ -91,7 +94,7 @@ export class CustomerLoginComponent implements OnInit {
          setTimeout(()=>{
           window.location.reload()
          },1000)
-        
+         alert(res.Message)
         //  this.router.navigate(['window.location.pathname'])
          // this.spinner.hide();
         //  if(res.Data!=null){
@@ -100,6 +103,7 @@ export class CustomerLoginComponent implements OnInit {
        }else{
          this.hitLogin=true;
          this.msg=res.Message;
+         alert(res.Message)
        }
       },
       (err)=>{
@@ -124,6 +128,7 @@ export class CustomerLoginComponent implements OnInit {
     this.service.testGetApiMethod(`Client/ClientForGotPassword?email=${this.logInForm.value.emailId}`).subscribe(res=>{
       // console.log("getairport ====>"+JSON.stringify(res)); 
        if(res.Status==true){
+        alert(res.Message)
         //  localStorage.setItem("userId",res.Data.UserID)
         console.log(JSON.stringify(res));
          setTimeout(()=>{
@@ -138,6 +143,8 @@ export class CustomerLoginComponent implements OnInit {
         //  if(res.Data!=null){
         //  this.airportSrcList=res.Data;
         //  } 
+       }else{
+        alert(res.Message)
        }
       },
       (err)=>{

@@ -28,3 +28,6 @@
     width: 50px;
     text-align: center;
 }
+.linkSign{color: #0056b3;
+    text-decoration: underline;
+    font-family: sans-serif;}
