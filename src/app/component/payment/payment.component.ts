@@ -25,7 +25,7 @@ export class PaymentComponent implements OnInit {
   comissionType:any="";
   orderAmount:any;
   searchId:any="";
-  extraCharge:any;
+  extraCharge:any=0;
   ipAddress:any;
   totalAmount: any;
   agentCode:any;
@@ -42,20 +42,21 @@ export class PaymentComponent implements OnInit {
     this.orderId=Math.floor(Math.random() * 1000000);
     // this.userDetail = JSON.parse(localStorage.getItem('userData'));
     this.orderAmount=parseInt(localStorage.getItem("orderAount"));
-    this.totalAmount = this.orderAmount;
+    this.totalAmount = parseInt(this.orderAmount);
     this.userDetail = JSON.parse(localStorage.getItem('userData'));
     if(this.userDetail){
       // this.isLogin=2
+      this.salechanl='DO-B2B2C'
       this.agentCode=this.userDetail.Acode
       this.userType = this.userDetail.UserType;
+     
       if(this.userDetail.UserType=="Agent"){
         this.salechanl='SA-B2B'
-        this.getExtraCharge('NW');
+        // this.getExtraCharge('NW');
         this.getWalletBalance();
         // this.userType = "customer";
-      }else{
+      }else if(this.userDetail.UserType!="Agent"){
         this.getExtraCharge('CC')
-        this.salechanl='DO-B2B2C'
       }
     }else{
       this.agentCode='FAREIN0001'
@@ -97,7 +98,8 @@ export class PaymentComponent implements OnInit {
   }
 
   walletPay(){
-    console.log('im clicked wallet pay');
+    // console.log('im clicked wallet pay');
+    this.updateCriteria_2()
     window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=flightBooking&paymenttype=AgentWallet`);
 
   }
@@ -152,7 +154,6 @@ export class PaymentComponent implements OnInit {
     });
   }
   updateCriteria_1(mode){
-    
     let dataInfo= {
       "searchID" :this.searchId,
       "ParentCode":this.userDetail.PartnerCode,
@@ -164,6 +165,31 @@ export class PaymentComponent implements OnInit {
     "NetCharges":this.extraCharge,
     "PgCharges":this.extraCharge,
     "TotalCharges":this.extraCharge,
+    "ClientCode":this.userDetail.UserCode,
+    "trackid":this.saveFlyOne.flytId,
+    "IP":this.ipAddress,
+    "AgentCode":this.userDetail.Acode
+}
+  this.service.testPostApiMethod(dataInfo,"Booking/UpdateSearchCriteria").subscribe(res=>{
+    // console.log("getairport ====>"+JSON.stringify(res)); 
+     if(res.Status==true){
+     }
+    },
+    (err)=>{
+   }); 
+  }
+  updateCriteria_2(){
+    let dataInfo= {
+      "searchID" :this.searchId,
+      "ParentCode":this.userDetail.PartnerCode,
+    "payMode":"AGENTWALLET",
+    "ConvAmt":0,
+    "TotalPaidAmt":parseInt(this.orderAmount),
+    "TotalAmt":this.orderAmount,
+    "PaidAmt":parseInt(this.orderAmount),
+    "NetCharges":0,
+    "PgCharges":0,
+    "TotalCharges":0,
     "ClientCode":this.userDetail.UserCode,
     "trackid":this.saveFlyOne.flytId,
     "IP":this.ipAddress,

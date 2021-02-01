@@ -204,9 +204,17 @@ export class OnewayComponent implements OnInit {
   }
   checkAirline(val){
     // alert(JSON.stringify(val))
-    if(this.checkArr.indexOf(val.airlineName)==-1){
-      this.checkArr.push(val.airlineName)
+    if(val.isChkd==false){
+      if(this.checkArr.indexOf(val.airlineName)!=-1){
+        this.checkArr.splice(this.checkArr.indexOf(val.airlineName),1)
+      }
+    }else{
+      if(this.checkArr.indexOf(val.airlineName)==-1){
+        this.checkArr.push(val.airlineName)
+      }
     }
+   
+    console.log("chkAirlineAAray====="+JSON.stringify(this.checkArr))
   }
   fareType(val){
    this.fareTyp=val
@@ -286,12 +294,14 @@ filterDom(){
   }
   if(this.mintime!=undefined && this.maxtime!=undefined){
     let fyltArr=[]
-    // alert(this.mintime)
-    // alert(this.maxtime)
+    alert(this.mintime)
+    alert(this.maxtime)
     if(tempData.length==0){
       this.flightList.find((item,index)=>{
         let flyTime=new Date(item.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.FlightSegments[0].DepartureDateTime).getMinutes()
+      
         if(flyTime>=this.mintime && flyTime<=this.maxtime){
+          alert(flyTime)
           fyltArr.push(item)
         }
       })

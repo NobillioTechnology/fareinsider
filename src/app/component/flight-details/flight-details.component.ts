@@ -397,7 +397,7 @@ export class FlightDetailsComponent implements OnInit {
     if(this.isLogin==0){
       this.showLoginForm();
     }else{
-        this.bookTckt()
+       
         if(this.reqObj.tripType=='1'){
         this.saveSelectedFlight_1()
         this.saveSelectedFare_1()
@@ -407,7 +407,8 @@ export class FlightDetailsComponent implements OnInit {
         this.saveSelectedFare_1()
         this.saveSelectedFare_2()
         }
-        this.savePassenger()
+        this.bookTckt()
+        // this.savePassenger()
       }
   }
 
@@ -440,6 +441,7 @@ export class FlightDetailsComponent implements OnInit {
   this.service.testPostApiMethod(dataInfo,"Booking/SaveSearchCriteria").subscribe(res=>{
     // console.log("getairport ====>"+JSON.stringify(res)); 
      if(res.Status==true){
+      this.savePassenger()
       //  alert("search criteria saved successfully")
       // this.tabType='signIn'
        // this.router.navigate(['oneway'])
@@ -677,7 +679,7 @@ export class FlightDetailsComponent implements OnInit {
       "AgentCode" :this.userDetail.Acode,
       "UserID" : this.userDetail.UserID,
        "IP": this.ipAddress,
-      "phone" : "9210394369",
+      "phone" : this.userDetail.Mobile,
       "EMailID" :this.userDetail.UserEMailD,
       "nation" :this.nationArr,
        "PassportNo" :this.passNoArr,
@@ -688,6 +690,7 @@ export class FlightDetailsComponent implements OnInit {
 this.service.testPostApiMethod(dataInfo,"Booking/SavePasenger").subscribe(res=>{
   // console.log("getairport ====>"+JSON.stringify(res)); 
    if(res.Status==true){
+     
     //  alert("save passenger Successful")
     // this.tabType='signIn'
      this.router.navigate(['payment'],{ queryParams: {'tripType':this.reqObj.tripType}})

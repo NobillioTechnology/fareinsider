@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
   getWalletBalance(){
     this.service.testGetApiMethod(`Agent/AgentBalance?Agentcode=${this.agentCode}`).subscribe(res=>{
       if(res.Status==true){
-        this.walletBalance=parseInt(res.Data);
+        this.walletBalance=parseInt(res.Data).toLocaleString('en-IN');
           // console.log('pay button is====>', this.walletPayButton);
       }
      },
@@ -61,6 +61,7 @@ export class HeaderComponent implements OnInit {
   logout(){
     localStorage.clear()
     window.location.reload()
+    this.router.navigate(['index'])
   }
   myProfile(){
     this.router.navigate(['profile'])

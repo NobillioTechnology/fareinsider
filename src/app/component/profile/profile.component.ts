@@ -16,8 +16,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userDetail =JSON.parse(localStorage.getItem('userData'));
     this.userType = this.userDetail.UserType;
-    // this.myProfile()
-    this.agentProfile()
+    if(this.userType=='Agent'){
+      this.agentProfile()
+    }else if(this.userType!='Agent'){
+      this.myProfile()
+    }
+    
+    
   }
   myProfile(){
     this.service.testGetApiMethod(`Client/ClientProfile?ClientCode=${this.userDetail.UserCode}`).subscribe(res=>{

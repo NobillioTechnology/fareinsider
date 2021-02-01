@@ -253,8 +253,14 @@ export class InternationalFlightComponent implements OnInit {
   }
   checkAirline(val){
     // alert(JSON.stringify(val))
-    if(this.checkArr.indexOf(val.airlineName)==-1){
-      this.checkArr.push(val.airlineName)
+    if(val.isChkd==false){
+      if(this.checkArr.indexOf(val.airlineName)!=-1){
+        this.checkArr.splice(this.checkArr.indexOf(val.airlineName),1)
+      }
+    }else{
+      if(this.checkArr.indexOf(val.airlineName)==-1){
+        this.checkArr.push(val.airlineName)
+      }
     }
   }
   fareType(val){

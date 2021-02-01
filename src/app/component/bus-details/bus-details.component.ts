@@ -157,6 +157,9 @@ export class BusDetailsComponent implements OnInit {
     "IP":this.ipAddress,
   }
   this.service.testPostApiMethod(dataInfo,"Booking/SaveBusSearchCriteria").subscribe(res=>{
+    if(res.Status==true){
+      this.saveBus()
+    }
   },
   (err)=>{
      // this.spinner.hide(); 
@@ -189,6 +192,9 @@ export class BusDetailsComponent implements OnInit {
    "seatblockjson":"0"
   }
   this.service.testPostApiMethod(dataInfo,"Booking/SaveBus").subscribe(res=>{
+    if(res.Status==true){
+      this.savePassenger()
+    }
   },
   (err)=>{
      // this.spinner.hide(); 
@@ -326,8 +332,8 @@ payment(){
   if(this.isLogin==0){
     this.showLoginForm();
   }else{
-    this.searchcriteria()
-    this.saveBus()
+    // this.searchcriteria()
+    // this.saveBus()
     for(let i=0;i<this.selectedSeat.length;i++){
       let dataInfo={
         "searchId":this.searchId,  
@@ -400,8 +406,8 @@ payment(){
        // console.log(err)
      });
     }
-  
-    this.savePassenger()
+    this.searchcriteria()
+    // this.savePassenger()
       // this.bookTckt()
       // if(this.reqObj.tripType=='1'){
       // this.saveSelectedFlight_1()
