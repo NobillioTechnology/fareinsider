@@ -84,7 +84,7 @@
 					<!-- <div class="total-flight"><p>166 of 166 Buses</p></div> -->
 					<div class="filter-action">
 						<a id="cancelfilter" (click)="closeFilter('1')">Cancel</a>
-						<button type="submit" class="btn-apply" (click)="filter()">Apply Filter</button>
+						<button type="submit" class="btn-apply" (click)="availableBuses()">Apply Filter</button>
 						<button type="submit" class="btn-apply" (click)="clearFilter()">Reset All Filters</button>
 					</div>
 				</div>
@@ -125,20 +125,20 @@
 						<div class="depart-time">
 							<p>{{source}}</p>
 							<ul>
-								<li (click)="selectTime('00:00','06:00')"><a [ngClass]="{active:isAct=='00:00' } "><span></span>00-06</a></li>
-								<li (click)="selectTime('06:00','12:00')"><a [ngClass]="{active:isAct=='06:00' } "><span></span>06-12</a></li>
-								<li (click)="selectTime('12:00','18:00')"><a [ngClass]="{active:isAct=='12:00' } "><span></span>12-18</a></li>
-								<li (click)="selectTime('18:00','00:00')"><a [ngClass]="{active:isAct=='18:00' } "><span></span>18-00</a></li>
+								<li (click)="selectTime(00,06)"><a [ngClass]="{active:isAct==00 } "><span></span>00-06</a></li>
+								<li (click)="selectTime(06,12)"><a [ngClass]="{active:isAct==06 } "><span></span>06-12</a></li>
+								<li (click)="selectTime(12,18)"><a [ngClass]="{active:isAct==12 } "><span></span>12-18</a></li>
+								<li (click)="selectTime(18,00)"><a [ngClass]="{active:isAct==18 } "><span></span>18-00</a></li>
 							</ul>
 						</div>
                         <h2>Arrival Time</h2>
 						<div class="depart-time">
 							<p> To {{destination}}</p>
 							<ul>
-								<li (click)="selectarrTime('00:00','06:00')"><a [ngClass]="{active:isActiveTym=='00:00' } "><span></span>00-06</a></li>
-								<li (click)="selectarrTime('06:00','12:00')"><a [ngClass]="{active:isActiveTym=='06:00' } "><span></span>06-12</a></li>
-								<li (click)="selectarrTime('12:00','18:00')"><a [ngClass]="{active:isActiveTym=='12:00' } "><span></span>12-18</a></li>
-								<li (click)="selectarrTime('18:00','00:00')"><a [ngClass]="{active:isActiveTym=='18:00' } "><span></span>18-00</a></li>
+								<li (click)="selectarrTime(00,06)"><a [ngClass]="{active:isActiveTym==00 } "><span></span>00-06</a></li>
+								<li (click)="selectarrTime(06,12)"><a [ngClass]="{active:isActiveTym==06 } "><span></span>06-12</a></li>
+								<li (click)="selectarrTime(12,18)"><a [ngClass]="{active:isActiveTym==12 } "><span></span>12-18</a></li>
+								<li (click)="selectarrTime(18,00)"><a [ngClass]="{active:isActiveTym==18 } "><span></span>18-00</a></li>
 							</ul>
 						</div>
 					</div>

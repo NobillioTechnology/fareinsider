@@ -334,22 +334,32 @@ this.filtersection=val
   }
   if(this.mintime!=undefined && this.maxtime!=undefined){
     let fyltArr=[]
+    let fromTym=this.mintime*60
+    let toTym=this.maxtime*60
     // alert(this.mintime)
     // alert(this.maxtime)
     if(tempData.length==0){
       this.IntFlights.find((item,index)=>{
-        let flyTime=new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getMinutes()
-        if(flyTime>=this.mintime && flyTime<=this.maxtime){
-          fyltArr.push(item)
-        }
+        let flyTime=(new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getHours()*60)+new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getMinutes()
+        if(toTym==0){
+          if(flyTime>=fromTym){
+            fyltArr.push(item)
+          }
+        }else if(flyTime>=fromTym && flyTime<=toTym){
+                  fyltArr.push(item)
+                }
       })
       tempData=fyltArr
     }else{
       tempData.find((item,index)=>{
-        let flyTime=new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getMinutes()
-        if(flyTime>=this.mintime && flyTime<=this.maxtime){
-          fyltArr.push(item)
-        }
+        let flyTime=(new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getHours()*60)+new Date(item.IntReturn.FlightSegments[0].DepartureDateTime).getMinutes()
+        if(toTym==0){
+          if(flyTime>=fromTym){
+            fyltArr.push(item)
+          }
+        }else if(flyTime>=fromTym && flyTime<=toTym){
+                  fyltArr.push(item)
+                }
       })
       tempData=fyltArr
     }

@@ -33,8 +33,8 @@ export class BusResultComponent implements OnInit {
   filtersection:any='1';
   mintime:any='';
   maxtime:any='';
-  isAct:any;
-  isActiveTym:any;
+  isAct:any=-1;
+  isActiveTym:any=-1;
   isActive:any=false;
   mintimeArvl:any;
   maxtimeArvl:any;
@@ -90,7 +90,28 @@ export class BusResultComponent implements OnInit {
     //     }
     // },10000)
    
+   
   }
+
+  timeConversion(s) {
+    /*
+     * Write your code here.
+     */
+    if(s.endsWith("PM")) s=s.substring(0, s.indexOf("PM"))+ " PM";
+    if(s.endsWith("AM")) s=s.substring(0, s.indexOf("AM"))+ " AM";
+
+    const d=new Date("2000-01-01 " + s);
+
+    if(s.endsWith("PM") && d.getHours()<12) d.setHours(12); 
+    if(s.endsWith("AM") && d.getHours()===12) d.setHours(d.getHours()-12); 
+
+    let result= (d.getHours() < 10 ?  "0" + d.getHours(): d.getHours())+ ":"+   
+    (d.getMinutes() <10 ? "0"+ d.getMinutes(): d.getMinutes())
+    
+// alert(result)
+    return result;
+
+}
   // saveAFile(): void {
   //   const dlink: HTMLAnchorElement = document.createElement('a');
   //   dlink.download = 'myfile.txt'; // the file name
@@ -172,6 +193,7 @@ export class BusResultComponent implements OnInit {
       this.source=this.reqObj.srcName
       this.destination=this.reqObj.destName
       let tempArr={bustypeObj:[],bustypeJson:[]}
+      if(this.mintime=='' && this.maxtime=='' && this.BusTypArr.length==0 && this.BusOprArr.length==0 && this.BuspickUpArr.length==0){
       if(this.busList.length!=0){
         // this.busList.find((item,index)=>{
         //   if(tempArr.bustypeObj.indexOf(item.BusType)==-1){
@@ -180,10 +202,12 @@ export class BusResultComponent implements OnInit {
         //   } 
         // })
         // this.bustypeArr=tempArr
-        // console.log("bustypes====>"+JSON.stringify(this.bustypeArr))
+      
         this.bustypeArr=[{"bustypeName":'AC Semi-Sleeper',"isChkd":false,"busTypeId":1},{"bustypeName":'AC Sleeper',"isChkd":false,"busTypeId":2},
         {"bustypeName":'Non-AC Semi-Sleeper',"isChkd":false,"busTypeId":3},{"bustypeName":'Non-AC Sleeper',"isChkd":false,"busTypeId":4}]
-      }
+     
+        console.log("bustypes====>"+JSON.stringify(this.bustypeArr))
+       }
       let oprtArr={busOprObj:[],busOprJson:[]}
       if(this.busList.length!=0){
         this.busList.find((item,index)=>{
@@ -214,7 +238,11 @@ export class BusResultComponent implements OnInit {
         // console.log("busOpr====>"+JSON.stringify(this.busOprtArr))
       
       // console.log("listOfFlight=====>"+JSON.stringify(this.flightList)) 
+      
         }
+      } else{
+        this.filter()
+      }
    }
    (err)=>{
     // this.spinner.hide(); 
@@ -499,21 +527,42 @@ timeConvert(val){
   }
   checkBusType(val){
     // alert(JSON.stringify(val))
-    if(this.BusTypArr.indexOf(val.busTypeId)==-1){
-      this.BusTypArr.push(val.busTypeId)
+    if(val.isChkd==false){
+      if(this.BusTypArr.indexOf(val.busTypeId)!=-1){
+        this.BusTypArr.splice(this.BusTypArr.indexOf(val.busTypeId),1)
+      }
+    }else{
+      if(this.BusTypArr.indexOf(val.busTypeId)==-1){
+        this.BusTypArr.push(val.busTypeId)
+      }
     }
+   
   }
   checkBusOpr(val){
     // alert(JSON.stringify(val))
-    if(this.BusOprArr.indexOf(val.busOprName)==-1){
-      this.BusOprArr.push(val.busOprName)
+    if(val.isChkd==false){
+      if(this.BusOprArr.indexOf(val.busOprName)!=-1){
+        this.BusOprArr.splice(this.BusOprArr.indexOf(val.busOprName),1)
+      }
+    }else{
+      if(this.BusOprArr.indexOf(val.busOprName)==-1){
+        this.BusOprArr.push(val.busOprName)
+      }
     }
+   
   }
   checkBoarding(val){
     // alert(JSON.stringify(val))
-    if(this.BuspickUpArr.indexOf(val.locationName)==-1){
-      this.BuspickUpArr.push(val.locationName)
+    if(val.isChkd==false){
+      if(this.BuspickUpArr.indexOf(val.locationName)!=-1){
+        this.BuspickUpArr.splice(this.BuspickUpArr.indexOf(val.locationName),1)
+      }
+    }else{
+      if(this.BuspickUpArr.indexOf(val.locationName)==-1){
+        this.BuspickUpArr.push(val.locationName)
+      }
     }
+   
   }
   selectTime(val,tem){
     this.mintime=val
@@ -637,60 +686,89 @@ filter(){
           }
         if(this.mintime!=undefined && this.maxtime!=undefined){
           let busArr=[]
-          // alert(this.mintime)
-          // alert(this.maxtime)
+          let fromTym=this.mintime*60
+          let toTym=this.maxtime*60
+          // alert("flytymfrom===="+fromTym)
+          // alert("flytymto===="+toTym)
           if(tempData.length==0){
             this.busList.find((item,index)=>{
               var time = item.DepartureTime
-              var hrs = Number(time.match(/^(\d+)/)[1]);
-              var mnts = Number(time.match(/:(\d+)/)[1]);
-              var format = time.match(/\s(.*)$/)[1];
-              if (format == "PM" && hrs < 12){
-                hrs = hrs + 12;
-              } 
-              else if (format == "AM" && hrs == 12){
-                hrs = hrs - 12;
-              }
-              var hours = hrs.toString();
-              var minutes = mnts.toString();
-              if (hrs < 10){
-                hours = "0" + hours;
-              }
-              else if (mnts < 10){
-                minutes = "0" + minutes;
-              } 
+              // var hrs = Number(time.match(/^(\d+)/)[1]);
+              // var mnts = Number(time.match(/:(\d+)/)[1]);
+              // var format = time.match(/\s(.*)$/)[1];
+              // if (format == "PM" && hrs < 12){
+              //   hrs = hrs + 12;
+              // } 
+              // else if (format == "AM" && hrs == 12){
+              //   hrs = hrs - 12;
+              // }
+              // var hours = hrs.toString();
+              // var minutes = mnts.toString();
+              // if (hrs < 10){
+              //   hours = "0" + hours;
+              // }
+              // else if (mnts < 10){
+              //   minutes = "0" + minutes;
+              // } 
               // alert(hours + ":" + minutes);
-              let flyTime=hours + ":" + minutes
-              if(flyTime>=this.mintime && flyTime<=this.maxtime){
+              // let flyTime=hours + ":" + minutes
+              let deptym=this.timeConversion(item.DepartureTime)
+              let hours=parseInt(deptym.split(':')[deptym.split(')').length-1])
+              let min=parseInt(deptym.split(':')[deptym.split(')').length])
+              let flyTime=(hours*60)+min
+              // alert("flytymfind===="+flyTime)
+              if(toTym==0){
+                if(flyTime>=fromTym){
+                  busArr.push(item)
+                }
+              }else if(flyTime>=fromTym && flyTime<=toTym){
                 busArr.push(item)
-              }
+                      }
+            
+              // if(flyTime>=this.mintime && flyTime<=this.maxtime){
+              //   busArr.push(item)
+              // }
             })
             tempData=busArr
           }else{
             tempData.find((item,index)=>{
-              var time = item.DepartureTime
-              var hrs = Number(time.match(/^(\d+)/)[1]);
-              var mnts = Number(time.match(/:(\d+)/)[1]);
-              var format = time.match(/\s(.*)$/)[1];
-              if (format == "PM" && hrs < 12){
-                hrs = hrs + 12;
-              } 
-              else if (format == "AM" && hrs == 12){
-                hrs = hrs - 12;
-              }
-              var hours = hrs.toString();
-              var minutes = mnts.toString();
-              if (hrs < 10){
-                hours = "0" + hours;
-              }
-              else if (mnts < 10){
-                minutes = "0" + minutes;
-              } 
-              // alert(hours + ":" + minutes);
-              let flyTime=hours + ":" + minutes
-              if(flyTime>=this.mintime && flyTime<=this.maxtime){
+              // var time = item.DepartureTime
+              // var hrs = Number(time.match(/^(\d+)/)[1]);
+              // var mnts = Number(time.match(/:(\d+)/)[1]);
+              // var format = time.match(/\s(.*)$/)[1];
+              // if (format == "PM" && hrs < 12){
+              //   hrs = hrs + 12;
+              // } 
+              // else if (format == "AM" && hrs == 12){
+              //   hrs = hrs - 12;
+              // }
+              // var hours = hrs.toString();
+              // var minutes = mnts.toString();
+              // if (hrs < 10){
+              //   hours = "0" + hours;
+              // }
+              // else if (mnts < 10){
+              //   minutes = "0" + minutes;
+              // } 
+              // // alert(hours + ":" + minutes);
+              // let flyTime=hours + ":" + minutes
+              // if(flyTime>=this.mintime && flyTime<=this.maxtime){
+              //   busArr.push(item)
+              // }
+              let deptym=this.timeConversion(item.DepartureTime)
+              let hours=parseInt(deptym.split(':')[deptym.split(')').length-1])
+              let min=parseInt(deptym.split(':')[deptym.split(')').length])
+              // alert("hours==="+hours)
+              // alert("mins===="+min)
+              let flyTime=hours+min
+              // alert(flyTime)
+              if(toTym==0){
+                if(flyTime>=fromTym){
+                  busArr.push(item)
+                }
+              }else if(flyTime>=fromTym && flyTime<=toTym){
                 busArr.push(item)
-              }
+                      }
             })
             tempData=busArr
           }
@@ -698,60 +776,86 @@ filter(){
         }
         if(this.mintimeArvl!=undefined && this.maxtimeArvl!=undefined){
           let busArr=[]
+          let fromTym=this.mintime*60
+          let toTym=this.maxtime*60
           // alert(this.mintimeArvl)
           // alert(this.maxtimeArvl)
           if(tempData.length==0){
             this.busList.find((item,index)=>{
-              var time = item.ArrivalTime
-              var hrs = Number(time.match(/^(\d+)/)[1]);
-              var mnts = Number(time.match(/:(\d+)/)[1]);
-              var format = time.match(/\s(.*)$/)[1];
-              if (format == "PM" && hrs < 12){
-                hrs = hrs + 12;
-              } 
-              else if (format == "AM" && hrs == 12){
-                hrs = hrs - 12;
-              }
-              var hours = hrs.toString();
-              var minutes = mnts.toString();
-              if (hrs < 10){
-                hours = "0" + hours;
-              }
-              else if (mnts < 10){
-                minutes = "0" + minutes;
-              } 
-              // alert(hours + ":" + minutes);
-              let flyTime=hours + ":" + minutes
-              if(flyTime>=this.mintimeArvl && flyTime<=this.maxtimeArvl){
+              // var time = item.ArrivalTime
+              // var hrs = Number(time.match(/^(\d+)/)[1]);
+              // var mnts = Number(time.match(/:(\d+)/)[1]);
+              // var format = time.match(/\s(.*)$/)[1];
+              // if (format == "PM" && hrs < 12){
+              //   hrs = hrs + 12;
+              // } 
+              // else if (format == "AM" && hrs == 12){
+              //   hrs = hrs - 12;
+              // }
+              // var hours = hrs.toString();
+              // var minutes = mnts.toString();
+              // if (hrs < 10){
+              //   hours = "0" + hours;
+              // }
+              // else if (mnts < 10){
+              //   minutes = "0" + minutes;
+              // } 
+              // // alert(hours + ":" + minutes);
+              // let flyTime=hours + ":" + minutes
+              // if(flyTime>=this.mintimeArvl && flyTime<=this.maxtimeArvl){
+              //   busArr.push(item)
+              // }
+              let deptym=this.timeConversion(item.ArrivalTime)
+              let hours=parseInt(deptym.split(':')[deptym.split(')').length-1])
+              let min=parseInt(deptym.split(':')[deptym.split(')').length])
+              let flyTime=(hours*60)+min
+              // alert("flytymfind===="+flyTime)
+              if(toTym==0){
+                if(flyTime>=fromTym){
+                  busArr.push(item)
+                }
+              }else if(flyTime>=fromTym && flyTime<=toTym){
                 busArr.push(item)
-              }
+                      }
             })
             tempData=busArr
           }else{
             tempData.find((item,index)=>{
-              var time = item.ArrivalTime
-              var hrs = Number(time.match(/^(\d+)/)[1]);
-              var mnts = Number(time.match(/:(\d+)/)[1]);
-              var format = time.match(/\s(.*)$/)[1];
-              if (format == "PM" && hrs < 12){
-                hrs = hrs + 12;
-              } 
-              else if (format == "AM" && hrs == 12){
-                hrs = hrs - 12;
-              }
-              var hours = hrs.toString();
-              var minutes = mnts.toString();
-              if (hrs < 10){
-                hours = "0" + hours;
-              }
-              else if (mnts < 10){
-                minutes = "0" + minutes;
-              } 
-              // alert(hours + ":" + minutes);
-              let flyTime=hours + ":" + minutes
-              if(flyTime>=this.mintimeArvl && flyTime<=this.maxtimeArvl){
+              // var time = item.ArrivalTime
+              // var hrs = Number(time.match(/^(\d+)/)[1]);
+              // var mnts = Number(time.match(/:(\d+)/)[1]);
+              // var format = time.match(/\s(.*)$/)[1];
+              // if (format == "PM" && hrs < 12){
+              //   hrs = hrs + 12;
+              // } 
+              // else if (format == "AM" && hrs == 12){
+              //   hrs = hrs - 12;
+              // }
+              // var hours = hrs.toString();
+              // var minutes = mnts.toString();
+              // if (hrs < 10){
+              //   hours = "0" + hours;
+              // }
+              // else if (mnts < 10){
+              //   minutes = "0" + minutes;
+              // } 
+              // // alert(hours + ":" + minutes);
+              // let flyTime=hours + ":" + minutes
+              // if(flyTime>=this.mintimeArvl && flyTime<=this.maxtimeArvl){
+              //   busArr.push(item)
+              // }
+              let deptym=this.timeConversion(item.ArrivalTime)
+              let hours=parseInt(deptym.split(':')[deptym.split(')').length-1])
+              let min=parseInt(deptym.split(':')[deptym.split(')').length])
+              let flyTime=(hours*60)+min
+              // alert("flytymfind===="+flyTime)
+              if(toTym==0){
+                if(flyTime>=fromTym){
+                  busArr.push(item)
+                }
+              }else if(flyTime>=fromTym && flyTime<=toTym){
                 busArr.push(item)
-              }
+                      }
             })
             tempData=busArr
           }

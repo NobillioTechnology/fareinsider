@@ -53,6 +53,7 @@ export class CustomerLoginComponent implements OnInit {
   tab(val){
     this.tabType=val
     this.isActive=val
+    this.forgotActive=false;
   }
   signup(){
     let dataInfo={

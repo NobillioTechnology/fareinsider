@@ -294,24 +294,39 @@ filterDom(){
   }
   if(this.mintime!=undefined && this.maxtime!=undefined){
     let fyltArr=[]
-    alert(this.mintime)
-    alert(this.maxtime)
+    
+    let fromTym=this.mintime*60
+    let toTym=this.maxtime*60
+    // alert(fromTym)
+    // alert(toTym)
     if(tempData.length==0){
       this.flightList.find((item,index)=>{
-        let flyTime=new Date(item.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.FlightSegments[0].DepartureDateTime).getMinutes()
-      
-        if(flyTime>=this.mintime && flyTime<=this.maxtime){
-          alert(flyTime)
+        // let flyTime=new Date(item.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.FlightSegments[0].DepartureDateTime).getMinutes()
+              let flyTime=(new Date(item.FlightSegments[0].DepartureDateTime).getHours()*60)+new Date(item.FlightSegments[0].DepartureDateTime).getMinutes()
+if(toTym==0){
+  if(flyTime>=fromTym){
+    // alert(flyTime)
+    fyltArr.push(item)
+  }
+}
+       else if(flyTime>=fromTym && flyTime<=toTym){
+          // alert(flyTime)
           fyltArr.push(item)
         }
       })
       tempData=fyltArr
     }else{
+      // alert("hi")
       tempData.find((item,index)=>{
-        let flyTime=new Date(item.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.FlightSegments[0].DepartureDateTime).getMinutes()
-        if(flyTime>=this.mintime && flyTime<=this.maxtime){
-          fyltArr.push(item)
-        }
+        // let flyTime=new Date(item.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.FlightSegments[0].DepartureDateTime).getMinutes()
+        let flyTime=(new Date(item.FlightSegments[0].DepartureDateTime).getHours()*60)+new Date(item.FlightSegments[0].DepartureDateTime).getMinutes()
+        if(toTym==0){
+          if(flyTime>=fromTym){
+            fyltArr.push(item)
+          }
+        }else if(flyTime>=fromTym && flyTime<=toTym){
+                  fyltArr.push(item)
+                }
       })
       tempData=fyltArr
     }
@@ -426,22 +441,32 @@ filterInt(){
 }
 if(this.mintime!=undefined && this.maxtime!=undefined){
   let fyltArr=[]
+  let fromTym=this.mintime*60
+  let toTym=this.maxtime*60
   // alert(this.mintime)
   // alert(this.maxtime)
   if(tempData.length==0){
     this.IntflightList.find((item,index)=>{
-      let flyTime=new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getMinutes()
-      if(flyTime>=this.mintime && flyTime<=this.maxtime){
-        fyltArr.push(item)
-      }
+      let flyTime=(new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getHours()*60)+new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getMinutes()
+      if(toTym==0){
+        if(flyTime>=fromTym){
+          fyltArr.push(item)
+        }
+      }else if(flyTime>=fromTym && flyTime<=toTym){
+                fyltArr.push(item)
+              }
     })
     tempData=fyltArr
   }else{
     tempData.find((item,index)=>{
-      let flyTime=new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getHours()+':'+new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getMinutes()
-      if(flyTime>=this.mintime && flyTime<=this.maxtime){
-        fyltArr.push(item)
-      }
+      let flyTime=(new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getHours()*60)+new Date(item.IntOnward.FlightSegments[0].DepartureDateTime).getMinutes()
+      if(toTym==0){
+        if(flyTime>=fromTym){
+          fyltArr.push(item)
+        }
+      }else if(flyTime>=fromTym && flyTime<=toTym){
+                fyltArr.push(item)
+              }
     })
     tempData=fyltArr
   }
@@ -527,6 +552,7 @@ this.filtersection='1'
     return netPrice
    }
   availableFlights(){
+   
     // this.spinner.show();
     this.service.getApiMethod(`Flights/AvailableFlights?source=${this.reqObj.source}&destination=${this.reqObj.destination}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripTypeNum}&flightType=${this.reqObj.flightTypeNum}&adults=${this.reqObj.adults}&children=${this.reqObj.children}&infants=${this.reqObj.infants}&travelClass=${this.reqObj.travelClass}&userType=5&returnDate=${this.reqObj.returnDate}`).subscribe(res=>{
     console.log("getflights ====>"+JSON.stringify(res)); 
@@ -538,6 +564,7 @@ this.filtersection='1'
       if(this.reqObj.flightTypeNum=='1'){
         this.flightType='domestic'
         this.flightList=res.DomesticOnwardFlights;
+      
       }else if(this.reqObj.flightTypeNum=='2'){
         this.flightType='international'
         this.IntflightList=res.InternationalFlights;
