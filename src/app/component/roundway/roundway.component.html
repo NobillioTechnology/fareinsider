@@ -353,7 +353,23 @@
 						<li><a>Price per Adult</a></li>
 					</ul>
 				</div>
+
 				<div class="flight-sec">
+					<div class="ph-item" *ngIf="placeholder==true">
+						<div class="ph-col-12">
+							<div class="ph-picture"></div>
+							<div class="ph-row">
+								<div class="ph-col-6 big"></div>
+								<div class="ph-col-4 empty big"></div>
+								<div class="ph-col-2 big"></div>
+								<div class="ph-col-4"></div>
+								<div class="ph-col-8 empty"></div>
+								<div class="ph-col-6"></div>
+								<div class="ph-col-6 empty"></div>
+								<div class="ph-col-12"></div>
+							</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-lg-12" *ngFor="let temp of onwardFlightList let i = index">
 							<div class="flight-item round-way">

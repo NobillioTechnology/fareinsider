@@ -57,6 +57,7 @@ export class RoundwayComponent implements OnInit {
   isConct:any;
   travelClass:any;
   searchFlag:any='0';
+  placeholder:any=true;
   constructor(private router: Router,private route: ActivatedRoute,private service: RestDataService,private heroservice:HeroService) {
     this.myForm = new FormGroup({
       // selectWay: new FormControl('',[Validators.required]),
@@ -179,6 +180,7 @@ export class RoundwayComponent implements OnInit {
       if(this.searchFlag=='1'){ 
       this.saveTextfile(`Flights/AvailableFlights?source=${this.reqObj.source}&destination=${this.reqObj.destination}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripTypeNum}&flightType=${this.reqObj.flightTypeNum}&adults=${this.reqObj.adults}&children=${this.reqObj.children}&infants=${this.reqObj.infants}&travelClass=${this.reqObj.travelClass}&userType=5&returnDate=${this.reqObj.returnDate}`)
       this.saveTextfile(res)}
+      this.placeholder=false
       this.onwardFlightList=res.DomesticOnwardFlights;
       // let tempArr=[]
       // if(this.onwardFlightList.length!=0){

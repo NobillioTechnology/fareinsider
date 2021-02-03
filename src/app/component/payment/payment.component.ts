@@ -100,7 +100,7 @@ export class PaymentComponent implements OnInit {
   walletPay(){
     // console.log('im clicked wallet pay');
     this.updateCriteria_2()
-    window.location.replace(`https://secure.fareinsider.com/bus/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=flightBooking&paymenttype=AgentWallet`);
+    window.location.replace(`https://secure.fareinsider.com/Default.aspx?orderId=${this.searchId}&orderAmount=${parseInt(this.orderAmount)+this.extraCharge}&customerName=${this.userDetail.UserName}&customerEmail=${this.userDetail.UserEMailD}&customerPhone=${this.userDetail.Mobile}&orderNote=flightBooking&paymenttype=AgentWallet`);
 
   }
 
@@ -155,8 +155,8 @@ export class PaymentComponent implements OnInit {
   }
   updateCriteria_1(mode){
     let dataInfo= {
-      "searchID" :this.searchId,
-      "ParentCode":this.userDetail.PartnerCode,
+    "searchID" :this.searchId,
+    "ParentCode":this.userDetail.PartnerCode,
     "payMode":mode,
     "ConvAmt":this.extraCharge,
     "TotalPaidAmt":parseInt(this.orderAmount)+this.extraCharge,

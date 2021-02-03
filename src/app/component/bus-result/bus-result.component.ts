@@ -56,6 +56,7 @@ export class BusResultComponent implements OnInit {
   destinationId:any;
   journeydate:any;
   searchFlag:any='0';
+  placeholder:any=true;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute) {
     this.busForm = new FormGroup({
       // tripTyp:new FormControl('',[Validators.required]),
@@ -186,6 +187,7 @@ export class BusResultComponent implements OnInit {
     if(res.ResponseStatus==200){
       // this.spinner.hide();
       this.busList=res.AvailableTrips;
+      this.placeholder=false
      if(this.searchFlag=='1'){ 
       this.saveTextfileBus(`Buses/AvailableBuses?sourceId=${this.reqObj.sourceId}&destinationId=${this.reqObj.destinationId}&journeyDate=${this.reqObj.journeyDate}&tripType=${this.reqObj.tripType}&userType=5&returnDate=${this.reqObj.returnDate}`)
       this.saveTextfileBus(res)

@@ -67,6 +67,7 @@ export class CustomerLoginComponent implements OnInit {
        if(res.Status==true){
         this.tabType='signIn'
         this.isActive='signIn'
+        // localStorage.setItem('userData', JSON.stringify(res.Data));
         alert(res.Message)
          // this.router.navigate(['oneway'])
          // this.spinner.hide();

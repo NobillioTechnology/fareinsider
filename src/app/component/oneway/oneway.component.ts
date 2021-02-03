@@ -18,7 +18,7 @@ export class OnewayComponent implements OnInit {
   actionInt:any=-1;
   index:any;
   IntflightList:any=[]
-  flightType:any;
+  flightType:any=''
   reqObj:any={};
   closetem:any=0;
   closetemp:any=0;
@@ -54,6 +54,7 @@ export class OnewayComponent implements OnInit {
   returndate:any;
   travelClass:any;
   searchFlag:any='0';
+  placeholder:any=true;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute) {
     this.myForm = new FormGroup({
       // selectWay: new FormControl('',[Validators.required]),
@@ -569,6 +570,7 @@ this.filtersection='1'
         this.flightType='international'
         this.IntflightList=res.InternationalFlights;
       }
+      this.placeholder=false
         }
    },
    (err)=>{

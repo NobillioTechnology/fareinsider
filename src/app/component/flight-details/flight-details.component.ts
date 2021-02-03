@@ -348,7 +348,8 @@ export class FlightDetailsComponent implements OnInit {
       if(res.Status==true){
         this.signUp()
         this.isLogin=2
-        localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy",UserName:'Guest Login'}))
+        // localStorage.setItem('userData', JSON.stringify(res.Data));
+        // localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy",UserName:'Guest Login'}))
         window.location.reload()
         // alert("successfull")
       // this.comissionType= res.Data.commType

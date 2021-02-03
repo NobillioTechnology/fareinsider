@@ -492,7 +492,8 @@ payment(){
           // console.log("GetSalesRule ====>"+JSON.stringify(res)); 
           if(res.Status==true){
             this.isLogin=2
-            localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy"}))
+            window.location.reload();
+            // localStorage.setItem("userData",JSON.stringify({UserID:"123213uyiy"}))
             // alert("successfull")
           // this.comissionType= res.Data.commType
           //   this.comission= parseInt(res.Data.commMarkup)
@@ -510,7 +511,9 @@ payment(){
           "IP":this.ipAddress
         }
         this.service.testPostApiMethod(dataInfo,"Client/ClientRegistration").subscribe(res=>{
+        
           if(res.Status==true){
+            localStorage.setItem('userData', JSON.stringify(res.Data));
             alert(res.Message)
           }else{
             alert(res.Message)
