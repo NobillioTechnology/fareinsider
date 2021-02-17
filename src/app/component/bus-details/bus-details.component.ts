@@ -41,7 +41,8 @@ export class BusDetailsComponent implements OnInit {
   mobileNum:any='close';
   agentCode:any;
   salechanl:any;
-  leadArr:any=[]
+  leadArr:any=[];
+  totAmount:any;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute,private ip:IpServiceService) { }
 
   ngOnInit(): void {
@@ -318,7 +319,9 @@ savePassenger(){
         }
         this.service.testPostApiMethod(dataInfo,"Booking/SaveBusPasenger").subscribe(res=>{
           if(res.Status==true){
-             this.router.navigate(['bus-payment'],{ queryParams: {'baseFare':this.baseFare,'tax':this.tax}})
+          this.totAmount=parseInt(this.baseFare)+parseInt(this.tax)
+            localStorage.setItem("orderAount",this.totAmount)
+             this.router.navigate(['bus-payment'])
            }
         },
         (err)=>{

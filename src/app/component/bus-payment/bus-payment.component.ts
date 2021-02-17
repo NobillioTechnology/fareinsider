@@ -31,14 +31,14 @@ export class BusPaymentComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       //  console.log(params);
        this.reqObj=params
-       this.orderAmount=parseInt(this.reqObj.baseFare)+parseInt(this.reqObj.tax)
+       this.orderAmount=localStorage.getItem("orderAount")
        this.totalAmount = parseInt(this.orderAmount)
     })
     // this.getExtraCharge('CC')
     this.userDetail = JSON.parse(localStorage.getItem('userData'));
     if(this.userDetail){
       this.agentCode=this.userDetail.Acode
-      // this.userType = this.userDetail.UserType;
+      this.userType = this.userDetail.UserType;
         this.salechanl='DO-B2B2C'
       if(this.userDetail.UserType=="Agent"){
         this.salechanl='SA-B2B'

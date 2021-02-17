@@ -50,9 +50,9 @@
 									<div class="m-date">
 										<label>Date</label>
 										<!-- <input type="text" class="form-control" placeholder="19 Apr 2019"> -->
-										<input type="date"  placeholder="dd-mm-yyyy" class="form-control" name="depDate" formControlName="depDate" >
+										<input type="text"  ngbDatepicker #d="ngbDatepicker"  (click)="d.toggle()" placeholder="dd-mm-yyyy" class="form-control" name="depDate" formControlName="depDate" >
 
-										<input type="date" class="form-control date-icon" placeholder="Return" name="returnDate" formControlName="returnDate">
+										<input type="text"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" class="form-control date-icon" placeholder="Return" name="returnDate" formControlName="returnDate">
 									</div>
 									<!-- <div class="m-traveller">
 										<label>Traveller(s),Class</label>

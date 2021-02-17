@@ -46,7 +46,7 @@ border-radius: 4px;}
 .destination-box label, .date-box label {font-size: 12px;color: #66666652;position: absolute;left: 20px;top: 12px;margin: 0px;text-transform: uppercase;}
 .booking-engine form .form-group input::placeholder{color:#003480;font-size: 14px;font-weight: 600;}
 .booking-engine form .form-group input:focus, .booking-engine form .form-group input:hover{ outline: 0; box-shadow: none;}
-.booking-engine .date-box {display: flex;border: 1px solid #cccccc8a; overflow: hidden; border-radius: 4px;background: #fff;}
+.booking-engine .date-box {display: flex;border: 1px solid #cccccc8a; overflow: visible; border-radius: 4px;background: #fff;}
 .date1{ position: relative;padding: 25px 20px 10px;}
 .booking-engine .date-box .date1 + .date1{ border-left: 1px solid #cccccc8a;}
 .booking-engine .rooms-adult-box {display: flex;justify-content: space-between;}
@@ -66,14 +66,15 @@ border-radius: 4px;}
 .item-1 span.yrs {font-size: 10px;color:  #666;font-weight: 300;position: absolute;right: 0px;bottom: -18px;text-transform: uppercase;}
 .class-type {margin-top: 15px;}
 .class-type .custom-control-label {text-transform:capitalize;font-size: 12px;}
-.booking-tab ul {margin-right: 21px;background: #ffffff;margin-bottom: 10px;}
+/* .booking-tab ul {margin-right: 21px;background: #ffffff;margin-bottom: 10px;} */
+.booking-tab ul {margin-right: 21px;background: #ffffff;margin-bottom: -1px; display:flex;}
 .booking-tab ul li{ display: inline-block; list-style: none;}
-.booking-tab ul li a { font-size: 14px;color:#000000; padding: 12px 12px;border-bottom: 1px solid #cccccc42; display: block; text-align: center; cursor: pointer;box-shadow: 0px 0px 10px #cccccc5c;border: 1px solid #cccccc63;border-radius: 5px; position:relative;}
+.booking-tab ul li a { font-size: 15px;color:#000000; padding: 4px 10px;border-bottom: 1px solid #cccccc42; text-align: center; cursor: pointer;border: 1px solid #cccccc63;border-radius: 0px; position:relative; min-width:110px;height: 45px; justify-content: center;align-items: center;display: flex;}
 .booking-tab ul li a.active{background: #00ACEE;}
 .booking-tab ul li a span{display: none;  margin: 0px auto;}
 .booking-tab ul li a img{ width: 30px;}
 .booking-content {background: #f8f8f8;padding: 20px;border: 1px solid #cccccc4a;border-radius: 4px;} 
-.booking-tab ul li a.active::before {content: '';width: 0; height: 0; border-left: 7px solid transparent;border-right: 7px solid transparent;border-top: 7px solid #00ACEE; bottom: -7px;left: 19px; position: absolute; z-index: 999;}
+.booking-tab ul li a.active::before {display:none;}
 
 .popular-destination{ padding: 60px 0px;}
 .popular-destination h2{ font-size: 25px; color: #13183E; padding-bottom:50px; margin: 0px;text-transform: capitalize;}
@@ -162,15 +163,15 @@ border-radius: 4px;}
 .top-footer{ background: #13183E; padding: 40px 0px;}
 .more-links ul {margin: 0px; display: flex;justify-content: space-between;}
 .more-links li {display: inline-block;list-style: none;}
-.more-links li a {display: block;color: #fff;font-size: 15px;}
-.more-links li a:hover{ color: #00ACEE; text-decoration: none;}
+.more-links li a {display: block;color: #fff!important;font-size: 15px;}
+.more-links li a:hover{ color: #00ACEE!important; text-decoration: none;}
 
 footer{ position: relative;background: url("./images/03.jpg") no-repeat top center; background-size: cover;}
 footer::before{ content: ''; background: #13183EEB; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px;}
 .footer-link {border-bottom: 1px solid #ffffff;border-top: 1px solid #ffffff;padding: 40px 0px;}
 .footer-link ul li{ display: block; list-style: none;}
-.footer-link ul li a{display: block;color: #fff;font-size: 13px; padding: 10px 0px;}
-.footer-link ul li a:hover{ color: #00ACEE; text-decoration: none;}
+.footer-link ul li a{display: block;color: #fff!important;font-size: 13px; padding: 10px 0px;}
+.footer-link ul li a:hover{ color: #00ACEE!important; text-decoration: none;}
 .footer-content{border-bottom: 1px solid #ffffff;padding: 60px 0px;}
 .downlode-app h2, .footer-about h2{ font-size: 25px; color: #ffffff; margin-bottom: 10px;}
 .downlode-app span, .footer-about span{ display: block;font-size: 13px; color: #cccccc;line-height: 22px;margin-bottom: 25px;}
@@ -268,7 +269,12 @@ footer::before{ content: ''; background: #13183EEB; width: 100%; height: 100%; p
 .depart-time ul li {display: inline-block;list-style: none;width: 48px;text-align: center}
 .depart-time ul li + li{ border-left: 1px solid #6666663d; }
 .depart-time ul li a {display: block;padding: 4px 2px;font-size: 11px; background: #ffffff;color: #333;}
-.depart-time ul li a span {height: 25px;display: block;}
+.depart-time ul li a span {  height: 25px;
+    width: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0px auto;}
 .depart-time ul li a:hover, .depart-time ul li a.active{ background: #00ACEE; color: #ffffff;}
 .search-filter .input-search {position: relative;margin-bottom: 15px;}
 .search-filter span { position: absolute;left: 0px;top: 0px;height: 30px;width: 30px;text-align: left;line-height: 30px;color: #66666685;}
@@ -1123,3 +1129,33 @@ color:#101010; font-weight: 500;}
     .editsectionsradd {color:#00ACEE; cursor: pointer;}
     .changepwd {margin-top: 3%;}
     .btn-selectpx {margin-left: 15px;}
+
+/* ////11/Feb/2021/// */
+.error-wrapper {background: #cccccc14;border-top: 1px solid #cccccc45; padding: 50px 0px; text-align: center;}
+.error-wrapper p {font-size: 20px;margin-top: 30px;}
+.btn-back {display: inline-flex; background: #00ACEE;color: #fff; font-size: 16px;min-width: 160px;height: 50px;justify-content: center;align-items: center; border-radius: 4px;}
+.inner-wrapper{
+    background: rgb(0,172,238);
+    background: linear-gradient(90deg, rgba(0,172,238,1) 0%, rgba(0,52,128,1) 50%, rgba(19,24,62,1) 100%); padding:50px 0px;
+}
+.inner-wrapper h1 { font-size: 42px;text-align: center; color: #fff; font-weight: 600; margin: 0px;}
+.contact-box {padding: 50px 0px;}
+.contact-form .form-group {margin-bottom: 25px;}
+.contact-form .form-control { background: #FDFEFF; height: 44px;font-size: 14px; border: 1px solid #DCE4EA;color: #8A8D90; font-weight:300;}
+.contact-form textarea.form-control { min-height: 150px;}
+.contact-form .form-control:hover, .contact-form .form-control:focus{ border-color:#00ACEE; box-shadow:none;}
+.btn-send {border: 1px solid #00ACEE; height: 50px; color: #fff; background: #00ACEE;  display: inline-flex; justify-content: center; align-items: center; min-width: 150px; border-radius: 4px;}
+.btn-send:hover{ color:#ffffff;}
+.contact-addrerss h2, .contact-form h2 {font-size: 22px;margin-bottom: 22px;}
+.contact-addrerss ul{ margin:0px;}
+.contact-addrerss ul li { display: block;font-size: 14px; color: #1a1a1a; line-height: 20px; font-weight: 300;position: relative; padding-left: 40px;}
+.contact-addrerss ul li strong {display: block; font-weight: 500; font-size: 15px; line-height: 24px;}
+.contact-addrerss ul li span { margin-right: 10px; color: #A7A7A7; position: absolute;left: 0px;font-size: 25px; top: 6px;}
+.deg90 {transform: rotate(90deg);}
+.contact-addrerss ul li + li{ margin-top:25px;}
+.contact-addrerss { margin-bottom: 35px;}
+ul.social-media li {display: inline-flex;padding: 0px;margin-right: 10px;}
+.aboutus-wrapper {padding: 50px 0px;}
+.about-content h2 {font-size: 26px; font-weight: 600; margin-bottom: 15px;}
+.about-content p { font-size: 14px;margin-bottom: 20px; color: #666; line-height: 28px; text-align: justify;}
+.about-image { overflow: hidden;border-radius: 6px;box-shadow: 5px 5px 20px #6666664f;}

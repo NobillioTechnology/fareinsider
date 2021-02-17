@@ -4,6 +4,7 @@ import { RestDataService } from '../../rest-data.service';
 import { HeroService } from '../../hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 // import { saveAs } from 'file-saver';
 // import { FileSaver }  from 'angular-file-saver';
 @Component({
@@ -57,6 +58,7 @@ export class BusResultComponent implements OnInit {
   journeydate:any;
   searchFlag:any='0';
   placeholder:any=true;
+  model: NgbDateStruct;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute) {
     this.busForm = new FormGroup({
       // tripTyp:new FormControl('',[Validators.required]),
@@ -273,7 +275,8 @@ export class BusResultComponent implements OnInit {
   // }
   searchAgain(){
    this.searchFlag='1'
-    this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
+    // this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
+    this.journeydate = this.busForm.value.fromDate.day + '-' +this.busForm.value.fromDate.month + '-' +this.busForm.value.fromDate.year;
 this.reqObj={"sourceId":this.sourceId,"destinationId":this.destinationId,"journeyDate":this.journeydate,"tripType":'1',"returnDate":this.journeydate,'srcName':this.busForm.value.source,'destName':this.busForm.value.destination}
   this.availableBuses()
 console.log("search again===="+JSON.stringify(this.reqObj))

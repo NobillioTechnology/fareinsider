@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http';
+import {NgbPaginationModule, NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // import { saveAs } from 'file-saver';
 // import { AgmCoreModule } from '@agm/core';
 // import {SocialLoginModule,AuthServiceConfig,GoogleLoginProvider,FacebookLoginProvider,} from "angular-6-social-login";
@@ -113,6 +114,9 @@ const APP_Routing: Routes =[
     RouterModule.forRoot(APP_Routing),
     FormsModule,
     ReactiveFormsModule,
+    NgbPaginationModule,
+     NgbAlertModule,
+     NgbModule,
     // SocialLoginModule,
     // PdfViewerModule,
     // ToastrModule.forRoot(),

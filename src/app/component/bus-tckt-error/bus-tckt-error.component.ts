@@ -12,5 +12,8 @@ export class BusTcktErrorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  home(){
+    // this.showButn=true
+    this.router.navigate(['index'])
+  }
 }

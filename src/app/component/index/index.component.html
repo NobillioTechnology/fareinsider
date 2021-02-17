@@ -60,13 +60,11 @@
 										<div class="date-box">
 											<div class="date1">
 												<label>Departure Date</label>
-												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" name="depDate" formControlName="depDate" >
-												
-												
+												<input type="text"  ngbDatepicker #d="ngbDatepicker"  placeholder="dd-mm-yyyy" class="form-control" name="depDate" formControlName="depDate" (click)="d.toggle()">
 											</div>
 											<div class="date1" *ngIf="myForm.value.selectWay=='2'">
 												<label>Return Date</label>
-												<input type="date" class="form-control" placeholder="dd-mm-yyyy" name="returnDate" formControlName="returnDate">
+												<input type="text"  ngbDatepicker #d="ngbDatepicker" class="form-control" placeholder="dd-mm-yyyy" name="returnDate" formControlName="returnDate" (click)="d.toggle()">
 												
 											</div>
 										</div>
@@ -277,7 +275,7 @@
 										<div class="date-box" style="display: block;">
 											<div class="date1">
 												<label>Depart Date</label>
-												<input type="date"  placeholder="dd-mm-yyyy" class="form-control" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate">
+												<input type="text"  ngbDatepicker #d="ngbDatepicker"  placeholder="dd-mm-yyyy" class="form-control" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate" (click)="d.toggle()">
 											</div>
 											<p style="color:#fd653c;" *ngIf="busForm.get('fromDate').hasError('required') && busForm.get('fromDate').dirty">*Please enter journey date</p>
 											<!-- <div class="date1" *ngIf="busForm.value.tripTyp=='2'">

@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestDataService } from '../../rest-data.service';
 import { HeroService } from '../../hero.service';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-index',
@@ -33,6 +34,7 @@ export class IndexComponent implements OnInit {
   sourceId:any;
   destinationId:any;
   trvlClass:any;
+  model: NgbDateStruct;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService) {
     this.myForm = new FormGroup({
       selectWay: new FormControl('',[Validators.required]),
@@ -145,8 +147,12 @@ export class IndexComponent implements OnInit {
       this.trvlClass='Business'
      }
      localStorage.setItem("travelclass",this.myForm.value.class)
-    this.journeydate = new Date(this.myForm.value.depDate).getDate() + '-' + (new Date(this.myForm.value.depDate).getMonth() + 1) + '-' + new Date(this.myForm.value.depDate).getFullYear();
-    this.returndate = new Date(this.myForm.value.returnDate).getDate() + '-' + (new Date(this.myForm.value.returnDate).getMonth() + 1) + '-' + new Date(this.myForm.value.returnDate).getFullYear();
+    //  alert("toggleDate====="+JSON.stringify(this.myForm.value.depDate))
+     this.journeydate=this.myForm.value.depDate.day+'-'+this.myForm.value.depDate.month+'-'+this.myForm.value.depDate.year
+     this.returndate=this.myForm.value.returnDate.day+'-'+this.myForm.value.returnDate.month+'-'+this.myForm.value.returnDate.year
+    //  alert("toggleDate====="+ this.journeydate)
+    // this.journeydate = new Date(this.myForm.value.depDate).getDate() + '-' + (new Date(this.myForm.value.depDate).getMonth() + 1) + '-' + new Date(this.myForm.value.depDate).getFullYear();
+    // this.returndate = new Date(this.myForm.value.returnDate).getDate() + '-' + (new Date(this.myForm.value.returnDate).getMonth() + 1) + '-' + new Date(this.myForm.value.returnDate).getFullYear();
     this.countrySrc= this.myForm.value.goingfrom.split(' ')[this.myForm.value.goingfrom.split(' ').length-2]
     let src=this.myForm.value.goingfrom.split('(')[this.myForm.value.goingfrom.split('(').length-1]
     this.source=src.split(')')[src.split(')').length-2]
@@ -401,7 +407,8 @@ export class IndexComponent implements OnInit {
   // }
   // }
   searchBuses(){
-    this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
+    // this.journeydate = new Date(this.busForm.value.fromDate).getDate() + '-' + (new Date(this.busForm.value.fromDate).getMonth() + 1) + '-' + new Date(this.busForm.value.fromDate).getFullYear();
+    this.journeydate = this.busForm.value.fromDate.day + '-' +this.busForm.value.fromDate.month + '-' +this.busForm.value.fromDate.year;
     this.service.getApiMethod(`Buses/AvailableBuses?sourceId=${this.sourceId}&destinationId=${this.destinationId}&journeyDate=${this.journeydate}&tripType=1&userType=5&returnDate=${this.journeydate}`).subscribe(res=>{
       // console.log("getbuses ====>"+JSON.stringify(res)); 
       if(res.ResponseStatus==200){

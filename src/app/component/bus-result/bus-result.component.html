@@ -46,7 +46,7 @@
 									<div class="m-date">
 										<label>Date</label>
 										<!-- <input type="text" class="form-control date-icon" placeholder="19 Apr 2019"> -->
-										<input type="date"  class="form-control date-icon" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate">
+										<input type="text"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"  class="form-control date-icon" placeholder="dd-mm-yyyy" name="fromDate" formControlName="fromDate">
 
  									</div>
 								</div>
@@ -123,7 +123,7 @@
 					<div class="depart-filter">
 						<h2>Depart Time</h2>
 						<div class="depart-time">
-							<p>{{source}}</p>
+							<p>From {{source}}</p>
 							<ul>
 								<li (click)="selectTime(00,06)"><a [ngClass]="{active:isAct==00 } "><span></span>00-06</a></li>
 								<li (click)="selectTime(06,12)"><a [ngClass]="{active:isAct==06 } "><span></span>06-12</a></li>

@@ -4,6 +4,7 @@ import { RestDataService } from '../../rest-data.service';
 import { HeroService } from '../../hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-oneway',
@@ -55,6 +56,7 @@ export class OnewayComponent implements OnInit {
   travelClass:any;
   searchFlag:any='0';
   placeholder:any=true;
+  model: NgbDateStruct;
   constructor(private router: Router,private service: RestDataService,private heroservice:HeroService,private route: ActivatedRoute) {
     this.myForm = new FormGroup({
       // selectWay: new FormControl('',[Validators.required]),
@@ -877,7 +879,8 @@ searchDesAirport(){
 searchAgain(){
   // alert("ok")
   this.searchFlag='1'
-  this.journeydate = new Date(this.myForm.value.depDate).getDate() + '-' + (new Date(this.myForm.value.depDate).getMonth() + 1) + '-' + new Date(this.myForm.value.depDate).getFullYear();
+  this.journeydate=this.myForm.value.depDate.day+'-'+this.myForm.value.depDate.month+'-'+this.myForm.value.depDate.year
+  // this.returndate=this.myForm.value.returnDate.date+'-'+this.myForm.value.returnDate.month+'-'+this.myForm.value.returnDate.year
   // this.returndate = new Date(this.myForm.value.returnDate).getDate() + '-' + (new Date(this.myForm.value.returnDate).getMonth() + 1) + '-' + new Date(this.myForm.value.returnDate).getFullYear();
   this.countrySrc= this.myForm.value.goingfrom.split(' ')[this.myForm.value.goingfrom.split(' ').length-2]
   let src=this.myForm.value.goingfrom.split('(')[this.myForm.value.goingfrom.split('(').length-1]

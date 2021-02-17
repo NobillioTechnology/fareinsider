@@ -60,8 +60,8 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     localStorage.clear()
-    this.router.navigate(['index'])
-    window.location.reload()
+    // this.router.navigate(['index'])
+    window.location.href=window.location.origin
   }
   myProfile(){
     this.router.navigate(['profile'])

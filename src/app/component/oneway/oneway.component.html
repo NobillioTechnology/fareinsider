@@ -50,7 +50,7 @@
 									<div class="m-date">
 										<label>Date</label>
 										<!-- <input type="text" class="form-control" placeholder="19 Apr 2019"> -->
-										<input type="date"  placeholder="dd-mm-yyyy" class="form-control date-icon" name="depDate" formControlName="depDate" style="width: 100%;">
+										<input type="text"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" placeholder="dd-mm-yyyy" class="form-control date-icon" name="depDate" formControlName="depDate" style="width: 100%;">
 
 										<!-- <input type="date" class="form-control date-icon" placeholder="Return" name="returnDate" formControlName="returnDate"> -->
 									</div>
