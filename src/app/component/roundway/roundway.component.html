@@ -257,10 +257,10 @@
 						<div class="depart-time">
 							<p>From Bangalore</p>
 							<ul>
-								<li (click)="selectTime('00:00','06:00')"><a [ngClass]="{active:isAct=='00:00' } "><span></span>00-06</a></li>
-								<li (click)="selectTime('06:00','12:00')"><a [ngClass]="{active:isAct=='06:00' } "><span></span>06-12</a></li>
-								<li (click)="selectTime('12:00','18:00')"><a [ngClass]="{active:isAct=='12:00' } "><span></span>12-18</a></li>
-								<li (click)="selectTime('18:00','00:00')"><a [ngClass]="{active:isAct=='18:00' } "><span></span>18-00</a></li>
+								<li (click)="selectTime('00:00','06:00')"><a [ngClass]="{active:isAct=='00:00' } "><span><img src="../assets/images/icon-morning.png"></span>00-06</a></li>
+								<li (click)="selectTime('06:00','12:00')"><a [ngClass]="{active:isAct=='06:00' } "><span><img src="../assets/images/icon-noon.png"></span>06-12</a></li>
+								<li (click)="selectTime('12:00','18:00')"><a [ngClass]="{active:isAct=='12:00' } "><span><img src="../assets/images/icon-evening.png"></span>12-18</a></li>
+								<li (click)="selectTime('18:00','00:00')"><a [ngClass]="{active:isAct=='18:00' } "><span><img src="../assets/images/icon-night.png"></span>18-00</a></li>
 							</ul>
 						</div>
 					</div>
@@ -274,6 +274,8 @@
 							<input type="checkbox" class="custom-control-input" id="{{temp.airlineName}}" name="airlineName" [(ngModel)]="temp.isChkd" (change)="checkAirline(temp)">
 							<label class="custom-control-label" for="customCheck11">{{temp.airlineName}}</label>
 						</div>
+
+						
 						<!-- <div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
 							<label class="custom-control-label" for="customCheck1">Go Air</label>
@@ -2131,7 +2133,7 @@
 				<div class="price-tipsy">
 					<span class="total-fare">Total Fare :</span>
 					<h3><i class="fas fa-rupee-sign"></i>{{(netAmount(selFlight.FareDetails.ChargeableFares.NetFare) + netAmount(selReturnFlight.FareDetails.ChargeableFares.NetFare)).toLocaleString('en-IN')}}</h3>
-					<p >Earn eCash:<span>500</span></p>
+					<!--<p >Earn eCash:<span>500</span></p>-->
 				</div>
 				<div class="pricing-fare-summary" style="display: none;">
 					<h3>Fare Summary</h3>

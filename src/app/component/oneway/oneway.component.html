@@ -135,10 +135,10 @@
 						<div class="depart-time">
 							<p>From Bangalore</p>
 							<ul>
-								<li (click)="selectTime(00,06)"><a [ngClass]="{active:isAct==00 } "><span></span>00-06</a></li>
-								<li (click)="selectTime(06,12)"><a [ngClass]="{active:isAct==06 } "><span></span>06-12</a></li>
-								<li (click)="selectTime(12,18)"><a [ngClass]="{active:isAct==12 } "><span></span>12-18</a></li>
-								<li (click)="selectTime(18,00)"><a [ngClass]="{active:isAct==18 } "><span></span>18-00</a></li>
+								<li (click)="selectTime(00,06)"><a [ngClass]="{active:isAct==00 } "><span><img src="../assets/images/icon-morning.png"></span>00-06</a></li>
+								<li (click)="selectTime(06,12)"><a [ngClass]="{active:isAct==06 } "><span><img src="../assets/images/icon-noon.png"></span>06-12</a></li>
+								<li (click)="selectTime(12,18)"><a [ngClass]="{active:isAct==12 } "><span><img src="../assets/images/icon-evening.png"></span>12-18</a></li>
+								<li (click)="selectTime(18,00)"><a [ngClass]="{active:isAct==18 } "><span><img src="../assets/images/icon-night.png"></span>18-00</a></li>
 							</ul>
 						</div>
 					</div>
@@ -366,7 +366,7 @@
 														<p>No Fare rules are found for this flight </p>
 													</div>
 													<div class="custom-farerule">
-														{{fareRule}}
+														<p>{{fareRule}}</p>
 													<!-- <h4>BLR-HYD</h4>
 													<table class="table fare-table">
 														<thead>
@@ -802,7 +802,7 @@
 															<p>No Fare rules are found for this flight </p>
 														</div>
 														<div class="custom-farerule">
-													{{fareRuleInt}}
+													<p>{{fareRuleInt}}</p>
 														</div>
 													  </div>
 													</div>
@@ -1028,7 +1028,7 @@
 														</div>
 														<div class="custom-farerule">
 														<!-- <h4>BLR-HYD</h4> -->
-													{{fareRuleInt}}
+													<p>{{fareRuleInt}}</p>
 														</div>
 													  </div>
 													</div>

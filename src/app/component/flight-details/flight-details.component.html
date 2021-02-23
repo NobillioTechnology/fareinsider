@@ -526,7 +526,7 @@
 							<li>Fee & Surcharges<span><i class="small-inr"></i>{{(netAmount(fareDetails.Tax)).toLocaleString('en-IN')}}</span></li>
 							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{(netAmount(fareDetails.NetFare)).toLocaleString('en-IN')}} </span></li>
 							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(netAmount(fareDetails.NetFare)).toLocaleString('en-IN')}} </span></li>
-							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
+							<!--<li>Earn eCash <span><i class="small-inr"></i>250</span></li>-->
 						</ul>
 					</div>
 					<div class="box-content fare-details" *ngIf="tripName=='roundway'">
@@ -535,7 +535,7 @@
 							<li>Fee & Surcharges<span><i class="small-inr"></i>{{(netAmount(depFlightFare.Tax)+netAmount(returnFlightFare.Tax)).toLocaleString('en-IN')}}</span></li>
 							<li class="total-cost">Total Fare<span><i class="inr-2k"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toLocaleString('en-IN')}} </span></li>
 							<li class="total-pay">You Pay :<span><i class="fas fa-rupee-sign"></i>{{(netAmount(depFlightFare.NetFare)+netAmount(returnFlightFare.NetFare)).toLocaleString('en-IN')}} </span></li>
-							<li>Earn eCash <span><i class="small-inr"></i>250</span></li>
+							<!--<li>Earn eCash <span><i class="small-inr"></i>250</span></li>-->
 						</ul>
 					</div>
 					</div>

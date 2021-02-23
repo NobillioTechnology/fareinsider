@@ -43,6 +43,10 @@ import { ErrorComponent } from './component/error/error.component';
 import { BusTcktSuccessComponent } from './component/bus-tckt-success/bus-tckt-success.component';
 import { BusTcktErrorComponent } from './component/bus-tckt-error/bus-tckt-error.component';
 import { AccountStatemntComponent } from './component/account-statemnt/account-statemnt.component';
+import { ContactUsComponent } from './component/contact-us/contact-us.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+import { TermsandconditionsComponent } from './component/termsandconditions/termsandconditions.component';
+import { PrivacypolicyComponent } from './component/privacypolicy/privacypolicy.component';
 
 
 const APP_Routing: Routes =[
@@ -72,7 +76,10 @@ const APP_Routing: Routes =[
   { path: 'bus-tckt-success/:searchId', component: BusTcktSuccessComponent },
   { path: 'bus-tckt-error', component: BusTcktErrorComponent },
   { path: 'account-statemnt', component: AccountStatemntComponent },
- 
+  { path: 'about', component: AboutUsComponent },
+  { path: 'contact', component: ContactUsComponent },
+  { path: 'privacy', component: PrivacypolicyComponent},
+  { path: 'terms', component: TermsandconditionsComponent },
   ]
 
 @NgModule({
@@ -103,6 +110,10 @@ const APP_Routing: Routes =[
     BusTcktSuccessComponent,
     BusTcktErrorComponent,
     AccountStatemntComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    TermsandconditionsComponent,
+    PrivacypolicyComponent,
     
    
 
